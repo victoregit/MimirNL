@@ -11,8 +11,8 @@ import {
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { fixtureGit } from "../test/git-fixture.mjs";
+import { runNpm } from "./npm-cli.mjs";
 const root = mkdtempSync(join(tmpdir(), "mimir-package-"));
-const npm = process.platform === "win32" ? "npm.cmd" : "npm";
 // Windows npm/bin shims require cmd.exe; arguments are controlled temp paths.
 function command(bin, args, options = {}) {
   const cmdShim = process.platform === "win32" && /\.(?:cmd|bat)$/i.test(bin);
@@ -43,7 +43,7 @@ function command(bin, args, options = {}) {
 }
 try {
   const pack = JSON.parse(
-    command(npm, ["pack", "--json", "--pack-destination", root]),
+    runNpm(["pack", "--json", "--pack-destination", root]),
   );
   const install = join(root, "install");
   mkdirSync(install);
@@ -51,7 +51,7 @@ try {
     join(install, "package.json"),
     JSON.stringify({ name: "mimir-smoke-fixture", private: true }),
   );
-  command(npm, [
+  runNpm([
     "install",
     "--prefix",
     install,

@@ -1,0 +1,107 @@
+v24.22.1
+
+added 106 packages, and audited 107 packages in 12s
+
+32 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+COMMAND: npm run typecheck
+
+> mimir-nl@0.1.0 typecheck
+> tsc --noEmit
+
+COMMAND: npm run lint
+
+> mimir-nl@0.1.0 lint
+> eslint src
+
+COMMAND: npm run format:check
+
+> mimir-nl@0.1.0 format:check
+> prettier --check src test scripts docs *.md *.json *.mjs .github/workflows/*.yml
+
+Checking formatting...
+All matched files use Prettier code style!
+COMMAND: npm run test
+
+> mimir-nl@0.1.0 test
+> npm run build && node --test test/*.test.mjs
+
+
+> mimir-nl@0.1.0 build
+> tsc
+
+✔ canonical Git roots preserve identity across native path spellings (2537.704ms)
+✔ unexpected local errors retain safe machine codes without paths or exception text (6.7777ms)
+✔ Windows short-path aliases cannot bypass backup and restore project boundaries (882.7762ms)
+✔ A: restart persistence, WAL, foreign keys and rollback (1018.3894ms)
+✔ A: simultaneous independent processes deduplicate atomic writes (1578.8543ms)
+✔ B: isolation for search, IDs, history, stats, relations; bounded literal context (1107.4726ms)
+✔ D: authorized Git fixture bounds, secrets, ignores, binaries, symlink, incremental versions and deletion (2754.6698ms)
+✔ E: explicit verification, relation history, deterministic observation, sharing and confirmed deletion (737.2288ms)
+✔ security: every request field checked, invalid schemas and unsafe database placement (490.4296ms)
+✔ C: real SDK stdio initialize/list/call, CLI shared DB and concurrent MCP clients (2173.1122ms)
+✔ E: shared lifecycle deletion and global/local retrieval dedup (395.084ms)
+✔ D: uncommitted repositories, byte bound rollback and changed sensitive sources (1503.2468ms)
+✔ B: filters, complete response budget, oversized input and provenance trust (1132.7049ms)
+✔ security: external Git config rejected before Git commands; custom excludes and provenance retention (977.129ms)
+✔ A: future schema versions are refused without migration writes (67.0467ms)
+✔ A/E: manual edits preserve ID/history, reset verification and prevent duplicates (521.3247ms)
+✔ security: quoted JSON configuration secrets and metadata are rejected before persistence (737.8318ms)
+✔ C: CLI positional project deletion consumes the UUID and preserves the source (1590.1579ms)
+✔ snapshot includes uncheckpointed WAL, versions, provenance, feedback and independent reopen (1011.8073ms)
+✔ snapshot stays consistent with independent CLI writer processes (1546.5088ms)
+✔ online snapshot overlaps an active WAL writer and preserves transactional history (4593.4721ms)
+✔ restore rejects corruption, incompatible schema, sidecars, project paths, traversal and symlinks (737.1765ms)
+✔ sensitive fields, Windows paths, bounded includes and injection remain data (451.0555ms)
+✔ external Git config and executable fsmonitor cannot run (627.7097ms)
+✔ npm commands use the invoking CLI despite broken npm shims in cwd and PATH (1021.7066ms)
+✔ CLI feedback persists approval; includes deprecates and full ingest reactivates (3003.247ms)
+▶ hard-link failures preserve sources, clean temporary snapshots and never replace targets
+  ✔ EXDEV (218.6139ms)
+  ✔ ENOTSUP (282.0538ms)
+  ✔ EPERM (129.1824ms)
+  ✔ EEXIST (139.7158ms)
+✔ hard-link failures preserve sources, clean temporary snapshots and never replace targets (909.5564ms)
+✔ SQLite WAL-reset patch boundaries reject unpatched and unknown versions (5.4015ms)
+✔ actual SQLite runtime is patched and doctor reports it (574.0663ms)
+ℹ tests 33
+ℹ suites 0
+ℹ pass 33
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 17377.4257
+COMMAND: npm run schemas:check
+
+> mimir-nl@0.1.0 schemas:check
+> npm run build && node scripts/generate-contract.mjs --check
+
+
+> mimir-nl@0.1.0 build
+> tsc
+
+COMMAND: npm run package:smoke
+
+> mimir-nl@0.1.0 package:smoke
+> npm run build && node scripts/package-smoke.mjs
+
+
+> mimir-nl@0.1.0 build
+> tsc
+
+{"installedExecutable":true,"backupRestore":true,"feedbackApproval":true,"isolation":true,"node":"v24.22.1","platform":"win32"}
+COMMAND: node --test test/npm-cli.test.mjs (npm_execpath unset)
+✔ npm commands use the invoking CLI despite broken npm shims in cwd and PATH (583.5169ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 706.9696
+COMMAND: node scripts/package-smoke.mjs (npm_execpath unset)
+{"installedExecutable":true,"backupRestore":true,"feedbackApproval":true,"isolation":true,"node":"v24.22.1","platform":"win32"}
