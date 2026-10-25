@@ -1,0 +1,30 @@
+{
+  "fixture": {
+    "corpus": 100,
+    "relevant": 8,
+    "query": "Renderer buffer architecture",
+    "seed": "deterministic indices 0..99"
+  },
+  "withoutMemory": {
+    "returned": 0,
+    "latencyMs": 0,
+    "conservativeTokenUpperBound": 0,
+    "precision": 0,
+    "recall": 0
+  },
+  "fullCorpus": {
+    "returned": 100,
+    "latencyMs": 8.833,
+    "conservativeTokenUpperBound": 52065,
+    "precision": 0.08,
+    "recall": 1
+  },
+  "selective": {
+    "returned": 8,
+    "latencyMs": 2.799,
+    "conservativeTokenUpperBound": 4317,
+    "precision": 1,
+    "recall": 1
+  },
+  "limitations": "Synthetic keyword relevance; one local run, no model/task-quality evaluation. Retrieval latency includes context packing and metric writes; corpus baseline reads and packs all rows without metric writes. Byte upper bounds are not actual model token counts or measured savings."
+}

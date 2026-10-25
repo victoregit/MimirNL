@@ -1,0 +1,367 @@
+{
+  "init": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {},
+    "additionalProperties": false
+  },
+  "project_register": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "path": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 4096
+      },
+      "authorizeIngestion": {
+        "type": "boolean",
+        "const": true
+      }
+    },
+    "required": ["path", "authorizeIngestion"],
+    "additionalProperties": false
+  },
+  "project_ingest": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "projectId": {
+        "type": "string",
+        "format": "uuid",
+        "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+      },
+      "includes": {
+        "default": [],
+        "maxItems": 30,
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        }
+      },
+      "excludes": {
+        "default": [],
+        "maxItems": 30,
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        }
+      },
+      "maxFiles": {
+        "default": 500,
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 2000
+      },
+      "maxBytes": {
+        "default": 1000000,
+        "type": "integer",
+        "minimum": 100,
+        "maximum": 5000000
+      },
+      "maxCommits": {
+        "default": 20,
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "projectId",
+      "includes",
+      "excludes",
+      "maxFiles",
+      "maxBytes",
+      "maxCommits"
+    ],
+    "additionalProperties": false
+  },
+  "memory_store": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "projectId": {
+        "type": "string",
+        "format": "uuid",
+        "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+      },
+      "content": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 32000
+      },
+      "type": {
+        "default": "semantic",
+        "type": "string",
+        "enum": ["episodic", "semantic", "procedural", "project", "global"]
+      },
+      "origin": {
+        "default": "user",
+        "type": "string",
+        "enum": ["user", "execution"]
+      },
+      "source": {
+        "default": "manual user input",
+        "type": "string",
+        "maxLength": 4096
+      }
+    },
+    "required": ["projectId", "content", "type", "origin", "source"],
+    "additionalProperties": false
+  },
+  "memory_update": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "projectId": {
+        "type": "string",
+        "format": "uuid",
+        "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+      },
+      "id": {
+        "type": "string",
+        "format": "uuid",
+        "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+      },
+      "content": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 32000
+      },
+      "source": {
+        "default": "manual user correction",
+        "type": "string",
+        "maxLength": 4096
+      }
+    },
+    "required": ["projectId", "id", "content", "source"],
+    "additionalProperties": false
+  },
+  "memory_get": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "projectId": {
+        "type": "string",
+        "format": "uuid",
+        "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+      },
+      "id": {
+        "type": "string",
+        "format": "uuid",
+        "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+      },
+      "includeGlobal": {
+        "default": false,
+        "type": "boolean"
+      }
+    },
+    "required": ["projectId", "id", "includeGlobal"],
+    "additionalProperties": false
+  },
+  "memory_search": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "projectId": {
+        "type": "string",
+        "format": "uuid",
+        "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+      },
+      "query": {
+        "type": "string",
+        "maxLength": 1000
+      },
+      "type": {
+        "type": "string",
+        "enum": ["episodic", "semantic", "procedural", "project", "global"]
+      },
+      "status": {
+        "type": "string",
+        "enum": ["candidate", "verified", "deprecated", "rejected"]
+      },
+      "scope": {
+        "type": "string",
+        "enum": ["project", "global"]
+      },
+      "includeGlobal": {
+        "default": false,
+        "type": "boolean"
+      },
+      "limit": {
+        "default": 10,
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 50
+      },
+      "tokenBudget": {
+        "default": 4000,
+        "type": "integer",
+        "minimum": 200,
+        "maximum": 100000
+      }
+    },
+    "required": ["projectId", "query", "includeGlobal", "limit", "tokenBudget"],
+    "additionalProperties": false
+  },
+  "memory_feedback": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "projectId": {
+        "type": "string",
+        "format": "uuid",
+        "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+      },
+      "id": {
+        "type": "string",
+        "format": "uuid",
+        "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+      },
+      "action": {
+        "type": "string",
+        "enum": [
+          "approve",
+          "deprecate",
+          "reject",
+          "promote",
+          "relate",
+          "supersede",
+          "note"
+        ]
+      },
+      "note": {
+        "default": "",
+        "type": "string",
+        "maxLength": 4000
+      },
+      "explicitApproval": {
+        "default": false,
+        "type": "boolean"
+      },
+      "sharingApproval": {
+        "default": false,
+        "type": "boolean"
+      },
+      "relatedId": {
+        "type": "string",
+        "format": "uuid",
+        "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+      },
+      "scope": {
+        "default": "project",
+        "type": "string",
+        "enum": ["project", "global"]
+      }
+    },
+    "required": [
+      "projectId",
+      "id",
+      "action",
+      "note",
+      "explicitApproval",
+      "sharingApproval",
+      "scope"
+    ],
+    "additionalProperties": false
+  },
+  "experience_observe": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "projectId": {
+        "type": "string",
+        "format": "uuid",
+        "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+      },
+      "task": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 32000
+      },
+      "attempt": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 32000
+      },
+      "result": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 32000
+      }
+    },
+    "required": ["projectId", "task", "attempt", "result"],
+    "additionalProperties": false
+  },
+  "memory_stats": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "projectId": {
+        "type": "string",
+        "format": "uuid",
+        "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+      }
+    },
+    "required": ["projectId"],
+    "additionalProperties": false
+  },
+  "memory_delete": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "projectId": {
+        "type": "string",
+        "format": "uuid",
+        "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+      },
+      "id": {
+        "type": "string",
+        "format": "uuid",
+        "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+      },
+      "confirm": {
+        "type": "boolean",
+        "const": true
+      },
+      "scope": {
+        "default": "project",
+        "type": "string",
+        "enum": ["project", "global"]
+      },
+      "sharingApproval": {
+        "default": false,
+        "type": "boolean"
+      }
+    },
+    "required": ["projectId", "id", "confirm", "scope", "sharingApproval"],
+    "additionalProperties": false
+  },
+  "project_delete": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "projectId": {
+        "type": "string",
+        "format": "uuid",
+        "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+      },
+      "confirm": {
+        "type": "boolean",
+        "const": true
+      }
+    },
+    "required": ["projectId", "confirm"],
+    "additionalProperties": false
+  },
+  "doctor": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {},
+    "additionalProperties": false
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "node": "/tmp/mimir-node-runtime/node-v24.22.1-linux-x64/bin/node",
+  "codex": "codex-cli 0.163.0",
+  "sessions": [
+    {
+      "exit": 0,
+      "events": [
+        {
+          "type": "thread.started",
+          "thread_id": "01a170e8-93a4-7ee2-bb7b-134aa3fe63c0"
+        },
+        {
+          "type": "turn.started"
+        },
+        {
+          "type": "item.completed",
+          "item": {
+            "id": "item_0",
+            "type": "agent_message",
+            "text": "I\u2019ll use only Mimir MCP tools to store and verify the synthetic content, add the feedback note, and check the expected missing-ID error."
+          }
+        },
+        {
+          "type": "item.completed",
+          "item": {
+            "id": "item_1",
+            "type": "agent_message",
+            "text": "No Mimir MCP tools are available in this session, so I couldn\u2019t perform the requested operations. Nothing was stored, modified, approved, promoted, deleted, or shared."
+          }
+        },
+        {
+          "type": "turn.completed",
+          "usage": {
+            "input_tokens": 29580,
+            "cached_input_tokens": 26880,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 117,
+            "reasoning_output_tokens": 10
+          }
+        }
+      ],
+      "stderr": "Reading additional input from stdin...\n"
+    },
+    {
+      "exit": 0,
+      "events": [
+        {
+          "type": "thread.started",
+          "thread_id": "01a170e8-c10e-7ed0-ba04-d4a91712fda5"
+        },
+        {
+          "type": "turn.started"
+        },
+        {
+          "type": "item.completed",
+          "item": {
+            "id": "item_0",
+            "type": "agent_message",
+            "text": "I\u2019ll use only Mimir MCP tools to search, retrieve the persisted result, and check whether the unrelated project denies access to that ID."
+          }
+        },
+        {
+          "type": "item.started",
+          "item": {
+            "id": "item_1",
+            "type": "mcp_tool_call",
+            "server": "mimir",
+            "tool": "memory_search",
+            "arguments": {
+              "projectId": "bd432183-cca0-4bcc-8dca-508934d14345",
+              "query": "cobalt 719",
+              "scope": "project",
+              "includeGlobal": false
+            },
+            "result": null,
+            "error": null,
+            "status": "in_progress"
+          }
+        },
+        {
+          "type": "item.completed",
+          "item": {
+            "id": "item_1",
+            "type": "mcp_tool_call",
+            "server": "mimir",
+            "tool": "memory_search",
+            "arguments": {
+              "projectId": "bd432183-cca0-4bcc-8dca-508934d14345",
+              "query": "cobalt 719",
+              "scope": "project",
+              "includeGlobal": false
+            },
+            "result": null,
+            "error": {
+              "message": "MCP tool call requires approval, but approval policy is never"
+            },
+            "status": "failed"
+          }
+        },
+        {
+          "type": "item.completed",
+          "item": {
+            "id": "item_2",
+            "type": "agent_message",
+            "text": "The Mimir search was blocked: `MCP tool call requires approval, but approval policy is never`.\n\nNo result ID was returned, so persisted retrieval and cross-project scoped denial could not be verified. No writes, approvals, promotions, deletions, or sharing were performed."
+          }
+        },
+        {
+          "type": "turn.completed",
+          "usage": {
+            "input_tokens": 78121,
+            "cached_input_tokens": 65664,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 218,
+            "reasoning_output_tokens": 0
+          }
+        }
+      ],
+      "stderr": "Reading additional input from stdin...\n"
+    }
+  ],
+  "persisted_search": {
+    "ok": true,
+    "data": {
+      "memories": [],
+      "estimatedTokens": 125,
+      "estimator": "conservative UTF-8 byte upper bound; not model tokens"
+    }
+  },
+  "passed": false
+}

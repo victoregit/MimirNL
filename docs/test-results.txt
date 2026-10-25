@@ -1,0 +1,33 @@
+
+> mimir-nl@0.1.0 test
+> npm run build && node --test test/*.test.mjs
+
+
+> mimir-nl@0.1.0 build
+> tsc
+
+✔ A: restart persistence, WAL, foreign keys and rollback (50.397511ms)
+✔ A: simultaneous independent processes deduplicate atomic writes (1041.724972ms)
+✔ B: isolation for search, IDs, history, stats, relations; bounded literal context (53.066326ms)
+✔ D: authorized Git fixture bounds, secrets, ignores, binaries, symlink, incremental versions and deletion (153.803293ms)
+✔ E: explicit verification, relation history, deterministic observation, sharing and confirmed deletion (51.118045ms)
+✔ security: every request field checked, invalid schemas and unsafe database placement (27.259518ms)
+✔ C: real SDK stdio initialize/list/call, CLI shared DB and concurrent MCP clients (7659.16389ms)
+✔ E: shared lifecycle deletion and global/local retrieval dedup (27.767232ms)
+✔ D: uncommitted repositories, byte bound rollback and changed sensitive sources (187.656744ms)
+✔ B: filters, complete response budget, oversized input and provenance trust (26.855309ms)
+✔ security: external Git config rejected before Git commands; custom excludes and provenance retention (51.233621ms)
+✔ A: future schema versions are refused without migration writes (3.07272ms)
+✔ A/E: manual edits preserve ID/history, reset verification and prevent duplicates (25.152204ms)
+✔ security: quoted JSON configuration secrets and metadata are rejected before persistence (46.719452ms)
+✔ C: CLI positional project deletion consumes the UUID and preserves the source (1907.721683ms)
+✔ SQLite WAL-reset patch boundaries reject unpatched and unknown versions (2.330179ms)
+✔ actual SQLite runtime is patched and doctor reports it (689.349518ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 12673.473896

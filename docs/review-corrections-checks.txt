@@ -1,0 +1,75 @@
+CHECK typecheck
+
+> mimir-nl@0.1.0 typecheck
+> tsc --noEmit
+
+CHECK lint
+
+> mimir-nl@0.1.0 lint
+> eslint src
+
+CHECK format:check
+
+> mimir-nl@0.1.0 format:check
+> prettier --check src test scripts docs *.md *.json *.mjs .github/workflows/*.yml
+
+Checking formatting...
+All matched files use Prettier code style!
+CHECK schemas:check
+
+> mimir-nl@0.1.0 schemas:check
+> npm run build && node scripts/generate-contract.mjs --check
+
+
+> mimir-nl@0.1.0 build
+> tsc
+
+CHECK package:smoke
+
+> mimir-nl@0.1.0 package:smoke
+> npm run build && node scripts/package-smoke.mjs
+
+
+> mimir-nl@0.1.0 build
+> tsc
+
+{"installedExecutable":true,"backupRestore":true,"feedbackApproval":true,"isolation":true,"node":"v24.22.1","platform":"linux"}
+CHECK benchmark
+
+> mimir-nl@0.1.0 benchmark
+> npm run build && node test/benchmark.mjs
+
+
+> mimir-nl@0.1.0 build
+> tsc
+
+{
+  "fixture": {
+    "corpus": 100,
+    "relevant": 8,
+    "query": "Renderer buffer architecture",
+    "seed": "deterministic indices 0..99"
+  },
+  "withoutMemory": {
+    "returned": 0,
+    "latencyMs": 0,
+    "conservativeTokenUpperBound": 0,
+    "precision": 0,
+    "recall": 0
+  },
+  "fullCorpus": {
+    "returned": 100,
+    "latencyMs": 13.889,
+    "conservativeTokenUpperBound": 52065,
+    "precision": 0.08,
+    "recall": 1
+  },
+  "selective": {
+    "returned": 8,
+    "latencyMs": 4.302,
+    "conservativeTokenUpperBound": 4317,
+    "precision": 1,
+    "recall": 1
+  },
+  "limitations": "Synthetic keyword relevance; one local run, no model/task-quality evaluation. Retrieval latency includes context packing and metric writes; corpus baseline reads and packs all rows without metric writes. Byte upper bounds are not actual model token counts or measured savings."
+}

@@ -1,0 +1,92 @@
+$ node --version
+v24.22.1
+exit=0
+$ npm --version
+11.19.1
+exit=0
+$ git --version
+git version 2.53.0
+exit=0
+$ npm ci
+
+added 106 packages, and audited 107 packages in 22s
+
+32 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+exit=0
+$ npm run typecheck
+
+> mimir-nl@0.1.0 typecheck
+> tsc --noEmit
+
+exit=0
+$ npm run lint
+
+> mimir-nl@0.1.0 lint
+> eslint src
+
+exit=0
+$ npm test
+
+> mimir-nl@0.1.0 test
+> npm run build && node --test test/*.test.mjs
+
+
+> mimir-nl@0.1.0 build
+> tsc
+
+✔ A: restart persistence, WAL, foreign keys and rollback (113.825347ms)
+✔ A: simultaneous independent processes deduplicate atomic writes (2274.539494ms)
+✔ B: isolation for search, IDs, history, stats, relations; bounded literal context (54.67199ms)
+✔ D: authorized Git fixture bounds, secrets, ignores, binaries, symlink, incremental versions and deletion (137.196778ms)
+✔ E: explicit verification, relation history, deterministic observation, sharing and confirmed deletion (60.14456ms)
+✔ security: every request field checked, invalid schemas and unsafe database placement (23.55598ms)
+✔ C: real SDK stdio initialize/list/call, CLI shared DB and concurrent MCP clients (6139.844987ms)
+✔ E: shared lifecycle deletion and global/local retrieval dedup (26.01111ms)
+✔ D: uncommitted repositories, byte bound rollback and changed sensitive sources (96.956646ms)
+✔ B: filters, complete response budget, oversized input and provenance trust (24.750069ms)
+✔ security: external Git config rejected before Git commands; custom excludes and provenance retention (46.622331ms)
+✔ A: future schema versions are refused without migration writes (4.454654ms)
+✔ A/E: manual edits preserve ID/history, reset verification and prevent duplicates (24.762825ms)
+✔ security: quoted JSON configuration secrets and metadata are rejected before persistence (46.827922ms)
+✔ C: CLI positional project deletion consumes the UUID and preserves the source (2068.72023ms)
+✔ snapshot includes uncheckpointed WAL, versions, provenance, feedback and independent reopen (85.030236ms)
+✔ snapshot stays consistent with independent CLI writer processes (2256.320961ms)
+✔ online snapshot overlaps an active WAL writer and preserves transactional history (2292.085643ms)
+✔ restore rejects corruption, incompatible schema, sidecars, project paths, traversal and symlinks (1393.093738ms)
+✔ sensitive fields, Windows paths, bounded includes and injection remain data (38.974953ms)
+✔ external Git config and executable fsmonitor cannot run (43.424304ms)
+✔ SQLite WAL-reset patch boundaries reject unpatched and unknown versions (6.305112ms)
+✔ actual SQLite runtime is patched and doctor reports it (1498.433279ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 13079.862657
+exit=0
+$ npm run schemas:check
+
+> mimir-nl@0.1.0 schemas:check
+> npm run build && node scripts/generate-contract.mjs --check
+
+
+> mimir-nl@0.1.0 build
+> tsc
+
+file:///mnt/d/Projects/MimirNL/scripts/generate-contract.mjs:18
+    throw new Error("MCP schemas drift: run npm run docs:schemas");
+          ^
+
+Error: MCP schemas drift: run npm run docs:schemas
+    at file:///mnt/d/Projects/MimirNL/scripts/generate-contract.mjs:18:11
+    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
+    at async node:internal/modules/esm/loader:647:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.22.1
+exit=1

@@ -1,0 +1,11 @@
+
+> mimir-nl@0.1.0 package:smoke
+> npm run build && node scripts/package-smoke.mjs
+
+
+> mimir-nl@0.1.0 build
+> tsc
+
+{"installedExecutable":true,"backupRestore":true,"feedbackApproval":true,"isolation":true,"node":"v24.22.1","platform":"linux"}
+Checking formatting...
+All matched files use Prettier code style!

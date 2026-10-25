@@ -1,0 +1,58 @@
+# Roadmap execution — updated 2026-10-25
+
+The authorized task08/task09 work was resumed through tasks/10-resume-hardening.md. Existing tracked and untracked work was preserved; the historical implementation report remains unchanged. The package remains version 0.1.0 while the v0.1.1 release milestone awaits remote CI; independent code/security re-review is approved. Nothing was committed, published or imported from a real repository. Mimir-web and global host configuration were not changed.
+
+## Implemented work
+
+Existing hardening includes consistent online SQLite snapshots and restore-to-new-path only (`src/storage/backup.ts`), CLI/library access, private POSIX modes, schema/integrity/foreign-key validation, conflict/traversal/symlink/project-tree protections and cleanup. Integration tests cover active WAL writers, history/provenance/feedback, corruption, future schemas, source preservation and installed-package recovery. Backup administration was deliberately kept outside MCP.
+
+Security work expands bounded include/exclude rules, recursive sensitive-field checks, case-insensitive Windows/WSL sensitive paths, Git configuration guards, prompt-injection trust labels and candidate-only imports. Adversarial fixtures demonstrate that imported instructions neither execute scripts nor approve/promote memories. Secret detection remains heuristic. Deletion/cascades, independent global copies, WAL/free-page and backup retention limits are documented in SECURITY.md and docs/backup-restore.md.
+
+CI runs pinned Node 24.22.1 on Linux and Windows, lockfile installation, strict types, genuine ESLint, Prettier, tests, contract drift checks, installed executable smoke and benchmark assertions; permissions are read-only, timeouts explicit and no publish/secrets jobs exist. Governance files are CONTRIBUTING.md, CODE_OF_CONDUCT.md and SECURITY.md.
+
+This resume added MIT LICENSE using the repository Git author attribution (Victor Silva), changed both package metadata files, included LICENSE in the tarball, updated governance/README and added installed-package license assertions. Dependency notices were preserved. It regenerated the MCP contract and fixed generation to use Prettier's JSON formatter: previously running formatting after generation reintroduced byte-for-byte drift. It added the bounded opt-in scripts/host-smoke.py and recorded actual failed host acceptance rather than treating a zero client exit as success.
+
+Doctor exposes runtime/executable/platform, Git, SDK, schema, SQLite patch/WAL/FTS and database path diagnostics and explicitly disclaims proving host settings or consent.
+
+## Historical resume verification (before review corrections)
+
+| Check                                        | Linux/WSL                                             | Native Windows                                        |
+| -------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| Runtime                                      | Node 24.22.1, npm 11.19.1, SQLite 3.53.4              | Node 24.22.1, npm 11.19.1, SQLite 3.53.4              |
+| Git                                          | 2.53.0                                                | 2.56.0.windows.3                                      |
+| npm ci, typecheck, lint                      | passed                                                | passed                                                |
+| npm test (build included)                    | 23 passed, 0 failed/skipped                           | 23 passed, 0 failed/skipped                           |
+| SDK stdio discovery/calls/concurrent clients | passed in suite                                       | passed in suite                                       |
+| schemas:check                                | passed after formatter fix                            | passed; final formatter recheck recorded separately   |
+| package:smoke                                | passed, installed executable/backup restore/isolation | passed, installed executable/backup restore/isolation |
+| benchmark                                    | deterministic sanity passed                           | deterministic sanity passed                           |
+
+Linux runtime: `/tmp/mimir-node-runtime/node-v24.22.1-linux-x64/bin/node`; restored archive SHA-256 matched the existing official checksum metadata in docs/runtime-download.json. Windows runtime: `C:\Users\Public\mimir-hardening-runtime\node\node-v24.22.1-win-x64\node.exe`; Git: `C:\Users\Public\mimir-hardening-runtime\git\cmd\git.exe`. Windows runs used a separate dependency installation and copied source at `C:\Users\Public\mimir-hardening-resume`; no live database was shared across operating systems.
+
+Commands were `npm ci`, `npm run typecheck`, `npm run lint`, `npm test`, `npm run schemas:check`, `npm run package:smoke`, `npm run benchmark`, then final formatting and diff checks. The native runner invoked npm.cmd and stopped on any nonzero command. Evidence: docs/hardening-resume-linux.txt records the full suite and the formatting-induced schema failure; docs/hardening-resume-final.txt records the fixed contract/package/benchmark follow-up. docs/hardening-resume-windows.txt records the full native suite and executable smoke. docs/hardening-resume-windows-final.txt records final native formatting, schema and MIT installed-package assertions. docs/hardening-resume-format.txt records the final Linux formatting pass. docs/hardening-resume-runtime-linux.txt and docs/hardening-resume-runtime-windows.txt record actual executable/platform/SQLite probes. Original docs/hardening-linux.txt and docs/hardening-windows.txt remain historical failed-at-drift evidence, not current results. Benchmark timings are synthetic observations, not model-token savings; baseline benchmark-results.json remains unchanged.
+
+## Unresolved gates and next actions
+
+Independent code/security re-review is complete with scoped **APPROVE** from Gemini 3.8 Flash High; see [final re-review](../tasks/14-rereview-findings.md). All initial findings are reconciled, resolved or documented. This supersedes the earlier pending-review status; the approval does not close release, host or real-workload gates. GitHub Actions has not run remotely. Native Windows now has actual Git/SQLite/MCP and installed executable evidence; Windows symlink tests remain platform-conditional and POSIX modes do not prove Windows ACL privacy.
+
+Codex CLI 0.163.0 was attempted with two disposable sessions and process-local MCP overrides. Acceptance failed: one session had no tools, another emitted a real failed Mimir memory_search call (`MCP tool call requires approval, but approval policy is never`); direct persisted search was empty. See docs/host-acceptance.md and docs/host-smoke-results.json. Antigravity's installed help does not establish isolated MCP settings; no global change or blind quota retry was made. Missing-ID/scoped checks and human approval remain unverified on actual hosts. SDK coverage does not close these gates.
+
+Next: run configured CI remotely when authorized, establish supported host configuration and actual human approval, then repeat the opt-in synthetic host test. Do not ingest unspecified real repositories or claim real-workload quality/token gains before their separate privacy and measurement gates.
+
+## Independent review corrections — 2026-10-25
+
+The independent Gemini 3.8 Flash High review in tasks/12-review-findings.md returned REQUEST_CHANGES for CLI feedback dispatch and advised clearer hard-link errors and include-scope documentation. The `feedback` → `memory_feedback` mapping already existed and was preserved. The [final re-review](../tasks/14-rereview-findings.md) corrects the initial defect claim: an incomplete CLI payload returned INVALID_REQUEST, while probing the raw internal operation `feedback` returned UNKNOWN_OPERATION; neither demonstrated a CLI dispatcher defect. The missing end-to-end coverage was closed. New actual-CLI coverage verifies approval persists in SQLite; installed-package smoke now approves through the installed executable and verifies verified status survives backup/restore.
+
+Snapshot publication maps EXDEV, ENOTSUP and EPERM to structured UNSUPPORTED_FILESYSTEM with the hard-link requirement. It retains atomic no-replace publication. Bounded injected filesystem failures exercise backup and restore, source snapshot preservation, source database integrity, temporary-directory cleanup, absent failed targets and preservation of a competing publisher's target. Security documentation now explains that a narrower includes scope deprecates prior out-of-scope file memories and a full ingest reactivates them as candidate; regression coverage starts with a verified file and checks both transitions.
+
+Task13 verification results and evidence are recorded below. The subsequent [independent re-review](../tasks/14-rereview-findings.md) returned scoped **APPROVE** on 2026-10-25; the correction pass itself granted no approval. Remote CI and the previously documented host acceptance limitations remain unresolved. The historical implementation report and baseline benchmark-results.json remain unchanged.
+
+Linux Node 24.22.1: `npm test` passed 29/29 (25 top-level tests plus four publication-error subtests), zero failed/skipped. Typecheck, lint, format:check, schemas:check, package:smoke and benchmark passed. Evidence: docs/review-corrections-linux.txt and docs/review-corrections-checks.txt. Native Windows Node 24.22.1: typecheck, lint, format:check, all 29 tests and schemas:check passed in the existing separate Windows copy (docs/review-corrections-windows.txt). Its first package smoke stopped because the fixture shell guard rejected JSON quotes; the follow-up invokes the installed feedback entry point through native Node argument passing, with all other commands still exercising the Windows shim. Follow-up logs: docs/review-corrections-windows-final.txt and docs/review-corrections-linux-final.txt. Neither runtime shares live SQLite files with the other.
+
+Final follow-up: installed-package feedback/backup/restore/isolation smoke passed on Linux and Windows, final changed-file formatting passed, and the native Windows benchmark passed (runner exit 0). The Linux benchmark also passed in the full checks log. All task13 local checks are complete and independent re-review is approved; remote CI remains pending.
+
+## Final review closeout — 2026-10-25
+
+The [final independent re-review](../tasks/14-rereview-findings.md) approves the scoped hardening work: feedback dispatch is reconciled and regression-tested, structured hard-link errors are resolved, and include-scope semantics are documented and tested. Current verification is **29 passing tests on Linux and native Windows** (25 top-level plus four subtests), with typecheck, lint, formatting, schema checks, installed-package smoke and benchmark passing as recorded above. The 23-test table is historical resume evidence, not the current suite count.
+
+The [initial findings](../tasks/12-review-findings.md), original implementation report and prior evidence remain intact. Earlier pending-review statements in those historical artifacts are superseded by the final re-review. Package version remains **0.1.0** and the full **v0.1.1 milestone remains unreleased** pending remote CI. Codex/Antigravity host acceptance, actual human approval flows, real-repository privacy review and real-workload quality/token measurements remain pending. This closeout changes documentation only.
