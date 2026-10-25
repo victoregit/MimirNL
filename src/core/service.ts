@@ -159,7 +159,8 @@ export class Service {
       id = String(d.id);
     if (op === "init") return { database: this.storage.path, version: "0.1.0" };
     if (op === "project_register") {
-      const path = realpathSync(String(d.path));
+      // Native realpath resolves Windows drive and directory casing to filesystem identity.
+      const path = realpathSync.native(String(d.path));
       assertSafe(path);
       if (sensitivePath(path))
         throw new AppError("UNSAFE_PATH", "Sensitive project path.");

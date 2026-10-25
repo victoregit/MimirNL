@@ -1,0 +1,30 @@
+Task19 canonical-root correction, 2026-10-25
+Baseline commit4386fca747eaa88850ea9d3e3a4e2deb027eef12
+User remote error: UNSAFE_PATH: Register the canonical Git worktree root.
+Full remote failing test name/stack and runner path spelling not supplied.
+
+Native Windows reproduction before fix (Node24.22.1, Git2.56.0.windows.3):
+Input lowercase c: drive -> JS realpathSync retains c:; Git --show-toplevel canonicalizes C:.
+Input uppercase directory components -> JS realpathSync retains uppercase; Git uses actual case.
+Both produce exact reported UNSAFE_PATH message on same disposable Git worktree.
+Normal-case/backslash and forward-slash variants succeed at baseline.
+Evidence: ci-canonical-root-windows-baseline.txt.
+Regression RED: ci-canonical-root-windows-red.txt, exit1, exact canonical root assertion.
+Targeted GREEN: ci-canonical-root-windows-green.txt, exit0.
+
+Fix: realpathSync.native in project registration plus GitAdapter root, project revalidation and file canonicalization (four call sites).
+Uses filesystem-resolved identity, no lowercasing or relaxed root equality.
+Regression: test/canonical-root.test.mjs covers Windows drive/directory case, slashes,
+stable identity, root alias/junction, ingestion, rejected child, distinct roots (case-distinct on Linux),
+traversal includes, sensitive project root, and linked .git metadata rejection.
+Existing hardening and authorization tests retained unchanged.
+Root aliases remain canonicalized as before; metadata symlink/junction redirects remain forbidden.
+
+Native Windows full gates exit0: typecheck, lint, format:check, test30/30 (0 failed/skipped), schemas:check, package:smoke, benchmark.
+Evidence: ci-canonical-root-windows-final.txt.
+Linux Node24.22.1 full gates exit0: typecheck, lint, format:check, test30/30 (0 failed/skipped), schemas:check, package:smoke, benchmark.
+Evidence: ci-canonical-root-windows-linux-final.txt.
+
+No global configs, host acceptance, real ingestion, commits or pushes.
+Independent review and successful remote CI rerun remain pending.
+This matches the supplied remote error but does not prove the runner's exact original path spelling.

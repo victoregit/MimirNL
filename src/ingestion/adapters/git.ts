@@ -133,7 +133,7 @@ export class GitAdapter implements IngestionAdapter {
         "UNSAFE_GIT",
         "External Git configuration and object stores are forbidden.",
       );
-    return realpathSync(
+    return realpathSync.native(
       this.git(["rev-parse", "--show-toplevel"]).toString().trim(),
     );
   }
@@ -141,7 +141,7 @@ export class GitAdapter implements IngestionAdapter {
     const project = service.project(projectId);
     if (
       !project.authorized ||
-      realpathSync(String(project.path)) !== this.path ||
+      realpathSync.native(String(project.path)) !== this.path ||
       this.root() !== this.path
     )
       throw new AppError(
@@ -228,7 +228,7 @@ export class GitAdapter implements IngestionAdapter {
         skipped++;
         continue;
       }
-      const canonical = realpathSync(full);
+      const canonical = realpathSync.native(full);
       if (
         !inside(this.path, canonical) ||
         relative(this.path, canonical).replaceAll("\\", "/") !== file

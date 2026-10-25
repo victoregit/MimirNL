@@ -1,0 +1,281 @@
+{
+  "total_count": 2,
+  "jobs": [
+    {
+      "id": 121076267883,
+      "run_id": 40162319883,
+      "workflow_name": "CI",
+      "head_branch": "develop",
+      "run_url": "https://api.github.com/repos/victoregit/MimirNL/actions/runs/40162319883",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOVWNsG88AAAAcMLU7aw",
+      "head_sha": "4386fca747eaa88850ea9d3e3a4e2deb027eef12",
+      "url": "https://api.github.com/repos/victoregit/MimirNL/actions/jobs/121076267883",
+      "html_url": "https://github.com/victoregit/MimirNL/actions/runs/40162319883/job/121076267883",
+      "status": "completed",
+      "conclusion": "failure",
+      "created_at": "2026-10-25T04:33:30Z",
+      "started_at": "2026-10-25T04:33:32Z",
+      "completed_at": "2026-10-25T04:34:16Z",
+      "name": "validate (windows-latest)",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-25T04:33:33Z",
+          "completed_at": "2026-10-25T04:33:34Z"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-25T04:33:34Z",
+          "completed_at": "2026-10-25T04:33:40Z"
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-25T04:33:40Z",
+          "completed_at": "2026-10-25T04:33:47Z"
+        },
+        {
+          "name": "Run npm ci",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-25T04:33:47Z",
+          "completed_at": "2026-10-25T04:33:57Z"
+        },
+        {
+          "name": "Run npm run typecheck",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-25T04:33:57Z",
+          "completed_at": "2026-10-25T04:34:00Z"
+        },
+        {
+          "name": "Run npm run lint",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-25T04:34:00Z",
+          "completed_at": "2026-10-25T04:34:03Z"
+        },
+        {
+          "name": "Run npm run format:check",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-25T04:34:03Z",
+          "completed_at": "2026-10-25T04:34:05Z"
+        },
+        {
+          "name": "Run npm test",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 8,
+          "started_at": "2026-10-25T04:34:05Z",
+          "completed_at": "2026-10-25T04:34:13Z"
+        },
+        {
+          "name": "Run npm run schemas:check",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 9,
+          "started_at": "2026-10-25T04:34:13Z",
+          "completed_at": "2026-10-25T04:34:13Z"
+        },
+        {
+          "name": "Run npm run package:smoke",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 10,
+          "started_at": "2026-10-25T04:34:13Z",
+          "completed_at": "2026-10-25T04:34:13Z"
+        },
+        {
+          "name": "Run npm run benchmark",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 11,
+          "started_at": "2026-10-25T04:34:13Z",
+          "completed_at": "2026-10-25T04:34:13Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 21,
+          "started_at": "2026-10-25T04:34:13Z",
+          "completed_at": "2026-10-25T04:34:13Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 22,
+          "started_at": "2026-10-25T04:34:13Z",
+          "completed_at": "2026-10-25T04:34:15Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23,
+          "started_at": "2026-10-25T04:34:15Z",
+          "completed_at": "2026-10-25T04:34:15Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/victoregit/MimirNL/check-runs/121076267883",
+      "labels": ["windows-latest"],
+      "runner_id": 1000000002,
+      "runner_name": "GitHub Actions 1000000002",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 121076268027,
+      "run_id": 40162319883,
+      "workflow_name": "CI",
+      "head_branch": "develop",
+      "run_url": "https://api.github.com/repos/victoregit/MimirNL/actions/runs/40162319883",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOVWNsG88AAAAcMLU7-w",
+      "head_sha": "4386fca747eaa88850ea9d3e3a4e2deb027eef12",
+      "url": "https://api.github.com/repos/victoregit/MimirNL/actions/jobs/121076268027",
+      "html_url": "https://github.com/victoregit/MimirNL/actions/runs/40162319883/job/121076268027",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-25T04:33:30Z",
+      "started_at": "2026-10-25T04:33:32Z",
+      "completed_at": "2026-10-25T04:34:04Z",
+      "name": "validate (ubuntu-latest)",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-25T04:33:33Z",
+          "completed_at": "2026-10-25T04:33:34Z"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-25T04:33:34Z",
+          "completed_at": "2026-10-25T04:33:35Z"
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-25T04:33:35Z",
+          "completed_at": "2026-10-25T04:33:41Z"
+        },
+        {
+          "name": "Run npm ci",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-25T04:33:41Z",
+          "completed_at": "2026-10-25T04:33:43Z"
+        },
+        {
+          "name": "Run npm run typecheck",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-25T04:33:43Z",
+          "completed_at": "2026-10-25T04:33:45Z"
+        },
+        {
+          "name": "Run npm run lint",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-25T04:33:45Z",
+          "completed_at": "2026-10-25T04:33:46Z"
+        },
+        {
+          "name": "Run npm run format:check",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-25T04:33:46Z",
+          "completed_at": "2026-10-25T04:33:47Z"
+        },
+        {
+          "name": "Run npm test",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-25T04:33:47Z",
+          "completed_at": "2026-10-25T04:33:52Z"
+        },
+        {
+          "name": "Run npm run schemas:check",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-25T04:33:52Z",
+          "completed_at": "2026-10-25T04:33:54Z"
+        },
+        {
+          "name": "Run npm run package:smoke",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-10-25T04:33:54Z",
+          "completed_at": "2026-10-25T04:33:59Z"
+        },
+        {
+          "name": "Run npm run benchmark",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-10-25T04:33:59Z",
+          "completed_at": "2026-10-25T04:34:01Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21,
+          "started_at": "2026-10-25T04:34:01Z",
+          "completed_at": "2026-10-25T04:34:01Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 22,
+          "started_at": "2026-10-25T04:34:01Z",
+          "completed_at": "2026-10-25T04:34:01Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23,
+          "started_at": "2026-10-25T04:34:01Z",
+          "completed_at": "2026-10-25T04:34:01Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/victoregit/MimirNL/check-runs/121076268027",
+      "labels": ["ubuntu-latest"],
+      "runner_id": 1000000003,
+      "runner_name": "GitHub Actions 1000000003",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    }
+  ]
+}
