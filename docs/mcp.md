@@ -47,6 +47,8 @@ Git source provenance contains file path or commit ID, untrusted labels and an e
 
 No paths/content from failed operations are echoed in error messages. Explicit authorization flags are user assertions, not authentication credentials. The local host must prevent an agent from asserting them without actual user consent.
 
+Unexpected local failures retain the generic `INVALID_REQUEST` message. When available, `error.causeCode` contains a bounded Node I/O or SQLite machine code (for example `ENOENT` or `ERR_SQLITE_ERROR`); SQLite failures may also include numeric `error.sqliteCode`. Exception messages, SQL, paths and stack traces remain private. These optional diagnostic fields do not imply that a failure has been resolved.
+
 ## CLI aliases and JSON operations
 
 `init`, `doctor`, `project add PATH --authorize-ingestion`, `ingest PROJECT_UUID`, `search QUERY --project UUID --tokens N --limit N`, `store CONTENT --project UUID`, `get ID --project UUID`, `update ID CONTENT --project UUID`, `stats --project UUID`, `delete ID --project UUID --confirm`, `project-delete UUID --confirm`, and `feedback JSON` are human-oriented aliases. Use `--include-global` with search/get when intended. Every command accepts `--db PATH`.

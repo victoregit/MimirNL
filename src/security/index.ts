@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { lstatSync } from "node:fs";
+import { lstatSync, realpathSync } from "node:fs";
 import { resolve, parse, join, relative, isAbsolute } from "node:path";
 export class AppError extends Error {
   constructor(
@@ -66,6 +66,18 @@ export function sensitivePath(path: string): boolean {
   );
 }
 export function failure(e: unknown) {
+  // Keep local exception text and paths private, but retain bounded machine
+  // codes so CI and callers can distinguish I/O and SQLite failures.
+  const local =
+    e instanceof Error
+      ? (e as NodeJS.ErrnoException & { errcode?: number })
+      : undefined;
+  const causeCode =
+    !(e instanceof AppError) &&
+    typeof local?.code === "string" &&
+    /^(?:E[A-Z0-9_]{1,63}|SQLITE_[A-Z_]{1,63})$/.test(local.code)
+      ? local.code
+      : undefined;
   return {
     ok: false as const,
     error: {
@@ -74,6 +86,11 @@ export function failure(e: unknown) {
         e instanceof AppError
           ? e.message
           : "Invalid request or local operation failed.",
+      ...(causeCode ? { causeCode } : {}),
+      ...(causeCode === "ERR_SQLITE_ERROR" &&
+      Number.isSafeInteger(local?.errcode)
+        ? { sqliteCode: local!.errcode }
+        : {}),
     },
   };
 }
@@ -87,17 +104,26 @@ export function assertLocalPath(path: string): string {
     throw new AppError("UNSAFE_PATH", "Sensitive or traversing path rejected.");
   const absolute = resolve(path);
   let current = parse(absolute).root;
+  let canonical = realpathSync.native(current);
   for (const part of absolute.slice(current.length).split(/[\\/]/)) {
     current = join(current, part);
+    canonical = join(canonical, part);
     try {
       if (lstatSync(current).isSymbolicLink())
         throw new AppError(
           "UNSAFE_PATH",
           "Symbolic path components are forbidden.",
         );
+      // Resolve existing components before comparing administrative destinations
+      // with registered native roots (including Windows 8.3 aliases). Missing
+      // components retain their suffix under the last existing canonical parent.
+      canonical = realpathSync.native(current);
     } catch (e) {
       if ((e as NodeJS.ErrnoException).code !== "ENOENT") throw e;
     }
   }
-  return absolute;
+  assertSafe(canonical);
+  if (sensitivePath(canonical))
+    throw new AppError("UNSAFE_PATH", "Sensitive or traversing path rejected.");
+  return canonical;
 }
