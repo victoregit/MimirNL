@@ -1,0 +1,117 @@
+
+> mimir-nl@0.1.0 format:check
+> prettier --check src test scripts docs *.md *.json *.mjs .github/workflows/*.yml
+
+Checking formatting...
+All matched files use Prettier code style!
+
+> mimir-nl@0.1.0 typecheck
+> tsc --noEmit
+
+
+> mimir-nl@0.1.0 lint
+> eslint src
+
+
+> mimir-nl@0.1.0 test
+> npm run build && node --test test/*.test.mjs
+
+
+> mimir-nl@0.1.0 build
+> tsc
+
+✔ A: restart persistence, WAL, foreign keys and rollback (72.307782ms)
+✔ A: simultaneous independent processes deduplicate atomic writes (1937.414903ms)
+✔ B: isolation for search, IDs, history, stats, relations; bounded literal context (54.069492ms)
+✔ D: authorized Git fixture bounds, secrets, ignores, binaries, symlink, incremental versions and deletion (141.180189ms)
+✔ E: explicit verification, relation history, deterministic observation, sharing and confirmed deletion (50.629953ms)
+✔ security: every request field checked, invalid schemas and unsafe database placement (29.311073ms)
+✔ C: real SDK stdio initialize/list/call, CLI shared DB and concurrent MCP clients (8073.466319ms)
+✔ E: shared lifecycle deletion and global/local retrieval dedup (29.596691ms)
+✔ D: uncommitted repositories, byte bound rollback and changed sensitive sources (102.084108ms)
+✔ B: filters, complete response budget, oversized input and provenance trust (29.001718ms)
+✔ security: external Git config rejected before Git commands; custom excludes and provenance retention (48.296344ms)
+✔ A: future schema versions are refused without migration writes (6.53152ms)
+✔ A/E: manual edits preserve ID/history, reset verification and prevent duplicates (23.895596ms)
+✔ security: quoted JSON configuration secrets and metadata are rejected before persistence (46.775013ms)
+✔ C: CLI positional project deletion consumes the UUID and preserves the source (1880.053127ms)
+✔ snapshot includes uncheckpointed WAL, versions, provenance, feedback and independent reopen (77.23749ms)
+✔ snapshot stays consistent with independent CLI writer processes (1789.526764ms)
+✔ online snapshot overlaps an active WAL writer and preserves transactional history (2084.478639ms)
+✔ restore rejects corruption, incompatible schema, sidecars, project paths, traversal and symlinks (1759.698429ms)
+✔ sensitive fields, Windows paths, bounded includes and injection remain data (63.109421ms)
+✔ external Git config and executable fsmonitor cannot run (66.110151ms)
+✔ CLI feedback persists approval; includes deprecates and full ingest reactivates (1944.302412ms)
+▶ hard-link failures preserve sources, clean temporary snapshots and never replace targets
+  ✔ EXDEV (20.219756ms)
+  ✔ ENOTSUP (30.43362ms)
+  ✔ EPERM (20.770747ms)
+  ✔ EEXIST (19.081606ms)
+✔ hard-link failures preserve sources, clean temporary snapshots and never replace targets (110.24479ms)
+✔ SQLite WAL-reset patch boundaries reject unpatched and unknown versions (2.170223ms)
+✔ actual SQLite runtime is patched and doctor reports it (891.388134ms)
+ℹ tests 29
+ℹ suites 0
+ℹ pass 29
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 13871.27982
+
+> mimir-nl@0.1.0 schemas:check
+> npm run build && node scripts/generate-contract.mjs --check
+
+
+> mimir-nl@0.1.0 build
+> tsc
+
+
+> mimir-nl@0.1.0 package:smoke
+> npm run build && node scripts/package-smoke.mjs
+
+
+> mimir-nl@0.1.0 build
+> tsc
+
+{"installedExecutable":true,"backupRestore":true,"feedbackApproval":true,"isolation":true,"node":"v24.22.1","platform":"linux"}
+
+> mimir-nl@0.1.0 benchmark
+> npm run build && node test/benchmark.mjs
+
+
+> mimir-nl@0.1.0 build
+> tsc
+
+{
+  "fixture": {
+    "corpus": 100,
+    "relevant": 8,
+    "query": "Renderer buffer architecture",
+    "seed": "deterministic indices 0..99"
+  },
+  "withoutMemory": {
+    "returned": 0,
+    "latencyMs": 0,
+    "conservativeTokenUpperBound": 0,
+    "precision": 0,
+    "recall": 0
+  },
+  "fullCorpus": {
+    "returned": 100,
+    "latencyMs": 10.246,
+    "conservativeTokenUpperBound": 52065,
+    "precision": 0.08,
+    "recall": 1
+  },
+  "selective": {
+    "returned": 8,
+    "latencyMs": 2.821,
+    "conservativeTokenUpperBound": 4317,
+    "precision": 1,
+    "recall": 1
+  },
+  "limitations": "Synthetic keyword relevance; one local run, no model/task-quality evaluation. Retrieval latency includes context packing and metric writes; corpus baseline reads and packs all rows without metric writes. Byte upper bounds are not actual model token counts or measured savings."
+}
+
+Full verification sequence exit: 0
