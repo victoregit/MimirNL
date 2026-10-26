@@ -1,9 +1,21 @@
 # Mimir NL — Roadmap
 
+## Current evidence — 2026-10-26 (tasks38/39)
+
+**v0.2 remains open. All actual model-host tests were Linux/WSL.** Package is a **0.2.0 candidate, unreleased**; remote green CI covers only baseline `6590684`, not the uncommitted v0.2 work.
+
+- [Task35](tasks/35-relay-lifecycle-result.md) adds exclusive per-process `--unique` audits and a finite validated 1..720-minute lifetime (default 240). Independent Flash [Task36 review](tasks/36-relay-lifecycle-review-findings.md) is **APPROVE**. Recorded checks: Linux 36 pass / 1 Windows-only skip; native Windows focused relay/SDK 4 pass; Python 7 pass. These checks were not rerun for this consolidation.
+- Codex restart-read is established by a new-session response, matching metadata and unchanged snapshot. Its dedicated sensitive creation, initial UI cancellation, approval, sanitized promotion, global search and exact L/G cleanup completed at service/audit level. The user says they followed instructions; individual one-time **allow** dialogs were not independently confirmed by exact user enumeration. This limitation remains; no repeat questioning or automatic rerun is required.
+- [Task37](tasks/37-antigravity-sensitive-result.md) establishes supervisor-operated actual WSL Antigravity **1.4.7 / gemini-3.8-flash-high** sensitive acceptance. Concrete user chat choices were relayed separately to actual one-time CLI dialogs (option 1 allow / option 4 deny), without persistent rules: create L, deny first approve (candidate v1 unchanged), approve (verified v2), sanitized promote (local v3 / global v1), global search/inspection with source withheld, then delete exact G and L. L `3084fafa-dcf7-4157-8114-d85bfe1efe33` and G `f4a30c84-cbf3-479e-859a-8c6af368f961` are removed. [Sanitized evidence](tasks/37-antigravity-sensitive-evidence.json) records 12 metadata events and exact baseline equality. Receipt absence alone does not prove denial; actual choice/dialog transmission and unchanged state are correlated.
+- Final recorded state is **2 projects / 3 original candidate memories / 2 feedback notes / 0 globals**, with every protected original hash intact. Temporary registrations were removed and the owned Antigravity process stopped. Metadata is not a full host trace; historical trace gaps and strict configuration isolation remain unclaimed.
+
+Remaining steps are native Windows model-host operator installation/executable availability and acceptance with a **separate native fixture**, final evidence assessment and approved-diff commit, then successful Ubuntu/Windows remote CI for that **exact new commit**. Native Windows core/SDK checks do not establish model-host acceptance. Workspace-only/IDE/Desktop discovery remains untested, without adding an extra milestone gate. No automatic release/publication or host resumption follows this document.
+
 > **Remember. Learn. Evolve.**  
 > An open-source, local-first memory and learning layer for AI agents.
 
-**Status:** Early development (`v0.1.0`)  
+**Status:** Early development (`v0.2.0` candidate, unreleased)
+
 **Repositories:** `MimirNL` (core) and `Mimir-web` (website)  
 **Planning model:** milestone-based, not date-based. Scope and priorities may change with test results and community feedback.
 
@@ -18,17 +30,17 @@
 
 ## Overview
 
-| Milestone | Focus                                                                          | Status                                               |
-| --------- | ------------------------------------------------------------------------------ | ---------------------------------------------------- |
-| v0.1.0    | Persistent memory, FTS5 retrieval, Git import, CLI/MCP, deterministic feedback | ✅ Implemented and automated tests passed\*          |
-| v0.1.1    | Security, license, code review, backup, release hygiene                        | Hardening review approved; remote CI/release pending |
-| v0.2.0    | End-to-end Codex and Antigravity integration on real hosts                     | Planned                                              |
-| v0.3.0    | Real-workload retrieval quality, context/token optimization, observability     | Planned                                              |
-| v0.4.0    | Evidence-based learning and controlled cross-project knowledge reuse           | Planned                                              |
-| v0.5.0    | Richer historical import and optional semantic/hybrid search                   | Planned                                              |
-| v0.6.0    | General-purpose plugin/adaptor architecture beyond software repositories       | Planned                                              |
-| v0.7.0    | Knowledge graph visualization and optional community contributions             | Planned                                              |
-| v1.0.0    | Stable, documented, independently reviewed public release                      | Planned                                              |
+| Milestone | Focus                                                                          | Status                                         |
+| --------- | ------------------------------------------------------------------------------ | ---------------------------------------------- |
+| v0.1.0    | Persistent memory, FTS5 retrieval, Git import, CLI/MCP, deterministic feedback | ✅ Implemented and automated tests passed\*    |
+| v0.1.1    | Security, license, code review, backup, release hygiene                        | Technical gates passed; release unpublished    |
+| v0.2.0    | End-to-end Codex and Antigravity integration on real hosts                     | In progress; native hosts / exact-head CI open |
+| v0.3.0    | Real-workload retrieval quality, context/token optimization, observability     | Planned                                        |
+| v0.4.0    | Evidence-based learning and controlled cross-project knowledge reuse           | Planned                                        |
+| v0.5.0    | Richer historical import and optional semantic/hybrid search                   | Planned                                        |
+| v0.6.0    | General-purpose plugin/adaptor architecture beyond software repositories       | Planned                                        |
+| v0.7.0    | Knowledge graph visualization and optional community contributions             | Planned                                        |
+| v1.0.0    | Stable, documented, independently reviewed public release                      | Planned                                        |
 
 \* The v0.1 report records 17 passing automated tests and real MCP SDK client tests. It does **not** establish independent review, actual Codex/Antigravity host acceptance, or real-world token savings.
 
@@ -57,7 +69,7 @@
 - [x] Run native-Windows Git/MCP and SQLite tests using a supported Node/SQLite combination.
 - [x] Document Windows vs WSL file-system/bank separation (no unsafe shared WAL across runtimes).
 
-**Evidence:** [hardening execution](docs/roadmap-execution.md): 29/29 tests on Linux and native Windows (25 top-level plus four subtests), backup/restore and installed executable validated, MIT applied. CI workflow exists; no remote GitHub Actions run is claimed. [Independent re-review](tasks/14-rereview-findings.md) returned scoped **APPROVE** on 2026-10-25. The full v0.1.1 milestone remains unreleased pending remote CI; package version remains 0.1.0.
+**Evidence:** [hardening execution](docs/roadmap-execution.md): [GitHub Actions run 40170480887](https://github.com/victoregit/MimirNL/actions/runs/40170480887) at `6590684d27e2adee0b64635c4842684d00eeae1c` succeeded on Ubuntu and Windows on 2026-10-25 (supervisor-verified public API). Both jobs passed tests, schemas, installed-package smoke and benchmark. Current suite: Windows 33 passed; Linux 32 passed and one expected Windows-only skip. Scoped hardening and subsequent portability reviews are approved. v0.1.1 technical exit criteria are met; package remains **0.1.0**, unreleased. Historical 17/23/29-test reports remain baseline evidence.
 
 **Finding reconciliation:** the feedback mapping already existed; the initial incomplete CLI payload and raw internal-operation probe did not establish a CLI defect. Actual CLI and installed-package approval regressions now cover that path. Hard-link errors are structured, and includes-scope deprecation/reactivation is documented and tested. Historical findings and the original implementation report remain preserved; the final re-review supersedes their pending-review status. Host acceptance, human approval flows and real-workload gates remain pending.
 
@@ -67,15 +79,15 @@
 
 **Goal:** prove that both hosts can use the same memory engine in day-to-day development.
 
-- [ ] Configure the MCP stdio server in a real Codex installation.
-- [ ] Configure the MCP stdio server in a real Google Antigravity installation.
-- [ ] Verify discovery/calls of MCP tools, storage/search/feedback, and clear errors with both clients.
-- [ ] Test the same memory repository across sessions and both hosts, with scoped permissions.
+- [x] Configure the MCP stdio server in a real Codex CLI installation (temporary explicitly authorized registration, subsequently removed).
+- [x] Configure the MCP stdio server in a real Google Antigravity CLI installation (temporary authorized registration, subsequently removed; workspace-only/IDE discovery untested).
+- [x] Verify basic CLI discovery/calls, storage/search/note feedback, and clear errors with both clients (user evidence and DB correlation; full structured traces remain open).
+- [x] Test the same memory repository across sessions and both CLI hosts, with scoped permissions (Antigravity separate-session, Antigravity → Codex read and Codex-created-record restart-read established).
 - [ ] Publish tested installation guides for Linux/WSL and native Windows.
 - [x] Add integration diagnostics (`mimir doctor`) and troubleshooting for host/runtime mismatches.
 - [ ] Verify human approval flow for sensitive write, delete, and global-sharing operations.
 
-**Attempt:** [isolated Codex CLI evidence](docs/host-acceptance.md) records a failed tool call due to approval policy; host acceptance remains pending.
+**Current work:** completed WSL basic and sensitive workflows are consolidated above and in [final gates](docs/v02-final-gates.md). The sensitive-flow checkbox remains open because Codex individual one-time allow-dialog evidence has the stated limitation and native Windows model-host acceptance is absent. Native installation/acceptance and exact-head CI remain pending; full traces and strict isolation are not claimed. IDE/Desktop does not add an extra milestone gate.
 
 **Exit criteria:** an end-to-end demonstration in each host on disposable projects, with reproducible steps, logs, and no unauthorized access.
 
@@ -157,8 +169,8 @@
 
 ## Implementation order — next actions
 
-1. **P0:** complete remote CI and release verification (`v0.1.1`); scoped hardening review, license and backups are complete.
-2. **P0:** test actual Codex and Antigravity clients on disposable projects (`v0.2.0`).
+1. **P0:** v0.1.1 technical gates are complete; release remains unpublished and does not block authorized v0.2 work.
+2. **P0:** resolve native Windows model-host operator dependency, assess final v0.2 evidence/diff, then commit the approved scope and verify exact-head Ubuntu/Windows CI; preserve the completed WSL evidence and its limits.
 3. **P0:** import a real repository _only after_ privacy review, and establish measurement baselines (`v0.3.0`).
 4. **P1:** validate incremental learning and cross-project reuse (`v0.4.0`).
 5. **P1/P2:** expand retrieval, adapters, visualization, and community workflows (`v0.5–v0.7`).
@@ -174,3 +186,5 @@
 ---
 
 _Baseline source: `RELATORIO_IMPLEMENTACAO_V0.1.md`, dated 2026-10-24. Later checkboxes reflect only linked evidence; unchecked release/host/review gates remain pending._
+
+Historical task31 final-gate preparation (review and WSL progress superseded above): [reviewable artifacts and remaining gates](docs/v02-final-gates.md), [staged human workflow](docs/v02-final-human-workflow.md) and [platform installation guides](docs/v02-final-installation.md). These are prepared for independent review; no new host acceptance is claimed. Native supported-runtime/core checks do not close the missing native Codex/Antigravity host gate.
