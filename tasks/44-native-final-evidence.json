@@ -1,0 +1,371 @@
+{
+  "platform": "native Windows",
+  "sourceCommit": "27c586c2e12159223dd0cb90d27fcc6691775f28",
+  "runtime": "Node24.22.1/SQLite3.53.4/Git2.56.0",
+  "hosts": {
+    "Codex": "0.164.0",
+    "Antigravity": "1.4.7/gemini-3.8-flash-high"
+  },
+  "native_snapshot": {
+    "projects": [
+      {
+        "id": "a7227823-03d0-42c2-9fb0-19d9817acfd0",
+        "path": "C:\\Users\\Usuario\\AppData\\Local\\Temp\\mimir-v02-task42-a76beea8716741b582616ee1cced4b19\\project"
+      },
+      {
+        "id": "bc1ea52f-59a3-4cf3-871e-6cfc168733b2",
+        "path": "C:\\Users\\Usuario\\AppData\\Local\\Temp\\mimir-v02-task42-a76beea8716741b582616ee1cced4b19\\other"
+      }
+    ],
+    "memories": [
+      {
+        "id": "3973d143-f9e2-4d6c-8c77-54d38aa70602",
+        "project_id": "a7227823-03d0-42c2-9fb0-19d9817acfd0",
+        "scope": "project",
+        "type": "semantic",
+        "status": "candidate",
+        "version": 2,
+        "source": "{\"kind\":\"user\",\"reference\":\"synthetic native host check\"}"
+      },
+      {
+        "id": "6921809a-6fa9-4ff3-babd-27a1e4d1bd09",
+        "project_id": "a7227823-03d0-42c2-9fb0-19d9817acfd0",
+        "scope": "project",
+        "type": "project",
+        "status": "candidate",
+        "version": 1,
+        "source": "{\"reference\":\"architecture.md\",\"kind\":\"file\",\"language\":\"Markdown\",\"category\":\"documentation\",\"trust\":\"untrusted\",\"claim\":\"source evidence only\"}"
+      },
+      {
+        "id": "ac225f4e-f47c-407b-a779-b5a5c5837fe8",
+        "project_id": "a7227823-03d0-42c2-9fb0-19d9817acfd0",
+        "scope": "project",
+        "type": "semantic",
+        "status": "candidate",
+        "version": 2,
+        "source": "{\"kind\":\"user\",\"reference\":\"synthetic native host check\"}"
+      }
+    ],
+    "feedback": [
+      {
+        "memory_id": "3973d143-f9e2-4d6c-8c77-54d38aa70602",
+        "action": "note",
+        "note": "native codex host check"
+      },
+      {
+        "memory_id": "ac225f4e-f47c-407b-a779-b5a5c5837fe8",
+        "action": "note",
+        "note": "native antigravity host check"
+      }
+    ],
+    "globals": 0,
+    "integrity": {
+      "integrity_check": "ok"
+    }
+  },
+  "audits": [
+    {
+      "name": "audit-session-11056-681af3ad-82a9-4d3b-8be8-c0ab757988e0.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "events": []
+    },
+    {
+      "name": "audit-session-13564-a74bd160-92c4-49ab-92fe-58fb7399e7a8.jsonl",
+      "sha256": "7feba81efcd9c28cf57d1ee1dc84c197235f7dce9f0fa9d4f9cef02eb1b48bb0",
+      "events": [
+        {
+          "seq": 1,
+          "event": "received",
+          "tool": "memory_get",
+          "projectId": "a7227823-03d0-42c2-9fb0-19d9817acfd0",
+          "id": "3973d143-f9e2-4d6c-8c77-54d38aa70602",
+          "call": 1
+        },
+        {
+          "seq": 2,
+          "event": "response",
+          "call": 1,
+          "tool": "memory_get",
+          "protocolError": false,
+          "toolError": false,
+          "ok": true,
+          "id": "3973d143-f9e2-4d6c-8c77-54d38aa70602",
+          "status": "candidate"
+        },
+        {
+          "seq": 3,
+          "event": "received",
+          "tool": "memory_store",
+          "projectId": "a7227823-03d0-42c2-9fb0-19d9817acfd0",
+          "call": 2
+        },
+        {
+          "seq": 4,
+          "event": "response",
+          "call": 2,
+          "tool": "memory_store",
+          "protocolError": false,
+          "toolError": false,
+          "ok": true,
+          "id": "ac225f4e-f47c-407b-a779-b5a5c5837fe8",
+          "status": "candidate"
+        },
+        {
+          "seq": 5,
+          "event": "received",
+          "tool": "memory_search",
+          "projectId": "a7227823-03d0-42c2-9fb0-19d9817acfd0",
+          "includeGlobal": false,
+          "scope": "project",
+          "call": 3
+        },
+        {
+          "seq": 6,
+          "event": "response",
+          "call": 3,
+          "tool": "memory_search",
+          "protocolError": false,
+          "toolError": false,
+          "ok": true
+        },
+        {
+          "seq": 7,
+          "event": "received",
+          "tool": "memory_get",
+          "projectId": "a7227823-03d0-42c2-9fb0-19d9817acfd0",
+          "id": "ac225f4e-f47c-407b-a779-b5a5c5837fe8",
+          "call": 4
+        },
+        {
+          "seq": 8,
+          "event": "response",
+          "call": 4,
+          "tool": "memory_get",
+          "protocolError": false,
+          "toolError": false,
+          "ok": true,
+          "id": "ac225f4e-f47c-407b-a779-b5a5c5837fe8",
+          "status": "candidate"
+        },
+        {
+          "seq": 9,
+          "event": "received",
+          "tool": "memory_feedback",
+          "projectId": "a7227823-03d0-42c2-9fb0-19d9817acfd0",
+          "id": "ac225f4e-f47c-407b-a779-b5a5c5837fe8",
+          "explicitApproval": false,
+          "sharingApproval": false,
+          "action": "note",
+          "scope": "project",
+          "call": 5
+        },
+        {
+          "seq": 10,
+          "event": "response",
+          "call": 5,
+          "tool": "memory_feedback",
+          "protocolError": false,
+          "toolError": false,
+          "ok": true,
+          "id": "ac225f4e-f47c-407b-a779-b5a5c5837fe8",
+          "status": "candidate"
+        },
+        {
+          "seq": 11,
+          "event": "received",
+          "tool": "memory_get",
+          "projectId": "bc1ea52f-59a3-4cf3-871e-6cfc168733b2",
+          "id": "ac225f4e-f47c-407b-a779-b5a5c5837fe8",
+          "call": 6
+        },
+        {
+          "seq": 12,
+          "event": "response",
+          "call": 6,
+          "tool": "memory_get",
+          "protocolError": false,
+          "toolError": true,
+          "ok": false,
+          "code": "NOT_FOUND"
+        },
+        {
+          "seq": 13,
+          "event": "received",
+          "tool": "memory_search",
+          "projectId": "a7227823-03d0-42c2-9fb0-19d9817acfd0",
+          "includeGlobal": false,
+          "scope": "project",
+          "call": 7
+        },
+        {
+          "seq": 14,
+          "event": "response",
+          "call": 7,
+          "tool": "memory_search",
+          "protocolError": false,
+          "toolError": false,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "name": "audit-session-18816-acb4e841-29da-41ea-a83c-3c877e759967.jsonl",
+      "sha256": "ca370718767ca5df8a8e7377dd653decebb1a75723b1bce657a0f15a8f07f71a",
+      "events": [
+        {
+          "seq": 1,
+          "event": "received",
+          "tool": "memory_get",
+          "projectId": "a7227823-03d0-42c2-9fb0-19d9817acfd0",
+          "id": "ac225f4e-f47c-407b-a779-b5a5c5837fe8",
+          "call": 1
+        },
+        {
+          "seq": 2,
+          "event": "response",
+          "call": 1,
+          "tool": "memory_get",
+          "protocolError": false,
+          "toolError": false,
+          "ok": true,
+          "id": "ac225f4e-f47c-407b-a779-b5a5c5837fe8",
+          "status": "candidate"
+        }
+      ]
+    },
+    {
+      "name": "audit-session-21384-b30ea656-3b14-4b79-961a-97cebdeba09b.jsonl",
+      "sha256": "dd35077c162d2d177cf992dc35ffe597225772668cdf7b412e556529b8b99423",
+      "events": [
+        {
+          "seq": 1,
+          "event": "received",
+          "tool": "memory_store",
+          "projectId": "a7227823-03d0-42c2-9fb0-19d9817acfd0",
+          "call": 1
+        },
+        {
+          "seq": 2,
+          "event": "response",
+          "call": 1,
+          "tool": "memory_store",
+          "protocolError": false,
+          "toolError": false,
+          "ok": true,
+          "id": "3973d143-f9e2-4d6c-8c77-54d38aa70602",
+          "status": "candidate"
+        }
+      ]
+    },
+    {
+      "name": "audit-session-23796-b2cb4de0-e287-4462-ac35-a70ed4b1011b.jsonl",
+      "sha256": "942e70d5f3ee40f80055e1b5eeae2d7fff156f59c4b7fe8a577af1b9960b4bcc",
+      "events": [
+        {
+          "seq": 1,
+          "event": "received",
+          "tool": "memory_get",
+          "projectId": "a7227823-03d0-42c2-9fb0-19d9817acfd0",
+          "id": "3973d143-f9e2-4d6c-8c77-54d38aa70602",
+          "call": 1
+        },
+        {
+          "seq": 2,
+          "event": "response",
+          "call": 1,
+          "tool": "memory_get",
+          "protocolError": false,
+          "toolError": false,
+          "ok": true,
+          "id": "3973d143-f9e2-4d6c-8c77-54d38aa70602",
+          "status": "candidate"
+        },
+        {
+          "seq": 3,
+          "event": "received",
+          "tool": "memory_search",
+          "projectId": "a7227823-03d0-42c2-9fb0-19d9817acfd0",
+          "includeGlobal": false,
+          "scope": "project",
+          "call": 2
+        },
+        {
+          "seq": 4,
+          "event": "response",
+          "call": 2,
+          "tool": "memory_search",
+          "protocolError": false,
+          "toolError": false,
+          "ok": true
+        },
+        {
+          "seq": 5,
+          "event": "received",
+          "tool": "memory_feedback",
+          "projectId": "a7227823-03d0-42c2-9fb0-19d9817acfd0",
+          "id": "3973d143-f9e2-4d6c-8c77-54d38aa70602",
+          "explicitApproval": false,
+          "sharingApproval": false,
+          "action": "note",
+          "scope": "project",
+          "call": 3
+        },
+        {
+          "seq": 6,
+          "event": "response",
+          "call": 3,
+          "tool": "memory_feedback",
+          "protocolError": false,
+          "toolError": false,
+          "ok": true,
+          "id": "3973d143-f9e2-4d6c-8c77-54d38aa70602",
+          "status": "candidate"
+        },
+        {
+          "seq": 7,
+          "event": "received",
+          "tool": "memory_get",
+          "projectId": "bc1ea52f-59a3-4cf3-871e-6cfc168733b2",
+          "id": "3973d143-f9e2-4d6c-8c77-54d38aa70602",
+          "call": 4
+        },
+        {
+          "seq": 8,
+          "event": "response",
+          "call": 4,
+          "tool": "memory_get",
+          "protocolError": false,
+          "toolError": true,
+          "ok": false,
+          "code": "NOT_FOUND"
+        },
+        {
+          "seq": 9,
+          "event": "received",
+          "tool": "memory_search",
+          "projectId": "a7227823-03d0-42c2-9fb0-19d9817acfd0",
+          "includeGlobal": false,
+          "scope": "project",
+          "call": 5
+        },
+        {
+          "seq": 10,
+          "event": "response",
+          "call": 5,
+          "tool": "memory_search",
+          "protocolError": false,
+          "toolError": false,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "name": "audit-session-9344-b703e14c-28d6-4ec7-84fb-9529bf864465.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "events": []
+    }
+  ],
+  "user_final_reverse_read": "Actual Codex native response oktrue/coral853/candidate/nativeantigravityhostchecknote after Antigravity session closed",
+  "cleanup": "Owned native Codex15192 closed; owned nativeAntig18828 alreadyclosed and exacttemporarynativeentryremoved. SyntheticnativeDB retained as evidence; WSLDB not opened/shared.",
+  "limits": "Metadata notfulltrace, individualUIallowchoices notindependentlyenumerated. Nativephase tests note/read/write/isolation/import/persistence, no sensitiveapprove/promote/delete; earlierWSL sensitiveevidence remains scoped separately."
+}

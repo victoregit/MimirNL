@@ -1,19 +1,74 @@
 # Installation and host verification for v0.2
 
-## Current evidence — 2026-10-26 (tasks38/39)
+## Current evidence — 2026-10-26 (tasks44/45)
 
-**v0.2 remains open. All actual model-host tests were Linux/WSL.** Package is a **0.2.0 candidate, unreleased**; remote green CI covers only baseline `6590684`, not the uncommitted v0.2 work.
+**0.2.0 is release-ready for final independent evidence review, unpublished.** Actual CLI model-host acceptance now includes Linux/WSL and native Windows; [CI run 40270527306](https://github.com/victoregit/MimirNL/actions/runs/40270527306) is supervisor-verified **SUCCESS** at exact commit `27c586c2e12159223dd0cb90d27fcc6691775f28`, with Ubuntu and Windows all steps successful (types, lint, formatting, tests, schemas, installed-package smoke and benchmark). Baseline `6590684` remains historical evidence. This CI result does not cover subsequent documentation edits.
 
 - [Task35](../tasks/35-relay-lifecycle-result.md) adds exclusive per-process `--unique` audits and a finite validated 1..720-minute lifetime (default 240). Independent Flash [Task36 review](../tasks/36-relay-lifecycle-review-findings.md) is **APPROVE**. Recorded checks: Linux 36 pass / 1 Windows-only skip; native Windows focused relay/SDK 4 pass; Python 7 pass. These checks were not rerun for this consolidation.
 - Codex restart-read is established by a new-session response, matching metadata and unchanged snapshot. Its dedicated sensitive creation, initial UI cancellation, approval, sanitized promotion, global search and exact L/G cleanup completed at service/audit level. The user says they followed instructions; individual one-time **allow** dialogs were not independently confirmed by exact user enumeration. This limitation remains; no repeat questioning or automatic rerun is required.
 - [Task37](../tasks/37-antigravity-sensitive-result.md) establishes supervisor-operated actual WSL Antigravity **1.4.7 / gemini-3.8-flash-high** sensitive acceptance. Concrete user chat choices were relayed separately to actual one-time CLI dialogs (option 1 allow / option 4 deny), without persistent rules: create L, deny first approve (candidate v1 unchanged), approve (verified v2), sanitized promote (local v3 / global v1), global search/inspection with source withheld, then delete exact G and L. L `3084fafa-dcf7-4157-8114-d85bfe1efe33` and G `f4a30c84-cbf3-479e-859a-8c6af368f961` are removed. [Sanitized evidence](../tasks/37-antigravity-sensitive-evidence.json) records 12 metadata events and exact baseline equality. Receipt absence alone does not prove denial; actual choice/dialog transmission and unchanged state are correlated.
 - Final recorded state is **2 projects / 3 original candidate memories / 2 feedback notes / 0 globals**, with every protected original hash intact. Temporary registrations were removed and the owned Antigravity process stopped. Metadata is not a full host trace; historical trace gaps and strict configuration isolation remain unclaimed.
 
-Remaining steps are native Windows model-host operator installation/executable availability and acceptance with a **separate native fixture**, final evidence assessment and approved-diff commit, then successful Ubuntu/Windows remote CI for that **exact new commit**. Native Windows core/SDK checks do not establish model-host acceptance. Workspace-only/IDE/Desktop discovery remains untested, without adding an extra milestone gate. No automatic release/publication or host resumption follows this document.
+Exact-commit archive: `.release/task41/mimir-nl-0.2.0.tgz`; SHA-256 `0079d6ea71d6e7189fcf54a5292247503f2f36e7cebb674e8abe40d11121e63f`. Its 37 file contents match the Task40-reviewed archive; Linux file modes differ (`0755` → `0644`). See [Task41 provenance](../tasks/41-exact-commit-release-closeout-result.md). Closeout documentation is excluded from this immutable candidate.
+
+Native Windows acceptance is complete for the bounded synthetic method: official portable Codex **0.164.0** and Antigravity **1.4.7 / gemini-3.8-flash-high**, native Node **24.22.1**, SQLite **3.53.4**, Git **2.56.0**, exported source `27c586c2e12159223dd0cb90d27fcc6691775f28`. [Canonical final evidence](../tasks/44-native-final-evidence.json), [Codex evidence](../tasks/44-native-codex-evidence.json) and [Antigravity evidence](../tasks/44-native-antigravity-evidence.json) correlate actual user host results, metadata audits and native read-only SQLite. Store/search/get/note, restart persistence, scoped `NOT_FOUND`, bounded architecture ingestion, idempotence and untrusted provenance passed. After Antigravity closed, a new native Codex session read its candidate and note. The separate native fixture ended at **2 projects / 3 candidates / 2 notes / 0 globals**, integrity **ok**. Owned host windows are closed; the exact temporary Antigravity entry was removed; Codex configuration was process-only. Synthetic data is retained for evidence, without WSL DB/auth transfer.
+
+Native approve/promote/delete were not tested; sensitive-flow evidence remains the earlier WSL evidence above. Individual UI allow choices were not independently enumerated; metadata is not a full trace. No Windows ACL certification, whole-user configuration isolation, IDE/Desktop discovery or unrestricted security guarantee is claimed. See the [tested installation method](v02-final-installation.md#actual-native-windows-method--task44).
+
+Remaining steps: supervisor-arranged independent final evidence review (Task46), user documentation commit/push, Ubuntu/Windows CI on that exact new SHA, then final-commit tarball/checksum rebuild and authorized GitHub publication. Task40 approved the code candidate; historical CI at `27c586c` does not cover these documentation edits. No new host tests are required by this closeout; no publication has occurred.
+
+## Actual native Windows method — Task44
+
+This is the tested portable CLI method, recorded for reproduction; the retained fixture is completed evidence, not a request to launch it again. The official registry/manifest payloads and integrity checks are documented in [Task42 provenance](../tasks/42-native-host-preparation-result.md) and [Task43 independent preparer review](../tasks/43-native-preparation-review-findings.md). No global installer or persistent PATH change was needed. Codex already had native authentication; do not re-login or transfer WSL credentials.
+
+| Component   | Actual tested value                                                                                                 |
+| ----------- | ------------------------------------------------------------------------------------------------------------------- |
+| Source      | `C:\Users\Public\mimir-task42-7fa39eaffa\source`, exported from `27c586c2e12159223dd0cb90d27fcc6691775f28`          |
+| Node        | `C:\Users\Public\mimir-hardening-runtime\node\node-v24.22.1-win-x64\node.exe`                                       |
+| Git         | `C:\Users\Public\mimir-hardening-runtime\git\cmd` (2.56.0)                                                          |
+| Codex       | `C:\Users\Public\mimir-task42-7fa39eaffa\hosts\codex\package\vendor\x86_64-pc-windows-msvc\bin\codex.exe` (0.164.0) |
+| Antigravity | `C:\Users\Public\mimir-task42-7fa39eaffa\hosts\agy.exe` (1.4.7, `gemini-3.8-flash-high`)                            |
+| Fixture     | `C:\Users\Usuario\AppData\Local\Temp\mimir-v02-task42-a76beea8716741b582616ee1cced4b19`                             |
+| Database    | Fixture `private\host.sqlite`, native SQLite 3.53.4; independent of WSL                                             |
+| Relay       | Source `scripts\v02-audit-relay.mjs`, fixture argument followed by `--unique 240`                                   |
+
+The preparer was independently approved at SHA-256 `ad7d2ce34b3f1ba5730ee04021f984e814eec1786e0d5e02e574d37fe4472053`. It created a new direct TEMP child, two synthetic Git roots (`project`, `other`), manifest and native DB. It is a retained local preparation artifact, not an installed package command; see Task43 for its exact reviewed invocation. Do not reuse WSL SQLite/WAL files or describe inherited Windows ACLs as certified private.
+
+Reference native PowerShell commands (substitute a new independently prepared fixture when reproducing):
+
+```powershell
+$payload = 'C:\Users\Public\mimir-task42-7fa39eaffa'
+$node = 'C:\Users\Public\mimir-hardening-runtime\node\node-v24.22.1-win-x64\node.exe'
+$env:PATH = 'C:\Users\Public\mimir-hardening-runtime\node\node-v24.22.1-win-x64;C:\Users\Public\mimir-hardening-runtime\git\cmd;' + $env:PATH
+$fixture = 'C:\Users\Usuario\AppData\Local\Temp\mimir-v02-task42-a76beea8716741b582616ee1cced4b19'
+$codex = "$payload\hosts\codex\package\vendor\x86_64-pc-windows-msvc\bin\codex.exe"
+$agy = "$payload\hosts\agy.exe"
+& $node "$payload\source\dist\cli\index.js" --db "$fixture\private\host.sqlite" doctor
+# Run interactive hosts from a genuine native console:
+Set-Location "$fixture\project"
+$value = (Get-Content -Raw "$fixture\private\codex-mcp-value.txt").Trim()
+& $codex --no-daemon --no-alt-screen --sandbox read-only --ask-for-approval on-request -c "mcp_servers.mimir=$value"
+# After Codex exits, use only the reviewed temporary native Antigravity entry:
+& $agy --sandbox --model gemini-3.8-flash-high
+# At closeout, remove only the entry created for this fixture:
+& $agy mcp remove mimir-v02-native-test42
+```
+
+Codex used a process-only MCP override, prompt approval mode and the reviewed relay. Task44 supplied the native Git/Node PATH in the MCP child environment. Antigravity used an explicitly authorized temporary native entry `mimir-v02-native-test42`, added only after confirming its absence; it pointed to that same native Node/relay/fixture, with entry-local runtime PATH. The generated `agy-mcp-template.json` describes the server arguments; preserve other servers and use the installed `mcp add --help` syntax when reproducing. Do not run Antigravity before that entry is configured. A tool allowlist does not restrict `memory_feedback` argument values: the bounded prompt allowed only `action=note`, with no approval/sharing flags.
+
+The WSL service PTY could not supply native Codex interactive stdin (`stdin is not a terminal`). Task44 opened a native console using PowerShell `Start-Process -WindowStyle Normal`; the user handled actual dialogs and reported results. This is an intermediate-terminal limitation, not a failed native MCP test or a reason to bypass approvals. Ordinary user configuration still loads.
+
+The actual sequence was Codex store, new-session get/search/note, second-project registration and scoped `NOT_FOUND`, then `architecture.md` ingestion (`maxCommits=0`, `maxFiles=2`, `maxBytes=10000`) and untrusted-source search. Antigravity read the Codex record/note, stored/searched/read/noted its own candidate, verified scoped `NOT_FOUND`, unchanged idempotent ingestion and provenance. After Antigravity exited, a new Codex session with only `memory_get` enabled read the Antigravity candidate and note. The audit files are metadata receipts, not complete traces; registration/import also rely on actual user outputs and native DB corroboration.
+
+| Surface                                   | Current evidence                                                              | Boundary                                                     |
+| ----------------------------------------- | ----------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| Linux/WSL CLI/MCP and both hosts          | Basic, persistence, cross-host and bounded sensitive flows recorded           | Codex individual allow dialogs not enumerated; no full trace |
+| Native Windows runtime and both CLI hosts | Task44 actual basic/persistence/isolation/import/cross-host acceptance passed | No native approve/promote/delete; no ACL certification       |
+| IDE/Desktop/workspace auto-discovery      | Untested                                                                      | Outside demonstrated CLI scope; no added milestone gate      |
 
 ## Historical record / procedure (preserved)
 
-The material below retains its original task/date scope. Earlier pending claims are superseded by the current evidence above; procedural launches are reference steps, not instructions to repeat completed WSL tests.
+The material below retains its original task/date scope. Earlier pending claims are superseded by the current evidence above; procedural launches are historical reference steps, not instructions to repeat completed WSL or native tests. Native-absence and pending claims below describe their original task only; Task44 supersedes them.
 
 Prepared 2026-10-25; package is still 0.1.0 and unpublished. Use a source checkout, not an assumed published 0.2 package. No installation or global software/config changes were performed by task31. Host templates are opt-in operator steps after review. Never copy another user's authentication/configuration or use bypass flags.
 
@@ -140,18 +195,9 @@ For Antigravity, use the same native values with JSON-escaped backslashes:
 
 Substitute a supported executable if `Program Files` still contains Node 24.21.0. These are templates, not registered settings. Native host installation/action is still required: install or expose supported native Codex and Antigravity executables, verify each `--help`/`--version`, then run the same staged synthetic scenario with a NEW native fixture/DB and record actual human dialogs. Never point Windows Node to `/tmp/...`, and never point WSL Node to a native live SQLite/WAL DB. The Python fixture preparer remains Linux/WSL-only. Task35 focused relay tests construct a separate disposable native fixture with the exact native runtime/build/DB manifest; they do not establish native host acceptance or certify ACLs. For human evidence, use an independently reviewed native fixture adaptation or a reviewed host export for only the explicit synthetic session. Do not weaken checks to reuse the WSL DB.
 
-## Tested status and troubleshooting
+## Historical troubleshooting
 
-| Surface                          | Evidence                                                                         | Remaining acceptance                                                          |
-| -------------------------------- | -------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| Linux/WSL Mimir CLI/MCP          | Supported disposable Node, SDK subprocess tests, current local checks            | Reviewed relay deployment + human sensitive sessions                          |
-| Linux/WSL Codex CLI              | User basic calls and Antigravity-created-record read; current version/help probe | Codex-created-record restart-read, new structured metadata and human workflow |
-| Linux/WSL Antigravity CLI        | User basic calls, separate-session persistence; current 1.4.7 help               | New metadata and sensitive human workflow; workspace auto-discovery           |
-| Native Windows runtime/core      | Earlier clean checkout install/tests; task31 supported-runtime doctor on new DB  | Native actual host acceptance still untested                                  |
-| Native Windows Codex/Antigravity | No executable found by `where` in current native PATH                            | Operator installs/exposes native hosts and runs fixture acceptance            |
-| IDE/Desktop                      | No current acceptance evidence                                                   | Explicitly outside CLI demonstration; not claimed as tested                   |
-
-Roadmap v0.2 explicitly requires tested Linux/WSL **and native Windows guides**. The native host dependency leaves that gate open. IDE/Desktop/workspace auto-discovery remain visible boundaries; no extra milestone gate is invented for them.
+The old pending matrix is superseded by the current platform matrix above.
 
 `node:sqlite`/runtime errors: check exact host executable, not only the parent terminal version. `NOT_FOUND`: verify explicit project UUID and local/global scope; never retry against another real project. MCP connection failures: build first, verify absolute arguments and DB location, run `doctor`, keep stdout exclusively JSON-RPC. Headless permission refusal: return to the genuine interactive human workflow, without persistent allow-rules. Native Windows missing executable: fix the native installation/PATH, not WSL/native DB sharing. Historical intermittent Linux CI failure has not been declared fixed by these guide probes.
 
