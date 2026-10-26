@@ -1,0 +1,84 @@
+{
+  "captured_at": "2026-10-25T09:03:57.995658+00:00",
+  "scope": "Synthetic Linux/WSL CLI basic acceptance; not full v0.2 acceptance",
+  "database": {
+    "path": "/tmp/mimir-v02-xx0ph1vg/private/host.sqlite",
+    "inspection": "Independent closeout SQLite URI mode=ro",
+    "projects": [
+      {
+        "id": "5ac1258d-3d4d-4545-9101-0d27ce73faa9",
+        "authorized": 1
+      },
+      {
+        "id": "80b93460-27ba-4db2-a49b-980cdb06c2ac",
+        "authorized": 1
+      }
+    ],
+    "memories": [
+      {
+        "id": "51f48c5b-829e-417a-a495-5b12332f9188",
+        "project_id": "80b93460-27ba-4db2-a49b-980cdb06c2ac",
+        "scope": "project",
+        "type": "project",
+        "content": "File architecture.md\nSynthetic fixture renderer queue.\n",
+        "status": "candidate",
+        "origin": "git",
+        "version": 1
+      },
+      {
+        "id": "87869bcb-fbc6-4c43-8340-2a65d29d5e4c",
+        "project_id": "80b93460-27ba-4db2-a49b-980cdb06c2ac",
+        "scope": "project",
+        "type": "semantic",
+        "content": "fixture renderer queue cobalt 719",
+        "status": "candidate",
+        "origin": "user",
+        "version": 2
+      },
+      {
+        "id": "f0f7a064-4d94-4e2e-987f-4a75df6d17cb",
+        "project_id": "80b93460-27ba-4db2-a49b-980cdb06c2ac",
+        "scope": "project",
+        "type": "semantic",
+        "content": "fixture codex bridge amber 842",
+        "status": "candidate",
+        "origin": "user",
+        "version": 2
+      }
+    ],
+    "feedback": [
+      {
+        "memory_id": "87869bcb-fbc6-4c43-8340-2a65d29d5e4c",
+        "action": "note",
+        "note": "synthetic host check",
+        "at": "2026-10-25T08:29:59.461Z"
+      },
+      {
+        "memory_id": "f0f7a064-4d94-4e2e-987f-4a75df6d17cb",
+        "action": "note",
+        "note": "codex host check",
+        "at": "2026-10-25T09:00:43.325Z"
+      }
+    ],
+    "totals": {
+      "projects": 2,
+      "memories": 3,
+      "feedback": 2,
+      "globals": 0
+    }
+  },
+  "provenance": {
+    "cross_host_read": "User supplied actual mimir-v02-test.memory_get excerpt: ok true, Antigravity-created candidate and synthetic host check note returned. Supervisor reported unchanged 2 memories/1 note/0 globals afterward.",
+    "basic_workflow": "User summary reports store, search amber842, note codex host check and wrong-project NOT_FOUND; not a full structured event stream. Persisted record/note independently correlated above; DB cannot prove search/error responses.",
+    "configuration": "Supervisor reports user-authorized temporary registration, 0 servers before and 1 after exact runtime/DB verification, successful removal afterward. Antigravity entry removed earlier; no config read or edit in this closeout.",
+    "launch": "Installed codex-cli 0.163.0; ordinary user config/rules/auth loaded, narrow per-process enabled_tools and prompt approval override; no model override or bypass. --strict-config rejected by mcp; ordinary -c mcp list succeeded. No configuration isolation proof."
+  },
+  "remaining_gates": [
+    "Direct Codex restart-read of newly Codex-created memory not performed",
+    "Full structured tool request/response traces not captured",
+    "Sensitive write/approve/delete/global-sharing human flow",
+    "Workspace-only discovery and native Windows/IDE/Desktop guides",
+    "Full v0.2 exit and release; package 0.1.0 unpublished"
+  ],
+  "cleanup": "Supervisor-reported codex mcp remove mimir-v02-test succeeded; retained fixture DB/logs preserved"
+}

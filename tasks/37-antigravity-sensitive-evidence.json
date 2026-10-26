@@ -1,0 +1,191 @@
+{
+  "date": "2026-10-26",
+  "host": "Antigravity CLI 1.4.7",
+  "model": "gemini-3.8-flash-high",
+  "platform": "Linux/WSL",
+  "L": "3084fafa-dcf7-4157-8114-d85bfe1efe33",
+  "G": "f4a30c84-cbf3-479e-859a-8c6af368f961",
+  "audit_sha256": "5160a05d13b58b13040cd25ec14ce11fbf5c38eb6522c42319a21a4792e5996f",
+  "audit_events": [
+    {
+      "seq": 1,
+      "event": "received",
+      "tool": "memory_store",
+      "projectId": "80b93460-27ba-4db2-a49b-980cdb06c2ac",
+      "call": 1
+    },
+    {
+      "seq": 2,
+      "event": "response",
+      "call": 1,
+      "tool": "memory_store",
+      "protocolError": false,
+      "toolError": false,
+      "ok": true,
+      "id": "3084fafa-dcf7-4157-8114-d85bfe1efe33",
+      "status": "candidate"
+    },
+    {
+      "seq": 3,
+      "event": "received",
+      "tool": "memory_feedback",
+      "projectId": "80b93460-27ba-4db2-a49b-980cdb06c2ac",
+      "id": "3084fafa-dcf7-4157-8114-d85bfe1efe33",
+      "explicitApproval": true,
+      "sharingApproval": false,
+      "action": "approve",
+      "scope": "project",
+      "call": 2
+    },
+    {
+      "seq": 4,
+      "event": "response",
+      "call": 2,
+      "tool": "memory_feedback",
+      "protocolError": false,
+      "toolError": false,
+      "ok": true,
+      "id": "3084fafa-dcf7-4157-8114-d85bfe1efe33",
+      "status": "verified"
+    },
+    {
+      "seq": 5,
+      "event": "received",
+      "tool": "memory_feedback",
+      "projectId": "80b93460-27ba-4db2-a49b-980cdb06c2ac",
+      "id": "3084fafa-dcf7-4157-8114-d85bfe1efe33",
+      "explicitApproval": false,
+      "sharingApproval": true,
+      "action": "promote",
+      "scope": "project",
+      "call": 3
+    },
+    {
+      "seq": 6,
+      "event": "response",
+      "call": 3,
+      "tool": "memory_feedback",
+      "protocolError": false,
+      "toolError": false,
+      "ok": true,
+      "id": "3084fafa-dcf7-4157-8114-d85bfe1efe33",
+      "status": "verified"
+    },
+    {
+      "seq": 7,
+      "event": "received",
+      "tool": "memory_search",
+      "projectId": "80b93460-27ba-4db2-a49b-980cdb06c2ac",
+      "includeGlobal": true,
+      "scope": "global",
+      "call": 4
+    },
+    {
+      "seq": 8,
+      "event": "response",
+      "call": 4,
+      "tool": "memory_search",
+      "protocolError": false,
+      "toolError": false,
+      "ok": true
+    },
+    {
+      "seq": 9,
+      "event": "received",
+      "tool": "memory_delete",
+      "projectId": "80b93460-27ba-4db2-a49b-980cdb06c2ac",
+      "id": "f4a30c84-cbf3-479e-859a-8c6af368f961",
+      "sharingApproval": true,
+      "confirm": true,
+      "scope": "global",
+      "call": 5
+    },
+    {
+      "seq": 10,
+      "event": "response",
+      "call": 5,
+      "tool": "memory_delete",
+      "protocolError": false,
+      "toolError": false,
+      "ok": true,
+      "deleted": true
+    },
+    {
+      "seq": 11,
+      "event": "received",
+      "tool": "memory_delete",
+      "projectId": "80b93460-27ba-4db2-a49b-980cdb06c2ac",
+      "id": "3084fafa-dcf7-4157-8114-d85bfe1efe33",
+      "sharingApproval": false,
+      "confirm": true,
+      "scope": "project",
+      "call": 6
+    },
+    {
+      "seq": 12,
+      "event": "response",
+      "call": 6,
+      "tool": "memory_delete",
+      "protocolError": false,
+      "toolError": false,
+      "ok": true,
+      "deleted": true
+    }
+  ],
+  "final_snapshot": {
+    "fixture": "/tmp/mimir-v02-xx0ph1vg",
+    "totals": {
+      "projects": 2,
+      "memories": 3,
+      "feedback": 2,
+      "globals": 0
+    },
+    "protected_originals": [
+      {
+        "id": "f0f7a064-4d94-4e2e-987f-4a75df6d17cb",
+        "status": "candidate",
+        "version": 2,
+        "sha256": "296d0c67779f8374ac06f7d928ac442ce801f6dd99ac76ea66204163d44670db"
+      },
+      {
+        "id": "87869bcb-fbc6-4c43-8340-2a65d29d5e4c",
+        "status": "candidate",
+        "version": 2,
+        "sha256": "0cf232e1cbfe97569220bb80e6415adfbe8bade0b934f5e6981f5c9764246bb5"
+      },
+      {
+        "id": "51f48c5b-829e-417a-a495-5b12332f9188",
+        "status": "candidate",
+        "version": 1,
+        "sha256": "170d13e8fd6b6030cd2e5f2d446c37a44adfb64195a3618ed36ddbc789adefa0"
+      }
+    ],
+    "records": [
+      {
+        "id": "51f48c5b-829e-417a-a495-5b12332f9188",
+        "project_id": "80b93460-27ba-4db2-a49b-980cdb06c2ac",
+        "scope": "project",
+        "status": "candidate",
+        "version": 1
+      },
+      {
+        "id": "87869bcb-fbc6-4c43-8340-2a65d29d5e4c",
+        "project_id": "80b93460-27ba-4db2-a49b-980cdb06c2ac",
+        "scope": "project",
+        "status": "candidate",
+        "version": 2
+      },
+      {
+        "id": "f0f7a064-4d94-4e2e-987f-4a75df6d17cb",
+        "project_id": "80b93460-27ba-4db2-a49b-980cdb06c2ac",
+        "scope": "project",
+        "status": "candidate",
+        "version": 2
+      }
+    ],
+    "claim": "read-only database state; does not prove host permissions or tool invocation"
+  },
+  "baseline_exact_match": true,
+  "human_choices": "User chat explicitly allowed creation, denied first approve proposal, allowed second approve, allowed promotion, then explicitly allowed global search and deletion of concrete G and L. Supervisor transmitted option1 or option4 separately to each actual pending CLI dialog; no persistent allow/deny was selected.",
+  "limits": "Metadata audit is not a full host trace; native Windows model-host acceptance is not demonstrated."
+}

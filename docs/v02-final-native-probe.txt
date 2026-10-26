@@ -1,0 +1,6 @@
+v24.22.1
+11.19.1
+git version 2.56.0.windows.3
+INFORMA��ES: n�o foi poss�vel localizar arquivos para o(s) padr�o(�es) especificado(s).
+INFORMA��ES: n�o foi poss�vel localizar arquivos para o(s) padr�o(�es) especificado(s).
+{"ok":true,"data":{"healthy":true,"node":"v24.22.1","executable":"C:\\Users\\Public\\mimir-hardening-runtime\\node\\node-v24.22.1-win-x64\\node.exe","platform":"win32","architecture":"x64","runtimeSupported":true,"protocol":{"transport":"stdio","sdkVersion":"2.4.0","hostAcceptance":"not established by doctor"},"configuration":{"databaseSource":"explicit Storage path or platform data default","separateWindowsWslDatabases":true},"git":{"available":true,"version":"git version 2.56.0.windows.3"},"database":"C:\\Users\\Public\\mimir-task31-native\\private\\host.sqlite","integrity":{"integrity_check":"ok"},"wal":{"journal_mode":"wal"},"sqlite":{"version":"3.53.4","walResetPatched":true},"foreignKeys":{"foreign_keys":1},"migrations":[{"version":1}],"fts5":{"count":0},"writable":true,"permissions":"OS ACLs must be configured by operator","checks":[{"code":"SQLITE_INTEGRITY","ok":true},{"code":"WAL_ENABLED","ok":true},{"code":"GIT_AVAILABLE","ok":true},{"code":"PRIVATE_PERMISSIONS","ok":null}],"sdk":"2.4.0"}}

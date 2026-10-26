@@ -1,0 +1,53 @@
+{
+  "fixture": "/tmp/mimir-v02-xx0ph1vg",
+  "totals": {
+    "projects": 2,
+    "memories": 3,
+    "feedback": 2,
+    "globals": 0
+  },
+  "protected_originals": [
+    {
+      "id": "f0f7a064-4d94-4e2e-987f-4a75df6d17cb",
+      "status": "candidate",
+      "version": 2,
+      "sha256": "296d0c67779f8374ac06f7d928ac442ce801f6dd99ac76ea66204163d44670db"
+    },
+    {
+      "id": "87869bcb-fbc6-4c43-8340-2a65d29d5e4c",
+      "status": "candidate",
+      "version": 2,
+      "sha256": "0cf232e1cbfe97569220bb80e6415adfbe8bade0b934f5e6981f5c9764246bb5"
+    },
+    {
+      "id": "51f48c5b-829e-417a-a495-5b12332f9188",
+      "status": "candidate",
+      "version": 1,
+      "sha256": "170d13e8fd6b6030cd2e5f2d446c37a44adfb64195a3618ed36ddbc789adefa0"
+    }
+  ],
+  "records": [
+    {
+      "id": "51f48c5b-829e-417a-a495-5b12332f9188",
+      "project_id": "80b93460-27ba-4db2-a49b-980cdb06c2ac",
+      "scope": "project",
+      "status": "candidate",
+      "version": 1
+    },
+    {
+      "id": "87869bcb-fbc6-4c43-8340-2a65d29d5e4c",
+      "project_id": "80b93460-27ba-4db2-a49b-980cdb06c2ac",
+      "scope": "project",
+      "status": "candidate",
+      "version": 2
+    },
+    {
+      "id": "f0f7a064-4d94-4e2e-987f-4a75df6d17cb",
+      "project_id": "80b93460-27ba-4db2-a49b-980cdb06c2ac",
+      "scope": "project",
+      "status": "candidate",
+      "version": 2
+    }
+  ],
+  "claim": "read-only database state; does not prove host permissions or tool invocation"
+}

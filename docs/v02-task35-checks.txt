@@ -1,0 +1,27 @@
+
+> mimir-nl@0.1.0 typecheck
+> tsc --noEmit
+
+
+> mimir-nl@0.1.0 lint
+> eslint src
+
+
+----------------------------------------------------------------------
+Ran 0 tests in 0.000s
+
+NO TESTS RAN
+Checking formatting...
+All matched files use Prettier code style!
+.....
+----------------------------------------------------------------------
+Ran 5 tests in 0.040s
+
+OK
+..
+----------------------------------------------------------------------
+Ran 2 tests in 0.028s
+
+OK
+Checking formatting...
+All matched files use Prettier code style!

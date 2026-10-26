@@ -1,0 +1,7 @@
+{
+  "database_assertions_passed": false,
+  "memories": [],
+  "feedback": [],
+  "global_count": 0,
+  "host_acceptance": "requires separate structured host events and session/scoped checks"
+}

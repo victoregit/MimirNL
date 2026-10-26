@@ -1,0 +1,99 @@
+{
+  "captured_at_utc": "2026-10-25T08:44:58.802148+00:00",
+  "method": "SQLite URI mode=ro; selected synthetic fields only; no host calls",
+  "database": "/tmp/mimir-v02-xx0ph1vg/private/host.sqlite",
+  "snapshot": {
+    "projects": [
+      {
+        "id": "5ac1258d-3d4d-4545-9101-0d27ce73faa9",
+        "path": "/tmp/mimir-v02-xx0ph1vg/other",
+        "authorized": 1
+      },
+      {
+        "id": "80b93460-27ba-4db2-a49b-980cdb06c2ac",
+        "path": "/tmp/mimir-v02-xx0ph1vg/project",
+        "authorized": 1
+      }
+    ],
+    "memories": [
+      {
+        "id": "51f48c5b-829e-417a-a495-5b12332f9188",
+        "project_id": "80b93460-27ba-4db2-a49b-980cdb06c2ac",
+        "scope": "project",
+        "type": "project",
+        "status": "candidate",
+        "content": "File architecture.md\nSynthetic fixture renderer queue.\n",
+        "origin": "git",
+        "source": "{\"reference\":\"architecture.md\",\"kind\":\"file\",\"language\":\"Markdown\",\"category\":\"documentation\",\"trust\":\"untrusted\",\"claim\":\"source evidence only\"}",
+        "version": 1,
+        "created": "2026-10-25T08:41:14.990Z"
+      },
+      {
+        "id": "87869bcb-fbc6-4c43-8340-2a65d29d5e4c",
+        "project_id": "80b93460-27ba-4db2-a49b-980cdb06c2ac",
+        "scope": "project",
+        "type": "semantic",
+        "status": "candidate",
+        "content": "fixture renderer queue cobalt 719",
+        "origin": "user",
+        "source": "{\"kind\":\"user\",\"reference\":\"manual user input\"}",
+        "version": 2,
+        "created": "2026-10-25T08:27:18.543Z"
+      }
+    ],
+    "feedback": [
+      {
+        "memory_id": "87869bcb-fbc6-4c43-8340-2a65d29d5e4c",
+        "action": "note",
+        "note": "synthetic host check"
+      }
+    ],
+    "counts": [
+      {
+        "projects": 2,
+        "memories": 2,
+        "feedback": 1,
+        "globals": 0
+      }
+    ]
+  },
+  "logs": [
+    {
+      "file": "session-1-interactive.log",
+      "bytes": 33612,
+      "sha256": "191655519acb2a162faa3948a722a7c37f53ee6cd2d9ff7fccdc265720421918",
+      "line_delimited_json_objects": 0
+    },
+    {
+      "file": "session-2-interactive.log",
+      "bytes": 32833,
+      "sha256": "fcb9a279a2cd20ad5a670f8153ef07758785f2a482de8434f4ded56fc8085df6",
+      "line_delimited_json_objects": 0
+    },
+    {
+      "file": "session-ingestion-2.log",
+      "bytes": 31705,
+      "sha256": "051dee6193109d4c4e20269bde65b8bd1dad42c9f7be53cad8fe129bcb474fc1",
+      "line_delimited_json_objects": 0
+    },
+    {
+      "file": "session-ingestion.log",
+      "bytes": 37069,
+      "sha256": "cb56f4fc810e4e4bc8850d07991a7fa95f8cdda56531ee1fc8ccfdc9f5a73ca7",
+      "line_delimited_json_objects": 0
+    },
+    {
+      "file": "session-isolation.log",
+      "bytes": 42217,
+      "sha256": "081cadc7f9ba951c5e9f449c8260c5049109bf476e74bc06f82ad36fabfbdf3a",
+      "line_delimited_json_objects": 0
+    },
+    {
+      "file": "session-storage.log",
+      "bytes": 34440,
+      "sha256": "75f54b2cc224014d916013eb345ec85c1dc7da3a338774a5b32e3af621577c58",
+      "line_delimited_json_objects": 0
+    }
+  ],
+  "log_limitation": "No line-delimited structured JSON events recovered. Tool-name tokens in diagnostic logs do not establish arguments/results or complete tool compliance. Raw logs and hidden reasoning not copied."
+}
