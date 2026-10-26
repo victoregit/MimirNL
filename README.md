@@ -1,8 +1,10 @@
 # Mimir NL
 
+**Release status:** 0.2.0 candidate, unreleased; v0.2 acceptance remains open. See [release notes and publication gates](docs/release-0.2.0.md).
+
 A second brain for AI. Core v0.1 is a local-first TypeScript memory engine with SQLite persistence, project-isolated text retrieval, authorized read-only Git ingestion, deterministic feedback, and an official MCP v2 stdio server. It runs without an external API or model.
 
-The website remains in [Mimir-web](../Mimir-web), a separate repository. This repository contains only the brain engine. Codex and Google Antigravity configuration examples are documented; actual host integration has **not** been tested. The official SDK client has been tested against real subprocess servers.
+The website remains in [Mimir-web](../Mimir-web), a separate repository. This repository contains only the brain engine. Codex and Google Antigravity configuration examples are documented; actual Linux/WSL Codex and Antigravity evidence is recorded in the [candidate release notes](docs/release-0.2.0.md), with native Windows model-host acceptance still open. The official SDK client has been tested against real subprocess servers.
 
 ## Install and validate
 
@@ -34,7 +36,7 @@ mimir.cmd init
 mimir.cmd doctor
 ```
 
-`npm test` builds first. `npm run build` produces the CLI and public library in `dist/`. `npm link` installs the `mimir` command locally; use `node dist/cli/index.js` instead if linking is undesirable. Windows and WSL use different runtimes and filesystem paths: do not reuse a node_modules installation across them. Tests were run in WSL; see [validation](docs/validation.md) for Windows smoke coverage and limits.
+`npm test` builds first. `npm run build` produces the CLI and public library in `dist/`. `npm link` installs the `mimir` command locally; use `node dist/cli/index.js` instead if linking is undesirable. Windows and WSL use different runtimes and filesystem paths: do not reuse a node_modules installation across them. Tests were run in WSL; see [validation](https://github.com/victoregit/MimirNL/blob/develop/docs/validation.md) for Windows smoke coverage and limits.
 
 ## Use a disposable project
 
@@ -86,11 +88,11 @@ Ingestion supports self-contained Git repositories, bounded text files and commi
 
 Search uses FTS5 BM25 and literal word queries. Its context budget includes provenance and JSON formatting, using a conservative UTF-8 byte upper bound rather than actual model tokenization. There is no embedding model, automatic ML learning, or measured model-token savings claim.
 
-Read [architecture](docs/architecture.md), [MCP contract](docs/mcp.md), [integrations](docs/integrations.md), [dependency evidence](docs/dependencies.md), and [validation](docs/validation.md).
+Read [architecture](docs/architecture.md), [MCP contract](docs/mcp.md), [integrations](https://github.com/victoregit/MimirNL/blob/develop/docs/integrations.md), [dependency evidence](docs/dependencies.md), and [validation](https://github.com/victoregit/MimirNL/blob/develop/docs/validation.md).
 
 ## Hardening and recovery
 
-Use `mimir --db EXISTING_DB backup NEW_SNAPSHOT` and `mimir --db NEW_DB restore SNAPSHOT --confirm` with existing private parent folders. Recovery never replaces an active database. See [backup/restore](docs/backup-restore.md), [contribution checks](CONTRIBUTING.md), [security policy](SECURITY.md) and [roadmap execution evidence](docs/roadmap-execution.md). Hardening work does not constitute a released v0.1.1 or independent approval.
+Use `mimir --db EXISTING_DB backup NEW_SNAPSHOT` and `mimir --db NEW_DB restore SNAPSHOT --confirm` with existing private parent folders. Recovery never replaces an active database. See [backup/restore](docs/backup-restore.md), [contribution checks](CONTRIBUTING.md), [security policy](SECURITY.md) and [roadmap execution evidence](https://github.com/victoregit/MimirNL/blob/develop/docs/roadmap-execution.md). Hardening work does not constitute a released 0.2.0 or full milestone closure; scoped historical independent reviews remain recorded in the repository.
 
 ## License
 

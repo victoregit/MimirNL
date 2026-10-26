@@ -1,0 +1,7 @@
+# Task40 independent review of0.2.0 release preparation
+
+Read /mnt/d/Projects/MimirNL/tasks/39-v02-release-preparation.md and developer result /mnt/d/Projects/MimirNL/tasks/39-v02-release-preparation-result.md when ready. Review final changed code/package/tests/docs and candidate tarball, not historical work alreadyreviewed unless relevant. Actualreview by userselected gemini-3.8-flash-high. No codeedits/commit/push/tag/publication, no model/hostacceptanceruns or globalconfigchanges.
+
+Check coherent package/lock/runtime(init+MCP)0.2.0, compatibility and no unrelated behavior changes. Inspect artifactcontents and installation/version/MIT metadata/license; no liveDB/credential/rawprivateconfig/prompt/reasoning/internalmachineevidence inclusion. Verify checksum and meaningful developer validation; run only necessary focusedchecks/relevantfullchecks if evidencejustifies. Preserve historicalreports and AGENTS. Verify releasenotes/currentstatus clearly call thiscandidateunreleased, fullv02roadmap nativeWindowsmodelhost gateopen, historicalremoteCI6590684 notnewcommitCI, Codexallowdialogevidencecaveat preserved. Publication destination GitHubRelease prepared, npmnotconfirmed, userreservedcommit/push. Do not relax gates or selfpublish.
+
+Write explicit APPROVE/REQUEST_CHANGES with actionable evidence to /mnt/d/Projects/MimirNL/tasks/40-v02-release-candidate-review-findings.md and callback supervisor. Do not stop at initiatingchecks; report finalactualresults.

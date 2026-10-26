@@ -157,7 +157,7 @@ export class Service {
   ): Promise<unknown> {
     const p = String(d.projectId),
       id = String(d.id);
-    if (op === "init") return { database: this.storage.path, version: "0.1.0" };
+    if (op === "init") return { database: this.storage.path, version: "0.2.0" };
     if (op === "project_register") {
       // Native realpath resolves Windows drive and directory casing to filesystem identity.
       const path = realpathSync.native(String(d.path));

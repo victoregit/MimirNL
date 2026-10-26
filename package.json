@@ -1,6 +1,6 @@
 {
   "name": "mimir-nl",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
   "description": "Local-first project memory engine",
   "license": "MIT",
@@ -15,7 +15,13 @@
   },
   "files": [
     "dist",
-    "docs",
+    "docs/architecture.md",
+    "docs/backup-restore.md",
+    "docs/dependencies.md",
+    "docs/mcp.md",
+    "docs/mcp-schemas.json",
+    "docs/security.md",
+    "docs/release-0.2.0.md",
     "README.md",
     "CONTRIBUTING.md",
     "CODE_OF_CONDUCT.md",
