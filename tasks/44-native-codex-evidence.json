@@ -1,0 +1,139 @@
+{
+  "host": "Codex0.164.0 native Windows",
+  "sourceCommit": "27c586c2e12159223dd0cb90d27fcc6691775f28",
+  "P": "a7227823-03d0-42c2-9fb0-19d9817acfd0",
+  "Q": "bc1ea52f-59a3-4cf3-871e-6cfc168733b2",
+  "manualMemory": "3973d143-f9e2-4d6c-8c77-54d38aa70602",
+  "importedMemory": "6921809a-6fa9-4ff3-babd-27a1e4d1bd09",
+  "user_report": "Seven steps completed in order, no unexpected errors or refusal: restart-read/search/note/registerQ/scopedNOT_FOUND/architecture ingestion/search trust labels.",
+  "db_corroboration": "Native Node readOnly observed2projects/2candidate memories/1note/0globals. Manual candidatev2/importcandidatev1 withuntrustedfileprovenance.",
+  "limits": "Audit captures allowlisted memory metadata only; project registration/ingestion corroborated by actual user host excerpt and nativeDB. Individual permission dialog choices not enumerated by this excerpt.",
+  "audits": [
+    {
+      "name": "audit-session-21384-b30ea656-3b14-4b79-961a-97cebdeba09b.jsonl",
+      "sha256": "dd35077c162d2d177cf992dc35ffe597225772668cdf7b412e556529b8b99423",
+      "events": [
+        {
+          "seq": 1,
+          "event": "received",
+          "tool": "memory_store",
+          "projectId": "a7227823-03d0-42c2-9fb0-19d9817acfd0",
+          "call": 1
+        },
+        {
+          "seq": 2,
+          "event": "response",
+          "call": 1,
+          "tool": "memory_store",
+          "protocolError": false,
+          "toolError": false,
+          "ok": true,
+          "id": "3973d143-f9e2-4d6c-8c77-54d38aa70602",
+          "status": "candidate"
+        }
+      ]
+    },
+    {
+      "name": "audit-session-23796-b2cb4de0-e287-4462-ac35-a70ed4b1011b.jsonl",
+      "sha256": "942e70d5f3ee40f80055e1b5eeae2d7fff156f59c4b7fe8a577af1b9960b4bcc",
+      "events": [
+        {
+          "seq": 1,
+          "event": "received",
+          "tool": "memory_get",
+          "projectId": "a7227823-03d0-42c2-9fb0-19d9817acfd0",
+          "id": "3973d143-f9e2-4d6c-8c77-54d38aa70602",
+          "call": 1
+        },
+        {
+          "seq": 2,
+          "event": "response",
+          "call": 1,
+          "tool": "memory_get",
+          "protocolError": false,
+          "toolError": false,
+          "ok": true,
+          "id": "3973d143-f9e2-4d6c-8c77-54d38aa70602",
+          "status": "candidate"
+        },
+        {
+          "seq": 3,
+          "event": "received",
+          "tool": "memory_search",
+          "projectId": "a7227823-03d0-42c2-9fb0-19d9817acfd0",
+          "includeGlobal": false,
+          "scope": "project",
+          "call": 2
+        },
+        {
+          "seq": 4,
+          "event": "response",
+          "call": 2,
+          "tool": "memory_search",
+          "protocolError": false,
+          "toolError": false,
+          "ok": true
+        },
+        {
+          "seq": 5,
+          "event": "received",
+          "tool": "memory_feedback",
+          "projectId": "a7227823-03d0-42c2-9fb0-19d9817acfd0",
+          "id": "3973d143-f9e2-4d6c-8c77-54d38aa70602",
+          "explicitApproval": false,
+          "sharingApproval": false,
+          "action": "note",
+          "scope": "project",
+          "call": 3
+        },
+        {
+          "seq": 6,
+          "event": "response",
+          "call": 3,
+          "tool": "memory_feedback",
+          "protocolError": false,
+          "toolError": false,
+          "ok": true,
+          "id": "3973d143-f9e2-4d6c-8c77-54d38aa70602",
+          "status": "candidate"
+        },
+        {
+          "seq": 7,
+          "event": "received",
+          "tool": "memory_get",
+          "projectId": "bc1ea52f-59a3-4cf3-871e-6cfc168733b2",
+          "id": "3973d143-f9e2-4d6c-8c77-54d38aa70602",
+          "call": 4
+        },
+        {
+          "seq": 8,
+          "event": "response",
+          "call": 4,
+          "tool": "memory_get",
+          "protocolError": false,
+          "toolError": true,
+          "ok": false,
+          "code": "NOT_FOUND"
+        },
+        {
+          "seq": 9,
+          "event": "received",
+          "tool": "memory_search",
+          "projectId": "a7227823-03d0-42c2-9fb0-19d9817acfd0",
+          "includeGlobal": false,
+          "scope": "project",
+          "call": 5
+        },
+        {
+          "seq": 10,
+          "event": "response",
+          "call": 5,
+          "tool": "memory_search",
+          "protocolError": false,
+          "toolError": false,
+          "ok": true
+        }
+      ]
+    }
+  ]
+}

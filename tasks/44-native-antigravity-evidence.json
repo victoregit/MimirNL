@@ -1,0 +1,158 @@
+{
+  "host": "Antigravity CLI1.4.7 nativeWindows",
+  "model": "gemini-3.8-flash-high",
+  "sourceCommit": "27c586c2e12159223dd0cb90d27fcc6691775f28",
+  "P": "a7227823-03d0-42c2-9fb0-19d9817acfd0",
+  "Q": "bc1ea52f-59a3-4cf3-871e-6cfc168733b2",
+  "codexMemory": "3973d143-f9e2-4d6c-8c77-54d38aa70602",
+  "antigravityMemory": "ac225f4e-f47c-407b-a779-b5a5c5837fe8",
+  "importedMemory": "6921809a-6fa9-4ff3-babd-27a1e4d1bd09",
+  "user_report": "Eight steps completed: Codexmemory/note read, coral853store/search/get/note, scopedNOT_FOUND, unchangedarchitectureingest, searchuntrustedfileprovenance.",
+  "native_db_corroboration": {
+    "projects": 2,
+    "candidate_memories": 3,
+    "note_feedback": 2,
+    "globals": 0
+  },
+  "audit": {
+    "name": "audit-session-13564-a74bd160-92c4-49ab-92fe-58fb7399e7a8.jsonl",
+    "sha256": "7feba81efcd9c28cf57d1ee1dc84c197235f7dce9f0fa9d4f9cef02eb1b48bb0",
+    "events": [
+      {
+        "seq": 1,
+        "event": "received",
+        "tool": "memory_get",
+        "projectId": "a7227823-03d0-42c2-9fb0-19d9817acfd0",
+        "id": "3973d143-f9e2-4d6c-8c77-54d38aa70602",
+        "call": 1
+      },
+      {
+        "seq": 2,
+        "event": "response",
+        "call": 1,
+        "tool": "memory_get",
+        "protocolError": false,
+        "toolError": false,
+        "ok": true,
+        "id": "3973d143-f9e2-4d6c-8c77-54d38aa70602",
+        "status": "candidate"
+      },
+      {
+        "seq": 3,
+        "event": "received",
+        "tool": "memory_store",
+        "projectId": "a7227823-03d0-42c2-9fb0-19d9817acfd0",
+        "call": 2
+      },
+      {
+        "seq": 4,
+        "event": "response",
+        "call": 2,
+        "tool": "memory_store",
+        "protocolError": false,
+        "toolError": false,
+        "ok": true,
+        "id": "ac225f4e-f47c-407b-a779-b5a5c5837fe8",
+        "status": "candidate"
+      },
+      {
+        "seq": 5,
+        "event": "received",
+        "tool": "memory_search",
+        "projectId": "a7227823-03d0-42c2-9fb0-19d9817acfd0",
+        "includeGlobal": false,
+        "scope": "project",
+        "call": 3
+      },
+      {
+        "seq": 6,
+        "event": "response",
+        "call": 3,
+        "tool": "memory_search",
+        "protocolError": false,
+        "toolError": false,
+        "ok": true
+      },
+      {
+        "seq": 7,
+        "event": "received",
+        "tool": "memory_get",
+        "projectId": "a7227823-03d0-42c2-9fb0-19d9817acfd0",
+        "id": "ac225f4e-f47c-407b-a779-b5a5c5837fe8",
+        "call": 4
+      },
+      {
+        "seq": 8,
+        "event": "response",
+        "call": 4,
+        "tool": "memory_get",
+        "protocolError": false,
+        "toolError": false,
+        "ok": true,
+        "id": "ac225f4e-f47c-407b-a779-b5a5c5837fe8",
+        "status": "candidate"
+      },
+      {
+        "seq": 9,
+        "event": "received",
+        "tool": "memory_feedback",
+        "projectId": "a7227823-03d0-42c2-9fb0-19d9817acfd0",
+        "id": "ac225f4e-f47c-407b-a779-b5a5c5837fe8",
+        "explicitApproval": false,
+        "sharingApproval": false,
+        "action": "note",
+        "scope": "project",
+        "call": 5
+      },
+      {
+        "seq": 10,
+        "event": "response",
+        "call": 5,
+        "tool": "memory_feedback",
+        "protocolError": false,
+        "toolError": false,
+        "ok": true,
+        "id": "ac225f4e-f47c-407b-a779-b5a5c5837fe8",
+        "status": "candidate"
+      },
+      {
+        "seq": 11,
+        "event": "received",
+        "tool": "memory_get",
+        "projectId": "bc1ea52f-59a3-4cf3-871e-6cfc168733b2",
+        "id": "ac225f4e-f47c-407b-a779-b5a5c5837fe8",
+        "call": 6
+      },
+      {
+        "seq": 12,
+        "event": "response",
+        "call": 6,
+        "tool": "memory_get",
+        "protocolError": false,
+        "toolError": true,
+        "ok": false,
+        "code": "NOT_FOUND"
+      },
+      {
+        "seq": 13,
+        "event": "received",
+        "tool": "memory_search",
+        "projectId": "a7227823-03d0-42c2-9fb0-19d9817acfd0",
+        "includeGlobal": false,
+        "scope": "project",
+        "call": 7
+      },
+      {
+        "seq": 14,
+        "event": "response",
+        "call": 7,
+        "tool": "memory_search",
+        "protocolError": false,
+        "toolError": false,
+        "ok": true
+      }
+    ]
+  },
+  "cleanup": "Ownednativeagy18828 stoppedafterresponse; exactnativeMCPentrymimir-v02-native-test42 removedsuccessfully, nootherentrytouched. Syntheticnativefixturedataretained, notdeleted.",
+  "limitations": "Metadata is not fullhosttrace; no directenumerationofUIone-timechoices. No approvals/promotions/deletionsruninnativephase. Final reverse-hostfreshCodexread ofcoral853 pending."
+}
