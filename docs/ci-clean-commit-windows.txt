@@ -1,0 +1,55 @@
+v24.22.1
+
+added 106 packages, and audited 107 packages in 12s
+
+32 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+> mimir-nl@0.1.0 test
+> npm run build && node --test test/*.test.mjs
+
+
+> mimir-nl@0.1.0 build
+> tsc
+
+✔ canonical Git roots preserve identity across native path spellings (1650.9696ms)
+✔ A: restart persistence, WAL, foreign keys and rollback (765.7704ms)
+✔ A: simultaneous independent processes deduplicate atomic writes (1606.5177ms)
+✔ B: isolation for search, IDs, history, stats, relations; bounded literal context (1209.1675ms)
+✔ D: authorized Git fixture bounds, secrets, ignores, binaries, symlink, incremental versions and deletion (2424.1289ms)
+✔ E: explicit verification, relation history, deterministic observation, sharing and confirmed deletion (932.8824ms)
+✔ security: every request field checked, invalid schemas and unsafe database placement (505.1852ms)
+✔ C: real SDK stdio initialize/list/call, CLI shared DB and concurrent MCP clients (3417.0932ms)
+✔ E: shared lifecycle deletion and global/local retrieval dedup (549.7448ms)
+✔ D: uncommitted repositories, byte bound rollback and changed sensitive sources (1205.2234ms)
+✔ B: filters, complete response budget, oversized input and provenance trust (485.0517ms)
+✔ security: external Git config rejected before Git commands; custom excludes and provenance retention (1155.0121ms)
+✔ A: future schema versions are refused without migration writes (72.6528ms)
+✔ A/E: manual edits preserve ID/history, reset verification and prevent duplicates (439.7992ms)
+✔ security: quoted JSON configuration secrets and metadata are rejected before persistence (624.2496ms)
+✔ C: CLI positional project deletion consumes the UUID and preserves the source (666.7722ms)
+✔ snapshot includes uncheckpointed WAL, versions, provenance, feedback and independent reopen (993.2736ms)
+✔ snapshot stays consistent with independent CLI writer processes (1614.0105ms)
+✔ online snapshot overlaps an active WAL writer and preserves transactional history (4954.0555ms)
+✔ restore rejects corruption, incompatible schema, sidecars, project paths, traversal and symlinks (1530.1072ms)
+✔ sensitive fields, Windows paths, bounded includes and injection remain data (594.4953ms)
+✔ external Git config and executable fsmonitor cannot run (785.7247ms)
+✔ CLI feedback persists approval; includes deprecates and full ingest reactivates (2819.6291ms)
+▶ hard-link failures preserve sources, clean temporary snapshots and never replace targets
+  ✔ EXDEV (233.6102ms)
+  ✔ ENOTSUP (266.4518ms)
+  ✔ EPERM (276.9727ms)
+  ✔ EEXIST (142.2605ms)
+✔ hard-link failures preserve sources, clean temporary snapshots and never replace targets (1118.8315ms)
+✔ SQLite WAL-reset patch boundaries reject unpatched and unknown versions (4.508ms)
+✔ actual SQLite runtime is patched and doctor reports it (381.1338ms)
+ℹ tests 30
+ℹ suites 0
+ℹ pass 30
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 16477.7175
