@@ -10,6 +10,8 @@ import {
 } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
+import { Client } from "@modelcontextprotocol/client";
+import { StdioClientTransport } from "@modelcontextprotocol/client/stdio";
 import { fixtureGit } from "../test/git-fixture.mjs";
 import { runNpm } from "./npm-cli.mjs";
 const root = mkdtempSync(join(tmpdir(), "mimir-package-"));
@@ -110,7 +112,45 @@ try {
     assert.equal(r.ok, true, JSON.stringify(r));
     return r.data;
   }
-  cli(db, "init");
+  const expectedVersion = JSON.parse(
+    readFileSync(new URL("../package.json", import.meta.url), "utf8"),
+  ).version;
+  const installedPackage = JSON.parse(
+    readFileSync(
+      join(install, "node_modules", "mimir-nl", "package.json"),
+      "utf8",
+    ),
+  );
+  assert.equal(installedPackage.version, expectedVersion);
+  assert.equal(cli(db, "init").version, expectedVersion);
+  // Initialize the actual installed stdio server, independently of CLI dispatch.
+  const client = new Client({
+    name: "installed-package-smoke",
+    version: "1.0.0",
+  });
+  try {
+    await client.connect(
+      new StdioClientTransport({
+        command: process.execPath,
+        args: [
+          join(install, "node_modules", "mimir-nl", "dist", "cli", "index.js"),
+          "--db",
+          join(root, "mcp.sqlite"),
+          "mcp",
+          "stdio",
+        ],
+        stderr: "pipe",
+      }),
+    );
+    assert.equal(client.getServerVersion().version, expectedVersion);
+    const result = await client.callTool({ name: "init", arguments: {} });
+    assert.equal(
+      JSON.parse(result.content[0].text).data.version,
+      expectedVersion,
+    );
+  } finally {
+    await client.close();
+  }
   assert.equal(cli(db, "doctor").healthy, true);
   const repo = join(root, "repo");
   mkdirSync(repo);
@@ -169,6 +209,8 @@ try {
   console.log(
     JSON.stringify({
       installedExecutable: true,
+      version: expectedVersion,
+      installedMcpVersion: true,
       backupRestore: true,
       feedbackApproval: true,
       isolation: true,
