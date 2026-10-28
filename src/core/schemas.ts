@@ -69,6 +69,10 @@ export const schemas = {
       scope: z.enum(["project", "global"]).optional(),
       includeGlobal: z.boolean().default(false),
       limit: z.number().int().min(1).max(50).default(10),
+      policy: z.enum(["legacy", "balanced-v1"]).default("legacy"),
+      recency: z.enum(["off", "verified-ties-v1"]).default("off"),
+      format: z.enum(["full", "compact-v1"]).default("full"),
+      telemetry: z.boolean().default(false),
       tokenBudget: z.number().int().min(200).max(100000).default(4000),
     })
     .strict(),

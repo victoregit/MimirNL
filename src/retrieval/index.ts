@@ -7,6 +7,8 @@ export interface RetrievalFilter {
   type?: string;
   status?: string;
   scope?: string;
+  policy?: "legacy" | "balanced-v1";
+  recency?: "off" | "verified-ties-v1";
 }
 export interface Retriever {
   search(filter: RetrievalFilter): Record<string, unknown>[];
@@ -32,10 +34,44 @@ export class FtsRetriever implements Retriever {
         args.push(filter[field]);
       }
     if (!filter.status) where += " AND m.status IN ('candidate','verified')";
-    return this.db
+    const rows = this.db
       .prepare(
-        `SELECT m.* FROM memory_fts JOIN memories m ON m.id=memory_fts.id WHERE ${where} AND memory_fts MATCH ? ORDER BY bm25(memory_fts),(m.scope='project') DESC,m.id LIMIT ?`,
+        `SELECT m.* FROM memory_fts JOIN memories m ON m.id=memory_fts.id WHERE ${where} AND memory_fts MATCH ? ORDER BY bm25(memory_fts),(m.scope='project') DESC,CASE WHEN ?='verified-ties-v1' AND m.status='verified' AND julianday(m.updated)<=julianday('now') THEN julianday(m.updated) ELSE 0 END DESC,m.id`,
       )
-      .all(...args, words.map((w) => '"' + w + '"').join(" OR "), filter.limit);
+      .iterate(
+        ...args,
+        words.map((w) => '"' + w + '"').join(" OR "),
+        filter.recency ?? "off",
+      );
+    // Coverage is lexical evidence, never an assertion that the source answers the question.
+    const terms = [...new Set(words.map((w) => w.toLowerCase()))];
+    const groups = new Map<string, Record<string, unknown>>();
+    for (const row of rows) {
+      if (filter.policy === "balanced-v1") {
+        const contentTerms = new Set(
+          String(row.content)
+            .toLowerCase()
+            .match(/[\p{L}\p{N}_]+/gu) ?? [],
+        );
+        if (
+          terms.filter((term) => contentTerms.has(term)).length <
+          Math.ceil(terms.length / 4)
+        )
+          continue;
+      }
+      const key = String(row.hash);
+      const previous = groups.get(key);
+      if (previous) {
+        (previous.duplicateProvenance as unknown[]).push({
+          id: row.id,
+          project_id: row.project_id,
+          scope: row.scope,
+          source: JSON.parse(String(row.source)),
+        });
+      } else if (groups.size < filter.limit) {
+        groups.set(key, { ...row, duplicateProvenance: [] });
+      }
+    }
+    return [...groups.values()].slice(0, filter.limit);
   }
 }

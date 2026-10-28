@@ -1,10 +1,14 @@
+import { getPackageVersion } from "../version.js";
 import { McpServer } from "@modelcontextprotocol/server";
 import { serveStdio } from "@modelcontextprotocol/server/stdio";
 import { schemas, type Operation } from "../core/schemas.js";
 import type { Service } from "../core/service.js";
 export function startMcp(service: Service) {
   return serveStdio(() => {
-    const server = new McpServer({ name: "mimir-nl", version: "0.2.0" });
+    const server = new McpServer({
+      name: "mimir-nl",
+      version: getPackageVersion(),
+    });
     for (const [name, schema] of Object.entries(schemas)) {
       server.registerTool(
         name,

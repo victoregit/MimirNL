@@ -1,3 +1,4 @@
+import { getPackageVersion } from "../version.js";
 import { randomUUID } from "node:crypto";
 import { execFileSync } from "node:child_process";
 import { realpathSync, statSync, accessSync, constants } from "node:fs";
@@ -157,7 +158,8 @@ export class Service {
   ): Promise<unknown> {
     const p = String(d.projectId),
       id = String(d.id);
-    if (op === "init") return { database: this.storage.path, version: "0.2.0" };
+    if (op === "init")
+      return { database: this.storage.path, version: getPackageVersion() };
     if (op === "project_register") {
       // Native realpath resolves Windows drive and directory casing to filesystem identity.
       const path = realpathSync.native(String(d.path));
@@ -358,17 +360,40 @@ export class Service {
       const rows = new FtsRetriever(this.db).search(
         d as unknown as RetrievalFilter,
       );
-      const seen = new Set<string>();
-      const result = optimize(
-        rows
-          .filter((m) => {
-            if (seen.has(String(m.hash))) return false;
-            seen.add(String(m.hash));
-            return true;
-          })
-          .map((m) => this.view(m)),
-        Number(d.tokenBudget),
-      );
+      const items = rows.map((m) => {
+        const full = this.view(m);
+        if (d.format !== "compact-v1") return full;
+        // Keep the full excerpt and all citation/integrity fields; omit operational counters.
+        return Object.fromEntries(
+          [
+            "id",
+            "project_id",
+            "scope",
+            "type",
+            "content",
+            "hash",
+            "status",
+            "origin",
+            "source",
+            "version",
+            "trust",
+            "duplicateProvenance",
+          ].map((key) => [key, full[key]]),
+        );
+      });
+      const metadata: Record<string, unknown> = {};
+      if (d.policy === "balanced-v1")
+        metadata.reason = rows.length
+          ? "lexical_matches"
+          : "no_lexical_evidence";
+      if (d.telemetry)
+        metadata.telemetry = {
+          version: "local-v1",
+          returnedCandidates: rows.length,
+          format: d.format,
+          policy: d.policy,
+        };
+      const result = optimize(items, Number(d.tokenBudget), metadata);
       this.storage.transaction(() => {
         const retrievalId = randomUUID();
         for (const m of result.memories)
