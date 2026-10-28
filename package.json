@@ -1,6 +1,6 @@
 {
   "name": "mimir-nl",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "type": "module",
   "description": "Local-first project memory engine",
   "license": "MIT",
@@ -21,12 +21,14 @@
     "docs/mcp.md",
     "docs/mcp-schemas.json",
     "docs/security.md",
-    "docs/release-0.2.0.md",
     "README.md",
     "CONTRIBUTING.md",
     "CODE_OF_CONDUCT.md",
     "SECURITY.md",
-    "LICENSE"
+    "LICENSE",
+    "CHANGELOG.md",
+    "docs/release-0.3.0.md",
+    "docs/core-retrieval-0.3.md"
   ],
   "scripts": {
     "build": "tsc",

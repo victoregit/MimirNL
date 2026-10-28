@@ -1,10 +1,12 @@
 # Mimir NL
 
-**Release status:** 0.2.0 candidate, unreleased; v0.2 acceptance remains open. See [release notes and publication gates](docs/release-0.2.0.md).
+**Release status:** 0.3.0 candidate, unreleased. Bounded technical scope is complete; release review137, commits, remote CI and publication remain pending. See [release notes](docs/release-0.3.0.md) and [changelog](CHANGELOG.md).
 
-A second brain for AI. Core v0.1 is a local-first TypeScript memory engine with SQLite persistence, project-isolated text retrieval, authorized read-only Git ingestion, deterministic feedback, and an official MCP v2 stdio server. It runs without an external API or model.
+A second brain for AI. Mimir is a local-first TypeScript memory engine with SQLite persistence, project-isolated text retrieval, authorized read-only Git ingestion, deterministic feedback, and an official MCP v2 stdio server. It runs without an external API or model.
 
-The website remains in [Mimir-web](../Mimir-web), a separate repository. This repository contains only the brain engine. Codex and Google Antigravity configuration examples are documented; actual Linux/WSL Codex and Antigravity evidence is recorded in the [candidate release notes](docs/release-0.2.0.md), with native Windows model-host acceptance still open. The official SDK client has been tested against real subprocess servers.
+The website lives in the independent Mimir-web repository. This engine provides CLI and MCP interfaces for compatible agents; historical host evidence is recorded in the [0.2 notes](docs/release-0.2.0.md). The [0.3 retrieval contract](docs/core-retrieval-0.3.md) documents optional lexical policy, recency, compact output and local response telemetry. Defaults remain compatible.
+
+EF03 exact context deduplication is an experimental external-API benchmark helper, not automatically enabled in CLI/MCP. One four-call pilot on two known DEV cases reduced input tokens by 4.91% and total tokens by 4.80%, with 4/4 quality gates passing. Both deduplicated calls were slower; cost and latency causes are unknown. This does not establish general savings. See the [release limitations](docs/release-0.3.0.md).
 
 ## Install and validate
 
@@ -92,7 +94,7 @@ Read [architecture](docs/architecture.md), [MCP contract](docs/mcp.md), [integra
 
 ## Hardening and recovery
 
-Use `mimir --db EXISTING_DB backup NEW_SNAPSHOT` and `mimir --db NEW_DB restore SNAPSHOT --confirm` with existing private parent folders. Recovery never replaces an active database. See [backup/restore](docs/backup-restore.md), [contribution checks](CONTRIBUTING.md), [security policy](SECURITY.md) and [roadmap execution evidence](https://github.com/victoregit/MimirNL/blob/develop/docs/roadmap-execution.md). Hardening work does not constitute a released 0.2.0 or full milestone closure; scoped historical independent reviews remain recorded in the repository.
+Use `mimir --db EXISTING_DB backup NEW_SNAPSHOT` and `mimir --db NEW_DB restore SNAPSHOT --confirm` with existing private parent folders. Recovery never replaces an active database. See [backup/restore](docs/backup-restore.md), [contribution checks](CONTRIBUTING.md), [security policy](SECURITY.md) and [roadmap execution evidence](https://github.com/victoregit/MimirNL/blob/develop/docs/roadmap-execution.md). The package remains an unreleased 0.3.0 candidate. Historical reviews remain scoped to their recorded sources; broader efficiency and real-use learning are planned for 0.4.
 
 ## License
 

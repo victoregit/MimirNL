@@ -47,6 +47,21 @@ try {
   const pack = JSON.parse(
     runNpm(["pack", "--json", "--pack-destination", root]),
   );
+  const metadata = JSON.parse(
+    readFileSync(new URL("../package.json", import.meta.url), "utf8"),
+  );
+  assert.equal(pack[0].version, metadata.version);
+  const packedPaths = pack[0].files.map((file) => file.path);
+  for (const path of packedPaths) {
+    assert.ok(
+      !/^(tasks|test|scripts|node_modules|docs\/benchmarks)\//.test(path),
+      path,
+    );
+    assert.ok(!/\.(?:tar|sqlite|pem)$/.test(path), path);
+  }
+  for (const path of metadata.files.filter((path) => path !== "dist")) {
+    assert.ok(packedPaths.includes(path), `Missing package document: ${path}`);
+  }
   const install = join(root, "install");
   mkdirSync(install);
   writeFileSync(
