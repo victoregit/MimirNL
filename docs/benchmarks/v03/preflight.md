@@ -1,5 +1,7 @@
 # Preflight offline v0.3
 
+> Atualização Task99 (2026-10-27): conteúdo abaixo preserva a proposta/perfil histórico 0.1. Para novo trabalho, consultar a [emenda0.2](contrato-0.2.md) e o [plano de fechamento](fechamento-0.2.md), pendentes de revisão Task100. Autorizações e tetos antigos não substituem a continuidade delimitada da sessão; accepted/validated legados não serão fabricados. Há execução exploratória A/B posterior nas [Tasks82](../../../tasks/82-v03-two-host-closeout.md), [90](../../../tasks/90-v03-multicase-codex-pilot-review-findings.md) e [96](../../../tasks/96-v03-layout-live-comparison-review-findings.md); ABC novo permanece pendente.
+
 Protótipo limitado para a [proposta de contrato 0.1](contrato.md), ainda não aprovada. Valida estrutura e coerência interna de um array JSON não vazio de casos e prepara uma matriz pública. Não é executor nem avaliação de benchmark. Não demonstra ganho, aprova corpus ou resolve decisões pendentes.
 
 Requer o Node já instalado na versão suportada pelo projeto. Execução manual, a partir da raiz do repositório:

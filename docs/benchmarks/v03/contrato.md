@@ -1,10 +1,12 @@
 # Contrato comum de benchmark v0.3 — proposta v0.1
 
+> Atualização Task99 (2026-10-27): conteúdo abaixo preserva a proposta/perfil histórico 0.1. Para novo trabalho, consultar a [emenda0.2](contrato-0.2.md) e o [plano de fechamento](fechamento-0.2.md), pendentes de revisão Task100. Autorizações e tetos antigos não substituem a continuidade delimitada da sessão; accepted/validated legados não serão fabricados. Há execução exploratória A/B posterior nas [Tasks82](../../../tasks/82-v03-two-host-closeout.md), [90](../../../tasks/90-v03-multicase-codex-pilot-review-findings.md) e [96](../../../tasks/96-v03-layout-live-comparison-review-findings.md); ABC novo permanece pendente.
+
 **Estado: proposta para acordo; não aprovada.** Vincula-se ao [plano de divisão de tarefas](../../v03-divisao-de-tarefas.md) e à [seção v0.3 do roadmap](../../../ROADMAP_MIMIR_NL.md#v030--useful-context-not-just-more-context-p0). Define um formato documental implementável; não implementa schema, parser, executor ou coleta. Não demonstra ganhos.
 
 ## Entregas e aprovação
 
-A equipe principal propõe este contrato. O amigo continua responsável pelas propostas futuras em `docs/benchmarks/v03/casos.md` e `docs/benchmarks/v03/metodologia.md`; esses arquivos não são criados por esta entrega. O autor não aprova a própria entrega: outra pessoa confere fontes e gold, Codex faz revisão independente e o mantenedor registra aceite humano antes da integração.
+A equipe principal assumiu também corpus e metodologia por autorização do usuário na Task54. A proposta recebeu [revisão independente APPROVE na Task55](../../../tasks/55-v03-corpus-review-findings.md), incluindo conferência das fontes, hashes e respostas candidatas. Isso não aprova este contrato nem aceita o corpus ou valida formalmente o gold. O autor não aprova a própria entrega; o mantenedor deve registrar aceite humano antes da integração. O [pacote de decisão do piloto](piloto-decisao.md) consolida o escopo mínimo e as decisões ainda pendentes, sem autorizar execução.
 
 A autorização futura deve registrar uma vez: responsável, operações, caminhos absolutos permitidos, dados que podem sair, provedor/destino, limites de chamadas/tempo/custo e validade. Repetições dentro do escopo autorizado não exigem reaprovação. Mudança de escopo exige decisão do usuário. Esta proposta não autoriza ingestão, uso de banco real, execução externa, chamadas a modelos, configuração de hosts, commit, push ou release. Telemetria permanece local e opt-in, sem upload por padrão.
 

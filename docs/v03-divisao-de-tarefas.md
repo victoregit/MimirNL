@@ -1,18 +1,20 @@
 # v0.3 — Divisão de tarefas
 
-A v0.2.0 foi publicada; a v0.3 está em planejamento. O objetivo é medir quando a memória ajuda ou atrapalha, conforme a [seção v0.3 do roadmap](../ROADMAP_MIMIR_NL.md#v030--useful-context-not-just-more-context). Ainda não há ganho real demonstrado. Este plano não inicia benchmarks, ingestão ou chamadas a modelos.
+> Atualização Task99: o texto abaixo é histórico. A sequência vigente proposta para novo trabalho está no [plano0.2](benchmarks/v03/fechamento-0.2.md), com [emenda explícita](benchmarks/v03/contrato-0.2.md) e revisão Task100 pendente. Continuidade autorizada não equivale a aceite humano ou publicação. Exploração A/B já ocorreu; executor ABC e fechamento experimental continuam abertos.
+
+Este registro não verifica publicação da v0.2.0; sua evidência histórica permanece no roadmap. A v0.3 tem preflight e métricas offline implementados e revisados, com corpus/metodologia em proposta. O objetivo é medir quando a memória ajuda ou atrapalha, conforme a [seção v0.3 do roadmap](../ROADMAP_MIMIR_NL.md#v030--useful-context-not-just-more-context-p0). Ainda não há ganho real demonstrado. Este plano não inicia benchmarks, ingestão ou chamadas a modelos.
 
 ## Responsabilidades e sequência
 
-| Etapa                        | Responsável                                                 | Entrega e dependência                                                                                                                                                                             |
-| ---------------------------- | ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1. Contrato comum            | Equipe principal/Codex, com acordo do amigo e aceite humano | Proposta versionada dos campos dos casos, resultados, métricas e permissões. Acordar antes de produzir o corpus final ou implementar o executor.                                                  |
-| 2. Corpus e metodologia      | Amigo com Antigravity                                       | Proposta pequena de 3–5 casos no próprio MimirNL, fontes e critérios verificáveis; desenho dos três cenários. Depende do contrato acordado.                                                       |
-| 3. Conferência das respostas | Pessoa diferente do autor, com apoio de Codex               | Conferir cada resposta esperada diretamente nas fontes fixadas; registrar revisor, divergências e decisão. Depende da proposta de casos.                                                          |
-| 4. Executor e métricas       | Equipe principal/Codex                                      | Executor reproduzível, isolamento dos cenários, coleta local e relatório comparativo. Depende do contrato e de casos aceitos; executar dentro da autorização e dos limites definidos no contrato. |
-| 5. Melhorias do motor        | Equipe principal/Codex                                      | Propostas separadas para ranking, deduplicação, recência, proveniência, fallback e orçamento de contexto. Dependem de baseline registrado e comparação posterior com o mesmo conjunto.            |
+| Etapa                        | Responsável                                                      | Entrega e dependência                                                                                                                                                                             |
+| ---------------------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1. Contrato comum            | Equipe principal/Codex, com revisão independente e aceite humano | Proposta versionada dos campos dos casos, resultados, métricas e permissões. Acordar antes de produzir o corpus final ou implementar o executor.                                                  |
+| 2. Corpus e metodologia      | Equipe principal/Codex                                           | Proposta pequena de 3–5 casos no próprio MimirNL, fontes e critérios verificáveis; desenho dos três cenários. Depende do contrato acordado.                                                       |
+| 3. Conferência das respostas | Pessoa diferente do autor, com apoio de Codex                    | Conferir cada resposta esperada diretamente nas fontes fixadas; registrar revisor, divergências e decisão. Depende da proposta de casos.                                                          |
+| 4. Executor e métricas       | Equipe principal/Codex                                           | Executor reproduzível, isolamento dos cenários, coleta local e relatório comparativo. Depende do contrato e de casos aceitos; executar dentro da autorização e dos limites definidos no contrato. |
+| 5. Melhorias do motor        | Equipe principal/Codex                                           | Propostas separadas para ranking, deduplicação, recência, proveniência, fallback e orçamento de contexto. Dependem de baseline registrado e comparação posterior com o mesmo conjunto.            |
 
-O autor não aprova a própria entrega. O amigo começa por documentação de casos e metodologia; ampliar sua responsabilidade exige nova tarefa delimitada e aceite humano.
+O autor não aprova a própria entrega. A equipe principal assume também corpus e metodologia por autorização do usuário (Task54); conferência das fontes e revisão independente continuam obrigatórias.
 
 ## Contrato a acordar
 
@@ -37,23 +39,23 @@ Métricas serão locais e opt-in, sem upload de telemetria por padrão. O relat�
 
 ## Áreas propostas e limites
 
-Os caminhos abaixo são sugestões para tarefas futuras; este documento não afirma que existam ou autoriza criá-los agora.
+Estado atual em `166e3cf047b2078952e43dc8e9171e053e99e2ce`: contrato, preflight e métricas estão commitados; revisões independentes [Task51](../tasks/51-v03-preflight-review-findings.md) e [Task53](../tasks/53-v03-benchmark-metrics-review-findings.md) registram APPROVE dos componentes offline. Isso não aprova contrato, corpus ou execução. A Task54 propõe [casos](benchmarks/v03/casos.md) e [metodologia](benchmarks/v03/metodologia.md), ainda sem aceite; executor real continua pendente. A branch local desta entrega parte desse HEAD, sem commit/push.
 
 | Frente          | Área proposta                                                         | Limite                                                                          |
 | --------------- | --------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
 | Contrato        | `docs/benchmarks/v03/contrato.md`                                     | Equipe principal; acordo antes das dependências.                                |
-| Amigo           | `docs/benchmarks/v03/casos.md` e `docs/benchmarks/v03/metodologia.md` | Somente proposta documental de casos, fontes e método.                          |
+| Corpus/método   | `docs/benchmarks/v03/casos.md` e `docs/benchmarks/v03/metodologia.md` | Somente proposta documental de casos, fontes e método.                          |
 | Executor/coleta | `scripts/benchmarks/` e `test/benchmarks/`                            | Equipe principal; implementação em tarefas próprias.                            |
 | Relatório       | `docs/benchmarks/v03/resultados.md`                                   | Evidências, comparação dos três cenários e limitações após execução autorizada. |
 | Motor           | `src/`                                                                | Equipe principal, depois do baseline, em PR separado.                           |
 
-O amigo não altera core, segurança, banco/migrações, package/dependências, CI, configurações ou credenciais, nem realiza ingestão real. Começar apenas com proposta sobre fontes do próprio MimirNL: outros repositórios, dados pessoais, bancos existentes, ingestão e chamadas a modelos precisam de autorização específica. Acesso ao repositório não autoriza enviar seu conteúdo a um provedor.
+Esta frente documental não altera core, segurança, banco/migrações, package/dependências, CI, configurações ou credenciais, nem realiza ingestão real. Começar apenas com proposta sobre fontes do próprio MimirNL: outros repositórios, dados pessoais, bancos existentes, ingestão e chamadas a modelos precisam de autorização específica. Acesso ao repositório não autoriza enviar seu conteúdo a um provedor.
 
 ## Issues, branches e aceite
 
-Abrir uma issue por entrega, com responsável, caminhos permitidos, dependências e critérios de aceite. Usar branches curtas a partir da branch existente `develop`, por exemplo `docs/v03-contrato` e `docs/v03-casos-piloto`, e PRs pequenos destinados a `develop`.
+Abrir uma issue por entrega, com responsável, caminhos permitidos, dependências e critérios de aceite. Para futuras integrações, usar branches curtas a partir da branch existente `develop`, por exemplo `docs/v03-contrato` e `docs/v03-casos-piloto`, e PRs pequenos destinados a `develop`. Exceção delimitada da Task54: branch local `docs/v03-corpus-methodology` a partir do HEAD `166e3cf`, preservando alterações existentes.
 
-Sem merge direto. Toda contribuição produzida com Antigravity passa por revisão independente em Codex, conferência humana das fontes/respostas e checks pertinentes ao diff. Esses são requisitos do processo proposto; não se presume que proteções de branch estejam configuradas. Nossa automação não faz commit/push sem decisão do usuário. O amigo pode commitar e enviar sua própria branch conforme o acordo; o mantenedor controla a integração e o release. Não publicar no npm nem alterar roadmap sem pedido.
+Sem merge direto. Toda contribuição produzida com Antigravity passa por revisão independente em Codex, conferência humana das fontes/respostas e checks pertinentes ao diff. Esses são requisitos do processo proposto; não se presume que proteções de branch estejam configuradas. Nossa automação não faz commit/push sem decisão do usuário. O mantenedor controla a integração e o release. Não publicar no npm nem alterar roadmap sem pedido.
 
 Checklist para cada entrega:
 
@@ -64,5 +66,9 @@ Checklist para cada entrega:
 - [ ] Três cenários comparáveis, métricas definidas e limitações documentadas.
 - [ ] Diff restrito à entrega; formatação focada e `git diff --check` aprovados.
 - [ ] Para futuro código, testes e checks pertinentes ao comportamento alterado registrados.
-- [ ] Revisão Codex independente, pendências resolvidas e aceite humano registrados antes de integrar.
-- [ ] Sem alegações de ganho sem medição; automação respeita a decisão do usuário sobre commit/push, amigo segue o acordo da própria branch e mantenedor controla integração/release.
+- [ ] Revisão independente por revisor diferente do autor, pendências resolvidas e aceite humano registrados antes de integrar.
+- [ ] Sem alegações de ganho sem medição; automação respeita a decisão do usuário sobre commit/push e mantenedor controla integração/release.
+
+## Atualização Task120 — fechamento105 sob revisão111
+
+A avaliação limitada104 e a revisão110 estão consolidadas no [fechamento corrente](benchmarks/v03/fechamento-0.3.md). Snapshot histórico preservado antes da portabilidade/formatação; código corrente segue revisão independente111 antes do fechamento definitivo105. Zero chamadas novas, 54 históricas. Qualidade igual nos três cenários, B com +2,93% de tokens de entrada; cache ambiente, histórico C vazio e modelo/custo/TTFT indisponíveis impedem alegar economia ou ganho de qualidade. Sem commit, push ou publicação; histórico anterior preservado.

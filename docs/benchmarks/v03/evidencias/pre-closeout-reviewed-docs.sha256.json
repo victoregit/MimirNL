@@ -1,0 +1,8 @@
+{
+  "archive_sha256": "85323a359ebe7d1dfcaf6ca6860db776f8bab0cfec49a574a862ad0e013d668c",
+  "members": {
+    "MIMIR_NL_CODEX_IMPROVEMENT_PROPOSAL.md": "e63d3c6115c2bea8b0327637a9de5999efda85e0f3e29faa50f4e83e233fea8a",
+    "docs/benchmarks/v03/diagnostico-eficiencia-offline.md": "8c8a1e7cecd6b26142c94226c47be1c2c2e7204498e512f2dbf6e4bad7953d73"
+  },
+  "reason": "Exact pre-format reviewed documentation bytes. Current files changed only by Prettier to satisfy the global format gate; no historical review hashes are reassigned."
+}

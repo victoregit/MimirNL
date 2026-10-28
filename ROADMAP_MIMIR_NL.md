@@ -1,6 +1,12 @@
 # Mimir NL — Roadmap
 
-## Current evidence — 2026-10-26 (tasks44/45)
+## Current status — 2026-10-28 (Task136)
+
+0.3.0 is a candidate, unreleased: the bounded technical scope is complete. Tasks105/120 are [approved111](tasks/111-v03-final-review-findings.md); the efficiency work and EF03 pilot have scoped reviews124/126/128/130/132/134, with [precision addendum135](tasks/135-ef03-review-metric-clarification.md). Review137 of the curated complete delta, commits, exact-commit remote CI, human acceptance and publication remain pending. See [current release notes](docs/release-0.3.0.md).
+
+The four-call EF03 pilot on two known DEV tasks observed -4.91% input, -4.80% total and 4/4 quality PASS; both deduplicated calls were slower, cost unknown. No general efficiency gain is established. Broader efficiency remains open for 0.4 real use: propose opt-in local records of task/source provenance, user correction/approval, quality, comparable input/output counts and elapsed time, with retention and sharing consent specified before implementation. No new telemetry is implemented here. Broad unchecked 0.3 goals below remain unevaluated beyond the bounded evidence.
+
+## Historical evidence — 2026-10-26 (tasks44/45)
 
 **0.2.0 is release-ready for final independent evidence review, unpublished.** Actual CLI model-host acceptance now includes Linux/WSL and native Windows; [CI run 40270527306](https://github.com/victoregit/MimirNL/actions/runs/40270527306) is supervisor-verified **SUCCESS** at exact commit `27c586c2e12159223dd0cb90d27fcc6691775f28`, with Ubuntu and Windows all steps successful (types, lint, formatting, tests, schemas, installed-package smoke and benchmark). Baseline `6590684` remains historical evidence. This CI result does not cover subsequent documentation edits.
 
@@ -20,7 +26,7 @@ Remaining steps: supervisor-arranged independent final evidence review (Task46),
 > **Remember. Learn. Evolve.**  
 > An open-source, local-first memory and learning layer for AI agents.
 
-**Status:** Early development (`v0.2.0` candidate, unreleased)
+**Status:** Early development (`v0.3.0` candidate, unreleased)
 
 **Repositories:** `MimirNL` (core) and `Mimir-web` (website)  
 **Planning model:** milestone-based, not date-based. Scope and priorities may change with test results and community feedback.
@@ -36,17 +42,17 @@ Remaining steps: supervisor-arranged independent final evidence review (Task46),
 
 ## Overview
 
-| Milestone | Focus                                                                          | Status                                                    |
-| --------- | ------------------------------------------------------------------------------ | --------------------------------------------------------- |
-| v0.1.0    | Persistent memory, FTS5 retrieval, Git import, CLI/MCP, deterministic feedback | ✅ Implemented and automated tests passed\*               |
-| v0.1.1    | Security, license, code review, backup, release hygiene                        | Technical gates passed; release unpublished               |
-| v0.2.0    | End-to-end Codex and Antigravity integration on real hosts                     | Release-ready; final review/commit CI/publication pending |
-| v0.3.0    | Real-workload retrieval quality, context/token optimization, observability     | Planned                                                   |
-| v0.4.0    | Evidence-based learning and controlled cross-project knowledge reuse           | Planned                                                   |
-| v0.5.0    | Richer historical import and optional semantic/hybrid search                   | Planned                                                   |
-| v0.6.0    | General-purpose plugin/adaptor architecture beyond software repositories       | Planned                                                   |
-| v0.7.0    | Knowledge graph visualization and optional community contributions             | Planned                                                   |
-| v1.0.0    | Stable, documented, independently reviewed public release                      | Planned                                                   |
+| Milestone | Focus                                                                          | Status                                                      |
+| --------- | ------------------------------------------------------------------------------ | ----------------------------------------------------------- |
+| v0.1.0    | Persistent memory, FTS5 retrieval, Git import, CLI/MCP, deterministic feedback | ✅ Implemented and automated tests passed\*                 |
+| v0.1.1    | Security, license, code review, backup, release hygiene                        | Technical gates passed; release unpublished                 |
+| v0.2.0    | End-to-end Codex and Antigravity integration on real hosts                     | Release-ready; final review/commit CI/publication pending   |
+| v0.3.0    | Real-workload retrieval quality, context/token optimization, observability     | Bounded technical scope complete; review137/release pending |
+| v0.4.0    | Evidence-based learning and controlled cross-project knowledge reuse           | Planned                                                     |
+| v0.5.0    | Richer historical import and optional semantic/hybrid search                   | Planned                                                     |
+| v0.6.0    | General-purpose plugin/adaptor architecture beyond software repositories       | Planned                                                     |
+| v0.7.0    | Knowledge graph visualization and optional community contributions             | Planned                                                     |
+| v1.0.0    | Stable, documented, independently reviewed public release                      | Planned                                                     |
 
 \* The v0.1 report records 17 passing automated tests and real MCP SDK client tests. It does **not** establish independent review, actual Codex/Antigravity host acceptance, or real-world token savings.
 
@@ -100,6 +106,14 @@ Remaining steps: supervisor-arranged independent final evidence review (Task46),
 ## v0.3.0 — Useful context, not just more context (P0)
 
 **Goal:** demonstrate when memory helps and when it hurts.
+
+**Current v0.3 work:** bounded technical closure105/120 is approved by [review111](tasks/111-v03-final-review-findings.md) and [record122](tasks/122-resume-technical-closeout.md). Broad effectiveness and efficiency remain open. The [efficiency program](docs/benchmarks/v03/plano-eficiencia.md) orders offline decomposition/instrumentation, redundancy diagnosis, then isolated context-selection interventions and a separately authorized small pilot. Plan review124 is pending. No code changes or new benchmark are authorized by this update.
+
+**Historical closure planning (Tasks97–105; pending statuses superseded by111/122):**
+
+**Current v0.3 work:** incomplete. [Task97 audit](tasks/97-v03-closure-gap-audit-result.md) reconciles evidence50–96 and remaining gaps; [Task98 APPROVE](tasks/98-v03-closure-plan-review-findings.md) approves the finite closure plan. [Amendment0.2](docs/benchmarks/v03/contrato-0.2.md) and [closure plan](docs/benchmarks/v03/fechamento-0.2.md) are delivered for independent Task100 review. Existing A/B exploration is not the contractual ABC experiment. The authorized continuation retains Mimir+cache without fabricating human acceptance or legacy accepted/validated flags. Tasks101–105 still require reviewed corpus/metrics/core/executor, new measurements and durable evidence.
+
+**Historical explicit scope amendment (bounded study; technical gate now approved111):** the proposed technical closure is a bounded experimental12-case study (9development+3separate evaluation), with empty-history C equivalent to A. It does not demonstrate broad real-workload representativeness, long-history benefit or multicase Antigravity effectiveness. Broad representativeness remains open. Technical completion after final independent review and publication are separate; publication/commit/push require specific authorization. No checkbox below is completed by this amendment.
 
 - [ ] Build a benchmark corpus from authorized, representative tasks and repositories.
 - [ ] Evaluate Precision@k/Recall@k, source accuracy, stale-memory rate, retrieval latency, and task outcomes.
@@ -177,7 +191,7 @@ Remaining steps: supervisor-arranged independent final evidence review (Task46),
 
 1. **P0:** v0.1.1 technical gates are complete; release remains unpublished and does not block authorized v0.2 work.
 2. **P0:** assess completed native/WSL v0.2 evidence/diff independently, then user commit/push and verify exact-new-SHA Ubuntu/Windows CI; preserve the completed WSL evidence and its limits.
-3. **P0:** import a real repository _only after_ privacy review, and establish measurement baselines (`v0.3.0`).
+3. **P0:** review137 the curated 0.3.0 candidate and prepare coherent local commits; remote CI and publication remain separate gates. Preserve all historical execution pins.
 4. **P1:** validate incremental learning and cross-project reuse (`v0.4.0`).
 5. **P1/P2:** expand retrieval, adapters, visualization, and community workflows (`v0.5–v0.7`).
 
@@ -194,3 +208,7 @@ Remaining steps: supervisor-arranged independent final evidence review (Task46),
 _Baseline source: `RELATORIO_IMPLEMENTACAO_V0.1.md`, dated 2026-10-24. Later checkboxes reflect only linked evidence; unchecked release/host/review gates remain pending._
 
 Historical task31 final-gate preparation (review and WSL progress superseded above): [reviewable artifacts and remaining gates](docs/v02-final-gates.md), [staged human workflow](docs/v02-final-human-workflow.md) and [platform installation guides](docs/v02-final-installation.md). These are prepared for independent review; no new host acceptance is claimed. Native supported-runtime/core checks do not close the missing native Codex/Antigravity host gate.
+
+## Registro histórico Task120 — pendência111 superada pelo parecer111/registro122
+
+A avaliação limitada104 e a revisão110 estão consolidadas no [fechamento corrente](docs/benchmarks/v03/fechamento-0.3.md). Snapshot histórico preservado antes da portabilidade/formatação; código corrente segue revisão independente111 antes do fechamento definitivo105. Zero chamadas novas, 54 históricas. Qualidade igual nos três cenários, B com +2,93% de tokens de entrada; cache ambiente, histórico C vazio e modelo/custo/TTFT indisponíveis impedem alegar economia ou ganho de qualidade. Sem commit, push ou publicação; histórico anterior preservado.
