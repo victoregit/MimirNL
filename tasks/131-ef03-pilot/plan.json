@@ -1,0 +1,172 @@
+{
+  "schema_version": "ef03-pilot-plan-131-v1",
+  "epoch": 1,
+  "author_ref": "developer-task131",
+  "required_review": 132,
+  "limits": {
+    "attempts": 4,
+    "retry": 0,
+    "concurrency": 1,
+    "call_ms": 90000,
+    "global_ms": 720000,
+    "prompt_bytes": 32000,
+    "capture_bytes": 64000
+  },
+  "host": {
+    "transport": "codex-lean-jsonl-posix-1",
+    "binary": "/home/usuario/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+    "requested_model": "gpt-6.1-sol",
+    "reasoning_effort": "low",
+    "isolation": "ignore-user-config/ephemeral/read-only/empty-cwd",
+    "disabled_features": ["apps", "plugins", "multi_agent"],
+    "cli_version": "0.164.0",
+    "node": "/home/usuario/.local/share/mimir-node-runtime/node-v24.22.1-linux-x64/bin/node",
+    "node_version": "v24.22.1",
+    "arguments": [
+      "exec",
+      "-m",
+      "gpt-6.1-sol",
+      "-c",
+      "model_reasoning_effort=\"low\"",
+      "--ignore-user-config",
+      "--ephemeral",
+      "--sandbox",
+      "read-only",
+      "--skip-git-repo-check",
+      "--cd",
+      "<owned-empty-scratch>",
+      "--json",
+      "--disable",
+      "apps",
+      "--disable",
+      "plugins",
+      "--disable",
+      "multi_agent",
+      "-"
+    ]
+  },
+  "binary_sha256": "b93f6811d3f653f0fb83be4050d857fb9abbb111dfa2ce160563327daff7f306",
+  "node_sha256": "e32e2d16081cf644f88392934288086e7662529d0d43277c34f7aad2207cfafb",
+  "output": "/home/usuario/.local/share/mimir-ef03-pilot/epoch1-dev13-20261028",
+  "inventory": {
+    "docs/benchmarks/v03/evidencias/task103/public-plan/offline-manifest.json": "24ef1251a498a2216fdbf229cb96135e3faf4e02cfb6e2e8e1e740a7378f9d15",
+    "docs/benchmarks/v03/evidencias/task103/offline-replay/position-01.json": "5f6b81c94519352b40f5b9f6aa38b6d160be1f0435d8de7c1af9580d619d3c07",
+    "docs/benchmarks/v03/evidencias/task103/offline-replay/position-03.json": "e4f78883243baa0f1393b7671216da7da7671ebf769eee1337ce88da6aa6b033",
+    "scripts/benchmarks/ef03-pilot.mjs": "3aa120eb72e668ae37f95a6419c8727813a4c977c3f80e3b8fc36165fbbbde13",
+    "scripts/benchmarks/ef03-pilot-launch.mjs": "f0668dd72d3849138898b00d846a7bd9595f452eed5b4fe78c0e484197c16a7e",
+    "scripts/benchmarks/offline-context.mjs": "9df249917c820fadb305a9d086ac900d5105bfe9a1a0a871e927c1d3e349f1c4",
+    "scripts/benchmarks/contract-v02.mjs": "ea242cd1546a2da619680582969225ee2ca6536bff7151cc785ae43c525624d0",
+    "scripts/benchmarks/public-bundle.mjs": "974d1ce2748c35e2d7d4d3444c33c40fcb0d7a4ddd80eb61225e056312054f7b",
+    "scripts/benchmarks/offline-files.mjs": "06d3ee3b5316f8a29c1b05332ee5b52f127857666e9bea748e9bee1c8e9bbcbc",
+    "scripts/benchmarks/abc-transport.mjs": "7fb4c1c119523eb7ef6010196d2418fdf68a30f2f8bf0046141da5b5a44fe31b",
+    "scripts/benchmarks/abc-public.mjs": "6ee8d7542fe0476e1dd44668101e574dae0773e459a475c8173cb77121852c30",
+    "scripts/benchmarks/codex-usage-cli.mjs": "59c68c5ba1793b02ea8e910736bd66cf6122c8ffd07e95a439dfa704b196db07",
+    "scripts/benchmarks/codex-usage.mjs": "ff5a77cd0ce9654e3e3e65de5073ef8ebeb598bff9dafaaefaec15f4f7c78d70",
+    "scripts/benchmarks/multicase-codex-transport.mjs": "b38c6408b06f16ab3ee4c21db89b6fbcb67fcfa6d4c7d6df9088b9b88a05f1c0",
+    "tasks/131-ef03-pilot/quality.json": "c461c140bd44da7dc435dd1e9053289d3c2ad02d98193fa6a2acda4d6b4e854e",
+    "tasks/131-ef03-pilot/authorization.schema.json": "f61d35ed4d37bc170eb82781597ada861eecfb0b9f594e8fbe7e3891d5b74d69",
+    "test/benchmark-ef03-pilot.test.mjs": "26998233919f3986b884020be80e20ff7a155b1e14228849f960eaa3666e93bc"
+  },
+  "requests": [
+    {
+      "position": 1,
+      "base_overlap": "preserve",
+      "configuration_sha256": "25d44cf6297c73b327de08a74640862211bde6c9bf0871c066789acd41c08c6f",
+      "prompt_bytes": 4065,
+      "prompt_sha256": "fcd8a7e64fcfb47385117c94a28bca37fef1a50adceda2de61431ae8ba3f7c3e",
+      "selection": {
+        "query": "README Core v0.1 package version 0.2.0 release published",
+        "pool": [
+          "readme-status/behavior",
+          "package-version/behavior",
+          "embedding-interface/behavior"
+        ],
+        "base": [
+          "readme-status/behavior",
+          "package-version/behavior",
+          "embedding-interface/behavior"
+        ],
+        "retrieved": ["readme-status/behavior", "package-version/behavior"]
+      }
+    },
+    {
+      "position": 1,
+      "base_overlap": "exact-v1",
+      "configuration_sha256": "e4a6757d8ec29b621f0e47d8a206569bb68857deb0c288c116dbe2e5be351727",
+      "prompt_bytes": 2489,
+      "prompt_sha256": "46e2cb72b7fd794d6d2727e3b843b24369e3d24e03835a51a2470ac5fd243e36",
+      "selection": {
+        "query": "README Core v0.1 package version 0.2.0 release published",
+        "pool": [
+          "readme-status/behavior",
+          "package-version/behavior",
+          "embedding-interface/behavior"
+        ],
+        "base": [
+          "readme-status/behavior",
+          "package-version/behavior",
+          "embedding-interface/behavior"
+        ],
+        "retrieved": ["readme-status/behavior", "package-version/behavior"]
+      }
+    },
+    {
+      "position": 3,
+      "base_overlap": "exact-v1",
+      "configuration_sha256": "e4a6757d8ec29b621f0e47d8a206569bb68857deb0c288c116dbe2e5be351727",
+      "prompt_bytes": 4676,
+      "prompt_sha256": "ab3d261c55cf517079cfd5934f7d9293c230f92019e43affaf2fd69eaf15e226",
+      "selection": {
+        "query": "memory_search tokenBudget schema optimize estimateTokens envelope",
+        "pool": [
+          "search-schema/behavior",
+          "optimizer/behavior",
+          "search-service/behavior",
+          "stats-service/behavior"
+        ],
+        "base": [
+          "search-schema/behavior",
+          "optimizer/behavior",
+          "search-service/behavior",
+          "stats-service/behavior"
+        ],
+        "retrieved": [
+          "optimizer/behavior",
+          "search-service/behavior",
+          "search-schema/behavior"
+        ]
+      }
+    },
+    {
+      "position": 3,
+      "base_overlap": "preserve",
+      "configuration_sha256": "25d44cf6297c73b327de08a74640862211bde6c9bf0871c066789acd41c08c6f",
+      "prompt_bytes": 8193,
+      "prompt_sha256": "42b25fb993d4cac76759af732d58341f70fd3421228c5655220ecc2e5541c391",
+      "selection": {
+        "query": "memory_search tokenBudget schema optimize estimateTokens envelope",
+        "pool": [
+          "search-schema/behavior",
+          "optimizer/behavior",
+          "search-service/behavior",
+          "stats-service/behavior"
+        ],
+        "base": [
+          "search-schema/behavior",
+          "optimizer/behavior",
+          "search-service/behavior",
+          "stats-service/behavior"
+        ],
+        "retrieved": [
+          "optimizer/behavior",
+          "search-service/behavior",
+          "search-schema/behavior"
+        ]
+      }
+    }
+  ],
+  "retrieval_latency_ms": null,
+  "retrieval_status": "N_A_fixed_public_selection_no_search",
+  "execution_proof": false,
+  "sha256": "563e6ce15517574b8ce01eb2dcae1970d218e7cd278115597f05a3ee866a11fb"
+}

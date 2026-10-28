@@ -1,0 +1,280 @@
+{
+  "schema_version": "offline-diagnosis-127-1",
+  "runtime": "3.14.4 (main, Aug 20 2026, 10:41:58) [GCC 15.2.0]",
+  "run_mode": "offline_only_no_runtime_imports",
+  "actual_model_calls": 0,
+  "benchmark_calls": 0,
+  "review128": "pending",
+  "historical_snapshot_members": {
+    "scripts/benchmarks/contract-v02.mjs": {
+      "sha256": "ec81fb371e187700196ddb183c34bf4f13fe2f847187fdb42d364df93c8fe6ea",
+      "additive_lines": {
+        "305": "export function runtimeEnvelope(b, task, base, retrieved = []) {",
+        "322": "sources: select(base),",
+        "323": "retrieved: select(retrieved),"
+      }
+    },
+    "scripts/benchmarks/abc-runtime.mjs": {
+      "sha256": "2e91a8992ad06084431b8811d9ace721d5904d4a1a72440bcc6704dfd9fc8f57",
+      "additive_lines": {
+        "196": "const envelope = runtimeEnvelope(m.bundle, r.task, r.base, retrieved);",
+        "199": "const prompt = JSON.stringify(envelope);"
+      }
+    }
+  },
+  "sources": {
+    "docs/benchmarks/v03/evidencias/task103/public-plan/offline-manifest.json": "24ef1251a498a2216fdbf229cb96135e3faf4e02cfb6e2e8e1e740a7378f9d15",
+    "docs/benchmarks/v03/evidencias/task103-executed-snapshot.tar": "f37365350929052e21eee560f9de13d35e93ff563e819a19579b90efb1abec80",
+    "docs/benchmarks/v03/evidencias/task103/offline-replay/position-01.json": "5f6b81c94519352b40f5b9f6aa38b6d160be1f0435d8de7c1af9580d619d3c07",
+    "docs/benchmarks/v03/evidencias/task103/offline-replay/position-03.json": "e4f78883243baa0f1393b7671216da7da7671ebf769eee1337ce88da6aa6b033",
+    "docs/benchmarks/v03/evidencias/task103/offline-replay/position-08.json": "d28a07aedfa891e0ee5621f1e2ce5e972a4dc336e453829d069e8bcc73bedde2",
+    "src/core/service.ts": "dd46662d03ef022cea70e35e7276e789a2f4e69c1c11a1af3f3563f9e71e9e94",
+    "src/retrieval/index.ts": "f0021222bf83fc5d02818a3c73ac03a4cdde1c33eb2cebb5a421ef5dd1f47d30",
+    "src/optimization/index.ts": "4dd5c182ae7631169dab169c44b90d177ded821d9250e61975aaed85d65412fc",
+    "scripts/benchmarks/contract-v02.mjs": "ea242cd1546a2da619680582969225ee2ca6536bff7151cc785ae43c525624d0",
+    "scripts/benchmarks/abc-runtime.mjs": "f0c1d08b9a358adf214740b5337aa6a2459e7b279e9f1be08b76a1603385ad7a",
+    "scripts/benchmarks/abc-public.mjs": "6ee8d7542fe0476e1dd44668101e574dae0773e459a475c8173cb77121852c30",
+    "scripts/benchmarks/abc-transport.mjs": "7fb4c1c119523eb7ef6010196d2418fdf68a30f2f8bf0046141da5b5a44fe31b",
+    "scripts/benchmarks/live-flow-probe.mjs": "5b25c94d2e182f8b671714bd42492dbe3a54d2b9d0eb1b50d42f3bb01ef3c892",
+    "scripts/benchmarks/multicase-runner.mjs": "75e1a1fb6698ba22d758c7d131927e666c30c0ff5082f17016fab5628e2c9341",
+    "scripts/benchmarks/stable-prompt.mjs": "f2bfbe8daa0db18dce0476fcce765e9c9da1c4d1c853baf49d0cea2a722e7592"
+  },
+  "manifest_code_comparison": {
+    "src/core/service.ts": {
+      "current": "dd46662d03ef022cea70e35e7276e789a2f4e69c1c11a1af3f3563f9e71e9e94",
+      "manifest": "dd46662d03ef022cea70e35e7276e789a2f4e69c1c11a1af3f3563f9e71e9e94",
+      "equal": true
+    },
+    "src/retrieval/index.ts": {
+      "current": "f0021222bf83fc5d02818a3c73ac03a4cdde1c33eb2cebb5a421ef5dd1f47d30",
+      "manifest": "f0021222bf83fc5d02818a3c73ac03a4cdde1c33eb2cebb5a421ef5dd1f47d30",
+      "equal": true
+    },
+    "src/optimization/index.ts": {
+      "current": "4dd5c182ae7631169dab169c44b90d177ded821d9250e61975aaed85d65412fc",
+      "manifest": "4dd5c182ae7631169dab169c44b90d177ded821d9250e61975aaed85d65412fc",
+      "equal": true
+    },
+    "scripts/benchmarks/contract-v02.mjs": {
+      "current": "ea242cd1546a2da619680582969225ee2ca6536bff7151cc785ae43c525624d0",
+      "manifest": "ec81fb371e187700196ddb183c34bf4f13fe2f847187fdb42d364df93c8fe6ea",
+      "equal": false
+    },
+    "scripts/benchmarks/abc-runtime.mjs": {
+      "current": "f0c1d08b9a358adf214740b5337aa6a2459e7b279e9f1be08b76a1603385ad7a",
+      "manifest": "2e91a8992ad06084431b8811d9ace721d5904d4a1a72440bcc6704dfd9fc8f57",
+      "equal": false
+    },
+    "scripts/benchmarks/abc-public.mjs": {
+      "current": "6ee8d7542fe0476e1dd44668101e574dae0773e459a475c8173cb77121852c30",
+      "manifest": "3ad4be78c9dc88e6596bebcb46b3e4e6556adaa749e9ace0f25342452096a3b3",
+      "equal": false
+    },
+    "scripts/benchmarks/abc-transport.mjs": {
+      "current": "7fb4c1c119523eb7ef6010196d2418fdf68a30f2f8bf0046141da5b5a44fe31b",
+      "manifest": "7fb4c1c119523eb7ef6010196d2418fdf68a30f2f8bf0046141da5b5a44fe31b",
+      "equal": true
+    }
+  },
+  "dev_boundary": "first nine triples (positions 0..26), abc-public validateManifest rotation and task103 public report; no evaluation positions opened",
+  "cases": [
+    {
+      "dev_position": 1,
+      "mode": "offline_reconstruction_from_task103_synthetic_replay",
+      "accounting": {
+        "serialized_values": {
+          "instruction": 177,
+          "task": 203,
+          "sources": 2046,
+          "retrieved": 1578,
+          "history": 2
+        },
+        "keys_colons_commas_braces": 59,
+        "total": 4065
+      },
+      "nested_source_accounting": {
+        "sources": {
+          "excerpt_values": 1308,
+          "metadata_values": 464,
+          "framing": 274
+        },
+        "retrieved": {
+          "excerpt_values": 1098,
+          "metadata_values": 297,
+          "framing": 183
+        }
+      },
+      "prompt_sha256": "fcd8a7e64fcfb47385117c94a28bca37fef1a50adceda2de61431ae8ba3f7c3e",
+      "replay_hash_matches": true,
+      "base_count": 3,
+      "retrieved_count": 2,
+      "exact_overlap_count": 2,
+      "overlap_denominator": 2,
+      "overlap_ratio": 1.0,
+      "overlap": [
+        {
+          "source_id": "readme-status",
+          "unit_id": "behavior",
+          "path": "README.md",
+          "commit": "166e3cf047b2078952e43dc8e9171e053e99e2ce",
+          "start_line": 1,
+          "end_line": 7,
+          "sha256": "1c3e5099072ad8e3f5ff83a1869ee56656196428601da65eaa8bfa8ef2f6c6d9"
+        },
+        {
+          "source_id": "package-version",
+          "unit_id": "behavior",
+          "path": "package.json",
+          "commit": "166e3cf047b2078952e43dc8e9171e053e99e2ce",
+          "start_line": 1,
+          "end_line": 9,
+          "sha256": "73fb2a44c8d46e72da56e67b8cdd29ab209ff1ea2d372116d8a7ebaa6e0edad4"
+        }
+      ],
+      "dedupe_analytical": {
+        "total_bytes": 2489,
+        "avoidable_bytes": 1576,
+        "denominator_original_bytes": 4065,
+        "preserves_all_source_objects_in_base": true
+      },
+      "compact_v1_separate": {
+        "model_prompt_delta_bytes": 0,
+        "reason": "ABC projects source keys and discards memory operational fields before rendering; full/compact return same verified source keys for fixed selection",
+        "core_response_delta_bytes": null
+      },
+      "conflicting_revision_observed": false
+    },
+    {
+      "dev_position": 3,
+      "mode": "offline_reconstruction_from_task103_synthetic_replay",
+      "accounting": {
+        "serialized_values": {
+          "instruction": 177,
+          "task": 178,
+          "sources": 4258,
+          "retrieved": 3519,
+          "history": 2
+        },
+        "keys_colons_commas_braces": 59,
+        "total": 8193
+      },
+      "nested_source_accounting": {
+        "sources": {
+          "excerpt_values": 3255,
+          "metadata_values": 638,
+          "framing": 365
+        },
+        "retrieved": {
+          "excerpt_values": 2767,
+          "metadata_values": 478,
+          "framing": 274
+        }
+      },
+      "prompt_sha256": "42b25fb993d4cac76759af732d58341f70fd3421228c5655220ecc2e5541c391",
+      "replay_hash_matches": true,
+      "base_count": 4,
+      "retrieved_count": 3,
+      "exact_overlap_count": 3,
+      "overlap_denominator": 3,
+      "overlap_ratio": 1.0,
+      "overlap": [
+        {
+          "source_id": "optimizer",
+          "unit_id": "behavior",
+          "path": "src/optimization/index.ts",
+          "commit": "166e3cf047b2078952e43dc8e9171e053e99e2ce",
+          "start_line": 1,
+          "end_line": 27,
+          "sha256": "832cf164215cededa94fff24284dd80d5f3ee1351a9dd2dfee2177658c8b9473"
+        },
+        {
+          "source_id": "search-service",
+          "unit_id": "behavior",
+          "path": "src/core/service.ts",
+          "commit": "166e3cf047b2078952e43dc8e9171e053e99e2ce",
+          "start_line": 356,
+          "end_line": 394,
+          "sha256": "15f107ff1abb5210c6afb210aad659974f95cab7a0fcd1ac3b1783f181be2a49"
+        },
+        {
+          "source_id": "search-schema",
+          "unit_id": "behavior",
+          "path": "src/core/schemas.ts",
+          "commit": "166e3cf047b2078952e43dc8e9171e053e99e2ce",
+          "start_line": 59,
+          "end_line": 74,
+          "sha256": "30f540e8300f3762a86ec5b961a0c8a1501b9c6c1d38b6b2411d2f89b52e6786"
+        }
+      ],
+      "dedupe_analytical": {
+        "total_bytes": 4676,
+        "avoidable_bytes": 3517,
+        "denominator_original_bytes": 8193,
+        "preserves_all_source_objects_in_base": true
+      },
+      "compact_v1_separate": {
+        "model_prompt_delta_bytes": 0,
+        "reason": "ABC projects source keys and discards memory operational fields before rendering; full/compact return same verified source keys for fixed selection",
+        "core_response_delta_bytes": null
+      },
+      "conflicting_revision_observed": false
+    },
+    {
+      "dev_position": 8,
+      "mode": "offline_reconstruction_from_task103_synthetic_replay",
+      "accounting": {
+        "serialized_values": {
+          "instruction": 177,
+          "task": 197,
+          "sources": 4695,
+          "retrieved": 2,
+          "history": 2
+        },
+        "keys_colons_commas_braces": 59,
+        "total": 5132
+      },
+      "nested_source_accounting": {
+        "sources": {
+          "excerpt_values": 3693,
+          "metadata_values": 637,
+          "framing": 365
+        },
+        "retrieved": {
+          "excerpt_values": 0,
+          "metadata_values": 0,
+          "framing": 2
+        }
+      },
+      "prompt_sha256": "baa59586b179474b97cd9a939579b75cba3b4f29b8361efb064882b44bdbb3da",
+      "replay_hash_matches": true,
+      "base_count": 4,
+      "retrieved_count": 0,
+      "exact_overlap_count": 0,
+      "overlap_denominator": 0,
+      "overlap_ratio": null,
+      "overlap": [],
+      "dedupe_analytical": {
+        "total_bytes": 5132,
+        "avoidable_bytes": 0,
+        "denominator_original_bytes": 5132,
+        "preserves_all_source_objects_in_base": true
+      },
+      "compact_v1_separate": {
+        "model_prompt_delta_bytes": 0,
+        "reason": "ABC projects source keys and discards memory operational fields before rendering; full/compact return same verified source keys for fixed selection",
+        "core_response_delta_bytes": null
+      },
+      "conflicting_revision_observed": false
+    }
+  ],
+  "unknowns": [
+    "model tokens for reconstructed envelope",
+    "host internal instructions/context",
+    "TTFT",
+    "monetary cost",
+    "real historical104 envelope equality",
+    "core full/compact response byte difference",
+    "global cache existence"
+  ],
+  "synthetic_conflict_test": "same content with differing commit or path must not dedupe; no conflict observed in three public DEV selections"
+}

@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "plan_sha256",
+    "review_task",
+    "review_sha256",
+    "reviewer_ref",
+    "supervisor_ref",
+    "verdict",
+    "epoch",
+    "max_attempts",
+    "output"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "ef03-pilot-authorization-131-v1"
+    },
+    "plan_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "review_task": {
+      "const": 132
+    },
+    "review_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "reviewer_ref": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9][a-zA-Z0-9._:-]{2,150}$"
+    },
+    "supervisor_ref": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9][a-zA-Z0-9._:-]{2,150}$"
+    },
+    "verdict": {
+      "const": "APPROVE"
+    },
+    "epoch": {
+      "const": 1
+    },
+    "max_attempts": {
+      "const": 4
+    },
+    "output": {
+      "const": "/home/usuario/.local/share/mimir-ef03-pilot/epoch1-dev13-20261028"
+    }
+  },
+  "description": "External supervisor only, after independent review132. Runtime additionally verifies plan/review hashes and three distinct identities. This schema grants no authorization."
+}

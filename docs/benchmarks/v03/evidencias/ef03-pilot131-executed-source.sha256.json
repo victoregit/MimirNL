@@ -1,0 +1,25 @@
+{
+  "archive_sha256": "a5b7a8190743e2788500d4bec4b9242c45cecdbbede5fd41fb18e06d2f972161",
+  "members": {
+    "docs/benchmarks/v03/evidencias/preparacao/sources-0.2.json": "f84ec54407c9a99be360d60c32fa1be6184ebbbe195d424cc5412b3074752af5",
+    "docs/benchmarks/v03/evidencias/task103/offline-replay/position-01.json": "5f6b81c94519352b40f5b9f6aa38b6d160be1f0435d8de7c1af9580d619d3c07",
+    "docs/benchmarks/v03/evidencias/task103/offline-replay/position-03.json": "e4f78883243baa0f1393b7671216da7da7671ebf769eee1337ce88da6aa6b033",
+    "docs/benchmarks/v03/evidencias/task103/public-plan/offline-manifest.json": "24ef1251a498a2216fdbf229cb96135e3faf4e02cfb6e2e8e1e740a7378f9d15",
+    "scripts/benchmarks/abc-public.mjs": "6ee8d7542fe0476e1dd44668101e574dae0773e459a475c8173cb77121852c30",
+    "scripts/benchmarks/abc-transport.mjs": "7fb4c1c119523eb7ef6010196d2418fdf68a30f2f8bf0046141da5b5a44fe31b",
+    "scripts/benchmarks/codex-usage-cli.mjs": "59c68c5ba1793b02ea8e910736bd66cf6122c8ffd07e95a439dfa704b196db07",
+    "scripts/benchmarks/codex-usage.mjs": "ff5a77cd0ce9654e3e3e65de5073ef8ebeb598bff9dafaaefaec15f4f7c78d70",
+    "scripts/benchmarks/contract-v02.mjs": "ea242cd1546a2da619680582969225ee2ca6536bff7151cc785ae43c525624d0",
+    "scripts/benchmarks/ef03-pilot-launch.mjs": "f0668dd72d3849138898b00d846a7bd9595f452eed5b4fe78c0e484197c16a7e",
+    "scripts/benchmarks/ef03-pilot.mjs": "3aa120eb72e668ae37f95a6419c8727813a4c977c3f80e3b8fc36165fbbbde13",
+    "scripts/benchmarks/multicase-codex-transport.mjs": "b38c6408b06f16ab3ee4c21db89b6fbcb67fcfa6d4c7d6df9088b9b88a05f1c0",
+    "scripts/benchmarks/offline-context.mjs": "9df249917c820fadb305a9d086ac900d5105bfe9a1a0a871e927c1d3e349f1c4",
+    "scripts/benchmarks/offline-files.mjs": "06d3ee3b5316f8a29c1b05332ee5b52f127857666e9bea748e9bee1c8e9bbcbc",
+    "scripts/benchmarks/public-bundle.mjs": "974d1ce2748c35e2d7d4d3444c33c40fcb0d7a4ddd80eb61225e056312054f7b",
+    "tasks/131-ef03-pilot/authorization.schema.json": "f61d35ed4d37bc170eb82781597ada861eecfb0b9f594e8fbe7e3891d5b74d69",
+    "tasks/131-ef03-pilot/plan.json": "5561c0894593f46c77179f24513d857cc1ef8836cd4a2670d6bdc00d8bf26f44",
+    "tasks/131-ef03-pilot/quality.json": "c461c140bd44da7dc435dd1e9053289d3c2ad02d98193fa6a2acda4d6b4e854e",
+    "test/benchmark-ef03-pilot.test.mjs": "26998233919f3986b884020be80e20ff7a155b1e14228849f960eaa3666e93bc"
+  },
+  "plan_sha256": "563e6ce15517574b8ce01eb2dcae1970d218e7cd278115597f05a3ee866a11fb"
+}

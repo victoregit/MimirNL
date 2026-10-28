@@ -1,0 +1,23 @@
+{
+  "tests": {
+    "exit": 0,
+    "passed": 26
+  },
+  "format": {
+    "exit": 0,
+    "log": "/mnt/d/Projects/MimirNL/tasks/129-review/format.log"
+  },
+  "diff_check": {
+    "exit": 0,
+    "log": "/mnt/d/Projects/MimirNL/tasks/129-review/diff-check.log"
+  },
+  "lint": {
+    "command": [
+      "/home/usuario/.local/share/mimir-node-runtime/node-v24.22.1-linux-x64/bin/node",
+      "node_modules/eslint/bin/eslint.js",
+      "scripts/benchmarks/offline-context.mjs",
+      "test/benchmark-offline-context.test.mjs"
+    ],
+    "exit": 0
+  }
+}
