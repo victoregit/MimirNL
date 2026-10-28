@@ -1,5 +1,6 @@
 import {
   lstatSync,
+  realpathSync,
   readFileSync,
   openSync,
   closeSync,
@@ -36,6 +37,18 @@ export function safePath(path) {
     if (st.isSymbolicLink()) fail();
   }
   return path;
+}
+// Native aliases (notably Windows 8.3 names) must identify exactly the same
+// directory. Validate both spellings before realpath can erase unsafe components,
+// then validate expanded names too so an alias cannot hide a sensitive component.
+export function sameDirectory(left, right) {
+  safePath(left);
+  safePath(right);
+  const a = realpathSync.native(left);
+  const b = realpathSync.native(right);
+  safePath(a);
+  safePath(b);
+  return a === b && lstatSync(a).isDirectory();
 }
 export function readExplicit(path) {
   let fd;

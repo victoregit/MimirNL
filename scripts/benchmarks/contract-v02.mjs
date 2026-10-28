@@ -1,4 +1,3 @@
-import { resolve } from "node:path";
 import { execFileSync } from "node:child_process";
 import {
   PIN,
@@ -10,7 +9,7 @@ import {
   portable,
   fail,
 } from "./public-bundle.mjs";
-import { safePath } from "./offline-files.mjs";
+import { safePath, sameDirectory } from "./offline-files.mjs";
 export { PIN, canonical, hash };
 export const VERSION = "0.2";
 export const PROFILE = "technical_reviewed-v1";
@@ -77,8 +76,10 @@ export function gitExcerpt(root, path, start, end) {
       },
     );
   if (
-    resolve(git(["rev-parse", "--show-toplevel"]).toString().trim()) !==
-    resolve(root)
+    !sameDirectory(
+      root,
+      git(["rev-parse", "--show-toplevel"]).toString().trim(),
+    )
   )
     fail();
   const tree = git(["ls-tree", PIN, "--", path]).toString();

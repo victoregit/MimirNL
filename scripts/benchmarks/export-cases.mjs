@@ -1,4 +1,3 @@
-import { resolve } from "node:path";
 import { execFileSync } from "node:child_process";
 import { join } from "node:path";
 import { validateCases } from "./preflight.mjs";
@@ -12,7 +11,12 @@ import {
   seal,
   canonical,
 } from "./public-bundle.mjs";
-import { readExplicit, safePath, outputDirectory } from "./offline-files.mjs";
+import {
+  readExplicit,
+  safePath,
+  sameDirectory,
+  outputDirectory,
+} from "./offline-files.mjs";
 
 export function loadLegacy(markdown) {
   try {
@@ -67,7 +71,7 @@ export function exportCases({ cases, protocol, root }) {
           maxBuffer: 4000000,
         },
       );
-    if (resolve(git(["rev-parse", "--show-toplevel"]).trim()) !== resolve(root))
+    if (!sameDirectory(root, git(["rev-parse", "--show-toplevel"]).trim()))
       fail();
     const publicCases = cases.map((c) => {
       if (

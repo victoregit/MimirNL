@@ -1,3 +1,4 @@
+import { gitExcerpt } from "../scripts/benchmarks/contract-v02.mjs";
 import { withSymlink } from "./platform-fixture.mjs";
 import { assertPrivateMode } from "./platform-fixture.mjs";
 import { tmpdir } from "node:os";
@@ -576,21 +577,28 @@ test(
     import cp from 'node:child_process';
     import {syncBuiltinESMExports} from 'node:module';
     const input=${JSON.stringify(input)},out=${JSON.stringify(out)};
+    const {dirname,basename,join}=await import('node:path');
+    // Resolve the existing owned parent: the runner requires out to remain absent.
+    const ownedOutputs=[out,join(fs.realpathSync.native(dirname(out)),basename(out))];
+    const ownedPath=(p)=>ownedOutputs.some(o=>String(p).startsWith(o+${JSON.stringify(sep)}));
+    const ownedSlot=(p)=>ownedOutputs.some(o=>String(p).startsWith(o+${JSON.stringify(sep + "slot-")}));
     const read=fs.readFileSync,open=fs.openSync,exec=cp.execFileSync;
     fs.readFileSync=(p,...a)=>{
       if(typeof p==='number'||/\\.(?:mjs|js)$/.test(String(p)))return read(p,...a);
       throw Error('forbidden-data-read');
     };
     fs.openSync=(p,...a)=>{
-      if(p===input||String(p).startsWith(out+${JSON.stringify(sep)})||/\\.(?:mjs|js)$/.test(String(p)))return open(p,...a);
+      if(p===input||ownedPath(p)||/\\.(?:mjs|js)$/.test(String(p)))return open(p,...a);
       throw Error('forbidden-open');
     };
     cp.execFileSync=(bin,args,...a)=>{
-      const init=bin==='git'&&args[0]==='init'&&args[2].startsWith(out+${JSON.stringify(sep + "slot-")});
-      const verify=bin==='git'&&args.at(-2)==='rev-parse'&&args.at(-1)==='--show-toplevel'&&a[0]?.cwd?.startsWith(out+${JSON.stringify(sep + "slot-")});
+      const init=bin==='git'&&args[0]==='init'&&ownedSlot(args[2]);
+      const verify=bin==='git'&&args.at(-2)==='rev-parse'&&args.at(-1)==='--show-toplevel'&&ownedSlot(a[0]?.cwd);
       if(!init&&!verify)throw Error('forbidden-process');
       return exec(bin,args,...a);
     };
+    for(const p of [join(dirname(out),'arbitrary-name.json'),out+'-outside'+${JSON.stringify(sep)}+'db.sqlite']){let blocked=false;try{fs.openSync(p,'r');}catch(e){blocked=e.message==='forbidden-open';}if(!blocked)throw Error('outside-open canary failed');}
+    let blocked=false;try{cp.execFileSync('git',['rev-parse','--show-toplevel'],{cwd:out+'-outside'});}catch(e){blocked=e.message==='forbidden-process';}if(!blocked)throw Error('outside-process canary failed');
     syncBuiltinESMExports();
     const {main}=await import(${JSON.stringify(pathToFileURL(join(root, "scripts/benchmarks/multicase-runner.mjs")).href)});
     process.exitCode=await main(['--simulate','--bundle',input,'--out',out,'--cases','all','--repetitions','1','--max-runs','18','--run-budget-ms','60000']);
@@ -672,3 +680,47 @@ test(
     }
   }),
 );
+
+test(
+  "native Windows short alias preserves Git excerpts and public export identity",
+  {
+    skip: process.platform !== "win32",
+  },
+  (t) => {
+    const short = execFileSync(
+      "powershell.exe",
+      [
+        "-NoProfile",
+        "-Command",
+        "(New-Object -ComObject Scripting.FileSystemObject).GetFolder($env:MIMIR_ALIAS_TEST).ShortPath",
+      ],
+      {
+        encoding: "utf8",
+        env: { ...process.env, MIMIR_ALIAS_TEST: sourceRoot },
+      },
+    ).trim();
+    if (short === sourceRoot) {
+      t.skip("Native volume did not provide an 8.3 alias");
+      return;
+    }
+    assert.deepEqual(exportCases({ cases, protocol, root: short }), bundle);
+    assert.equal(
+      gitExcerpt(short, "README.md", 1, 1),
+      gitExcerpt(sourceRoot, "README.md", 1, 1),
+    );
+    assert.throws(() => gitExcerpt(short + sep + "..", "README.md", 1, 1));
+    assert.throws(
+      () => exportCases({ cases, protocol, root: short + sep + ".." }),
+      fixed,
+    );
+  },
+);
+
+test("Git top-level identity rejects an explicitly supplied repository subdirectory", () => {
+  const subdirectory = join(sourceRoot, "src");
+  assert.throws(() => gitExcerpt(subdirectory, "README.md", 1, 1), fixed);
+  assert.throws(
+    () => exportCases({ cases, protocol, root: subdirectory }),
+    fixed,
+  );
+});

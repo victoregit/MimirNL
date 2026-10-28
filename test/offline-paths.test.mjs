@@ -8,11 +8,13 @@ import {
   writeFileSync,
   rmSync,
   existsSync,
+  symlinkSync,
 } from "node:fs";
 import { tmpdir } from "node:os";
 import { join, sep } from "node:path";
 import {
   safePath,
+  sameDirectory,
   readExplicit,
   outputDirectory,
 } from "../scripts/benchmarks/offline-files.mjs";
@@ -82,6 +84,39 @@ test("native paths preserve traversal, sensitive-component and symlink boundarie
       ])
         assert.throws(() => safePath(path));
     }
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("directory identity preserves exact scope and validates both spellings", () => {
+  const root = mkdtempSync(join(tmpdir(), "mimir-directory-identity-"));
+  try {
+    const a = join(root, "repo");
+    const b = join(root, "repo-other");
+    mkdirSync(a);
+    mkdirSync(b);
+    assert.equal(sameDirectory(a, a), true);
+    assert.equal(sameDirectory(a, b), false);
+    assert.equal(sameDirectory(a, root), false);
+    for (const component of ["..", ".", ".env", "credentials", "secret.pem"]) {
+      const unsafe = a + sep + component;
+      assert.throws(() => sameDirectory(a, unsafe));
+      assert.throws(() => sameDirectory(unsafe, a));
+    }
+    if (process.platform === "win32") {
+      const junction = join(root, "junction");
+      symlinkSync(a, junction, "junction");
+      assert.throws(() => sameDirectory(a, junction));
+      assert.throws(() => sameDirectory(junction, a));
+    }
+    const file = join(root, "public.json");
+    writeFileSync(file, "{}");
+    assert.equal(sameDirectory(file, file), false);
+    withSymlink(a, join(root, "redirect"), () => {
+      assert.throws(() => sameDirectory(a, join(root, "redirect")));
+      assert.throws(() => sameDirectory(join(root, "redirect"), a));
+    });
   } finally {
     rmSync(root, { recursive: true, force: true });
   }

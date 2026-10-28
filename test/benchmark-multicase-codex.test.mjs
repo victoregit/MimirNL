@@ -450,12 +450,19 @@ test(
     writeFileSync(mp, JSON.stringify(m));
     const code = `import fs from 'node:fs';import cp from 'node:child_process';import {EventEmitter} from 'node:events';import {PassThrough} from 'node:stream';import {syncBuiltinESMExports} from 'node:module';
   const input=${JSON.stringify(input)},mp=${JSON.stringify(mp)},out=${JSON.stringify(m.out)};
-  const read=fs.readFileSync,open=fs.openSync,exec=cp.execFileSync;
+  const {dirname,basename,join}=await import('node:path');
+    // Resolve the existing owned parent: the runner requires out to remain absent.
+    const ownedOutputs=[out,join(fs.realpathSync.native(dirname(out)),basename(out))];
+    const ownedPath=(p)=>ownedOutputs.some(o=>String(p).startsWith(o+${JSON.stringify(sep)}));
+    const ownedSlot=(p)=>ownedOutputs.some(o=>String(p).startsWith(o+${JSON.stringify(sep + "slot-")}));
+    const read=fs.readFileSync,open=fs.openSync,exec=cp.execFileSync;
   fs.readFileSync=(p,...a)=>{if(typeof p==='number'||/\\.(mjs|js)$/.test(String(p)))return read(p,...a);throw Error('private-read');};
-  fs.openSync=(p,...a)=>{if([input,mp].includes(p)||String(p).startsWith(out+${JSON.stringify(sep)})||/\\.(mjs|js)$/.test(String(p)))return open(p,...a);throw Error('private-open');};
+  fs.openSync=(p,...a)=>{if([input,mp].includes(p)||ownedPath(p)||/\\.(mjs|js)$/.test(String(p)))return open(p,...a);throw Error('private-open');};
   cp.spawn=()=>{throw Error('no-model');};
-  cp.execFileSync=(bin,args,...a)=>{if(bin!=='git'||!((args[0]==='init'&&args[2].startsWith(out+${JSON.stringify(sep + "slot-")}))||(args.at(-1)==='--show-toplevel'&&a[0]?.cwd?.startsWith(out+${JSON.stringify(sep + "slot-")}))))throw Error('private-process');return exec(bin,args,...a);};
-  syncBuiltinESMExports();const {readExplicit}=await import(${JSON.stringify(pathToFileURL(join(root, "scripts/benchmarks/offline-files.mjs")).href)});
+  cp.execFileSync=(bin,args,...a)=>{if(bin!=='git'||!((args[0]==='init'&&ownedSlot(args[2]))||(args.at(-1)==='--show-toplevel'&&ownedSlot(a[0]?.cwd))))throw Error('private-process');return exec(bin,args,...a);};
+  for(const p of [join(dirname(out),'arbitrary-name.json'),out+'-outside'+${JSON.stringify(sep)}+'db.sqlite']){let blocked=false;try{fs.openSync(p,'r');}catch(e){blocked=e.message==='private-open';}if(!blocked)throw Error('outside-open canary failed');}
+    let blocked=false;try{cp.execFileSync('git',['rev-parse','--show-toplevel'],{cwd:out+'-outside'});}catch(e){blocked=e.message==='private-process';}if(!blocked)throw Error('outside-process canary failed');
+    syncBuiltinESMExports();const {readExplicit}=await import(${JSON.stringify(pathToFileURL(join(root, "scripts/benchmarks/offline-files.mjs")).href)});
   const {runPrepared}=await import(${JSON.stringify(pathToFileURL(join(root, "scripts/benchmarks/multicase-codex.mjs")).href)});
   const makeFake=${fake.toString()};
   const r=await runPrepared({bundle:JSON.parse(readExplicit(input)),manifest:JSON.parse(readExplicit(mp)),simulation:true,spawnImpl:makeFake(${JSON.stringify(jsonl(events()))})});console.log(JSON.stringify({n:r.simulated_attempts,calls:r.actual_model_calls}));`;
