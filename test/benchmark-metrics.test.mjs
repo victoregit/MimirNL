@@ -1,3 +1,6 @@
+import { withSymlink } from "./platform-fixture.mjs";
+import { assertPrivateMode } from "./platform-fixture.mjs";
+import { fileURLToPath } from "node:url";
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { createHash } from "node:crypto";
@@ -6,7 +9,6 @@ import {
   writeFileSync,
   readFileSync,
   rmSync,
-  symlinkSync,
   statSync,
 } from "node:fs";
 import { tmpdir } from "node:os";
@@ -266,8 +268,9 @@ test("actual CLI is read-only by default, private and exclusively creates report
   const cases = join(dir, "PRIVATE_CASES.json"),
     batch = join(dir, "PRIVATE_BATCH.json"),
     output = join(dir, "report.json");
-  const cli = new URL("../scripts/benchmarks/metrics-cli.mjs", import.meta.url)
-    .pathname;
+  const cli = fileURLToPath(
+    new URL("../scripts/benchmarks/metrics-cli.mjs", import.meta.url),
+  );
   const run = (...args) =>
     spawnSync(process.execPath, [cli, ...args], { encoding: "utf8" });
   const f = fixture();
@@ -279,11 +282,12 @@ test("actual CLI is read-only by default, private and exclusively creates report
   assert.deepEqual(JSON.parse(readOnly.stdout), report(f));
   assert.equal(run(cases, batch, "--out", output).status, 0);
   const bytes = readFileSync(output);
-  assert.equal(statSync(output).mode & 0o777, 0o600);
+  assertPrivateMode(output, 0o600);
   assert.equal(run(cases, batch, "--out", output).status, 1);
   const link = join(dir, "link");
-  symlinkSync(output, link);
-  assert.equal(run(cases, batch, "--out", link).status, 1);
+  withSymlink(output, link, () => {
+    assert.equal(run(cases, batch, "--out", link).status, 1);
+  });
   assert.deepEqual(readFileSync(output), bytes);
   for (const args of [
     [cases],

@@ -1,12 +1,7 @@
+import { withSymlink } from "./platform-fixture.mjs";
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
-import {
-  mkdtempSync,
-  readFileSync,
-  writeFileSync,
-  rmSync,
-  symlinkSync,
-} from "node:fs";
+import { mkdtempSync, readFileSync, writeFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -371,8 +366,9 @@ test("actual CLI reads supplied JSON only, handles errors privately and never ov
   assert.equal(collision.status, 1);
   assert.deepEqual(readFileSync(output), bytes);
   const link = join(dir, "link.json");
-  symlinkSync(output, link);
-  assert.equal(run("plan", input, "--reps", "1", "--out", link).status, 1);
+  withSymlink(output, link, () => {
+    assert.equal(run("plan", input, "--reps", "1", "--out", link).status, 1);
+  });
   assert.deepEqual(readFileSync(output), bytes);
   for (const args of [
     ["plan", input],

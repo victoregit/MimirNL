@@ -1,0 +1,30 @@
+{
+  "position": 17,
+  "status": "synthetic",
+  "scenario": "com_mimir",
+  "retrieved": [
+    "feedback-service/behavior",
+    "search-schema/behavior",
+    "learning/behavior"
+  ],
+  "retrieval_latency_ms": 56.10339600000043,
+  "total_latency_ms": 59.128944999998566,
+  "truncated": false,
+  "response": null,
+  "usage": null,
+  "cleanup": "completed",
+  "initial_db_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "seed_sha256": "cc5d2ed006d38ceffd1abce8a8ef09df0587e26ea396339bc7770f4fab3f3674",
+  "pool_sha256": "97ecd68838d662d325e9b9351a92b510bf50202679c4cfc3db29d8fe04190482",
+  "context_bytes": 12995,
+  "context_sha256": "e07a494ed0c6329d8985d68fc8e7c6768fd5df86ea23f782385490a0be0367f7",
+  "response_bytes": null,
+  "response_sha256": null,
+  "transport_status": "synthetic",
+  "model_identity": {
+    "status": "unavailable",
+    "reason": "offline fake; no model invoked"
+  },
+  "final_db_sha256": "47be56ed1f48139ceada55fa69be828d5179364e159baedfcf86293779fc8bc5",
+  "db_file_sha256": "16770c80106b5517e40cb84dd8f1a521389825650bd52099fddd99e0b9ee077b"
+}

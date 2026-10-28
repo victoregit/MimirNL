@@ -1,2 +1,6 @@
 # Normalize text and keep LF in working trees on every platform.
 * text=auto eol=lf
+
+# Preserve historical evidence bytes and recorded whitespace without rewriting outputs.
+tasks/** -text -whitespace
+docs/benchmarks/v03/evidencias/** -text -whitespace

@@ -1,0 +1,31 @@
+{
+  "position": 16,
+  "status": "completed",
+  "scenario": "sem_memoria",
+  "retrieved": null,
+  "retrieval_latency_ms": null,
+  "total_latency_ms": 6801.296401,
+  "truncated": false,
+  "response": "Não. `approve` exige `explicitApproval` e muda o status para `verified`; não cria cópia global. `promote` exige memória já `verified` e `sharingApproval`, mantém seu status e cria cópia global `verified` se não existir outra com o mesmo hash, com ciclo independente, sem IDs, caminhos ou relações privados [feedback-service/behavior; learning/behavior].\n\n`includeGlobal` assume `false`: globais ficam excluídas por padrão [search-schema/behavior]. Quando habilitado, apenas globais `verified` são elegíveis. Sem status explícito, a busca admite memórias do projeto `candidate` ou `verified`; com status explícito, aplica o status solicitado ao projeto, inclusive `deprecated`/`rejected`. Globais continuam obrigatoriamente `verified`, portanto outro status explícito as exclui. Também se aplicam os demais filtros e a correspondência textual [retriever/behavior].",
+  "usage": {
+    "input_tokens": 15959,
+    "cached_input_tokens": 12032,
+    "output_tokens": 196,
+    "total_tokens": 16155
+  },
+  "cleanup": "completed",
+  "initial_db_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "seed_sha256": "b3409005bb405d3a305098c20138cc3b878536afcb519ea0e36830a6d9460678",
+  "pool_sha256": "97ecd68838d662d325e9b9351a92b510bf50202679c4cfc3db29d8fe04190482",
+  "context_bytes": 7976,
+  "context_sha256": "7e363577edae030269b19d41ccc5e086c6fe8c69c48c2b3da043be7a03f4dad5",
+  "response_bytes": 883,
+  "response_sha256": "d5d23bbcc45e3f61cd0fb411e310853d97d31cd7a14ba8210ab09931408b9073",
+  "transport_status": "completed",
+  "model_identity": {
+    "status": "unavailable",
+    "reason": "No model identity in allowlisted public start metadata"
+  },
+  "final_db_sha256": "b3409005bb405d3a305098c20138cc3b878536afcb519ea0e36830a6d9460678",
+  "db_file_sha256": "86076dc5c2148e20c430632e1cf928250ee97ec66f58bc18f9eceaf63830b008"
+}

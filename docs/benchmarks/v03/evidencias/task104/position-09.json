@@ -1,0 +1,31 @@
+{
+  "position": 9,
+  "status": "completed",
+  "scenario": "sem_memoria",
+  "retrieved": null,
+  "retrieval_latency_ms": null,
+  "total_latency_ms": 7233.701382999992,
+  "truncated": false,
+  "response": "O registro resolve o caminho canônico (`realpathSync.native`), aplica checagens de segurança e exige a raiz real do worktree Git, evitando registrar subdiretórios que levariam Git a inspecionar um repositório pai [register-service/behavior, L160–185].\n\nNa ingestão, o arquivo deve estar dentro da raiz, ser regular e não symlink; seu caminho canônico também deve permanecer dentro dela e corresponder exatamente ao relativo esperado, rejeitando redirecionamentos por symlinks intermediários [ingest-path/behavior, L216–238].\n\nNa busca, a fronteira é `projectId`; a exceção exige `includeGlobal`, escopo `global` e status `verified` [retriever/behavior, L18–41]. Essas checagens de paths não demonstram autorização de leitura. Futuros adaptadores de embeddings devem respeitar a mesma fronteira [embedding-interface/behavior, L14–17].",
+  "usage": {
+    "input_tokens": 15035,
+    "cached_input_tokens": 12032,
+    "output_tokens": 202,
+    "total_tokens": 15237
+  },
+  "cleanup": "completed",
+  "initial_db_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "seed_sha256": "2b34a7815fb29a2357febeb2d330fefecae00e8bbd2b9316635fed53b61fe0da",
+  "pool_sha256": "6b2e6f0b1989cd4582d8a559b61201c2282d1025e836c88c4ec8fe140f37b1ef",
+  "context_bytes": 4592,
+  "context_sha256": "4800056078d7fc2db37cc0b66703d570896270bf98961ad8213aebcddd769371",
+  "response_bytes": 856,
+  "response_sha256": "7d62e95f7ba5020c57460d170975af143e43b04da5634a5d3b79a21874870c9e",
+  "transport_status": "completed",
+  "model_identity": {
+    "status": "unavailable",
+    "reason": "No model identity in allowlisted public start metadata"
+  },
+  "final_db_sha256": "2b34a7815fb29a2357febeb2d330fefecae00e8bbd2b9316635fed53b61fe0da",
+  "db_file_sha256": "5fd2102fb070d8476e77cd29a0301b8a125a45f3460d90fcd597f9a1bcbbcf12"
+}

@@ -1,0 +1,31 @@
+{
+  "position": 4,
+  "status": "completed",
+  "scenario": "historico_completo",
+  "retrieved": null,
+  "retrieval_latency_ms": null,
+  "total_latency_ms": 8091.114125,
+  "truncated": false,
+  "response": "No schema, `tokenBudget` é inteiro entre **200 e 100000**, com default **4000**; `limit` é independente: 1–50, default 10 [search-schema/behavior].\n\nO serviço deduplica resultados por `hash`, aplica `this.view` e passa `Number(d.tokenBudget)` ao `optimize` [search-service/behavior].\n\nApesar do nome, a unidade efetiva é **bytes UTF-8 de `JSON.stringify`**, não tokens de modelo. Cada inclusão é aceita se o envelope `{ok:true,data:next}` couber no orçamento. Ele inclui `memories`, a string `estimator` e `estimatedTokens`, provisoriamente preenchido com o próprio orçamento. A estimativa final usa esse mesmo envelope e preenchimento [optimizer/behavior].\n\nEsse valor é registrado em `retrievals` e somado como `estimatedTokens` nas estatísticas [search-service/behavior; stats-service/behavior].",
+  "usage": {
+    "input_tokens": 15079,
+    "cached_input_tokens": 12032,
+    "output_tokens": 201,
+    "total_tokens": 15280
+  },
+  "cleanup": "completed",
+  "initial_db_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "seed_sha256": "714285ff3676363e393b6826cad549e3c23832b2db9e083e7914e51c4184361e",
+  "pool_sha256": "c0c54bd8ee80c361b83bec85b956ed9411e0a9440f854c5b8f4c6569db499f31",
+  "context_bytes": 4676,
+  "context_sha256": "ab3d261c55cf517079cfd5934f7d9293c230f92019e43affaf2fd69eaf15e226",
+  "response_bytes": 812,
+  "response_sha256": "47d44383f18f36829989fe7db32da1fa4acdefa451ece114174036d3470ca2da",
+  "transport_status": "completed",
+  "model_identity": {
+    "status": "unavailable",
+    "reason": "No model identity in allowlisted public start metadata"
+  },
+  "final_db_sha256": "714285ff3676363e393b6826cad549e3c23832b2db9e083e7914e51c4184361e",
+  "db_file_sha256": "fc6d2b4530d244a3d400383f2790fee4e4c201f33777d748b4bc413e70ea6ba5"
+}

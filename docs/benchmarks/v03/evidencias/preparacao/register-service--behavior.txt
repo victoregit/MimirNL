@@ -1,0 +1,26 @@
+    if (op === "init") return { database: this.storage.path, version: "0.2.0" };
+    if (op === "project_register") {
+      // Native realpath resolves Windows drive and directory casing to filesystem identity.
+      const path = realpathSync.native(String(d.path));
+      assertSafe(path);
+      if (sensitivePath(path))
+        throw new AppError("UNSAFE_PATH", "Sensitive project path.");
+      if (!statSync(path).isDirectory() || inside(path, this.storage.path))
+        throw new AppError(
+          "UNSAFE_DB",
+          "Project must be a directory outside the database location.",
+        );
+      // Register only the actual worktree root; otherwise Git could inspect a parent repository.
+      const adapter = new GitAdapter(path);
+      if (adapter.root() !== path)
+        throw new AppError(
+          "UNSAFE_PATH",
+          "Register the canonical Git worktree root.",
+        );
+      return this.storage.transaction(() => {
+        this.db
+          .prepare("INSERT OR IGNORE INTO projects VALUES(?,?,1,?)")
+          .run(randomUUID(), path, new Date().toISOString());
+        return this.db.prepare("SELECT * FROM projects WHERE path=?").get(path);
+      });
+    }

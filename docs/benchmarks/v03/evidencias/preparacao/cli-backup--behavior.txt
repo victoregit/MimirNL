@@ -1,0 +1,38 @@
+const args = process.argv.slice(2);
+function take(name: string) {
+  const i = args.indexOf(name);
+  if (i < 0) return undefined;
+  const v = args[i + 1];
+  if (!v || v.startsWith("--")) throw new Error("Missing option value");
+  args.splice(i, 2);
+  return v;
+}
+try {
+  const db = take("--db");
+  if (args[0] === "restore") {
+    if (args.length !== 3 || !db || args[2] !== "--confirm")
+      throw new AppError(
+        "CONFIRMATION_REQUIRED",
+        "Use --db NEW_PATH restore BACKUP --confirm.",
+      );
+    const result = await restoreDatabase(args[1]!, db);
+    process.stdout.write(JSON.stringify({ ok: true, data: result }) + "\n");
+  } else if (args[0] === "backup") {
+    if (args.length !== 2 || !db)
+      throw new AppError(
+        "INVALID_REQUEST",
+        "Use --db EXISTING_PATH backup NEW_SNAPSHOT.",
+      );
+    if (!lstatSync(assertLocalPath(db)).isFile())
+      throw new AppError("INVALID_BACKUP", "Source database must exist.");
+    const storage = new Storage(db);
+    try {
+      process.stdout.write(
+        JSON.stringify({
+          ok: true,
+          data: await backupDatabase(storage, args[1]!),
+        }) + "\n",
+      );
+    } finally {
+      storage.close();
+    }

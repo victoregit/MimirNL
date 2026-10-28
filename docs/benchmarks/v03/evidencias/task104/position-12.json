@@ -1,0 +1,31 @@
+{
+  "position": 12,
+  "status": "completed",
+  "scenario": "com_mimir",
+  "retrieved": ["optimizer/behavior"],
+  "retrieval_latency_ms": 15.38525199999276,
+  "total_latency_ms": 7146.998148999992,
+  "truncated": false,
+  "response": "Não é possível determinar o provedor, modelo, tokenizer ou tarifa por milhão de tokens efetivamente configurados na instalação Alfa: o pool não descreve essa instalação.\n\nA interface de embeddings apenas exige configuração explícita de futuros adaptadores; não identifica provedor ou modelo (`embedding-interface/behavior`, linhas 14–17). O estimador conta **bytes UTF-8**, explicitamente não tokens de modelo, e não revela um tokenizer configurado (`optimizer/behavior`, linhas 1–11). Nenhuma fonte fornecida informa tarifa, moeda ou preço por milhão de tokens.\n\nPortanto, abstenho-me de atribuir esses valores à instalação Alfa.",
+  "usage": {
+    "input_tokens": 15130,
+    "cached_input_tokens": 12032,
+    "output_tokens": 136,
+    "total_tokens": 15266
+  },
+  "cleanup": "completed",
+  "initial_db_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "seed_sha256": "217fea4936c702d80649d0ced7626169e4d5e69626db01d55d298b6d1060311d",
+  "pool_sha256": "909c92c0076a66349ac48534ebff1517aaf9f2da9491468186874e7488dfea93",
+  "context_bytes": 4531,
+  "context_sha256": "7afabee56791a2094aa5fe73425b6cfe0347e0145d2c7a15bae352cf0597612b",
+  "response_bytes": 654,
+  "response_sha256": "b8b19317988d56edeed2d84b54dc1bc52031e5521774c979db981aeab0c30d1c",
+  "transport_status": "completed",
+  "model_identity": {
+    "status": "unavailable",
+    "reason": "No model identity in allowlisted public start metadata"
+  },
+  "final_db_sha256": "97e38141c5f234fb4db54bd81cbf9c89a3ccb2b8ee5403a16f5d28f5c8bd8e41",
+  "db_file_sha256": "b341005b99aab2b54877a9302fb89d4136a85c139bd174e9459c03e8f21c41c1"
+}

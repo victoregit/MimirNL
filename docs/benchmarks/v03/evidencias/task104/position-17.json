@@ -1,0 +1,35 @@
+{
+  "position": 17,
+  "status": "completed",
+  "scenario": "com_mimir",
+  "retrieved": [
+    "feedback-service/behavior",
+    "search-schema/behavior",
+    "learning/behavior"
+  ],
+  "retrieval_latency_ms": 18.857940000016242,
+  "total_latency_ms": 7574.082899999994,
+  "truncated": false,
+  "response": "Não. `approve` exige `explicitApproval`, muda o status para `verified` e não cria cópia global. `promote` exige status já `verified` e `sharingApproval`; preserva o status original e cria cópia global verificada, independente, sem IDs, caminhos ou relações privados, somente se não existir global com mesmo hash. Com `scope=global`, ambos são vedados; permitem-se apenas depreciação, rejeição ou nota com aprovação de compartilhamento. [feedback-service/behavior; learning/behavior]\n\n`includeGlobal` é `false` por padrão. [search-schema/behavior]\n\nNa busca, sem status explícito, são elegíveis memórias do projeto `candidate`/`verified`; globais exigem `includeGlobal=true` e sempre `verified`. Com status explícito, o projeto pode incluir `deprecated`/`rejected`; globais continuam restritas a `verified`, portanto outros status as excluem. Aplicam-se também os demais filtros e correspondência textual. [retriever/behavior]",
+  "usage": {
+    "input_tokens": 17309,
+    "cached_input_tokens": 12032,
+    "output_tokens": 218,
+    "total_tokens": 17527
+  },
+  "cleanup": "completed",
+  "initial_db_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "seed_sha256": "7e82a321b594ca202992530151d2136c48bbb8590b0dadc8677599fd07fe8892",
+  "pool_sha256": "97ecd68838d662d325e9b9351a92b510bf50202679c4cfc3db29d8fe04190482",
+  "context_bytes": 12995,
+  "context_sha256": "e07a494ed0c6329d8985d68fc8e7c6768fd5df86ea23f782385490a0be0367f7",
+  "response_bytes": 949,
+  "response_sha256": "0010c753b81464a31ba71142290d382718f39041c77cc4012b3408f82c0eae71",
+  "transport_status": "completed",
+  "model_identity": {
+    "status": "unavailable",
+    "reason": "No model identity in allowlisted public start metadata"
+  },
+  "final_db_sha256": "b0df04e0ecf6fe0076f6a30471f23f577d3109c032d3ff282f11723d230d7b99",
+  "db_file_sha256": "c192d8e40779fed549f4f80905db19147bfd52679cdde773509856cbfc53a4d3"
+}

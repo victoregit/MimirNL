@@ -1,0 +1,31 @@
+{
+  "position": 19,
+  "status": "completed",
+  "scenario": "com_mimir",
+  "retrieved": ["code-approval/behavior"],
+  "retrieval_latency_ms": 21.625809000019217,
+  "total_latency_ms": 5001.606627000001,
+  "truncated": false,
+  "response": "Segundo a fonte `code-approval`, unidade `behavior` (`src/learning/index.ts`, linhas 1–16), `nextStatus` trata:\n\n- **`approve` sem aprovação explícita:** lança `AppError` com código `APPROVAL_REQUIRED` e mensagem “Verification requires explicit user approval.”\n- **`approve` autorizado** (`explicitApproval = true`): retorna `\"verified\"`.\n- **`reject`:** retorna `\"rejected\"`.\n- **`supersede`:** retorna `\"deprecated\"`.\n- **Ação desconhecida:** retorna `current`, preservando o status atual.",
+  "usage": {
+    "input_tokens": 14296,
+    "cached_input_tokens": 12032,
+    "output_tokens": 128,
+    "total_tokens": 14424
+  },
+  "cleanup": "completed",
+  "initial_db_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "seed_sha256": "c4f3ffc07395139f31264cf39a2860a30d9d5b4aee7961857d07a3a7f28e5cc9",
+  "pool_sha256": "88b8d96c1f0144f735cda5ba0184b966800fb895442fef59e05614ab0a4281c5",
+  "context_bytes": 1974,
+  "context_sha256": "afa583a5d4990424340858f4f5f7d96fcabc304c7e43a77873544f33bcb7877a",
+  "response_bytes": 504,
+  "response_sha256": "38519f998052e993b786dce1044e9f4c80689830fdfcbe4cefb6d341d672f184",
+  "transport_status": "completed",
+  "model_identity": {
+    "status": "unavailable",
+    "reason": "No model identity in allowlisted public start metadata"
+  },
+  "final_db_sha256": "648033644683d5fa1e8773844fabe0dbbc2c498d51a32272765aa505c4125974",
+  "db_file_sha256": "af443bd0396673f57e6e92e9d4165b85312748f720cb6cf1a8127f1bcc094ec2"
+}

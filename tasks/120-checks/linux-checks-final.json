@@ -1,0 +1,71 @@
+{
+  "version": {
+    "argv": [
+      "/home/usuario/.local/share/mimir-node-runtime/node-v24.22.1-linux-x64/bin/node",
+      "-p",
+      "JSON.stringify({node:process.version,platform:process.platform,arch:process.arch,sqlite:process.versions.sqlite})"
+    ],
+    "cwd": "/home/usuario/mimir-task118-checks/linux",
+    "exit": 0
+  },
+  "typecheck": {
+    "argv": [
+      "/home/usuario/.local/share/mimir-node-runtime/node-v24.22.1-linux-x64/bin/node",
+      "node_modules/typescript/bin/tsc",
+      "--noEmit"
+    ],
+    "cwd": "/home/usuario/mimir-task118-checks/linux",
+    "exit": 0
+  },
+  "lint": {
+    "argv": [
+      "/home/usuario/.local/share/mimir-node-runtime/node-v24.22.1-linux-x64/bin/node",
+      "node_modules/eslint/bin/eslint.js",
+      "src"
+    ],
+    "cwd": "/home/usuario/mimir-task118-checks/linux",
+    "exit": 0
+  },
+  "build": {
+    "argv": [
+      "/home/usuario/.local/share/mimir-node-runtime/node-v24.22.1-linux-x64/bin/node",
+      "node_modules/typescript/bin/tsc"
+    ],
+    "cwd": "/home/usuario/mimir-task118-checks/linux",
+    "exit": 0
+  },
+  "schemas": {
+    "argv": [
+      "/home/usuario/.local/share/mimir-node-runtime/node-v24.22.1-linux-x64/bin/node",
+      "scripts/generate-contract.mjs",
+      "--check"
+    ],
+    "cwd": "/home/usuario/mimir-task118-checks/linux",
+    "exit": 0
+  },
+  "format": {
+    "argv": [
+      "/home/usuario/.local/share/mimir-node-runtime/node-v24.22.1-linux-x64/bin/node",
+      "node_modules/prettier/bin/prettier.cjs",
+      "--check",
+      "src",
+      "test",
+      "scripts",
+      "docs",
+      "AGENTS.md",
+      "CODE_OF_CONDUCT.md",
+      "CONTRIBUTING.md",
+      "README.md",
+      "RELATORIO_IMPLEMENTACAO_V0.1.md",
+      "ROADMAP_MIMIR_NL.md",
+      "SECURITY.md",
+      "eslint.config.mjs",
+      "package-lock.json",
+      "package.json",
+      "tsconfig.json",
+      ".github/workflows/ci.yml"
+    ],
+    "cwd": "/home/usuario/mimir-task118-checks/linux",
+    "exit": 0
+  }
+}

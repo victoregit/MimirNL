@@ -1,0 +1,7 @@
+Checking formatting...
+All matched files use Prettier code style!
+
+node --check: contract-v02.mjs, metrics-v02.mjs, v02-cli.mjs, benchmark-v02.test.mjs: PASS
+git diff --check: PASS
+Public bundle, all private structures, scope hashes, dev/eval plans, pending/no-human-acceptance, development envelope budgets, dependency/code exact hashes, new Markdown links: PASS
+actual_model_calls=0; private content not emitted.

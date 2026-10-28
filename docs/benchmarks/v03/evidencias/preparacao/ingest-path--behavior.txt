@@ -1,0 +1,23 @@
+      const full = join(this.path, file);
+      if (!inside(this.path, full)) {
+        skipped++;
+        continue;
+      }
+      let stat;
+      try {
+        stat = lstatSync(full);
+      } catch {
+        continue;
+      }
+      if (!stat.isFile() || stat.isSymbolicLink()) {
+        skipped++;
+        continue;
+      }
+      const canonical = realpathSync.native(full);
+      if (
+        !inside(this.path, canonical) ||
+        relative(this.path, canonical).replaceAll("\\", "/") !== file
+      ) {
+        skipped++;
+        continue;
+      }

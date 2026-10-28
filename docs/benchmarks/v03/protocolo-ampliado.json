@@ -1,0 +1,123 @@
+{
+  "schema_version": "multicase-protocol-1",
+  "status": "proposed",
+  "arms": ["contexto_completo", "selecao_mimir"],
+  "contract_scenarios_replaced": false,
+  "cases": [
+    {
+      "case_id": "expanded-budget-envelope",
+      "case_revision": 1,
+      "query": "memory_search tokenBudget schema optimize estimateTokens envelope",
+      "k": 4,
+      "limit": 4,
+      "tokenBudget": 32000,
+      "context_bytes": 32000,
+      "output_words": 120,
+      "pool": ["search-schema", "optimizer", "search-service", "stats-service"]
+    },
+    {
+      "case_id": "expanded-sharing-eligibility",
+      "case_revision": 1,
+      "query": "approve promote explicitApproval sharingApproval includeGlobal status scope memory_search",
+      "k": 4,
+      "limit": 4,
+      "tokenBudget": 32000,
+      "context_bytes": 32000,
+      "output_words": 120,
+      "pool": [
+        "feedback-service",
+        "learning",
+        "retriever",
+        "search-schema",
+        "failure"
+      ]
+    },
+    {
+      "case_id": "expanded-project-path-boundary",
+      "case_revision": 1,
+      "query": "project_register GitAdapter root realpath inside symlink projectId includeGlobal",
+      "k": 4,
+      "limit": 4,
+      "tokenBudget": 32000,
+      "context_bytes": 32000,
+      "output_words": 120,
+      "pool": [
+        "register-service",
+        "ingest-path",
+        "retriever",
+        "embedding-interface"
+      ]
+    },
+    {
+      "case_id": "expanded-production-p95-absent",
+      "case_revision": 1,
+      "query": "memory_search p95 latency elapsed_ms production 2026 10 01 2026 10 07",
+      "k": 4,
+      "limit": 4,
+      "tokenBudget": 32000,
+      "context_bytes": 32000,
+      "output_words": 120,
+      "pool": ["search-service", "stats-service", "retriever", "optimizer"]
+    },
+    {
+      "case_id": "expanded-runtime-config-absent",
+      "case_revision": 1,
+      "query": "Alfa provider model tokenizer tariff tokenBudget EmbeddingProvider",
+      "k": 4,
+      "limit": 4,
+      "tokenBudget": 32000,
+      "context_bytes": 32000,
+      "output_words": 120,
+      "pool": [
+        "embedding-interface",
+        "optimizer",
+        "search-schema",
+        "package-version"
+      ]
+    },
+    {
+      "case_id": "expanded-apparent-version-scope",
+      "case_revision": 1,
+      "query": "README Core v0.1 package version 0.2.0 release published",
+      "k": 4,
+      "limit": 4,
+      "tokenBudget": 32000,
+      "context_bytes": 32000,
+      "output_words": 120,
+      "pool": ["readme-status", "package-version", "embedding-interface"]
+    },
+    {
+      "case_id": "pilot-approval",
+      "case_revision": 1,
+      "query": "nextStatus explicitApproval approve reject supersede",
+      "k": 4,
+      "limit": 4,
+      "tokenBudget": 32000,
+      "context_bytes": 32000,
+      "output_words": 120,
+      "pool": ["code-approval"]
+    },
+    {
+      "case_id": "pilot-budget",
+      "case_revision": 1,
+      "query": "estimateTokens optimize budget",
+      "k": 4,
+      "limit": 4,
+      "tokenBudget": 32000,
+      "context_bytes": 32000,
+      "output_words": 120,
+      "pool": ["code-budget"]
+    },
+    {
+      "case_id": "pilot-failure",
+      "case_revision": 1,
+      "query": "failure causeCode sqliteCode AppError",
+      "k": 4,
+      "limit": 4,
+      "tokenBudget": 32000,
+      "context_bytes": 32000,
+      "output_words": 120,
+      "pool": ["code-failure"]
+    }
+  ]
+}

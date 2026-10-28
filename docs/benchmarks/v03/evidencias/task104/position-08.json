@@ -1,0 +1,31 @@
+{
+  "position": 8,
+  "status": "completed",
+  "scenario": "com_mimir",
+  "retrieved": [],
+  "retrieval_latency_ms": 16.72367099999974,
+  "total_latency_ms": 8383.428117000003,
+  "truncated": false,
+  "response": "Não é possível determinar o p95 medido em produção entre 2026-10-01T00:00:00Z e 2026-10-07T23:59:59Z com as fontes fornecidas.\n\nA unidade `search-service/behavior` (`src/core/service.ts:356–394`) mostra o registro da duração em milissegundos e do timestamp de cada busca, mas não fornece registros observados. A unidade `stats-service/behavior` (`src/core/service.ts:395–407`) calcula apenas a média (`meanMs`), sem filtro temporal nem p95.\n\nFaltam os registros de `retrievals` de produção no intervalo solicitado, com `elapsed_ms` e timestamps, ou uma agregação verificável do p95 para esse período, identificando a população e o método de cálculo.",
+  "usage": {
+    "input_tokens": 15230,
+    "cached_input_tokens": 12032,
+    "output_tokens": 175,
+    "total_tokens": 15405
+  },
+  "cleanup": "completed",
+  "initial_db_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "seed_sha256": "94004ca99c317aa0f9d41a746b9196d8654116869ed504e0f072e14076674f61",
+  "pool_sha256": "71305e725801d671a6935a5e9b9070f7898a9fa30ea02952cfc60f03b81edd9e",
+  "context_bytes": 5132,
+  "context_sha256": "baa59586b179474b97cd9a939579b75cba3b4f29b8361efb064882b44bdbb3da",
+  "response_bytes": 672,
+  "response_sha256": "feef7cabcee5ba824beaaf9192fd6d11e21de4468d23905e6a9c7e6324addb3a",
+  "transport_status": "completed",
+  "model_identity": {
+    "status": "unavailable",
+    "reason": "No model identity in allowlisted public start metadata"
+  },
+  "final_db_sha256": "94004ca99c317aa0f9d41a746b9196d8654116869ed504e0f072e14076674f61",
+  "db_file_sha256": "bf9a09d7c9ed31b2dd7535ef508527c7abec30e411e2ec1759f20a70361a4f04"
+}

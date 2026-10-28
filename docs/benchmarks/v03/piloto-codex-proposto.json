@@ -1,0 +1,35 @@
+{
+  "schema_version": "codex-multicase-plan-1",
+  "status": "proposed",
+  "bundle_sha256": "daaaf6cb68617339155892de592f444f65b1ec102d0f8b700f03682ea3d0d0d7",
+  "cases": [
+    {
+      "case_id": "expanded-budget-envelope",
+      "case_revision": 1
+    },
+    {
+      "case_id": "expanded-production-p95-absent",
+      "case_revision": 1
+    }
+  ],
+  "arms": ["contexto_completo", "selecao_mimir"],
+  "repetitions": 1,
+  "offset": 0,
+  "host": {
+    "transport": "codex-lean-jsonl-posix-1",
+    "binary": "/home/usuario/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+    "requested_model": "gpt-6.1-sol",
+    "reasoning_effort": "low",
+    "isolation": "ignore-user-config/ephemeral/read-only/empty-cwd",
+    "disabled_features": ["apps", "plugins", "multi_agent"]
+  },
+  "limits": {
+    "max_calls": 4,
+    "output_bytes": 64000,
+    "call_ms": 90000,
+    "total_ms": 600000,
+    "context_bytes": 32000
+  },
+  "out": "/tmp/mimir-task87-pilot-proposed",
+  "sha256": "95870f259e83fb5b4ea4dab50de654a61258474e9ec9b6de2baf9bbd2c2216c5"
+}

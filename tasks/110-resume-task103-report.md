@@ -1,0 +1,4 @@
+# Retomada após desligamento: concluir entrega Task103
+Raiz absoluta: /mnt/d/Projects/MimirNL.
+Leia /mnt/d/Projects/MimirNL/tasks/103-v03-abc-runner.md e /mnt/d/Projects/MimirNL/tasks/109-v03-abc-runner-review-findings.md.
+Produza apenas o relatório faltante /mnt/d/Projects/MimirNL/tasks/103-v03-abc-runner-result.md, verificando arquivos/evidências existentes e hashes reais. Não altere código/core/manifestos/policy congelados. Preserve alterações existentes. Documente arquivos absolutos, hashes, comandos e evidências, limitações, actual_model_calls:0 e gates pendentes. Não alegue novos testes executados se apenas consultou logs. Não executar modelos reais, avaliação104, commit/push ou publicação. Não ler credenciais, SSH, .env ou PEM. Não delegue. Retorne caminho do relatório e divergências reais, se houver. O relatório seguirá para revisão independente109 antes104.

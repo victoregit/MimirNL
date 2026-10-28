@@ -1,0 +1,29 @@
+export function failure(e: unknown) {
+  // Keep local exception text and paths private, but retain bounded machine
+  // codes so CI and callers can distinguish I/O and SQLite failures.
+  const local =
+    e instanceof Error
+      ? (e as NodeJS.ErrnoException & { errcode?: number })
+      : undefined;
+  const causeCode =
+    !(e instanceof AppError) &&
+    typeof local?.code === "string" &&
+    /^(?:E[A-Z0-9_]{1,63}|SQLITE_[A-Z_]{1,63})$/.test(local.code)
+      ? local.code
+      : undefined;
+  return {
+    ok: false as const,
+    error: {
+      code: e instanceof AppError ? e.code : "INVALID_REQUEST",
+      message:
+        e instanceof AppError
+          ? e.message
+          : "Invalid request or local operation failed.",
+      ...(causeCode ? { causeCode } : {}),
+      ...(causeCode === "ERR_SQLITE_ERROR" &&
+      Number.isSafeInteger(local?.errcode)
+        ? { sqliteCode: local!.errcode }
+        : {}),
+    },
+  };
+}

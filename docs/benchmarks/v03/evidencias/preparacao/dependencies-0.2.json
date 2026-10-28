@@ -1,0 +1,34 @@
+{
+  "schema_version": "dependency-evidence-0.2",
+  "meaning": "SHA-256 exact bytes; integrity only, no additional approval",
+  "files": [
+    {
+      "path": "/mnt/d/Projects/MimirNL/tasks/100-v03-amendment-review-findings.md",
+      "sha256": "af6e6f0fccfd4d1b3a0ea0ff7d49c4f5fb465750d457a98c0b9ffe80f5ef0f45"
+    },
+    {
+      "path": "/mnt/d/Projects/MimirNL/tasks/55-v03-corpus-review-findings.md",
+      "sha256": "ade7d4a743a63055de99b46e7a81e545264b2dbd5e25f1a27da34266c4a9ee58"
+    },
+    {
+      "path": "/mnt/d/Projects/MimirNL/tasks/84-v03-expanded-corpus-review-findings.md",
+      "sha256": "4e5ef71faba030947977b226c6a67211e8d7d8dad4a093d9bfa5cdb462dcd207"
+    },
+    {
+      "path": "/mnt/d/Projects/MimirNL/docs/benchmarks/v03/contrato-0.2.md",
+      "sha256": "fa0ab85d496e0f67a1a5d273d8f36e00960dde45e2e3be35b6f48d9772478025"
+    },
+    {
+      "path": "/mnt/d/Projects/MimirNL/docs/benchmarks/v03/fechamento-0.2.md",
+      "sha256": "31f2b71a4beb343cefd4594539500b44ffc47ab8c46f78e4f8363a446db9f803"
+    },
+    {
+      "path": "/mnt/d/Projects/MimirNL/docs/benchmarks/v03/casos.md",
+      "sha256": "28d7557bbcb9ddcf2c3aa537336e0863f2161062d3b4a68e47877b5530640d17"
+    },
+    {
+      "path": "/mnt/d/Projects/MimirNL/docs/benchmarks/v03/corpus-ampliado.json",
+      "sha256": "025d00db1046c4131c19a0e41b0378060a660b4811d9c34c45e64ec8516864d4"
+    }
+  ]
+}

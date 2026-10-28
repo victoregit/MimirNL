@@ -1,0 +1,11 @@
+# Task73 — Conferência factual do modo restrito CLI
+
+Task72 concluiu3 prompts mínimos em modo restrito, todos input13703/output5/cache12032. Continuar teste autorizado com até3 chamadas da pergunta factual e MESMO envelope selecionado aprovado Task68/69. Apenas replay do contexto antes recuperado por Mimir, NÃO nova recuperação/banco/latência de busca. Objetivo preservar qualidade com envelopehost menor; referência histórica Task68, não desenho crossover simultâneo.
+
+Modelo solicitado gpt-6.1-sol low, ignore-user-config/ephemeral/read-only/skipgit, scratch vazio próprio, mesmasflags perinvocation --disable apps --disable plugins --disable multi_agent. Sem fallback/retries e timeout90s. Nenhuma mudança global ou remoção de sandbox/rules/approvals. Sem fontes adicionais/API direta/DB ou código novo.
+
+Reusar API promptFor aprovada de context-selection-probe.mjs sobre TODAS as identidades retornadas da primeira posiçãoB no plano privado /tmp/mimir-context-selection-task68-20261027/plan.json. Validar que número/hash de fontes e hash do envelope correspondem exatamente ao original9c039abdab2101901483fdc9f7183582c1ed78f6fd59283f1a85d4f8069776bf,1280bytes. A chamada ao helper é diagnóstico/runtime já aprovado, não novo helper de aplicação. Nunca incluir gold ou respostas anteriores. Pergunta e instrução permanecem literalmente iguais.
+
+Outputprivado exclusivo /tmp/mimir-lean-question-task73-20261027,0700/0600. CLI --output-last-message grava só resposta final para revisão de qualidade (uso deliberado específico desta tarefa autorizado pelo supervisor, diferente do smoke sem resposta); stdoutJSONL ao coletor aprovado, sem transcript bruto/reasoning/stderr. Diretório novo rejeita colisão e umask077 protege arquivos. Capture3exitcodes, usage e tempos do coletor. Shellpipefail, stoponfailuree remanescentesnot_run; nenhum retry. Não alegar que primeiro evento/mensagem completa é TTFT, nem monetizar tokens.
+
+Após execução, revisão independente Task74 lerá3 respostas, fontegitfixada e números. O template shell executa apenas ferramentas existentes, sem criar arquivo de código. Não ler config/auth/logsprivados/credenciais/.env/*.pem/~/.ssh, não exfiltrar via curl/wget/nc externos, sem commit/push/merge. Preservar dirty.

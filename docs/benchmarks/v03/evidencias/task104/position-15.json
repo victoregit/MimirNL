@@ -1,0 +1,31 @@
+{
+  "position": 15,
+  "status": "completed",
+  "scenario": "historico_completo",
+  "retrieved": null,
+  "retrieval_latency_ms": null,
+  "total_latency_ms": 6598.561891999998,
+  "truncated": false,
+  "response": "Não. `approve` exige `explicitApproval`, torna o status `verified` e não cria cópia global. `promote` exige origem já `verified` e `sharingApproval`; mantém seu status e cria, se não houver global com o mesmo hash, cópia global `verified`, com ciclo independente, sem IDs, caminhos ou relações privados [feedback-service/behavior; learning/behavior].\n\n`includeGlobal` é `false` por padrão [search-schema/behavior]. Sem status explícito, a busca admite memórias do projeto `candidate` ou `verified`; globais exigem `includeGlobal=true` e status `verified`. Com status explícito, o filtro substitui a restrição padrão, permitindo inclusive `deprecated`/`rejected` do projeto; globais continuam obrigatoriamente `verified`, portanto outro status as exclui. Correspondência textual e demais filtros também se aplicam [retriever/behavior].",
+  "usage": {
+    "input_tokens": 15957,
+    "cached_input_tokens": 12032,
+    "output_tokens": 192,
+    "total_tokens": 16149
+  },
+  "cleanup": "completed",
+  "initial_db_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "seed_sha256": "a50dfc505ea53a492cec5c9e081db7bb06274cb26cddd334c5dc03f3916149cd",
+  "pool_sha256": "97ecd68838d662d325e9b9351a92b510bf50202679c4cfc3db29d8fe04190482",
+  "context_bytes": 7976,
+  "context_sha256": "7e363577edae030269b19d41ccc5e086c6fe8c69c48c2b3da043be7a03f4dad5",
+  "response_bytes": 853,
+  "response_sha256": "c7d81ea3467b27c8de499a910de7ce591da915d4d4545af0465f97bf090d63d2",
+  "transport_status": "completed",
+  "model_identity": {
+    "status": "unavailable",
+    "reason": "No model identity in allowlisted public start metadata"
+  },
+  "final_db_sha256": "a50dfc505ea53a492cec5c9e081db7bb06274cb26cddd334c5dc03f3916149cd",
+  "db_file_sha256": "41d7a9e5a908b07c9f6b1ff2bf420aa3e0aa7f8e163759b385cbd33638ecbbdf"
+}

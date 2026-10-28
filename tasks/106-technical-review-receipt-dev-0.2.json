@@ -1,0 +1,9 @@
+{
+  "schema_version": "technical-review-receipt-0.2",
+  "author_ref": "codex-task101",
+  "reviewer_ref": "gemini-3.8-flash-high-task106-reviewer",
+  "verdict": "APPROVE",
+  "evidence_ref": "tasks/106-v03-corpus-review-findings.md",
+  "bundle_sha256": "e75d3066c9151d71b97c440f7a563147cfbc94a52302dcf5965075e2bdcdc7e9",
+  "cases_sha256": "176893a787812e4f1add6ba7599795f354922d360e54c9ee5a5a94d020e51f1a"
+}

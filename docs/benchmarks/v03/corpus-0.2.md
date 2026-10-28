@@ -1,0 +1,19 @@
+# Corpus 0.2 — preparação para revisão
+
+Task101 implementada offline; parecer106 pendente. O perfil é `technical_reviewed-v1`, mas todos os registros reais continuam `technical_review.status=pending`, com referências de revisor/evidência nulas e `human_acceptance_ref=null`. A estrutura pode ser inspecionada antes da revisão; isso não permite execução. A implementação de elegibilidade também não autentica pareceres nem habilita live.
+
+[Relatório corpus](../../../tasks/101-v03-corpus-result.md), [métricas](metricas-0.2.md), [contrato](contrato-0.2.md), [freeze development](evidencias/preparacao/freeze-0.2.json).
+
+Nove casos development projetam Task54/55 e Task83/84, conservando perguntas, queries, pools, respostas candidatas, R e rubricas originais. Revisão de caso sobe para 2 para distinguir a projeção; os documentos 0.1 permanecem intactos. k passa explicitamente a 3 pelo contrato0.2. Todos os trechos do pool também são fontes básicas dos baselines; B acrescenta retrieval sem esconder fontes de A/C. Não há seleção por resultados de busca. Não houve retrieval nesta preparação.
+
+O [bundle público](evidencias/preparacao/sources-0.2.json) contém somente versão, parâmetros e fontes com proveniência. As 19 identidades de unidade incluem aliases históricos de conteúdo idêntico; a política deduplica SHA-256 de conteúdo antes de k. O [bookkeeping development](evidencias/preparacao/development-0.2.json) contém ID/revisão/split/tarefa/query/pool/base, separado de envelope e seed. Nunca ingerir esse bookkeeping como memória. O seed deve usar somente `bundle.sources`, nunca diretórios inteiros.
+
+Snapshots `.txt` são exatamente os intervalos inclusivos do pin `166e3cf047b2078952e43dc8e9171e053e99e2ce`, sem normalização de UTF-8 ou quebras. [Proveniência](evidencias/preparacao/provenance-0.2.json) registra intervalos, hashes, licença MIT e autorização documental, ainda sujeita à revisão106. Fontes Git precisam ser blobs regulares; symlinks, paths inseguros, ranges fora dos limites e conteúdo divergente são recusados. Snapshot de fonte não é declaração de estado corrente. Nenhuma fonte atual avaliada foi estabelecida para stale; usar unknown, nunca converter ausência em current. Teste stale sintético não constitui evidência real.
+
+Três novos evaluation estão fisicamente fora do checkout, em `/home/usuario/mimir-private/task101-evaluator`, com referências técnicas e planos privados. O operador102 deve usar somente development e parâmetros públicos, sem abrir essa pasta nem o escopo de revisão privado referido na Task106. Não copiar gold, seleção ou planos privados para runtime, pacote ou modelo. Isolamento por diretório/processo não é sandbox contra um operador com privilégios equivalentes. Abrir evaluation para tuning consome o holdout e exige nova versão.
+
+A seleção foi feita por leitura de fontes fixadas, sem tuning ou modelo. A revisão técnica de seleção, completude de R e rubricas ainda cabe ao revisor106, em sessão separada do operador102. O conjunto finito não sustenta representatividade ampla. `R=[]` no negativo evaluation significa que o pool avaliado não sustenta a resposta solicitada; difere de `relevant_units=null`, que significa sem_gold. Enquanto não houver revisão técnica real, ambos permanecem sem_gold para scoring real.
+
+O arquivo [history-c.txt](evidencias/preparacao/history-c.txt) tem exatamente zero bytes, SHA-256 `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855`. C equivale ao controle A; não mede histórico longo.
+
+Os hashes de freeze usam JSON canônico (chaves ordenadas recursivamente; arrays preservados); SHA de trechos/history usa bytes exatos. Mudanças de formatação JSON não mudam o freeze semântico. Mudança de tarefa, query, pool, base, parâmetros ou conteúdo exige novo freeze e revisão. Os hashes de referência privada ficam exclusivamente no documento externo de escopo do avaliador, fora do bundle e do envelope; integridade não prova autenticidade.

@@ -1,0 +1,17 @@
+{
+  "schema_version": "core-parameters-0.3",
+  "status": "frozen_for_review_108",
+  "config": {
+    "version": "core-v03-1",
+    "policy": "balanced-v1",
+    "recency": "verified-ties-v1",
+    "format": "compact-v1",
+    "telemetry": false,
+    "limit": 3,
+    "tokenBudget": 32000
+  },
+  "config_sha256": "b834e4f46a31b241eeb90ba6edee5ebfb61b8a8abb204fc8b5986620e6216103",
+  "evaluation_opened": false,
+  "human_acceptance_ref": null,
+  "actual_model_calls": 0
+}

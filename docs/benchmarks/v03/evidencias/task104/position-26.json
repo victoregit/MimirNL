@@ -1,0 +1,31 @@
+{
+  "position": 26,
+  "status": "completed",
+  "scenario": "com_mimir",
+  "retrieved": ["code-failure/behavior"],
+  "retrieval_latency_ms": 10.656281000003219,
+  "total_latency_ms": 6410.067073999991,
+  "truncated": false,
+  "response": "Para um `Error` comum, `failure` retorna `ok: false`, código `INVALID_REQUEST` e mensagem genérica `\"Invalid request or local operation failed.\"`, sem divulgar a mensagem original nem caminhos locais.\n\nInclui `causeCode` somente para erros que não sejam `AppError`, quando `code` é string e corresponde a `^(?:E[A-Z0-9_]{1,63}|SQLITE_[A-Z_]{1,63})$`.\n\nInclui `sqliteCode` somente se `causeCode === \"ERR_SQLITE_ERROR\"` e `errcode` for inteiro seguro; caso contrário, omite-o.\n\nPara `AppError`, preserva `code` e `message`, sem incluir `causeCode`.\n\nFonte: `code-failure`, unidade **`behavior`**, `src/security/index.ts`, linhas 68–96.",
+  "usage": {
+    "input_tokens": 14560,
+    "cached_input_tokens": 12032,
+    "output_tokens": 179,
+    "total_tokens": 14739
+  },
+  "cleanup": "completed",
+  "initial_db_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "seed_sha256": "307288bd1f55c79dbf8621df6854144c2f66a32c7dce5bdefc4c02fbae57e570",
+  "pool_sha256": "dd4239b20994b2bf98df1438e7e3e2abbba13ec6fad7ea5791f24ea1169354b1",
+  "context_bytes": 2792,
+  "context_sha256": "8817c6aaab4f75cb23ed18e6e53847b2aaa8ff0874ff45ce39cbdb201d89ef4d",
+  "response_bytes": 640,
+  "response_sha256": "fcefb8cff6ff962f7407f05998322a0d8bd64ed0fe303981a3182fd150be0894",
+  "transport_status": "completed",
+  "model_identity": {
+    "status": "unavailable",
+    "reason": "No model identity in allowlisted public start metadata"
+  },
+  "final_db_sha256": "ff82000b329daca72a020d98083686b822208dd9cd8222ca0a6989075c6d3826",
+  "db_file_sha256": "9b65cb89fdf7747a519adafc79e33d15e54b32016c68c3f8a156c708ff3eabd2"
+}

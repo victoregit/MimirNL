@@ -1,0 +1,221 @@
+diff --git a/docs/mcp-schemas.json b/docs/mcp-schemas.json
+index fd54915..2838fd9 100644
+--- a/docs/mcp-schemas.json
++++ b/docs/mcp-schemas.json
+@@ -198,6 +198,25 @@
+         "minimum": 1,
+         "maximum": 50
+       },
++      "policy": {
++        "default": "legacy",
++        "type": "string",
++        "enum": ["legacy", "balanced-v1"]
++      },
++      "recency": {
++        "default": "off",
++        "type": "string",
++        "enum": ["off", "verified-ties-v1"]
++      },
++      "format": {
++        "default": "full",
++        "type": "string",
++        "enum": ["full", "compact-v1"]
++      },
++      "telemetry": {
++        "default": false,
++        "type": "boolean"
++      },
+       "tokenBudget": {
+         "default": 4000,
+         "type": "integer",
+@@ -205,7 +224,17 @@
+         "maximum": 100000
+       }
+     },
+-    "required": ["projectId", "query", "includeGlobal", "limit", "tokenBudget"],
++    "required": [
++      "projectId",
++      "query",
++      "includeGlobal",
++      "limit",
++      "policy",
++      "recency",
++      "format",
++      "telemetry",
++      "tokenBudget"
++    ],
+     "additionalProperties": false
+   },
+   "memory_feedback": {
+diff --git a/src/core/schemas.ts b/src/core/schemas.ts
+index 34b4cb6..b120a1d 100644
+--- a/src/core/schemas.ts
++++ b/src/core/schemas.ts
+@@ -69,6 +69,10 @@ export const schemas = {
+       scope: z.enum(["project", "global"]).optional(),
+       includeGlobal: z.boolean().default(false),
+       limit: z.number().int().min(1).max(50).default(10),
++      policy: z.enum(["legacy", "balanced-v1"]).default("legacy"),
++      recency: z.enum(["off", "verified-ties-v1"]).default("off"),
++      format: z.enum(["full", "compact-v1"]).default("full"),
++      telemetry: z.boolean().default(false),
+       tokenBudget: z.number().int().min(200).max(100000).default(4000),
+     })
+     .strict(),
+diff --git a/src/core/service.ts b/src/core/service.ts
+index 583028d..22f0d33 100644
+--- a/src/core/service.ts
++++ b/src/core/service.ts
+@@ -358,17 +358,40 @@ export class Service {
+       const rows = new FtsRetriever(this.db).search(
+         d as unknown as RetrievalFilter,
+       );
+-      const seen = new Set<string>();
+-      const result = optimize(
+-        rows
+-          .filter((m) => {
+-            if (seen.has(String(m.hash))) return false;
+-            seen.add(String(m.hash));
+-            return true;
+-          })
+-          .map((m) => this.view(m)),
+-        Number(d.tokenBudget),
+-      );
++      const items = rows.map((m) => {
++        const full = this.view(m);
++        if (d.format !== "compact-v1") return full;
++        // Keep the full excerpt and all citation/integrity fields; omit operational counters.
++        return Object.fromEntries(
++          [
++            "id",
++            "project_id",
++            "scope",
++            "type",
++            "content",
++            "hash",
++            "status",
++            "origin",
++            "source",
++            "version",
++            "trust",
++            "duplicateProvenance",
++          ].map((key) => [key, full[key]]),
++        );
++      });
++      const metadata: Record<string, unknown> = {};
++      if (d.policy === "balanced-v1")
++        metadata.reason = rows.length
++          ? "lexical_matches"
++          : "no_lexical_evidence";
++      if (d.telemetry)
++        metadata.telemetry = {
++          version: "local-v1",
++          returnedCandidates: rows.length,
++          format: d.format,
++          policy: d.policy,
++        };
++      const result = optimize(items, Number(d.tokenBudget), metadata);
+       this.storage.transaction(() => {
+         const retrievalId = randomUUID();
+         for (const m of result.memories)
+diff --git a/src/optimization/index.ts b/src/optimization/index.ts
+index 1b10bec..85f46a4 100644
+--- a/src/optimization/index.ts
++++ b/src/optimization/index.ts
+@@ -1,15 +1,26 @@
++import { AppError } from "../security/index.js";
+ // UTF-8 bytes are a conservative upper bound, not a model tokenizer or savings metric.
+ export const estimateTokens = (value: unknown): number =>
+   Buffer.byteLength(JSON.stringify(value), "utf8");
+ export function optimize<T>(
+   items: T[],
+   budget: number,
++  metadata: Record<string, unknown> = {},
+ ): { memories: T[]; estimatedTokens: number; estimator: string } {
+   const result = {
++    ...metadata,
+     memories: [] as T[],
+     estimatedTokens: 0,
+     estimator: "conservative UTF-8 byte upper bound; not model tokens",
+   };
++  if (
++    estimateTokens({ ok: true, data: { ...result, estimatedTokens: budget } }) >
++    budget
++  )
++    throw new AppError(
++      "BUDGET_TOO_SMALL",
++      "Budget cannot contain the empty response envelope.",
++    );
+   for (const item of items) {
+     const next = {
+       ...result,
+@@ -19,6 +30,8 @@ export function optimize<T>(
+     if (estimateTokens({ ok: true, data: next }) <= budget)
+       result.memories.push(item);
+   }
++  if (items.length && !result.memories.length && metadata.reason)
++    Object.assign(result, { reason: "budget_excluded" });
+   result.estimatedTokens = estimateTokens({
+     ok: true,
+     data: { ...result, estimatedTokens: budget },
+diff --git a/src/retrieval/index.ts b/src/retrieval/index.ts
+index da1d915..92916c1 100644
+--- a/src/retrieval/index.ts
++++ b/src/retrieval/index.ts
+@@ -7,6 +7,8 @@ export interface RetrievalFilter {
+   type?: string;
+   status?: string;
+   scope?: string;
++  policy?: "legacy" | "balanced-v1";
++  recency?: "off" | "verified-ties-v1";
+ }
+ export interface Retriever {
+   search(filter: RetrievalFilter): Record<string, unknown>[];
+@@ -32,10 +34,44 @@ export class FtsRetriever implements Retriever {
+         args.push(filter[field]);
+       }
+     if (!filter.status) where += " AND m.status IN ('candidate','verified')";
+-    return this.db
++    const rows = this.db
+       .prepare(
+-        `SELECT m.* FROM memory_fts JOIN memories m ON m.id=memory_fts.id WHERE ${where} AND memory_fts MATCH ? ORDER BY bm25(memory_fts),(m.scope='project') DESC,m.id LIMIT ?`,
++        `SELECT m.* FROM memory_fts JOIN memories m ON m.id=memory_fts.id WHERE ${where} AND memory_fts MATCH ? ORDER BY bm25(memory_fts),(m.scope='project') DESC,CASE WHEN ?='verified-ties-v1' AND m.status='verified' AND julianday(m.updated)<=julianday('now') THEN julianday(m.updated) ELSE 0 END DESC,m.id`,
+       )
+-      .all(...args, words.map((w) => '"' + w + '"').join(" OR "), filter.limit);
++      .iterate(
++        ...args,
++        words.map((w) => '"' + w + '"').join(" OR "),
++        filter.recency ?? "off",
++      );
++    // Coverage is lexical evidence, never an assertion that the source answers the question.
++    const terms = [...new Set(words.map((w) => w.toLowerCase()))];
++    const groups = new Map<string, Record<string, unknown>>();
++    for (const row of rows) {
++      if (filter.policy === "balanced-v1") {
++        const contentTerms = new Set(
++          String(row.content)
++            .toLowerCase()
++            .match(/[\p{L}\p{N}_]+/gu) ?? [],
++        );
++        if (
++          terms.filter((term) => contentTerms.has(term)).length <
++          Math.ceil(terms.length / 4)
++        )
++          continue;
++      }
++      const key = String(row.hash);
++      const previous = groups.get(key);
++      if (previous) {
++        (previous.duplicateProvenance as unknown[]).push({
++          id: row.id,
++          project_id: row.project_id,
++          scope: row.scope,
++          source: JSON.parse(String(row.source)),
++        });
++      } else if (groups.size < filter.limit) {
++        groups.set(key, { ...row, duplicateProvenance: [] });
++      }
++    }
++    return [...groups.values()].slice(0, filter.limit);
+   }
+ }

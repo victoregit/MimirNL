@@ -1,0 +1,4 @@
+// Future embedding adapters must be explicitly configured, local by default, and obey the same project boundary.
+export interface EmbeddingProvider {
+  embed(text: string): Promise<readonly number[]>;
+}

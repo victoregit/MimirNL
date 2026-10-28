@@ -1,0 +1,31 @@
+{
+  "argv": [
+    "/home/usuario/.local/share/mimir-node-runtime/node-v24.22.1-linux-x64/bin/node",
+    "--test",
+    "test/benchmark-abc.test.mjs",
+    "test/benchmark-antigravity-usage.test.mjs",
+    "test/benchmark-cache-diagnostic.test.mjs",
+    "test/benchmark-codex-usage.test.mjs",
+    "test/benchmark-context-selection.test.mjs",
+    "test/benchmark-live-flow.test.mjs",
+    "test/benchmark-metrics.test.mjs",
+    "test/benchmark-multicase-codex.test.mjs",
+    "test/benchmark-paired-probe.test.mjs",
+    "test/benchmark-preflight.test.mjs",
+    "test/benchmark-public-multicase.test.mjs",
+    "test/benchmark-v02.test.mjs",
+    "test/canonical-root.test.mjs",
+    "test/ci-paths.test.mjs",
+    "test/core-v03.test.mjs",
+    "test/core.test.mjs",
+    "test/hardening.test.mjs",
+    "test/npm-cli.test.mjs",
+    "test/offline-paths.test.mjs",
+    "test/review-corrections.test.mjs",
+    "test/sqlite-runtime.test.mjs",
+    "test/task104-launch.test.mjs",
+    "test/v02-audit-relay.test.mjs"
+  ],
+  "cwd": "/home/usuario/mimir-task118-checks/linux",
+  "exit": 0
+}
