@@ -40,4 +40,6 @@ FTS5 literal Unicode word tokens use OR semantics and BM25 ordering; user FTS op
 
 Host acceptance tests, model-specific tokenizers, local embeddings/hybrid ranking, encrypted storage, human authorization UI, worktree/submodule traversal, larger-scale ingestion, and independently reviewed security hardening remain future work. There is no web backend or outbound application service.
 
-V04-02/03 (pending review152) stores structured experiences as validated content and canonical review/assessment JSON in the same memory/history transaction. [Learning and authorization](v04/learning.md) defines reported evidence versus explicit version/hash consent. The independent measurement sidecar remains schema1.
+V04-02/03 (approved152) stores structured experiences as validated content and canonical review/assessment JSON in the same memory/history transaction. [Learning and authorization](v04/learning.md) defines reported evidence versus explicit version/hash consent. The independent measurement sidecar remains schema1.
+
+V04-04/05 (implemented153, pending154) retain schema2 and add bounded context, versioned relation evidence and private generalization/copy associations inside the canonical learning extension. Structured applicability participates in canonical content; no second mutable copy. Exact human review and sharing consent protect new generalizations; local correction and global revocation have separate lifecycles. V04-06/07 remain pending.

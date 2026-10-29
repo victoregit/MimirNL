@@ -286,6 +286,97 @@ try {
     explicitHumanConsent: true,
   });
   assert.equal(approved.status, "verified");
+  // These approvals authorize only disposable synthetic installed-package fixtures.
+  const generalized = learningCli("memory_generalize", {
+    projectId: project.id,
+    id: approved.id,
+    expectedVersion: approved.version,
+    expectedHash: approved.hash,
+    content: "Installed portable synthetic lesson",
+  });
+  const gReview = learningCli("memory_review", {
+    projectId: project.id,
+    id: generalized.id,
+    expectedVersion: generalized.version,
+    expectedHash: generalized.hash,
+    action: "begin",
+    actorKind: "agent",
+    actorRef: randomUUID(),
+  });
+  const gApproved = learningCli("memory_review", {
+    projectId: project.id,
+    id: gReview.id,
+    expectedVersion: gReview.version,
+    expectedHash: gReview.hash,
+    action: "decide",
+    actorKind: "human",
+    actorRef: randomUUID(),
+    decision: "verified",
+    explicitHumanConsent: true,
+  });
+  const promoted = learningCli("memory_feedback", {
+    projectId: project.id,
+    id: gApproved.id,
+    expectedVersion: gApproved.version,
+    expectedHash: gApproved.hash,
+    action: "promote",
+    sharingApproval: true,
+  });
+  const copies = learningCli("memory_copies", {
+    projectId: project.id,
+    id: promoted.id,
+  }).copies;
+  assert.equal(copies.length, 1);
+  const invalid = learningCli("memory_correct", {
+    projectId: project.id,
+    id: promoted.id,
+    expectedVersion: promoted.version,
+    expectedHash: promoted.hash,
+    content: "Installed corrected synthetic lesson",
+    reason: "synthetic rollback proof",
+    evidenceRefs: [randomUUID()],
+  });
+  assert.equal(invalid.invalid.status, "deprecated");
+  assert.equal(invalid.correction.status, "candidate");
+  const revoked = learningCli("memory_revoke", {
+    projectId: project.id,
+    id: promoted.id,
+    copyId: copies[0].id,
+    expectedVersion: copies[0].version,
+    expectedHash: copies[0].hash,
+    sharingApproval: true,
+    explicitHumanConsent: true,
+    reason: "specific fixture copy revocation",
+  });
+  assert.equal(revoked.status, "deprecated");
+  const contextual = learningCli("memory_context", {
+    projectId: project.id,
+    id: invalid.correction.id,
+    expectedVersion: invalid.correction.version,
+    expectedHash: invalid.correction.hash,
+    context: {
+      applicability: {
+        project: project.id,
+        tool: "mimir",
+        runtime: "node",
+        version: "24.22.1",
+      },
+      freshness: { expiresAt: null, source: null },
+      claim: null,
+    },
+  });
+  const related = learningCli("memory_relation", {
+    projectId: project.id,
+    id: contextual.id,
+    expectedVersion: contextual.version,
+    expectedHash: contextual.hash,
+    relatedId: approved.id,
+    relatedVersion: approved.version,
+    relatedHash: approved.hash,
+    kind: "relate",
+    reason: "installed explicit versioned relation",
+  });
+  assert.equal(related.status, "candidate");
   const legacyDb = join(root, "legacy1.sqlite"),
     migrationBackup = join(root, "legacy-backup1.sqlite");
   const legacyConnection = new DatabaseSync(legacyDb);

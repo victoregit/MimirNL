@@ -61,3 +61,5 @@ mimir experience_observe '{"projectId":"REPLACE_WITH_PROJECT_UUID","task":"repai
 ```
 
 Replace the UUID placeholders with returned project IDs. This form exposes all schema options, including custom ingestion bounds and shared-memory deletion, without another CLI-specific business implementation.
+
+V04-04/05 (153, pending154) adds `memory_context`, `memory_relation`, `memory_generalize`, `memory_copies`, `memory_correct` and `memory_revoke`. All select a local project; mutation requests pin expectedVersion/hash (revoke pins the associated global copy). Relation additionally pins relatedVersion/hash and includes reason/evidence. Generalize accepts new caller-authored content; correct requires reason/evidence and creates a separate candidate while invalidating the old record. Revoke requires both exact-copy human consent and sharingApproval. See [learning](v04/learning.md) for deterministic rules, opt-in search applicability and the private/global boundary. Generated schemas specify every required field and bound. No administrative shell operation is exposed.

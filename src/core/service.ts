@@ -1,5 +1,17 @@
+import {
+  canonicalExperience,
+  memoryContext,
+  conflict,
+  freshness,
+  validateContext,
+  type Context,
+} from "../learning/context.js";
 import { Measurement, type CaptureStatus } from "../observability/index.js";
-import { parseLearning, pendingLearning } from "../learning/schemas.js";
+import {
+  experienceSchema,
+  parseLearning,
+  pendingLearning,
+} from "../learning/schemas.js";
 import { getPackageVersion } from "../version.js";
 import { randomUUID } from "node:crypto";
 import { execFileSync } from "node:child_process";
@@ -86,6 +98,7 @@ export class Service {
     type: string,
     origin: string,
     source: unknown,
+    initialLearning?: ReturnType<typeof parseLearning>,
   ): Row {
     this.project(projectId);
     assertSafe({ content, source });
@@ -143,7 +156,7 @@ export class Service {
       );
     this.db
       .prepare("UPDATE memories SET learning=? WHERE id=?")
-      .run(JSON.stringify(pendingLearning(1, h)), id);
+      .run(JSON.stringify(initialLearning ?? pendingLearning(1, h)), id);
     this.snapshot(id);
     return this.view(this.memory(projectId, id));
   }
@@ -184,6 +197,115 @@ export class Service {
       .get(id);
     if (!m) throw new AppError("NOT_FOUND", "Shared memory not found.");
     return m;
+  }
+  private sanitized(content: string, source: Row, p: string) {
+    const ref = JSON.parse(String(source.source)).reference;
+    const forbidden = [
+      p,
+      String(this.project(p).path),
+      String(source.id),
+      String(source.hash),
+      typeof ref === "string" && ref.length >= 8 ? ref : null,
+    ].filter((x): x is string => x !== null);
+    if (
+      forbidden.some((x) => content.includes(x)) ||
+      /(?:^|\s)(?:\/[A-Za-z0-9_.-]+\/|[a-z]:[\\/]|\\\\)/i.test(content)
+    )
+      throw new AppError(
+        "PRIVATE_GENERALIZATION",
+        "Known private identifiers or absolute source paths must be removed.",
+      );
+  }
+  private copiesFor(p: string, m: Row) {
+    const copies = [...(parseLearning(m.learning).copies ?? [])];
+    for (const row of this.db
+      .prepare("SELECT * FROM memories WHERE project_id=? AND scope='project'")
+      .all(p)) {
+      const learning = parseLearning(row.learning);
+      if (learning.generalization?.source.id === m.id)
+        copies.push(...(learning.copies ?? []));
+    }
+    return [...new Map(copies.map((ref) => [ref.id, ref])).values()];
+  }
+  private pin(m: Row, d: Row) {
+    if (m.version !== d.expectedVersion || m.hash !== d.expectedHash)
+      throw new AppError(
+        "STALE_MEMORY",
+        "Exact current version/hash required.",
+      );
+  }
+  private reference(m: Row) {
+    return {
+      id: String(m.id),
+      version: Number(m.version),
+      hash: String(m.hash),
+    };
+  }
+  private relation(
+    p: string,
+    m: Row,
+    other: Row,
+    kind: "conflict" | "supersede" | "relate" | "corrects",
+    reason: string,
+    evidenceRefs: string[],
+  ) {
+    if (
+      m.id === other.id ||
+      m.project_id !== p ||
+      other.project_id !== p ||
+      m.scope !== "project" ||
+      other.scope !== "project"
+    )
+      throw new AppError(
+        "INVALID_RELATION",
+        "Different local memories in the same project required.",
+      );
+    if (kind === "supersede") {
+      if (!["candidate", "verified"].includes(String(other.status)))
+        throw new AppError("INVALID_RELATION", "Replacement must be active.");
+      const outgoing = this.db
+        .prepare("SELECT b FROM relations WHERE a=? AND kind='supersede'")
+        .all(String(m.id));
+      if (outgoing.some((r) => r.b !== other.id))
+        throw new AppError(
+          "INVALID_RELATION",
+          "A different replacement already exists.",
+        );
+      const cycle = this.db
+        .prepare(
+          "WITH RECURSIVE reachable(id) AS (SELECT b FROM relations WHERE a=? AND kind='supersede' UNION SELECT r.b FROM relations r JOIN reachable x ON r.a=x.id WHERE r.kind='supersede') SELECT id FROM reachable WHERE id=?",
+        )
+        .get(String(other.id), String(m.id));
+      if (cycle)
+        throw new AppError(
+          "RELATION_CYCLE",
+          "Supersession cycles are forbidden.",
+        );
+    }
+    const learning = parseLearning(m.learning);
+    if ((learning.relationEvidence?.length ?? 0) >= 100)
+      throw new AppError(
+        "PROVENANCE_LIMIT",
+        "Relation evidence limit reached.",
+      );
+    learning.relationEvidence = [
+      ...(learning.relationEvidence ?? []),
+      {
+        source: this.reference(m),
+        target: this.reference(other),
+        kind,
+        reason,
+        evidenceRefs,
+        at: new Date().toISOString(),
+      },
+    ];
+    this.db
+      .prepare("INSERT OR IGNORE INTO relations VALUES(?,?,?)")
+      .run(String(m.id), String(other.id), kind);
+    this.db
+      .prepare("UPDATE memories SET learning=? WHERE id=?")
+      .run(JSON.stringify(learning), String(m.id));
+    return learning;
   }
   private async execute(
     op: Operation,
@@ -343,6 +465,225 @@ export class Service {
         p,
         d as never,
       );
+    if (op === "memory_context")
+      return this.storage.transaction(() => {
+        const m = this.memory(p, id);
+        this.pin(m, d);
+        if (JSON.parse(String(m.source)).format === "experience-v1")
+          throw new AppError(
+            "INVALID_CONTEXT",
+            "Structured applicability belongs in a new canonical experience.",
+          );
+        const context = d.context as Context;
+        validateContext(context, p);
+        const learning = {
+          ...parseLearning(m.learning),
+          ...pendingLearning(Number(m.version) + 1, String(m.hash)),
+          context,
+        };
+        this.db
+          .prepare(
+            "UPDATE memories SET learning=?,status='candidate',version=version+1,updated=? WHERE id=?",
+          )
+          .run(JSON.stringify(learning), new Date().toISOString(), id);
+        this.snapshot(id);
+        return { ...this.view(this.memory(p, id)), learning };
+      });
+    if (op === "memory_generalize")
+      return this.storage.transaction(() => {
+        const source = this.memory(p, id);
+        this.pin(source, d);
+        if (source.scope !== "project")
+          throw new AppError("INVALID_REQUEST", "Local source required.");
+        const content = String(d.content);
+        assertSafe(content);
+        // Generalization is caller-authored new content, never a dedup alias or an approval.
+        if (
+          content === source.content ||
+          this.db
+            .prepare("SELECT id FROM memories WHERE project_id=? AND hash=?")
+            .get(p, hash(content))
+        )
+          throw new AppError(
+            "DUPLICATE_MEMORY",
+            "Propose distinct new content.",
+          );
+        this.sanitized(content, source, p);
+        const learning = {
+          ...pendingLearning(1, hash(content)),
+          generalization: {
+            source: this.reference(source),
+            proposedAt: new Date().toISOString(),
+          },
+        };
+        const result = this.store(
+          p,
+          content,
+          "semantic",
+          "user",
+          {
+            kind: "generalization",
+            reference: "caller-proposed sanitized content",
+          },
+          learning,
+        );
+        return { ...result, learning };
+      });
+    if (op === "memory_copies") {
+      const m = this.memory(p, id);
+      const refs = this.copiesFor(p, m);
+      return {
+        copies: refs.map((ref) => {
+          const row = this.db
+            .prepare(
+              "SELECT id,version,hash,status FROM memories WHERE id=? AND scope='global'",
+            )
+            .get(ref.id);
+          return row ?? { id: ref.id, status: "missing" };
+        }),
+      };
+    }
+    if (op === "memory_revoke")
+      return this.storage.transaction(() => {
+        const m = this.memory(p, id);
+        if (!this.copiesFor(p, m).some((ref) => ref.id === d.copyId))
+          throw new AppError(
+            "NOT_FOUND",
+            "Copy not associated with selected local memory.",
+          );
+        const copy = this.db
+          .prepare("SELECT * FROM memories WHERE id=? AND scope='global'")
+          .get(String(d.copyId));
+        if (!copy) throw new AppError("NOT_FOUND", "Copy not found.");
+        this.pin(copy, d);
+        this.db
+          .prepare(
+            "UPDATE memories SET status='deprecated',version=version+1,updated=? WHERE id=?",
+          )
+          .run(new Date().toISOString(), String(copy.id));
+        // Global audit omits the private reason, local IDs and source history.
+        this.db
+          .prepare("INSERT INTO feedback VALUES(?,?,?,?,?)")
+          .run(
+            randomUUID(),
+            String(copy.id),
+            "deprecate",
+            "explicit version-specific sharing revocation",
+            new Date().toISOString(),
+          );
+        this.snapshot(String(copy.id));
+        this.db
+          .prepare("INSERT INTO feedback VALUES(?,?,?,?,?)")
+          .run(
+            randomUUID(),
+            id,
+            "revoke",
+            String(d.reason),
+            new Date().toISOString(),
+          );
+        return {
+          id: copy.id,
+          status: "deprecated",
+          version: Number(copy.version) + 1,
+          hash: copy.hash,
+        };
+      });
+    if (op === "memory_correct")
+      return this.storage.transaction(() => {
+        const m = this.memory(p, id);
+        this.pin(m, d);
+        if (
+          String(d.content) === m.content ||
+          this.db
+            .prepare("SELECT id FROM memories WHERE project_id=? AND hash=?")
+            .get(p, hash(String(d.content)))
+        )
+          throw new AppError(
+            "DUPLICATE_MEMORY",
+            "Correction must be distinct new content.",
+          );
+        const prior = parseLearning(m.learning);
+        const next = this.store(
+          p,
+          String(d.content),
+          String(m.type),
+          "user",
+          {
+            kind: "correction",
+            reference: "explicit local corrective record",
+          },
+          {
+            ...pendingLearning(1, hash(String(d.content))),
+            ...(prior.generalization
+              ? { generalization: prior.generalization }
+              : {}),
+            ...(prior.context ? { context: prior.context } : {}),
+          },
+        );
+        const learning = this.relation(
+          p,
+          m,
+          this.memory(p, String(next.id)),
+          "corrects",
+          String(d.reason),
+          d.evidenceRefs as string[],
+        );
+        this.db
+          .prepare(
+            "UPDATE memories SET status=?,learning=?,version=version+1,updated=? WHERE id=?",
+          )
+          .run(
+            String(d.invalidStatus),
+            JSON.stringify(learning),
+            new Date().toISOString(),
+            id,
+          );
+        this.db
+          .prepare("INSERT INTO feedback VALUES(?,?,?,?,?)")
+          .run(
+            randomUUID(),
+            id,
+            "correction",
+            String(d.reason),
+            new Date().toISOString(),
+          );
+        this.snapshot(id);
+        return {
+          invalid: this.view(this.memory(p, id)),
+          correction: next,
+          globalCopiesUnchanged: true,
+        };
+      });
+    if (op === "memory_relation")
+      return this.storage.transaction(() => {
+        const m = this.memory(p, id),
+          other = this.memory(p, String(d.relatedId));
+        this.pin(m, d);
+        this.pin(other, {
+          expectedVersion: d.relatedVersion,
+          expectedHash: d.relatedHash,
+        });
+        const learning = this.relation(
+          p,
+          m,
+          other,
+          d.kind as "conflict",
+          String(d.reason),
+          d.evidenceRefs as string[],
+        );
+        this.db
+          .prepare(
+            "UPDATE memories SET status=?,learning=?,version=version+1,updated=? WHERE id=?",
+          )
+          .run(
+            d.kind === "supersede" ? "deprecated" : String(m.status),
+            JSON.stringify(learning),
+            new Date().toISOString(),
+            id,
+          );
+        this.snapshot(id);
+        return { ...this.view(this.memory(p, id)), learning };
+      });
     if (op === "memory_store")
       return this.storage.transaction(() =>
         this.store(p, String(d.content), String(d.type), String(d.origin), {
@@ -380,9 +721,10 @@ export class Service {
             contentHash,
             JSON.stringify({ kind: "user", reference: d.source }),
             new Date().toISOString(),
-            JSON.stringify(
-              pendingLearning(Number(current.version) + 1, contentHash),
-            ),
+            JSON.stringify({
+              ...parseLearning(current.learning),
+              ...pendingLearning(Number(current.version) + 1, contentHash),
+            }),
             id,
           );
         this.snapshot(id);
@@ -390,9 +732,13 @@ export class Service {
       });
     if (op === "experience_observe") {
       const structured = d.experience !== undefined;
+      const structuredContext = (
+        d.experience as { context?: Context } | undefined
+      )?.context;
+      if (structuredContext) validateContext(structuredContext, p);
       const content = JSON.stringify(
         structured
-          ? d.experience
+          ? experienceSchema.parse(canonicalExperience(d.experience))
           : { task: d.task, attempt: d.attempt, result: d.result },
       );
       if (structured && Buffer.byteLength(content) > 32000)
@@ -404,7 +750,9 @@ export class Service {
         this.store(p, content, "episodic", "execution", {
           kind: "execution",
           claim: "observation only, not proof of correctness",
-          ...(structured ? { format: "experience-v1" } : {}),
+          ...(structured
+            ? { format: "experience-v1", identityRule: "structured-nfc-v1" }
+            : {}),
         }),
       );
     }
@@ -479,7 +827,26 @@ export class Service {
       const global = m.scope === "global";
       return {
         ...this.view(m),
-        ...(global ? {} : { learning: parseLearning(m.learning) }),
+        ...(global
+          ? {}
+          : {
+              learning: parseLearning(m.learning),
+              freshness: freshness(memoryContext(m)),
+              conflicts: this.db
+                .prepare(
+                  "SELECT * FROM memories WHERE project_id=? AND scope='project' AND id<>? ORDER BY id",
+                )
+                .all(p, id)
+                .filter((other) =>
+                  conflict(memoryContext(m), memoryContext(other)),
+                )
+                .map((other) => ({
+                  id: other.id,
+                  version: other.version,
+                  hash: other.hash,
+                  reason: "same_known_domain_different_claim_value",
+                })),
+            }),
         history: global
           ? []
           : this.db
@@ -726,6 +1093,11 @@ export class Service {
           });
         }
 
+        if (action === "approve" && learning.generalization)
+          throw new AppError(
+            "REVIEW_REQUIRED",
+            "Use exact human version/hash review for a generalization.",
+          );
         if (action === "approve" && !d.explicitApproval)
           throw new AppError(
             "APPROVAL_REQUIRED",
@@ -737,10 +1109,48 @@ export class Service {
               "SHARING_APPROVAL_REQUIRED",
               "Verified knowledge and explicit cross-project sharing approval required.",
             );
+          if (learning.generalization) {
+            this.pin(m, d);
+            this.sanitized(
+              String(m.content),
+              this.memory(p, learning.generalization.source.id),
+              p,
+            );
+            if (
+              learning.review?.authorization !== "explicit_version_consent" ||
+              learning.review.decision !== "verified" ||
+              learning.review.subjectHash !== m.hash ||
+              learning.review.subjectVersion !== Number(m.version) - 1
+            )
+              throw new AppError(
+                "REVIEW_REQUIRED",
+                "Generalization requires exact human version/hash review.",
+              );
+          } else if (
+            JSON.parse(String(m.source)).format === "experience-v1" ||
+            (learning.review !== null &&
+              learning.review.decision !== "verified")
+          ) {
+            throw new AppError(
+              "GENERALIZATION_REQUIRED",
+              "Propose and review sanitized generalization before sharing structured content.",
+            );
+          }
           // Global knowledge has independent lifecycle and no private source IDs, paths or relations.
           const old = this.db
-            .prepare("SELECT id FROM memories WHERE scope='global' AND hash=?")
+            .prepare("SELECT * FROM memories WHERE scope='global' AND hash=?")
             .get(String(m.hash));
+          if (old && old.status !== "verified")
+            throw new AppError(
+              "COPY_REVOKED",
+              "Existing global content is invalid; no automatic resurrection.",
+            );
+          if ((learning.copies?.length ?? 0) >= 100)
+            throw new AppError(
+              "PROVENANCE_LIMIT",
+              "Copy reference limit reached.",
+            );
+          let copy = old;
           if (!old) {
             const gid = randomUUID();
             this.db
@@ -760,7 +1170,15 @@ export class Service {
                 now,
               );
             this.snapshot(gid);
+            copy = this.db
+              .prepare("SELECT * FROM memories WHERE id=?")
+              .get(gid)!;
           }
+          if (!learning.copies?.some((ref) => ref.id === copy!.id))
+            learning.copies = [
+              ...(learning.copies ?? []),
+              this.reference(copy!),
+            ];
         }
         if (action === "relate" || action === "supersede") {
           if (!d.relatedId || d.relatedId === id)
@@ -768,10 +1186,17 @@ export class Service {
               "INVALID_RELATION",
               "A different related memory is required.",
             );
-          this.memory(p, String(d.relatedId));
-          this.db
-            .prepare("INSERT OR IGNORE INTO relations VALUES(?,?,?)")
-            .run(id, String(d.relatedId), action);
+          Object.assign(
+            learning,
+            this.relation(
+              p,
+              m,
+              this.memory(p, String(d.relatedId)),
+              action,
+              String(d.note) || "legacy explicit relation",
+              [],
+            ),
+          );
         }
         const status = nextStatus(
           action,

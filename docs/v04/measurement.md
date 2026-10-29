@@ -1,6 +1,6 @@
 # Local measurement collector (0.4 development)
 
-V04-01 is an opt-in sidecar approved by independent review150, with real-use acceptance in task151. V04-02/03 learning changes are pending review152; see [learning](learning.md). The real dogfood knowledge DB remains schema1 until approval152; new development databases use schema2 with explicit migration for existing1. There is no daemon, host configuration, ingestion, model call, transcript reader or upload.
+V04-01 is an opt-in sidecar approved by independent review150, with real-use acceptance in task151. V04-02/03 learning changes were approved152; V04-04/05 await154; see [learning](learning.md). Real dogfood schema1→2 migration is authorized after152 with a fresh verified backup; new development databases use schema2 with explicit migration for existing1. There is no daemon, host configuration, ingestion, model call, transcript reader or upload.
 
 ## Enable and operate
 

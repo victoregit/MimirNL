@@ -204,7 +204,7 @@ test("real SDK through subprocess relay preserves errors, privacy and closes cle
               stderr: "pipe",
             }),
           );
-          assert.equal((await peer.listTools()).tools.length, 18);
+          assert.equal((await peer.listTools()).tools.length, 24);
         }),
       );
     } finally {
@@ -220,7 +220,7 @@ test("real SDK through subprocess relay preserves errors, privacy and closes cle
           stderr: "pipe",
         }),
       );
-      assert.equal((await restarted.listTools()).tools.length, 18);
+      assert.equal((await restarted.listTools()).tools.length, 24);
     } finally {
       await restarted.close();
     }

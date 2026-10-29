@@ -1,3 +1,4 @@
+import { contextSchema, memoryReference } from "./context.js";
 import * as z from "zod/v4";
 import { sensitivePath } from "../security/index.js";
 const text = z.string().min(1).max(4000);
@@ -59,6 +60,7 @@ export const sourceSchema = z
 export const experienceSchema = z
   .object({
     schemaVersion: z.literal(1),
+    context: contextSchema.optional(),
     problem: text,
     environment: z
       .object({
@@ -160,6 +162,27 @@ export const reviewSchema = z
 export const learningSchema = z
   .object({
     schemaVersion: z.literal(1),
+    context: contextSchema.optional(),
+    generalization: z
+      .object({ source: memoryReference, proposedAt: z.iso.datetime() })
+      .strict()
+      .optional(),
+    copies: z.array(memoryReference).max(100).optional(),
+    relationEvidence: z
+      .array(
+        z
+          .object({
+            target: memoryReference,
+            source: memoryReference,
+            kind: z.enum(["conflict", "supersede", "relate", "corrects"]),
+            reason: z.string().min(1).max(4000),
+            evidenceRefs: z.array(z.string().uuid()).max(20),
+            at: z.iso.datetime(),
+          })
+          .strict(),
+      )
+      .max(100)
+      .optional(),
     review: reviewSchema.nullable(),
     assessments: z
       .array(

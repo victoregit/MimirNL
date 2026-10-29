@@ -1,3 +1,4 @@
+import { contextSchema, applicabilitySchema } from "../learning/context.js";
 import {
   experienceSchema,
   assessmentSchema,
@@ -12,6 +13,63 @@ const text = z.string().min(1).max(32000);
 export const schemas = {
   ...measurementSchemas,
   memory_review: reviewRequest,
+  memory_context: z
+    .object({
+      ...projectId,
+      id,
+      expectedVersion: z.number().int().positive(),
+      expectedHash: digest,
+      context: contextSchema,
+    })
+    .strict(),
+  memory_relation: z
+    .object({
+      ...projectId,
+      id,
+      relatedId: id,
+      expectedVersion: z.number().int().positive(),
+      expectedHash: digest,
+      relatedVersion: z.number().int().positive(),
+      relatedHash: digest,
+      kind: z.enum(["conflict", "supersede", "relate"]),
+      reason: text,
+      evidenceRefs: z.array(id).max(20).default([]),
+    })
+    .strict(),
+  memory_generalize: z
+    .object({
+      ...projectId,
+      id,
+      expectedVersion: z.number().int().positive(),
+      expectedHash: digest,
+      content: text,
+    })
+    .strict(),
+  memory_copies: z.object({ ...projectId, id }).strict(),
+  memory_correct: z
+    .object({
+      ...projectId,
+      id,
+      expectedVersion: z.number().int().positive(),
+      expectedHash: digest,
+      content: text,
+      reason: text,
+      evidenceRefs: z.array(id).min(1).max(20),
+      invalidStatus: z.enum(["deprecated", "rejected"]).default("deprecated"),
+    })
+    .strict(),
+  memory_revoke: z
+    .object({
+      ...projectId,
+      id,
+      copyId: id,
+      expectedVersion: z.number().int().positive(),
+      expectedHash: digest,
+      sharingApproval: z.literal(true),
+      explicitHumanConsent: z.literal(true),
+      reason: text,
+    })
+    .strict(),
   init: z.object({}).strict(),
   project_register: z
     .object({
@@ -69,6 +127,8 @@ export const schemas = {
     .object({
       ...projectId,
       query: z.string().max(1000),
+      applicability: applicabilitySchema.optional(),
+      applicabilityStatus: z.enum(["current", "stale", "unknown"]).optional(),
       attemptId: z.string().uuidv4().optional(),
       type: z
         .enum(["episodic", "semantic", "procedural", "project", "global"])
