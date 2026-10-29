@@ -474,6 +474,84 @@ test("privacy rejects unsafe existing leaf, alias, symlink/junction; parents rem
       assert.throws(() => new Measurement(f.path, f.storage.path));
       chmodSync(join(f.root, "private"), 0o700);
     } else {
+      const ownerFixture = spawnSync(
+        process.execPath,
+        [
+          fileURLToPath(
+            new URL("./windows-owner-fixture.mjs", import.meta.url),
+          ),
+          f.root,
+        ],
+        { encoding: "utf8", timeout: 60000 },
+      );
+      assert.equal(ownerFixture.status, 0, ownerFixture.stderr);
+      // A parent shell can put another edition's Security module before the
+      // inbox module. Exercise native ACLs with a controlled shadow module,
+      // without changing this process's environment or any existing ACL.
+      const modules = join(f.root, "modules"),
+        module = join(modules, "Microsoft.PowerShell.Security");
+      mkdirSync(module, { recursive: true });
+      writeFileSync(
+        join(module, "Microsoft.PowerShell.Security.psd1"),
+        "@{ModuleVersion='99.0.0';RootModule='Security.psm1';FunctionsToExport=@('Get-Acl','Set-Acl')}",
+      );
+      writeFileSync(
+        join(module, "Security.psm1"),
+        "[IO.File]::WriteAllText((Join-Path $PSScriptRoot 'loaded'),'CANARY_ACL_MODULE_RAW'); function Get-Acl {throw 'CANARY_ACL_MODULE_RAW'}; function Set-Acl {throw 'CANARY_ACL_MODULE_RAW'}; Export-ModuleMember -Function Get-Acl,Set-Acl",
+      );
+      const powershell = join(
+        process.env.SystemRoot ?? "C:\\Windows",
+        "System32",
+        "WindowsPowerShell",
+        "v1.0",
+        "powershell.exe",
+      );
+      const parentAcl = () =>
+        execFileSync(
+          powershell,
+          [
+            "-NoProfile",
+            "-NonInteractive",
+            "-EncodedCommand",
+            Buffer.from(
+              `$ErrorActionPreference='Stop'; Import-Module (Join-Path $PSHOME 'Modules\\Microsoft.PowerShell.Security\\Microsoft.PowerShell.Security.psd1'); (Get-Acl -LiteralPath '${f.root.replaceAll("'", "''")}').Sddl`,
+              "utf16le",
+            ).toString("base64"),
+          ],
+          { encoding: "utf8" },
+        ).trim();
+      const sddl = parentAcl();
+      const env = { ...process.env };
+      for (const key of Object.keys(env))
+        if (key.toLowerCase() === "psmodulepath") delete env[key];
+      env.PSModulePath = modules;
+      const code = `
+        import assert from 'node:assert/strict';
+        import {execFileSync} from 'node:child_process';
+        import {join,dirname} from 'node:path';
+        import {privateDestination,privateExisting,createPrivateFile} from ${JSON.stringify(new URL("../dist/observability/privacy.js", import.meta.url).href)};
+        const file=privateDestination(join(process.argv[1],'isolated','measurement.sqlite'));
+        createPrivateFile(file);
+        privateExisting(file,false);
+        assert.equal(privateDestination(file),file);
+        execFileSync('icacls.exe',[dirname(file),'/grant','*S-1-1-0:(OI)(CI)R'],{stdio:'ignore'});
+        assert.throws(()=>privateExisting(dirname(file),true),error=>{
+          assert.equal(error.code,'MEASUREMENT_PRIVACY');
+          assert.equal(error.message,'Private dedicated measurement destination required.');
+          assert.ok(!JSON.stringify(error).includes('CANARY_ACL_MODULE_RAW'));
+          assert.ok(!JSON.stringify(error).includes(process.argv[1]));
+          return true;
+        });
+        assert.equal(process.env.PSModulePath,process.argv[2]);
+      `;
+      const child = spawnSync(
+        process.execPath,
+        ["--input-type=module", "-e", code, f.root, modules],
+        { env, encoding: "utf8", timeout: 60000 },
+      );
+      assert.equal(child.status, 0, child.stderr);
+      assert.equal(existsSync(join(module, "loaded")), false);
+      assert.equal(parentAcl(), sddl);
       // Real native ACL: a broad Everyone grant on an existing leaf is rejected.
       execFileSync(
         "icacls.exe",

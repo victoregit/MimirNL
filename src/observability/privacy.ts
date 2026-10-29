@@ -8,12 +8,17 @@ function reject(): never {
     "Private dedicated measurement destination required.",
   );
 }
+// Owners and Allow ACEs share one trust set; no additional principal gains access.
+// SQLite may recreate WAL/SHM with a privileged default TokenOwner.
 // Only a newly created dedicated leaf receives ACL changes. Existing parents
 // are inspected, never repaired. ACL inspection uses SIDs, independent of locale.
 function windowsAcl(path: string, create: boolean) {
   const literal = "'" + path.replaceAll("'", "''") + "'";
-  const script = `$ErrorActionPreference='Stop'; $p=${literal}; $sid=[System.Security.Principal.WindowsIdentity]::GetCurrent().User; ${create ? `$acl=Get-Acl -LiteralPath $p; $acl.SetAccessRuleProtection($true,$false); $rule=New-Object System.Security.AccessControl.FileSystemAccessRule($sid,'FullControl','ContainerInherit,ObjectInherit','None','Allow'); $acl.AddAccessRule($rule); Set-Acl -LiteralPath $p -AclObject $acl;` : ""}
- $acl=Get-Acl -LiteralPath $p; if($acl.GetOwner([System.Security.Principal.SecurityIdentifier]).Value -ne $sid.Value){throw 'owner'}; foreach($r in $acl.GetAccessRules($true,$true,[System.Security.Principal.SecurityIdentifier])){if($r.AccessControlType -eq 'Allow' -and $r.IdentityReference.Value -notin @($sid.Value,'S-1-5-18','S-1-5-32-544')){throw 'broad'}}; if(-not ($acl.GetAccessRules($true,$true,[System.Security.Principal.SecurityIdentifier]) | Where-Object {$_.IdentityReference.Value -eq $sid.Value -and $_.AccessControlType -eq 'Allow'})){throw 'missing'};`;
+  // The fixed Windows PowerShell executable must load its own inbox module.
+  // Inherited PSModulePath can otherwise select another edition's Security
+  // module even with -NoProfile. Resolve from the child's trusted PSHOME.
+  const script = `$ErrorActionPreference='Stop'; Import-Module (Join-Path $PSHOME 'Modules\\Microsoft.PowerShell.Security\\Microsoft.PowerShell.Security.psd1'); $p=${literal}; $sid=[System.Security.Principal.WindowsIdentity]::GetCurrent().User; $trusted=@($sid.Value,'S-1-5-18','S-1-5-32-544'); ${create ? `$acl=Get-Acl -LiteralPath $p; $acl.SetAccessRuleProtection($true,$false); $rule=New-Object System.Security.AccessControl.FileSystemAccessRule($sid,'FullControl','ContainerInherit,ObjectInherit','None','Allow'); $acl.AddAccessRule($rule); Set-Acl -LiteralPath $p -AclObject $acl;` : ""}
+ $acl=Get-Acl -LiteralPath $p; if($acl.GetOwner([System.Security.Principal.SecurityIdentifier]).Value -notin $trusted){throw 'owner'}; foreach($r in $acl.GetAccessRules($true,$true,[System.Security.Principal.SecurityIdentifier])){if($r.AccessControlType -eq 'Allow' -and $r.IdentityReference.Value -notin $trusted){throw 'broad'}}; if(-not ($acl.GetAccessRules($true,$true,[System.Security.Principal.SecurityIdentifier]) | Where-Object {$_.IdentityReference.Value -eq $sid.Value -and $_.AccessControlType -eq 'Allow'})){throw 'missing'};`;
   try {
     execFileSync(
       join(
