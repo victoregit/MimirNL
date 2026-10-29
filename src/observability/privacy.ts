@@ -14,27 +14,32 @@ function reject(): never {
 // are inspected, never repaired. ACL inspection uses SIDs, independent of locale.
 function windowsAcl(path: string, create: boolean) {
   const literal = "'" + path.replaceAll("'", "''") + "'";
+  const psHome = join(
+    process.env.SystemRoot ?? "C:\\Windows",
+    "System32",
+    "WindowsPowerShell",
+    "v1.0",
+  );
   // The fixed Windows PowerShell executable must load its own inbox module.
   // Inherited PSModulePath can otherwise select another edition's Security
   // module even with -NoProfile. Resolve from the child's trusted PSHOME.
-  const script = `$ErrorActionPreference='Stop'; Import-Module (Join-Path $PSHOME 'Modules\\Microsoft.PowerShell.Security\\Microsoft.PowerShell.Security.psd1'); $p=${literal}; $sid=[System.Security.Principal.WindowsIdentity]::GetCurrent().User; $trusted=@($sid.Value,'S-1-5-18','S-1-5-32-544'); ${create ? `$acl=Get-Acl -LiteralPath $p; $acl.SetAccessRuleProtection($true,$false); $rule=New-Object System.Security.AccessControl.FileSystemAccessRule($sid,'FullControl','ContainerInherit,ObjectInherit','None','Allow'); $acl.AddAccessRule($rule); Set-Acl -LiteralPath $p -AclObject $acl;` : ""}
- $acl=Get-Acl -LiteralPath $p; if($acl.GetOwner([System.Security.Principal.SecurityIdentifier]).Value -notin $trusted){throw 'owner'}; foreach($r in $acl.GetAccessRules($true,$true,[System.Security.Principal.SecurityIdentifier])){if($r.AccessControlType -eq 'Allow' -and $r.IdentityReference.Value -notin $trusted){throw 'broad'}}; if(-not ($acl.GetAccessRules($true,$true,[System.Security.Principal.SecurityIdentifier]) | Where-Object {$_.IdentityReference.Value -eq $sid.Value -and $_.AccessControlType -eq 'Allow'})){throw 'missing'};`;
+  const script = `$ErrorActionPreference='Stop'; $ProgressPreference='SilentlyContinue'; $PSModuleAutoLoadingPreference='None'; Import-Module "$PSHOME\\Modules\\Microsoft.PowerShell.Security\\Microsoft.PowerShell.Security.psd1"; $p=${literal}; $sid=[System.Security.Principal.WindowsIdentity]::GetCurrent().User; $trusted=@($sid.Value,'S-1-5-18','S-1-5-32-544'); ${create ? `$acl=Get-Acl -LiteralPath $p; $acl.SetAccessRuleProtection($true,$false); $rule=[System.Security.AccessControl.FileSystemAccessRule]::new($sid,'FullControl','ContainerInherit,ObjectInherit','None','Allow'); $acl.AddAccessRule($rule); Set-Acl -LiteralPath $p -AclObject $acl;` : ""}
+ $acl=Get-Acl -LiteralPath $p; if($acl.GetOwner([System.Security.Principal.SecurityIdentifier]).Value -notin $trusted){throw 'owner'}; $ok=$false; foreach($r in $acl.GetAccessRules($true,$true,[System.Security.Principal.SecurityIdentifier])){if($r.AccessControlType -eq 'Allow'){if($r.IdentityReference.Value -notin $trusted){throw 'broad'}; if($r.IdentityReference.Value -eq $sid.Value){$ok=$true}}}; if(-not $ok){throw 'missing'};`;
   try {
     execFileSync(
-      join(
-        process.env.SystemRoot ?? "C:\\Windows",
-        "System32",
-        "WindowsPowerShell",
-        "v1.0",
-        "powershell.exe",
-      ),
+      join(psHome, "powershell.exe"),
       [
         "-NoProfile",
         "-NonInteractive",
         "-EncodedCommand",
         Buffer.from(script, "utf16le").toString("base64"),
       ],
-      { stdio: "ignore", timeout: 30000 },
+      {
+        stdio: "ignore",
+        timeout: 30000,
+        windowsHide: true,
+        env: { ...process.env, PSModulePath: join(psHome, "Modules") },
+      },
     );
   } catch (e) {
     if ((e as NodeJS.ErrnoException).code === "ETIMEDOUT")
@@ -66,8 +71,8 @@ export function privateDestination(path: string): string {
     // Recursive creation would silently take ownership of an unrelated hierarchy.
     mkdirSync(parent, { mode: 0o700 });
     if (process.platform === "win32") windowsAcl(parent, true);
-  }
-  privateExisting(parent, true);
+    else privateExisting(parent, true);
+  } else privateExisting(parent, true);
   for (const suffix of ["", "-wal", "-shm"]) {
     const file = p + suffix;
     assertLocalPath(file);

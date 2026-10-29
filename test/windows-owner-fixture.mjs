@@ -9,13 +9,13 @@ import { join } from "node:path";
 
 const original = childProcess.execFileSync;
 const root = realpathSync.native(process.argv[2]);
-const powershell = join(
+const psHome = join(
   process.env.SystemRoot ?? "C:\\Windows",
   "System32",
   "WindowsPowerShell",
   "v1.0",
-  "powershell.exe",
 );
+const powershell = join(psHome, "powershell.exe");
 const parentSddl = () =>
   original(
     powershell,
@@ -24,17 +24,27 @@ const parentSddl = () =>
       "-NonInteractive",
       "-EncodedCommand",
       Buffer.from(
-        `$ErrorActionPreference='Stop'; Import-Module (Join-Path $PSHOME 'Modules\\Microsoft.PowerShell.Security\\Microsoft.PowerShell.Security.psd1'); (Get-Acl -LiteralPath '${root.replaceAll("'", "''")}').Sddl`,
+        `$ErrorActionPreference='Stop'; $ProgressPreference='SilentlyContinue'; $PSModuleAutoLoadingPreference='None'; Import-Module "$PSHOME\\Modules\\Microsoft.PowerShell.Security\\Microsoft.PowerShell.Security.psd1"; (Get-Acl -LiteralPath '${root.replaceAll("'", "''")}').Sddl`,
         "utf16le",
       ).toString("base64"),
     ],
-    { encoding: "utf8" },
+    {
+      encoding: "utf8",
+      windowsHide: true,
+      env: { ...process.env, PSModulePath: join(psHome, "Modules") },
+    },
   ).trim();
 const sddlBefore = parentSddl();
 let currentOwner = "'S-1-5-32-544'";
 let currentDacl = "('D:PAI(A;OICI;FA;;;'+$user.Value+')')";
 const writes = [];
+let calls = 0;
 childProcess.execFileSync = (exe, args, options) => {
+  calls++;
+  assert.equal(options?.windowsHide, true);
+  assert.ok(
+    options?.env?.PSModulePath?.endsWith("WindowsPowerShell\\v1.0\\Modules"),
+  );
   const script = Buffer.from(args.at(-1), "base64").toString("utf16le");
   const literal = script.match(/\$p=('(?:[^']|'')*');/)[1];
   const path = literal.slice(1, -1).replaceAll("''", "'");
@@ -142,10 +152,12 @@ try {
   // 4. Newly created dedicated leaf directory receives ACL initialization; existing files do not.
   currentOwner = "'S-1-5-32-544'";
   currentDacl = "('D:PAI(A;OICI;FA;;;'+$user.Value+')')";
+  const callsBeforeLeaf = calls;
   const leafFile = privateDestination(
     join(root, "owner-fixture", "measurement.sqlite"),
   );
   createPrivateFile(leafFile);
+  assert.ok(calls - callsBeforeLeaf <= 2);
   assert.ok(writes.includes(join(root, "owner-fixture")));
   assert.ok(!writes.includes(leafFile));
   assert.equal(parentSddl(), sddlBefore, "Parent SDDL must remain unchanged");

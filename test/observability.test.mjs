@@ -499,13 +499,13 @@ test("privacy rejects unsafe existing leaf, alias, symlink/junction; parents rem
         join(module, "Security.psm1"),
         "[IO.File]::WriteAllText((Join-Path $PSScriptRoot 'loaded'),'CANARY_ACL_MODULE_RAW'); function Get-Acl {throw 'CANARY_ACL_MODULE_RAW'}; function Set-Acl {throw 'CANARY_ACL_MODULE_RAW'}; Export-ModuleMember -Function Get-Acl,Set-Acl",
       );
-      const powershell = join(
+      const psHome = join(
         process.env.SystemRoot ?? "C:\\Windows",
         "System32",
         "WindowsPowerShell",
         "v1.0",
-        "powershell.exe",
       );
+      const powershell = join(psHome, "powershell.exe");
       const parentAcl = () =>
         execFileSync(
           powershell,
@@ -514,11 +514,15 @@ test("privacy rejects unsafe existing leaf, alias, symlink/junction; parents rem
             "-NonInteractive",
             "-EncodedCommand",
             Buffer.from(
-              `$ErrorActionPreference='Stop'; Import-Module (Join-Path $PSHOME 'Modules\\Microsoft.PowerShell.Security\\Microsoft.PowerShell.Security.psd1'); (Get-Acl -LiteralPath '${f.root.replaceAll("'", "''")}').Sddl`,
+              `$ErrorActionPreference='Stop'; $ProgressPreference='SilentlyContinue'; $PSModuleAutoLoadingPreference='None'; Import-Module "$PSHOME\\Modules\\Microsoft.PowerShell.Security\\Microsoft.PowerShell.Security.psd1"; (Get-Acl -LiteralPath '${f.root.replaceAll("'", "''")}').Sddl`,
               "utf16le",
             ).toString("base64"),
           ],
-          { encoding: "utf8" },
+          {
+            encoding: "utf8",
+            windowsHide: true,
+            env: { ...process.env, PSModulePath: join(psHome, "Modules") },
+          },
         ).trim();
       const sddl = parentAcl();
       const env = { ...process.env };
@@ -543,6 +547,10 @@ test("privacy rejects unsafe existing leaf, alias, symlink/junction; parents rem
           return true;
         });
         assert.equal(process.env.PSModulePath,process.argv[2]);
+        delete process.env.PSModulePath;
+        const stripped=privateDestination(join(process.argv[1],'stripped','measurement.sqlite'));
+        createPrivateFile(stripped);
+        privateExisting(stripped,false);
       `;
       const child = spawnSync(
         process.execPath,
