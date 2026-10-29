@@ -2,7 +2,9 @@
 
 ## 0.4.0-dev.0 (unreleased)
 
-Opt-in local measurement sidecar, scoped CLI/MCP lifecycle and reports, CLI-only private logical backup/restore and retention. Knowledge uses2 with explicit schema1→2 migration and fresh verified backup. Collector approved150 and structured learning151 approved152. Canonical identity, directed conflict/supersession, opt-in applicability, caller-proposed generalizations, exact human review, correction and separate copy revocation implemented153 await review154. No automatic memory approval; V04-06/07 remain pending.
+Opt-in local measurement sidecar; structured experiences and typed feedback; exact version/hash review; canonical identity, directed conflicts/supersession, opt-in applicability and caller-proposed generalizations. Corrections preserve history; global copies have separate consent and lifecycle. V04-01..05 approved150/152/154; V04-06 accepted156 after two later real tasks and genuine obsolete-context maintenance. Knowledge uses schema2 with explicit migration from1, a fresh verified backup and compatible recovery. No automatic memory verification or promotion.
+
+Local Linux/Windows gates and installed-package smoke are green for the unchanged application sources. V04-07 documentation and four-commit manifests await independent review158; remote CI of the exact future commit remains pending. Version stays0.4.0-dev.0; no tag/npm/publication. Real observations distinguish internal retrieval from provided use/quality, preserve failures and missing host counters, and establish no causal savings.
 
 ## 0.3.0 — candidate / unreleased
 

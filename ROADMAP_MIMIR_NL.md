@@ -1,6 +1,10 @@
 # Mimir NL — Roadmap
 
-## Current status — 2026-10-28 (Task136)
+## Current status — 2026-10-29 (Task157)
+
+`0.4.0-dev.0` is an unpublished technical candidate. V04-01..06 have independent approvals150/152/154/156, including two later real tasks and genuine obsolete-context maintenance. V04-07 local evidence and final documentation are prepared; review158, coherent commits and remote CI of the exact future commit remain pending. No tag/npm release or causal efficiency claim. See [current learning/recovery](docs/v04/learning.md) and [real-use guide](docs/v04/uso-real.md).
+
+## Historical status — 2026-10-28 (Task136)
 
 0.3.0 is a candidate, unreleased: the bounded technical scope is complete. Tasks105/120 are [approved111](tasks/111-v03-final-review-findings.md); the efficiency work and EF03 pilot have scoped reviews124/126/128/130/132/134, with [precision addendum135](tasks/135-ef03-review-metric-clarification.md). Review137 of the curated complete delta, commits, exact-commit remote CI, human acceptance and publication remain pending. See [current release notes](docs/release-0.3.0.md).
 
@@ -26,7 +30,7 @@ Remaining steps: supervisor-arranged independent final evidence review (Task46),
 > **Remember. Learn. Evolve.**  
 > An open-source, local-first memory and learning layer for AI agents.
 
-**Status:** Early development (`v0.3.0` candidate, unreleased)
+**Status:** Early development (`0.4.0-dev.0` technical candidate, unpublished)
 
 **Repositories:** `MimirNL` (core) and `Mimir-web` (website)  
 **Planning model:** milestone-based, not date-based. Scope and priorities may change with test results and community feedback.
@@ -42,17 +46,17 @@ Remaining steps: supervisor-arranged independent final evidence review (Task46),
 
 ## Overview
 
-| Milestone | Focus                                                                          | Status                                                      |
-| --------- | ------------------------------------------------------------------------------ | ----------------------------------------------------------- |
-| v0.1.0    | Persistent memory, FTS5 retrieval, Git import, CLI/MCP, deterministic feedback | ✅ Implemented and automated tests passed\*                 |
-| v0.1.1    | Security, license, code review, backup, release hygiene                        | Technical gates passed; release unpublished                 |
-| v0.2.0    | End-to-end Codex and Antigravity integration on real hosts                     | Release-ready; final review/commit CI/publication pending   |
-| v0.3.0    | Real-workload retrieval quality, context/token optimization, observability     | Bounded technical scope complete; review137/release pending |
-| v0.4.0    | Evidence-based learning and controlled cross-project knowledge reuse           | Planned                                                     |
-| v0.5.0    | Richer historical import and optional semantic/hybrid search                   | Planned                                                     |
-| v0.6.0    | General-purpose plugin/adaptor architecture beyond software repositories       | Planned                                                     |
-| v0.7.0    | Knowledge graph visualization and optional community contributions             | Planned                                                     |
-| v1.0.0    | Stable, documented, independently reviewed public release                      | Planned                                                     |
+| Milestone | Focus                                                                          | Status                                                        |
+| --------- | ------------------------------------------------------------------------------ | ------------------------------------------------------------- |
+| v0.1.0    | Persistent memory, FTS5 retrieval, Git import, CLI/MCP, deterministic feedback | ✅ Implemented and automated tests passed\*                   |
+| v0.1.1    | Security, license, code review, backup, release hygiene                        | Technical gates passed; release unpublished                   |
+| v0.2.0    | End-to-end Codex and Antigravity integration on real hosts                     | Release-ready; final review/commit CI/publication pending     |
+| v0.3.0    | Real-workload retrieval quality, context/token optimization, observability     | Bounded technical scope complete; review137/release pending   |
+| v0.4.0    | Evidence-based learning and controlled cross-project knowledge reuse           | V04-01..06 approved; V04-07 review158/exact-commit CI pending |
+| v0.5.0    | Richer historical import and optional semantic/hybrid search                   | Planned                                                       |
+| v0.6.0    | General-purpose plugin/adaptor architecture beyond software repositories       | Planned                                                       |
+| v0.7.0    | Knowledge graph visualization and optional community contributions             | Planned                                                       |
+| v1.0.0    | Stable, documented, independently reviewed public release                      | Planned                                                       |
 
 \* The v0.1 report records 17 passing automated tests and real MCP SDK client tests. It does **not** establish independent review, actual Codex/Antigravity host acceptance, or real-world token savings.
 
@@ -127,17 +131,17 @@ Remaining steps: supervisor-arranged independent final evidence review (Task46),
 
 ## v0.4.0 — Learning from outcomes (P1)
 
-Task147 proposes the [implementation plan](docs/v04/plano-implementacao.md) and [measurement contract](docs/v04/contrato-medicao.md), with real CLI0.3 bootstrap evidence. Review148 is pending; no 0.4 feature or new telemetry implementation is marked complete.
+The [implementation plan](docs/v04/plano-implementacao.md) and [measurement contract](docs/v04/contrato-medicao.md) were approved148. Collector, structured learning, relations/generalization and bounded operational reuse are approved150/152/154/156. V04-07 awaits review158 and exact-commit remote CI; local success is not publication. The broader quality goal below does not imply proven factual or causal gains.
 
 **Goal:** turn recorded experiences into reliable, reusable lessons.
 
-- [ ] Define a structured experience record: problem, environment, attempted action, observed result, tests, source, confidence.
-- [ ] Add feedback from actual test outcomes and explicit human decisions.
-- [ ] Detect duplicate/conflicting lessons; track supersession, applicability, and outdated versions.
-- [ ] Implement a candidate → review → verified/deprecated/rejected workflow.
-- [ ] Promote cross-project knowledge only through controlled generalization and approval.
+- [x] Define a structured experience record: problem, environment, attempted action, observed result, tests, source, confidence.
+- [x] Add feedback from actual test outcomes and explicit human decisions.
+- [x] Detect duplicate/conflicting lessons; track supersession, applicability, and outdated versions.
+- [x] Implement a candidate → review → verified/deprecated/rejected workflow.
+- [x] Promote cross-project knowledge only through controlled generalization and approval.
 - [ ] Evaluate whether reused lessons improved outcomes or introduced regressions.
-- [ ] Include rollback of incorrect knowledge and tests against self-reinforcing false memories.
+- [x] Include rollback of incorrect knowledge and tests against self-reinforcing false memories.
 
 **Exit criteria:** repeatable tests show a validated lesson can improve a later task, and an invalid lesson can be corrected without contaminating other projects.
 
@@ -215,4 +219,4 @@ Historical task31 final-gate preparation (review and WSL progress superseded abo
 
 A avaliação limitada104 e a revisão110 estão consolidadas no [fechamento corrente](docs/benchmarks/v03/fechamento-0.3.md). Snapshot histórico preservado antes da portabilidade/formatação; código corrente segue revisão independente111 antes do fechamento definitivo105. Zero chamadas novas, 54 históricas. Qualidade igual nos três cenários, B com +2,93% de tokens de entrada; cache ambiente, histórico C vazio e modelo/custo/TTFT indisponíveis impedem alegar economia ou ganho de qualidade. Sem commit, push ou publicação; histórico anterior preservado.
 
-V04-01 aprovado150; V04-02/03 implementados151 aprovados152; V04-04/05 implementados153 em revisão154: coletor local lateral opt-in e aprendizagem estruturada; ver [operação](docs/v04/measurement.md). V04-06/07 e duas tarefas posteriores reais após154 continuam pendentes; fixtures153 não completam reuso operacional.
+V04-01 aprovado150; V04-02/03 implementados151 aprovados152; V04-04/05 implementados153 aprovados154: coletor local lateral opt-in e aprendizagem estruturada; ver [operação](docs/v04/measurement.md). V04-06 aprovado156 com duas tarefas posteriores reais155/156 e manutenção genuína de contexto; [guia operacional](docs/v04/uso-real.md) aprovado156. V04-07 possui evidência local preparada e aguarda158/CI remoto do commit exato; fechamento/publicação0.4 permanecem pendentes. Fixtures provam isolamento, sem substituir reuso real ou demonstrar ganho causal.

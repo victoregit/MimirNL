@@ -1,6 +1,6 @@
 # Local measurement collector (0.4 development)
 
-V04-01 is an opt-in sidecar approved by independent review150, with real-use acceptance in task151. V04-02/03 learning changes were approved152; V04-04/05 await154; see [learning](learning.md). Real dogfood schema1→2 migration is authorized after152 with a fresh verified backup; new development databases use schema2 with explicit migration for existing1. There is no daemon, host configuration, ingestion, model call, transcript reader or upload.
+V04-01 is an opt-in sidecar approved150, with real-use acceptance in151. Structured learning was approved152, relations/generalization154 and two later real reuse tasks155/156 were accepted156. V04-07 awaits158 and exact-commit remote CI. See [learning](learning.md). Knowledge schema1→2 migration is explicit with a fresh verified backup; use a compatible approved reader for extended schema2 metadata. There is no daemon, host configuration, ingestion, model call, transcript reader or upload.
 
 ## Enable and operate
 
