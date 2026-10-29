@@ -62,11 +62,15 @@ function child(args) {
     const p = spawn(process.execPath, [cli, ...args], {
       stdio: ["ignore", "pipe", "pipe"],
     });
-    let out = "";
+    let out = "",
+      err = "";
     p.stdout.on("data", (b) => (out += b));
+    p.stderr.on("data", (b) => (err += b));
     p.on("error", rej);
     p.on("close", (c) =>
-      c === 0 ? res(JSON.parse(out)) : rej(new Error("Child failed: " + out)),
+      c === 0
+        ? res(JSON.parse(out))
+        : rej(new Error("Child failed: " + out + " stderr: " + err)),
     );
   });
 }
@@ -702,7 +706,7 @@ test("security: external Git config rejected before Git commands; custom exclude
 });
 test("A: future schema versions are refused without migration writes", () => {
   const f = fixture();
-  f.s.db.prepare("INSERT INTO migrations VALUES(2)").run();
+  f.s.db.prepare("INSERT INTO migrations VALUES(3)").run();
   f.s.close();
   assert.throws(
     () => new Storage(f.db),

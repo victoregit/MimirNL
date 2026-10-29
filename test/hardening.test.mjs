@@ -274,7 +274,7 @@ test("restore rejects corruption, incompatible schema, sidecars, project paths, 
     const newer = join(root, "newer.sqlite");
     await restoreDatabase(snapshot, newer);
     const n = new DatabaseSync(newer);
-    n.exec("UPDATE migrations SET version=2");
+    n.exec("UPDATE migrations SET version=3");
     n.close();
     await assert.rejects(restoreDatabase(newer, target), /version/);
     assert.equal(existsSync(target), false);

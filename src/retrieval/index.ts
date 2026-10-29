@@ -1,6 +1,13 @@
+import {
+  applicability,
+  memoryContext,
+  type Applicability,
+} from "../learning/context.js";
 import type { DatabaseSync, SQLInputValue } from "node:sqlite";
 export interface RetrievalFilter {
   projectId: string;
+  applicability?: Applicability;
+  applicabilityStatus?: "current" | "stale" | "unknown";
   includeGlobal: boolean;
   query: string;
   limit: number;
@@ -47,6 +54,10 @@ export class FtsRetriever implements Retriever {
     const terms = [...new Set(words.map((w) => w.toLowerCase()))];
     const groups = new Map<string, Record<string, unknown>>();
     for (const row of rows) {
+      if (filter.applicability || filter.applicabilityStatus) {
+        const result = applicability(memoryContext(row), filter.applicability);
+        if (result !== (filter.applicabilityStatus ?? "current")) continue;
+      }
       if (filter.policy === "balanced-v1") {
         const contentTerms = new Set(
           String(row.content)

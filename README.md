@@ -1,6 +1,6 @@
 # Mimir NL
 
-**Release status:** 0.3.0 candidate, unreleased. Bounded technical scope is complete; release review137, commits, remote CI and publication remain pending. See [release notes](docs/release-0.3.0.md) and [changelog](CHANGELOG.md).
+**Release status:** `0.4.0-dev.0`, technical development candidate, unpublished. V04-01 through V04-06 have independent approvals. V04-07 local evidence is prepared; review158 and remote CI of the exact future commit remain pending. No tag or npm release is authorized. See [current learning and recovery](docs/v04/learning.md) and [changelog](CHANGELOG.md).
 
 A second brain for AI. Mimir is a local-first TypeScript memory engine with SQLite persistence, project-isolated text retrieval, authorized read-only Git ingestion, deterministic feedback, and an official MCP v2 stdio server. It runs without an external API or model.
 
@@ -94,8 +94,10 @@ Read [architecture](docs/architecture.md), [MCP contract](docs/mcp.md), [integra
 
 ## Hardening and recovery
 
-Use `mimir --db EXISTING_DB backup NEW_SNAPSHOT` and `mimir --db NEW_DB restore SNAPSHOT --confirm` with existing private parent folders. Recovery never replaces an active database. See [backup/restore](docs/backup-restore.md), [contribution checks](CONTRIBUTING.md), [security policy](SECURITY.md) and [roadmap execution evidence](https://github.com/victoregit/MimirNL/blob/develop/docs/roadmap-execution.md). The package remains an unreleased 0.3.0 candidate. Historical reviews remain scoped to their recorded sources; broader efficiency and real-use learning are planned for 0.4.
+Use `mimir --db EXISTING_DB backup NEW_SNAPSHOT` and `mimir --db NEW_DB restore SNAPSHOT --confirm` with existing private parent folders. Recovery never replaces an active database. See [backup/restore](docs/backup-restore.md), [contribution checks](CONTRIBUTING.md), [security policy](SECURITY.md) and [roadmap execution evidence](https://github.com/victoregit/MimirNL/blob/develop/docs/roadmap-execution.md). The package remains `0.4.0-dev.0`, unpublished. Historical reviews retain their original scope; local green checks do not establish remote CI success or causal efficiency gains.
 
 ## License
 
 MIT — see [LICENSE](LICENSE). Dependency licenses and notices remain applicable.
+
+Development0.4 provides [opt-in local measurement](docs/v04/measurement.md), [structured experiences, review, applicability and correction](docs/v04/learning.md). Two later real tasks exercised reuse and maintenance of obsolete operational context, accepted by review156. Personal knowledge remains local; candidates are not verified facts. Generalization requires review of exact content and separate sharing consent. New knowledge DBs use schema2; existing1 requires explicit migration with a fresh verified backup and a compatible recovery runtime. Host tokens/cost/TTFT and causal benefit remain unknown. V04-07 awaits review158 and exact-commit remote CI.
