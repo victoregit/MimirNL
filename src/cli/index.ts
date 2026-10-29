@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+import { Measurement } from "../observability/index.js";
+import { adminSchemas } from "../observability/schemas.js";
 import { lstatSync } from "node:fs";
 import { assertLocalPath } from "../security/index.js";
 import { backupDatabase, restoreDatabase } from "../storage/backup.js";
@@ -18,7 +20,45 @@ function take(name: string) {
 }
 try {
   const db = take("--db");
-  if (args[0] === "restore") {
+  const measurementDb = take("--measurement-db");
+  if (
+    measurementDb &&
+    db &&
+    assertLocalPath(measurementDb) === assertLocalPath(db)
+  )
+    throw new AppError(
+      "MEASUREMENT_PATH",
+      "Separate measurement database required.",
+    );
+  if (args[0] === "measurement_restore") {
+    if (!db || !measurementDb || args.length !== 3 || args[2] !== "--confirm")
+      throw new AppError(
+        "CONFIRMATION_REQUIRED",
+        "Use --db KNOWLEDGE --measurement-db NEW_PATH measurement_restore EXPORT --confirm.",
+      );
+    if (!lstatSync(assertLocalPath(db)).isFile())
+      throw new AppError("INVALID_REQUEST", "Knowledge database must exist.");
+    const knowledge = new Storage(db);
+    try {
+      const roots = knowledge.db
+        .prepare("SELECT path FROM projects")
+        .all()
+        .map((r) => String(r.path));
+      process.stdout.write(
+        JSON.stringify({
+          ok: true,
+          data: Measurement.restore(
+            args[1]!,
+            measurementDb,
+            knowledge.path,
+            roots,
+          ),
+        }) + "\n",
+      );
+    } finally {
+      knowledge.close();
+    }
+  } else if (args[0] === "restore") {
     if (args.length !== 3 || !db || args[2] !== "--confirm")
       throw new AppError(
         "CONFIRMATION_REQUIRED",
@@ -46,7 +86,7 @@ try {
       storage.close();
     }
   } else {
-    const service = new Service(new Storage(db));
+    const service = new Service(new Storage(db), { measurementDb });
     if (args[0] === "mcp" && args[1] === "stdio") {
       await startMcp(service);
     } else {
@@ -62,6 +102,7 @@ try {
       const includeGlobal = flag("--include-global");
       const authorizeIngestion = flag("--authorize-ingestion");
       const confirm = flag("--confirm");
+      const dryRun = flag("--dry-run");
       let op = args.shift() ?? "doctor";
       let input: unknown = {};
       if (op === "project" && args[0] === "add") {
@@ -105,13 +146,54 @@ try {
         input = JSON.parse(args.shift()!);
       }
       if (args.length) throw new Error("Unexpected arguments");
-      const result = (await service.call(op, input)) as {
+      let result: unknown;
+      if (Object.hasOwn(adminSchemas, op)) {
+        if (op === "measurement_delete" && !confirm)
+          throw new AppError(
+            "CONFIRMATION_REQUIRED",
+            "Use --confirm for administrative deletion.",
+          );
+        if (
+          op === "measurement_prune" &&
+          (input as { dryRun?: boolean }).dryRun === false &&
+          !confirm
+        )
+          throw new AppError(
+            "CONFIRMATION_REQUIRED",
+            "Use --confirm for administrative pruning.",
+          );
+        if (!service.measurement)
+          throw new AppError(
+            "MEASUREMENT_DISABLED",
+            "Configure measurement at trusted startup.",
+          );
+        const data = adminSchemas[op as keyof typeof adminSchemas].parse({
+          ...(input as object),
+          ...(confirm ? { confirm: true } : {}),
+          ...(op === "measurement_prune" && dryRun ? { dryRun: true } : {}),
+        });
+        service.project(data.projectId);
+        if (op === "measurement_export")
+          result = { ok: true, data: service.measurement.export(data) };
+        if (op === "measurement_delete")
+          result = { ok: true, data: service.measurement.delete(data) };
+        if (op === "measurement_prune")
+          result = { ok: true, data: service.measurement.prune(data) };
+      } else
+        result = await service.call(op, input, {
+          onCapture: (status) =>
+            process.stderr.write(
+              JSON.stringify({ measurement: status }) + "\n",
+            ),
+        });
+      const response = result as {
         ok: boolean;
         data?: { healthy?: boolean };
       };
-      process.stdout.write(JSON.stringify(result) + "\n");
+      process.stdout.write(JSON.stringify(response) + "\n");
       service.close();
-      if (!result.ok || result.data?.healthy === false) process.exitCode = 1;
+      if (!response.ok || response.data?.healthy === false)
+        process.exitCode = 1;
     }
   }
 } catch (e) {

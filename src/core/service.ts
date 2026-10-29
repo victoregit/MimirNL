@@ -1,3 +1,4 @@
+import { Measurement, type CaptureStatus } from "../observability/index.js";
 import { getPackageVersion } from "../version.js";
 import { randomUUID } from "node:crypto";
 import { execFileSync } from "node:child_process";
@@ -20,7 +21,26 @@ import { schemas, type Operation } from "./schemas.js";
 import { GitAdapter } from "../ingestion/adapters/git.js";
 type Row = Record<string, unknown>;
 export class Service {
-  constructor(public storage = new Storage()) {}
+  readonly measurement?: Measurement;
+  constructor(
+    public storage = new Storage(),
+    options: { measurementDb?: string } = {},
+  ) {
+    try {
+      if (options.measurementDb)
+        this.measurement = new Measurement(
+          options.measurementDb,
+          storage.path,
+          storage.db
+            .prepare("SELECT path FROM projects")
+            .all()
+            .map((r) => String(r.path)),
+        );
+    } catch (e) {
+      storage.close();
+      throw e;
+    }
+  }
   get db() {
     return this.storage.db;
   }
@@ -122,14 +142,22 @@ export class Service {
     this.snapshot(id);
     return this.view(this.memory(projectId, id));
   }
-  async call(operation: string, input: unknown): Promise<unknown> {
+  async call(
+    operation: string,
+    input: unknown,
+    options: { onCapture?: (status: CaptureStatus) => void } = {},
+  ): Promise<unknown> {
     try {
       if (!Object.hasOwn(schemas, operation))
         throw new AppError("UNKNOWN_OPERATION", "Unknown operation.");
       assertSafe(input);
       const op = operation as Operation;
       const data = schemas[op].parse(input);
-      const value = await this.execute(op, data as Record<string, unknown>);
+      const value = await this.execute(
+        op,
+        data as Record<string, unknown>,
+        options.onCapture,
+      );
       return { ok: true, data: value };
     } catch (e) {
       return failure(e);
@@ -155,6 +183,7 @@ export class Service {
   private async execute(
     op: Operation,
     d: Record<string, unknown>,
+    onCapture?: (status: CaptureStatus) => void,
   ): Promise<unknown> {
     const p = String(d.projectId),
       id = String(d.id);
@@ -256,6 +285,53 @@ export class Service {
       };
     }
     this.project(p);
+    if (op.startsWith("measurement_")) {
+      if (!this.measurement)
+        throw new AppError(
+          "MEASUREMENT_DISABLED",
+          "Configure measurement at trusted startup.",
+        );
+      if (op === "measurement_start") return this.measurement.start(d);
+      if (op === "measurement_record") {
+        if (d.kind === "memory_use") {
+          for (const ref of d.memories as {
+            id: string;
+            version: number;
+            hash: string;
+            status: string;
+            scope: string;
+          }[]) {
+            const known = this.db
+              .prepare("SELECT * FROM memories WHERE id=?")
+              .get(ref.id);
+            if (
+              known &&
+              known.project_id !== p &&
+              !(known.scope === "global" && known.status === "verified")
+            )
+              throw new AppError(
+                "MEASUREMENT_SCOPE",
+                "Memory belongs to another project.",
+              );
+            if (
+              d.correlationStatus === "matched" &&
+              (!known ||
+                known.version !== ref.version ||
+                known.hash !== ref.hash ||
+                known.status !== ref.status ||
+                known.scope !== ref.scope)
+            )
+              throw new AppError(
+                "MEASUREMENT_CORRELATION",
+                "Matched memory version could not be confirmed.",
+              );
+          }
+        }
+        return this.measurement.record(d);
+      }
+      if (op === "measurement_finish") return this.measurement.finish(d);
+      if (op === "measurement_report") return this.measurement.report(d);
+    }
     if (op === "project_ingest")
       return new GitAdapter(String(this.project(p).path)).ingest(
         this,
@@ -356,66 +432,137 @@ export class Service {
       };
     }
     if (op === "memory_search") {
-      const start = performance.now();
-      const rows = new FtsRetriever(this.db).search(
-        d as unknown as RetrievalFilter,
-      );
-      const items = rows.map((m) => {
-        const full = this.view(m);
-        if (d.format !== "compact-v1") return full;
-        // Keep the full excerpt and all citation/integrity fields; omit operational counters.
-        return Object.fromEntries(
-          [
-            "id",
-            "project_id",
-            "scope",
-            "type",
-            "content",
-            "hash",
-            "status",
-            "origin",
-            "source",
-            "version",
-            "trust",
-            "duplicateProvenance",
-          ].map((key) => [key, full[key]]),
-        );
-      });
-      const metadata: Record<string, unknown> = {};
-      if (d.policy === "balanced-v1")
-        metadata.reason = rows.length
-          ? "lexical_matches"
-          : "no_lexical_evidence";
-      if (d.telemetry)
-        metadata.telemetry = {
-          version: "local-v1",
-          returnedCandidates: rows.length,
-          format: d.format,
-          policy: d.policy,
-        };
-      const result = optimize(items, Number(d.tokenBudget), metadata);
-      this.storage.transaction(() => {
-        const retrievalId = randomUUID();
-        for (const m of result.memories)
-          this.db
-            .prepare("UPDATE memories SET uses=uses+1 WHERE id=?")
-            .run(String(m.id));
-        this.db
-          .prepare("INSERT INTO retrievals VALUES(?,?,?,?,?,?)")
-          .run(
-            retrievalId,
-            p,
-            performance.now() - start,
-            result.estimatedTokens,
-            result.memories.length,
-            new Date().toISOString(),
+      if (d.attemptId) {
+        if (!this.measurement)
+          throw new AppError(
+            "MEASUREMENT_DISABLED",
+            "Configure measurement at trusted startup.",
           );
-        for (const m of result.memories)
+        this.measurement.assertAttempt(p, String(d.attemptId));
+      }
+      const callId = d.attemptId ? randomUUID() : undefined;
+      const start = performance.now();
+      try {
+        const rows = new FtsRetriever(this.db).search(
+          d as unknown as RetrievalFilter,
+        );
+        const items = rows.map((m) => {
+          const full = this.view(m);
+          if (d.format !== "compact-v1") return full;
+          // Keep the full excerpt and all citation/integrity fields; omit operational counters.
+          return Object.fromEntries(
+            [
+              "id",
+              "project_id",
+              "scope",
+              "type",
+              "content",
+              "hash",
+              "status",
+              "origin",
+              "source",
+              "version",
+              "trust",
+              "duplicateProvenance",
+            ].map((key) => [key, full[key]]),
+          );
+        });
+        const metadata: Record<string, unknown> = {};
+        if (d.policy === "balanced-v1")
+          metadata.reason = rows.length
+            ? "lexical_matches"
+            : "no_lexical_evidence";
+        if (d.telemetry)
+          metadata.telemetry = {
+            version: "local-v1",
+            returnedCandidates: rows.length,
+            format: d.format,
+            policy: d.policy,
+          };
+        const result = optimize(items, Number(d.tokenBudget), metadata);
+        const retrievalId = randomUUID();
+        let internalElapsedMs = 0;
+        this.storage.transaction(() => {
+          for (const m of result.memories)
+            this.db
+              .prepare("UPDATE memories SET uses=uses+1 WHERE id=?")
+              .run(String(m.id));
           this.db
-            .prepare("INSERT INTO retrieval_items VALUES(?,?)")
-            .run(retrievalId, String(m.id));
-      });
-      return result;
+            .prepare("INSERT INTO retrievals VALUES(?,?,?,?,?,?)")
+            .run(
+              retrievalId,
+              p,
+              (internalElapsedMs = performance.now() - start),
+              result.estimatedTokens,
+              result.memories.length,
+              new Date().toISOString(),
+            );
+          for (const m of result.memories)
+            this.db
+              .prepare("INSERT INTO retrieval_items VALUES(?,?)")
+              .run(retrievalId, String(m.id));
+        });
+        if (d.attemptId && this.measurement) {
+          const { attemptId: _, ...request } = d;
+          const status = this.measurement.captureSearch({
+            schemaVersion: 1,
+            projectId: p,
+            attemptId: String(d.attemptId),
+            eventId: randomUUID(),
+            kind: "search",
+            status: "succeeded",
+            callId: callId!,
+            retrievalId,
+            requestHash: hash(JSON.stringify(request)),
+            internalElapsedMs,
+            contextBytes: Buffer.byteLength(JSON.stringify(result)),
+            contentBytes: result.memories.reduce(
+              (n, m) => n + Buffer.byteLength(String(m.content)),
+              0,
+            ),
+            retrieved: rows.length,
+            delivered: result.memories.length,
+            memories: result.memories.map((m) => ({
+              id: String(m.id),
+              version: Number(m.version),
+              hash: String(m.hash),
+              status: m.status as "candidate",
+              scope: m.scope as "project",
+            })),
+            correlationStatus: "matched",
+          });
+          // Diagnostics are outside the bounded data envelope. A consumer callback
+          // cannot break a legitimate search after the knowledge transaction.
+          try {
+            onCapture?.(status);
+          } catch {
+            /* Consumer owns diagnostic delivery. */
+          }
+        }
+        return result;
+      } catch (e) {
+        if (d.attemptId && this.measurement) {
+          const { attemptId: _, ...request } = d;
+          const status = this.measurement.captureSearch({
+            schemaVersion: 1,
+            projectId: p,
+            attemptId: String(d.attemptId),
+            eventId: randomUUID(),
+            kind: "search_failure",
+            callId: callId!,
+            requestHash: hash(JSON.stringify(request)),
+            internalElapsedMs: performance.now() - start,
+            status: "failed",
+            errorCode: "local_failure",
+          });
+          try {
+            onCapture?.(status);
+          } catch {
+            /* Consumer diagnostic only. */
+          }
+        }
+        throw e;
+      }
     }
     if (op === "memory_stats")
       return {
@@ -531,6 +678,7 @@ export class Service {
     throw new AppError("UNKNOWN_OPERATION", "Unknown operation.");
   }
   close() {
+    this.measurement?.close();
     this.storage.close();
   }
 }

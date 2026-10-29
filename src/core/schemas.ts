@@ -1,8 +1,10 @@
 import * as z from "zod/v4";
+import { measurementSchemas } from "../observability/schemas.js";
 const id = z.string().uuid();
 const projectId = { projectId: id };
 const text = z.string().min(1).max(32000);
 export const schemas = {
+  ...measurementSchemas,
   init: z.object({}).strict(),
   project_register: z
     .object({
@@ -60,6 +62,7 @@ export const schemas = {
     .object({
       ...projectId,
       query: z.string().max(1000),
+      attemptId: z.string().uuidv4().optional(),
       type: z
         .enum(["episodic", "semantic", "procedural", "project", "global"])
         .optional(),

@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.0-dev.0 (unreleased)
+
+Opt-in local measurement sidecar, scoped CLI/MCP lifecycle and reports, CLI-only private logical backup/restore and retention. Knowledge schema remains1. Pending independent review and subsequent real-use acceptance.
+
 ## 0.3.0 — candidate / unreleased
 
 - Preserve persistent SQLite/FTS5 memory, project isolation, provenance and explicit approval boundaries.

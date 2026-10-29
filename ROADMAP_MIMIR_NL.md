@@ -127,6 +127,8 @@ Remaining steps: supervisor-arranged independent final evidence review (Task46),
 
 ## v0.4.0 — Learning from outcomes (P1)
 
+Task147 proposes the [implementation plan](docs/v04/plano-implementacao.md) and [measurement contract](docs/v04/contrato-medicao.md), with real CLI0.3 bootstrap evidence. Review148 is pending; no 0.4 feature or new telemetry implementation is marked complete.
+
 **Goal:** turn recorded experiences into reliable, reusable lessons.
 
 - [ ] Define a structured experience record: problem, environment, attempted action, observed result, tests, source, confidence.
@@ -212,3 +214,5 @@ Historical task31 final-gate preparation (review and WSL progress superseded abo
 ## Registro histórico Task120 — pendência111 superada pelo parecer111/registro122
 
 A avaliação limitada104 e a revisão110 estão consolidadas no [fechamento corrente](docs/benchmarks/v03/fechamento-0.3.md). Snapshot histórico preservado antes da portabilidade/formatação; código corrente segue revisão independente111 antes do fechamento definitivo105. Zero chamadas novas, 54 históricas. Qualidade igual nos três cenários, B com +2,93% de tokens de entrada; cache ambiente, histórico C vazio e modelo/custo/TTFT indisponíveis impedem alegar economia ou ganho de qualidade. Sem commit, push ou publicação; histórico anterior preservado.
+
+V04-01 em implementação/revisão150: coletor local lateral opt-in; ver [operação](docs/v04/measurement.md). Demais incrementos0.4 e aceitação de uso real continuam pendentes.

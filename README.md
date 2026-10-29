@@ -99,3 +99,5 @@ Use `mimir --db EXISTING_DB backup NEW_SNAPSHOT` and `mimir --db NEW_DB restore 
 ## License
 
 MIT — see [LICENSE](LICENSE). Dependency licenses and notices remain applicable.
+
+Development0.4: [opt-in local measurement collector](docs/v04/measurement.md), pending independent review and real-use acceptance. Knowledge remains schema1; learning increments are still pending.

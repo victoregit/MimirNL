@@ -1,3 +1,4 @@
+import { randomUUID } from "node:crypto";
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
 import {
@@ -158,6 +159,21 @@ try {
       }),
     );
     assert.equal(client.getServerVersion().version, expectedVersion);
+    const tools = (await client.listTools()).tools.map((t) => t.name);
+    for (const op of [
+      "measurement_start",
+      "measurement_record",
+      "measurement_finish",
+      "measurement_report",
+    ])
+      assert.ok(tools.includes(op));
+    for (const op of [
+      "measurement_export",
+      "measurement_delete",
+      "measurement_prune",
+      "measurement_restore",
+    ])
+      assert.ok(!tools.includes(op));
     const result = await client.callTool({ name: "init", arguments: {} });
     assert.equal(
       JSON.parse(result.content[0].text).data.version,
@@ -176,6 +192,74 @@ try {
   );
   const project = cli(db, "project", "add", repo, "--authorize-ingestion");
   assert.ok(cli(db, "ingest", project.id).inserted > 0);
+  const measurementDb = join(
+    root,
+    "measurement-private",
+    "observability.sqlite",
+  );
+  const attemptId = randomUUID(),
+    sessionId = randomUUID();
+  const installedCli = join(
+    install,
+    "node_modules",
+    "mimir-nl",
+    "dist",
+    "cli",
+    "index.js",
+  );
+  function measurementCli(op, input, ...flags) {
+    const response = JSON.parse(
+      command(process.execPath, [
+        installedCli,
+        "--db",
+        db,
+        "--measurement-db",
+        measurementDb,
+        op,
+        JSON.stringify(input),
+        ...flags,
+      ]),
+    );
+    assert.equal(response.ok, true, JSON.stringify(response));
+    return response.data;
+  }
+  measurementCli("measurement_start", {
+    projectId: project.id,
+    attemptId,
+    eventId: randomUUID(),
+    sessionId,
+    taskId: "installed-smoke",
+    mode: "synthetic",
+  });
+  measurementCli("memory_search", {
+    projectId: project.id,
+    attemptId,
+    query: "retrieval",
+    format: "compact-v1",
+    tokenBudget: 4000,
+  });
+  measurementCli("measurement_finish", {
+    projectId: project.id,
+    attemptId,
+    eventId: randomUUID(),
+    status: "succeeded",
+  });
+  assert.equal(
+    measurementCli("measurement_report", { projectId: project.id }).status
+      .succeeded,
+    1,
+  );
+  measurementCli("measurement_export", {
+    projectId: project.id,
+    attemptIds: [attemptId],
+    destination: join(root, "measurement-private", "export.json"),
+  });
+  measurementCli(
+    "measurement_delete",
+    { projectId: project.id, attemptIds: [attemptId] },
+    "--confirm",
+  );
+
   const m = cli(
     db,
     "store",
@@ -229,6 +313,8 @@ try {
       backupRestore: true,
       feedbackApproval: true,
       isolation: true,
+      measurementLifecycle: true,
+      measurementAdminNotMcp: true,
       node: process.version,
       platform: process.platform,
     }),

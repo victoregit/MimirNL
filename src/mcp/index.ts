@@ -1,3 +1,4 @@
+import type { CaptureStatus } from "../observability/index.js";
 import { getPackageVersion } from "../version.js";
 import { McpServer } from "@modelcontextprotocol/server";
 import { serveStdio } from "@modelcontextprotocol/server/stdio";
@@ -17,12 +18,18 @@ export function startMcp(service: Service) {
           inputSchema: schema,
         },
         async (input: unknown) => {
-          const result = (await service.call(name as Operation, input)) as {
+          let capture: CaptureStatus | undefined;
+          const result = (await service.call(name as Operation, input, {
+            onCapture: (s) => {
+              capture = s;
+            },
+          })) as {
             ok: boolean;
           };
           return {
             content: [{ type: "text" as const, text: JSON.stringify(result) }],
             isError: !result.ok,
+            ...(capture ? { _meta: { measurement: capture } } : {}),
           };
         },
       );

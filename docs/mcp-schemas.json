@@ -1,4 +1,726 @@
 {
+  "measurement_start": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "schemaVersion": {
+        "default": 1,
+        "type": "number",
+        "const": 1
+      },
+      "projectId": {
+        "type": "string",
+        "format": "uuid",
+        "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12})$"
+      },
+      "attemptId": {
+        "type": "string",
+        "format": "uuid",
+        "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12})$"
+      },
+      "eventId": {
+        "type": "string",
+        "format": "uuid",
+        "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12})$"
+      },
+      "taskId": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,127}$"
+      },
+      "sessionId": {
+        "type": "string",
+        "format": "uuid",
+        "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12})$"
+      },
+      "mode": {
+        "type": "string",
+        "enum": ["real_use", "controlled_experiment", "synthetic"]
+      },
+      "identity": {
+        "default": {
+          "commit": null,
+          "dirtyHash": null,
+          "requestedModel": null,
+          "observedModel": null,
+          "observedModelReason": "not_collected",
+          "configHash": null,
+          "promptHash": null,
+          "configOrigin": "unknown"
+        },
+        "type": "object",
+        "properties": {
+          "commit": {
+            "default": null,
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[a-f0-9]{40}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "dirtyHash": {
+            "default": null,
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "requestedModel": {
+            "default": null,
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,127}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "observedModel": {
+            "default": null,
+            "type": "null"
+          },
+          "observedModelReason": {
+            "default": "not_collected",
+            "type": "string",
+            "enum": [
+              "not_available",
+              "not_collected",
+              "not_applicable",
+              "semantics_unconfirmed",
+              "no_paired_control",
+              "source_not_verified"
+            ]
+          },
+          "configHash": {
+            "default": null,
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "promptHash": {
+            "default": null,
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "configOrigin": {
+            "default": "unknown",
+            "type": "string",
+            "enum": ["provided", "unknown"]
+          }
+        },
+        "required": [
+          "commit",
+          "dirtyHash",
+          "requestedModel",
+          "observedModel",
+          "observedModelReason",
+          "configHash",
+          "promptHash",
+          "configOrigin"
+        ],
+        "additionalProperties": false
+      },
+      "retryOf": {
+        "type": "string",
+        "format": "uuid",
+        "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12})$"
+      },
+      "retryReason": {
+        "type": "string",
+        "enum": ["retry", "correction", "unknown"]
+      },
+      "ttlDays": {
+        "default": 30,
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 3650
+      }
+    },
+    "required": [
+      "schemaVersion",
+      "projectId",
+      "attemptId",
+      "eventId",
+      "taskId",
+      "sessionId",
+      "mode",
+      "identity",
+      "ttlDays"
+    ],
+    "additionalProperties": false
+  },
+  "measurement_record": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "oneOf": [
+      {
+        "type": "object",
+        "properties": {
+          "schemaVersion": {
+            "default": 1,
+            "type": "number",
+            "const": 1
+          },
+          "projectId": {
+            "type": "string",
+            "format": "uuid",
+            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12})$"
+          },
+          "attemptId": {
+            "type": "string",
+            "format": "uuid",
+            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12})$"
+          },
+          "eventId": {
+            "type": "string",
+            "format": "uuid",
+            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12})$"
+          },
+          "kind": {
+            "type": "string",
+            "const": "host_usage"
+          },
+          "usage": {
+            "type": "object",
+            "properties": {
+              "schemaVersion": {
+                "default": 1,
+                "type": "number",
+                "const": 1
+              },
+              "namespace": {
+                "type": "string",
+                "enum": ["canonical", "ag_native"]
+              },
+              "scope": {
+                "type": "string",
+                "enum": ["turn", "session"]
+              },
+              "scopeId": {
+                "type": "string",
+                "format": "uuid",
+                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12})$"
+              },
+              "sessionId": {
+                "type": "string",
+                "format": "uuid",
+                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12})$"
+              },
+              "collector": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,127}$"
+              },
+              "collectorVersion": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,127}$"
+              },
+              "semanticsConfirmed": {
+                "type": "boolean"
+              },
+              "input": {
+                "anyOf": [
+                  {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "output": {
+                "anyOf": [
+                  {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "cachedInput": {
+                "anyOf": [
+                  {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "total": {
+                "anyOf": [
+                  {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "reason": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "enum": [
+                      "not_available",
+                      "not_collected",
+                      "not_applicable",
+                      "semantics_unconfirmed",
+                      "no_paired_control",
+                      "source_not_verified"
+                    ]
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "schemaVersion",
+              "namespace",
+              "scope",
+              "scopeId",
+              "sessionId",
+              "collector",
+              "collectorVersion",
+              "semanticsConfirmed",
+              "input",
+              "output",
+              "cachedInput",
+              "total",
+              "reason"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "schemaVersion",
+          "projectId",
+          "attemptId",
+          "eventId",
+          "kind",
+          "usage"
+        ],
+        "additionalProperties": false
+      },
+      {
+        "type": "object",
+        "properties": {
+          "schemaVersion": {
+            "default": 1,
+            "type": "number",
+            "const": 1
+          },
+          "projectId": {
+            "type": "string",
+            "format": "uuid",
+            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12})$"
+          },
+          "attemptId": {
+            "type": "string",
+            "format": "uuid",
+            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12})$"
+          },
+          "eventId": {
+            "type": "string",
+            "format": "uuid",
+            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12})$"
+          },
+          "kind": {
+            "type": "string",
+            "const": "memory_use"
+          },
+          "memories": {
+            "maxItems": 100,
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "format": "uuid",
+                  "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12})$"
+                },
+                "version": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 9007199254740991
+                },
+                "hash": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": ["candidate", "verified", "deprecated", "rejected"]
+                },
+                "scope": {
+                  "type": "string",
+                  "enum": ["project", "global"]
+                }
+              },
+              "required": ["id", "version", "hash", "status", "scope"],
+              "additionalProperties": false
+            }
+          },
+          "consulted": {
+            "type": "boolean"
+          },
+          "usedReported": {
+            "type": "boolean"
+          },
+          "sourceRefsVerified": {
+            "type": "boolean"
+          },
+          "evidenceRefs": {
+            "maxItems": 20,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid",
+              "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12})$"
+            }
+          },
+          "actorKind": {
+            "type": "string",
+            "const": "agent"
+          },
+          "correlationStatus": {
+            "type": "string",
+            "enum": ["matched", "missing", "unknown"]
+          }
+        },
+        "required": [
+          "schemaVersion",
+          "projectId",
+          "attemptId",
+          "eventId",
+          "kind",
+          "memories",
+          "consulted",
+          "usedReported",
+          "sourceRefsVerified",
+          "evidenceRefs",
+          "actorKind",
+          "correlationStatus"
+        ],
+        "additionalProperties": false
+      },
+      {
+        "type": "object",
+        "properties": {
+          "schemaVersion": {
+            "default": 1,
+            "type": "number",
+            "const": 1
+          },
+          "projectId": {
+            "type": "string",
+            "format": "uuid",
+            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12})$"
+          },
+          "attemptId": {
+            "type": "string",
+            "format": "uuid",
+            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12})$"
+          },
+          "eventId": {
+            "type": "string",
+            "format": "uuid",
+            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12})$"
+          },
+          "kind": {
+            "type": "string",
+            "const": "quality"
+          },
+          "actorKind": {
+            "type": "string",
+            "enum": ["agent", "test", "human"]
+          },
+          "rating": {
+            "type": "string",
+            "enum": ["helpful", "useless", "harmful", "unassessed"]
+          },
+          "independentAssessment": {
+            "type": "string",
+            "enum": ["reported", "unknown"]
+          },
+          "evidenceRefs": {
+            "maxItems": 20,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid",
+              "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12})$"
+            }
+          },
+          "adverseOutcome": {
+            "type": "string",
+            "enum": ["none_reported", "regression_reported", "unknown"]
+          }
+        },
+        "required": [
+          "schemaVersion",
+          "projectId",
+          "attemptId",
+          "eventId",
+          "kind",
+          "actorKind",
+          "rating",
+          "independentAssessment",
+          "evidenceRefs",
+          "adverseOutcome"
+        ],
+        "additionalProperties": false
+      },
+      {
+        "type": "object",
+        "properties": {
+          "schemaVersion": {
+            "default": 1,
+            "type": "number",
+            "const": 1
+          },
+          "projectId": {
+            "type": "string",
+            "format": "uuid",
+            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12})$"
+          },
+          "attemptId": {
+            "type": "string",
+            "format": "uuid",
+            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12})$"
+          },
+          "eventId": {
+            "type": "string",
+            "format": "uuid",
+            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12})$"
+          },
+          "kind": {
+            "type": "string",
+            "const": "call"
+          },
+          "callId": {
+            "type": "string",
+            "format": "uuid",
+            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12})$"
+          },
+          "operation": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,127}$"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["succeeded", "failed", "aborted", "not_run"]
+          },
+          "cliElapsedMs": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "internalElapsedMs": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "contextBytes": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "not_available",
+                  "not_collected",
+                  "not_applicable",
+                  "semantics_unconfirmed",
+                  "no_paired_control",
+                  "source_not_verified"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "requestHash": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "errorCode": {
+            "type": "string",
+            "enum": ["none", "local_failure", "invalid_request", "unknown"]
+          }
+        },
+        "required": [
+          "schemaVersion",
+          "projectId",
+          "attemptId",
+          "eventId",
+          "kind",
+          "callId",
+          "operation",
+          "status",
+          "cliElapsedMs",
+          "internalElapsedMs",
+          "contextBytes",
+          "reason",
+          "requestHash",
+          "errorCode"
+        ],
+        "additionalProperties": false
+      }
+    ]
+  },
+  "measurement_finish": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "schemaVersion": {
+        "default": 1,
+        "type": "number",
+        "const": 1
+      },
+      "projectId": {
+        "type": "string",
+        "format": "uuid",
+        "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12})$"
+      },
+      "attemptId": {
+        "type": "string",
+        "format": "uuid",
+        "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12})$"
+      },
+      "eventId": {
+        "type": "string",
+        "format": "uuid",
+        "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12})$"
+      },
+      "status": {
+        "type": "string",
+        "enum": ["succeeded", "failed", "aborted", "not_run"]
+      },
+      "outcomeRefs": {
+        "default": [],
+        "maxItems": 20,
+        "type": "array",
+        "items": {
+          "type": "string",
+          "format": "uuid",
+          "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12})$"
+        }
+      },
+      "missingReasons": {
+        "default": ["not_collected"],
+        "maxItems": 20,
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": [
+            "not_available",
+            "not_collected",
+            "not_applicable",
+            "semantics_unconfirmed",
+            "no_paired_control",
+            "source_not_verified"
+          ]
+        }
+      }
+    },
+    "required": [
+      "schemaVersion",
+      "projectId",
+      "attemptId",
+      "eventId",
+      "status",
+      "outcomeRefs",
+      "missingReasons"
+    ],
+    "additionalProperties": false
+  },
+  "measurement_report": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "projectId": {
+        "type": "string",
+        "format": "uuid",
+        "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12})$"
+      },
+      "attemptId": {
+        "type": "string",
+        "format": "uuid",
+        "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12})$"
+      },
+      "from": {
+        "type": "string",
+        "format": "date-time",
+        "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+      },
+      "to": {
+        "type": "string",
+        "format": "date-time",
+        "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+      }
+    },
+    "required": ["projectId"],
+    "additionalProperties": false
+  },
   "init": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "type": "object",
@@ -175,6 +897,11 @@
       "query": {
         "type": "string",
         "maxLength": 1000
+      },
+      "attemptId": {
+        "type": "string",
+        "format": "uuid",
+        "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12})$"
       },
       "type": {
         "type": "string",
