@@ -29,7 +29,8 @@
     "CHANGELOG.md",
     "docs/release-0.3.0.md",
     "docs/core-retrieval-0.3.md",
-    "docs/v04/measurement.md"
+    "docs/v04/measurement.md",
+    "docs/v04/learning.md"
   ],
   "scripts": {
     "build": "tsc",

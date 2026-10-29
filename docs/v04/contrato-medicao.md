@@ -1,6 +1,6 @@
 # Contrato operacional de medição 0.4
 
-Proposta147 para review148, não implementação. Objetivo: observar onde Mimir ajuda, é inútil ou prejudica tarefas reais, preservando ausências e permitindo auditoria. [Plano e gates](plano-implementacao.md). Não afirmar economia causal a partir de uma tarefa observacional ou rating do próprio agente.
+Contrato proposto147 e aprovado148; coletor149 aprovado150, em aceitação operacional real na tarefa151. Objetivo: observar onde Mimir ajuda, é inútil ou prejudica tarefas reais, preservando ausências e permitindo auditoria. [Plano e gates](plano-implementacao.md). Não afirmar economia causal a partir de uma tarefa observacional ou rating do próprio agente.
 
 ## Unidade, fronteiras e eventos
 

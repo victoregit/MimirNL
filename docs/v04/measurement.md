@@ -1,6 +1,6 @@
 # Local measurement collector (0.4 development)
 
-V04-01 is an opt-in sidecar, pending independent review150 and a subsequent real-use task. Learning changes V04-02 onward remain unimplemented. Knowledge SQLite stays schema1. There is no daemon, host configuration, ingestion, model call, transcript reader or upload.
+V04-01 is an opt-in sidecar approved by independent review150, with real-use acceptance in task151. V04-02/03 learning changes are pending review152; see [learning](learning.md). The real dogfood knowledge DB remains schema1 until approval152; new development databases use schema2 with explicit migration for existing1. There is no daemon, host configuration, ingestion, model call, transcript reader or upload.
 
 ## Enable and operate
 

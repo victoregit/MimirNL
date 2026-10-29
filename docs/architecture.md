@@ -18,7 +18,7 @@ service.close();
 
 ## ADR 1: built-in SQLite, explicit transactions
 
-Latest Node 24 LTS (24.22.1+ within 24.x) avoids native-addon build requirements. An in-memory SQLite version probe rejects unpatched/unknown WAL-reset runtimes before filesystem changes or user-database open. Database initialization sets WAL, a 10-second busy timeout, foreign keys, migration version 1, scoped unique hash indexes and FTS5 triggers. `BEGIN IMMEDIATE` covers registration, deduplicated writes, snapshots, feedback, ingest batches, confirmed deletion and usage updates. Errors roll back. Separate processes serialize writes through SQLite. History stores complete content/provenance snapshots; every content/status/provenance change increments version. A content duplicate returns its existing scoped ID; distinct source references are retained in versioned provenance (maximum 20 additional references). Retrieval use counters and per-memory usage records are operational metrics and do not change content versions; private get returns the latest 100 usage records with project boundaries enforced.
+Latest Node 24 LTS (24.22.1+ within 24.x) avoids native-addon build requirements. An in-memory SQLite version probe rejects unpatched/unknown WAL-reset runtimes before filesystem changes or user-database open. Database initialization sets WAL, a 10-second busy timeout, foreign keys, migration version2 for new development databases (existing1 requires explicit migration), scoped unique hash indexes and FTS5 triggers. `BEGIN IMMEDIATE` covers registration, deduplicated writes, snapshots, feedback, ingest batches, confirmed deletion and usage updates. Errors roll back. Separate processes serialize writes through SQLite. History stores complete content/provenance snapshots; every content/status/provenance change increments version. A content duplicate returns its existing scoped ID; distinct source references are retained in versioned provenance (maximum 20 additional references). Retrieval use counters and per-memory usage records are operational metrics and do not change content versions; private get returns the latest 100 usage records with project boundaries enforced.
 
 ## ADR 2: explicit isolation and sharing
 
@@ -39,3 +39,5 @@ FTS5 literal Unicode word tokens use OR semantics and BM25 ordering; user FTS op
 ## Deferred work
 
 Host acceptance tests, model-specific tokenizers, local embeddings/hybrid ranking, encrypted storage, human authorization UI, worktree/submodule traversal, larger-scale ingestion, and independently reviewed security hardening remain future work. There is no web backend or outbound application service.
+
+V04-02/03 (pending review152) stores structured experiences as validated content and canonical review/assessment JSON in the same memory/history transaction. [Learning and authorization](v04/learning.md) defines reported evidence versus explicit version/hash consent. The independent measurement sidecar remains schema1.

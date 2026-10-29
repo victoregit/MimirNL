@@ -1,6 +1,6 @@
 # Plano de implementação 0.4
 
-Proposta da tarefa 147, baseada em `86318afd8ba7eec6744ff5da396e5aaafc42ffa5` (0.3.0). Revisão 148 pendente. Nenhuma funcionalidade abaixo foi implementada nesta tarefa. Os sete objetivos de [v0.4 no roadmap](../../ROADMAP_MIMIR_NL.md) permanecem abertos. O [contrato de medição](contrato-medicao.md) governa os registros de uso real.
+Proposta da tarefa 147, baseada em `86318afd8ba7eec6744ff5da396e5aaafc42ffa5` (0.3.0). Fundação aprovada148; V04-01 implementado149 e aprovado150. V04-02/03 implementados151 aguardam revisão152. A tarefa147 original foi somente documental. Os sete objetivos de [v0.4 no roadmap](../../ROADMAP_MIMIR_NL.md) permanecem abertos. O [contrato de medição](contrato-medicao.md) governa os registros de uso real.
 
 ## Inventário e lacunas
 

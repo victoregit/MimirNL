@@ -100,4 +100,4 @@ Use `mimir --db EXISTING_DB backup NEW_SNAPSHOT` and `mimir --db NEW_DB restore 
 
 MIT — see [LICENSE](LICENSE). Dependency licenses and notices remain applicable.
 
-Development0.4: [opt-in local measurement collector](docs/v04/measurement.md), pending independent review and real-use acceptance. Knowledge remains schema1; learning increments are still pending.
+Development0.4: [opt-in measurement](docs/v04/measurement.md) approved150; [structured learning and explicit review](docs/v04/learning.md) pending152. New knowledge DBs use schema2; existing1 requires explicit migration with verified backup. Real dogfood migration waits for152 approval.

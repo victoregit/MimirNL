@@ -1,3 +1,5 @@
+import { DatabaseSync } from "node:sqlite";
+import { SCHEMA_SQL } from "../dist/storage/schema.js";
 import { randomUUID } from "node:crypto";
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
@@ -223,6 +225,95 @@ try {
     assert.equal(response.ok, true, JSON.stringify(response));
     return response.data;
   }
+  function learningCli(op, input) {
+    const response = JSON.parse(
+      command(process.execPath, [
+        installedCli,
+        "--db",
+        db,
+        op,
+        JSON.stringify(input),
+      ]),
+    );
+    assert.equal(response.ok, true, JSON.stringify(response));
+    return response.data;
+  }
+  const learned = learningCli("experience_observe", {
+    projectId: project.id,
+    experience: {
+      schemaVersion: 1,
+      problem: "installed synthetic problem",
+      environment: {
+        platform: null,
+        runtime: null,
+        tool: null,
+        reason: "not_collected",
+      },
+      action: "installed synthetic action",
+      observedResult: "observation only",
+      tests: [],
+      sources: [],
+      confidence: { value: null, reason: "not_collected" },
+      identity: {
+        requestedModel: null,
+        observedModel: null,
+        observedModelReason: "not_collected",
+        actorKind: "agent",
+        actorRef: randomUUID(),
+        provenance: "provided",
+      },
+    },
+  });
+  const begun = learningCli("memory_review", {
+    projectId: project.id,
+    id: learned.id,
+    action: "begin",
+    expectedVersion: learned.version,
+    expectedHash: learned.hash,
+    actorKind: "agent",
+    actorRef: randomUUID(),
+  });
+  assert.equal(begun.status, "candidate");
+  const approved = learningCli("memory_review", {
+    projectId: project.id,
+    id: begun.id,
+    action: "decide",
+    expectedVersion: begun.version,
+    expectedHash: begun.hash,
+    actorKind: "human",
+    actorRef: randomUUID(),
+    decision: "verified",
+    explicitHumanConsent: true,
+  });
+  assert.equal(approved.status, "verified");
+  const legacyDb = join(root, "legacy1.sqlite"),
+    migrationBackup = join(root, "legacy-backup1.sqlite");
+  const legacyConnection = new DatabaseSync(legacyDb);
+  legacyConnection.exec(SCHEMA_SQL);
+  legacyConnection.close();
+  const migrated = JSON.parse(
+    command(process.execPath, [
+      installedCli,
+      "--db",
+      legacyDb,
+      "migrate",
+      migrationBackup,
+      "--confirm",
+    ]),
+  );
+  assert.equal(migrated.ok, true);
+  assert.equal(migrated.data.schemaVersion, 2);
+  const backupConnection = new DatabaseSync(migrationBackup, {
+    readOnly: true,
+  });
+  try {
+    assert.equal(
+      backupConnection.prepare("SELECT version FROM migrations").get().version,
+      1,
+    );
+  } finally {
+    backupConnection.close();
+  }
   measurementCli("measurement_start", {
     projectId: project.id,
     attemptId,
@@ -315,6 +406,8 @@ try {
       isolation: true,
       measurementLifecycle: true,
       measurementAdminNotMcp: true,
+      structuredLearningReview: true,
+      explicitMigrationBackup1: true,
       node: process.version,
       platform: process.platform,
     }),

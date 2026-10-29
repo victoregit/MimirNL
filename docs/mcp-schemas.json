@@ -721,6 +721,74 @@
     "required": ["projectId"],
     "additionalProperties": false
   },
+  "memory_review": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "projectId": {
+        "type": "string",
+        "format": "uuid",
+        "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+      },
+      "id": {
+        "type": "string",
+        "format": "uuid",
+        "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+      },
+      "action": {
+        "type": "string",
+        "enum": ["begin", "decide"]
+      },
+      "expectedVersion": {
+        "type": "integer",
+        "exclusiveMinimum": 0,
+        "maximum": 9007199254740991
+      },
+      "expectedHash": {
+        "type": "string",
+        "pattern": "^[a-f0-9]{64}$"
+      },
+      "actorKind": {
+        "type": "string",
+        "enum": ["agent", "test", "human"]
+      },
+      "actorRef": {
+        "type": "string",
+        "format": "uuid",
+        "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+      },
+      "decision": {
+        "type": "string",
+        "enum": ["verified", "rejected", "deprecated"]
+      },
+      "explicitHumanConsent": {
+        "default": false,
+        "type": "boolean"
+      },
+      "evidenceRefs": {
+        "default": [],
+        "maxItems": 20,
+        "type": "array",
+        "items": {
+          "type": "string",
+          "format": "uuid",
+          "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+        }
+      }
+    },
+    "required": [
+      "projectId",
+      "id",
+      "action",
+      "expectedVersion",
+      "expectedHash",
+      "actorKind",
+      "actorRef",
+      "explicitHumanConsent",
+      "evidenceRefs"
+    ],
+    "additionalProperties": false
+  },
   "init": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "type": "object",
@@ -999,6 +1067,150 @@
         "default": false,
         "type": "boolean"
       },
+      "expectedVersion": {
+        "type": "integer",
+        "exclusiveMinimum": 0,
+        "maximum": 9007199254740991
+      },
+      "expectedHash": {
+        "type": "string",
+        "pattern": "^[a-f0-9]{64}$"
+      },
+      "assessment": {
+        "type": "object",
+        "properties": {
+          "schemaVersion": {
+            "type": "number",
+            "const": 1
+          },
+          "actorKind": {
+            "type": "string",
+            "enum": ["agent", "test", "human"]
+          },
+          "actorRef": {
+            "type": "string",
+            "format": "uuid",
+            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+          },
+          "judgment": {
+            "type": "string",
+            "enum": ["helpful", "useless", "harmful", "unassessed"]
+          },
+          "evidenceRefs": {
+            "maxItems": 20,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid",
+              "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+            }
+          },
+          "testStatus": {
+            "type": "string",
+            "enum": ["pass", "fail", "not_run", "unknown"]
+          },
+          "sourceVersionKnown": {
+            "type": "boolean"
+          },
+          "sourceRefs": {
+            "maxItems": 20,
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "reference": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 240
+                },
+                "commit": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "pattern": "^[a-f0-9]{40}$"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "hash": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "pattern": "^[a-f0-9]{64}$"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "version": {
+                  "anyOf": [
+                    {
+                      "type": "integer",
+                      "exclusiveMinimum": 0,
+                      "maximum": 9007199254740991
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "verification": {
+                  "type": "string",
+                  "enum": [
+                    "agent_reported",
+                    "test_reported",
+                    "human_reported",
+                    "unknown"
+                  ]
+                },
+                "sourceVersionKnown": {
+                  "type": "boolean"
+                },
+                "reason": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "enum": [
+                        "not_collected",
+                        "not_available",
+                        "not_applicable",
+                        "unknown"
+                      ]
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "reference",
+                "commit",
+                "hash",
+                "version",
+                "verification",
+                "sourceVersionKnown",
+                "reason"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "schemaVersion",
+          "actorKind",
+          "actorRef",
+          "judgment",
+          "evidenceRefs",
+          "testStatus",
+          "sourceVersionKnown",
+          "sourceRefs"
+        ],
+        "additionalProperties": false
+      },
       "sharingApproval": {
         "default": false,
         "type": "boolean"
@@ -1027,31 +1239,339 @@
   },
   "experience_observe": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "type": "object",
-    "properties": {
-      "projectId": {
-        "type": "string",
-        "format": "uuid",
-        "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+    "anyOf": [
+      {
+        "type": "object",
+        "properties": {
+          "projectId": {
+            "type": "string",
+            "format": "uuid",
+            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+          },
+          "task": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 32000
+          },
+          "attempt": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 32000
+          },
+          "result": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 32000
+          }
+        },
+        "required": ["projectId", "task", "attempt", "result"],
+        "additionalProperties": false
       },
-      "task": {
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 32000
-      },
-      "attempt": {
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 32000
-      },
-      "result": {
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 32000
+      {
+        "type": "object",
+        "properties": {
+          "projectId": {
+            "type": "string",
+            "format": "uuid",
+            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+          },
+          "experience": {
+            "type": "object",
+            "properties": {
+              "schemaVersion": {
+                "type": "number",
+                "const": 1
+              },
+              "problem": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 4000
+              },
+              "environment": {
+                "type": "object",
+                "properties": {
+                  "platform": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.+-]{0,127}$"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "runtime": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.+-]{0,127}$"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "tool": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.+-]{0,127}$"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "reason": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "enum": [
+                          "not_collected",
+                          "not_available",
+                          "not_applicable",
+                          "unknown"
+                        ]
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "required": ["platform", "runtime", "tool", "reason"],
+                "additionalProperties": false
+              },
+              "action": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 4000
+              },
+              "observedResult": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 4000
+              },
+              "tests": {
+                "maxItems": 30,
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "reference": {
+                      "type": "string",
+                      "format": "uuid",
+                      "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": ["pass", "fail", "not_run", "unknown"]
+                    },
+                    "evidenceRefs": {
+                      "maxItems": 20,
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "format": "uuid",
+                        "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                      }
+                    }
+                  },
+                  "required": ["reference", "status", "evidenceRefs"],
+                  "additionalProperties": false
+                }
+              },
+              "sources": {
+                "maxItems": 20,
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "reference": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 240
+                    },
+                    "commit": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "pattern": "^[a-f0-9]{40}$"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "hash": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "pattern": "^[a-f0-9]{64}$"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "version": {
+                      "anyOf": [
+                        {
+                          "type": "integer",
+                          "exclusiveMinimum": 0,
+                          "maximum": 9007199254740991
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "verification": {
+                      "type": "string",
+                      "enum": [
+                        "agent_reported",
+                        "test_reported",
+                        "human_reported",
+                        "unknown"
+                      ]
+                    },
+                    "sourceVersionKnown": {
+                      "type": "boolean"
+                    },
+                    "reason": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "enum": [
+                            "not_collected",
+                            "not_available",
+                            "not_applicable",
+                            "unknown"
+                          ]
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "reference",
+                    "commit",
+                    "hash",
+                    "version",
+                    "verification",
+                    "sourceVersionKnown",
+                    "reason"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "confidence": {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "anyOf": [
+                      {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "reason": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "enum": [
+                          "not_collected",
+                          "not_available",
+                          "not_applicable",
+                          "unknown"
+                        ]
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "required": ["value", "reason"],
+                "additionalProperties": false
+              },
+              "identity": {
+                "type": "object",
+                "properties": {
+                  "requestedModel": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.+-]{0,127}$"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "observedModel": {
+                    "type": "null"
+                  },
+                  "observedModelReason": {
+                    "type": "string",
+                    "enum": [
+                      "not_collected",
+                      "not_available",
+                      "not_applicable",
+                      "unknown"
+                    ]
+                  },
+                  "actorKind": {
+                    "type": "string",
+                    "enum": ["agent", "test", "human"]
+                  },
+                  "actorRef": {
+                    "type": "string",
+                    "format": "uuid",
+                    "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                  },
+                  "provenance": {
+                    "type": "string",
+                    "const": "provided"
+                  }
+                },
+                "required": [
+                  "requestedModel",
+                  "observedModel",
+                  "observedModelReason",
+                  "actorKind",
+                  "actorRef",
+                  "provenance"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "schemaVersion",
+              "problem",
+              "environment",
+              "action",
+              "observedResult",
+              "tests",
+              "sources",
+              "confidence",
+              "identity"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": ["projectId", "experience"],
+        "additionalProperties": false
       }
-    },
-    "required": ["projectId", "task", "attempt", "result"],
-    "additionalProperties": false
+    ]
   },
   "memory_stats": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",

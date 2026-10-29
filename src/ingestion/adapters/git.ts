@@ -1,3 +1,4 @@
+import { pendingLearning } from "../../learning/schemas.js";
 import { execFileSync } from "node:child_process";
 import {
   lstatSync,
@@ -388,7 +389,7 @@ export class GitAdapter implements IngestionAdapter {
           }
           service.db
             .prepare(
-              "UPDATE memories SET content=?,hash=?,source=?,status='candidate',version=version+1,updated=? WHERE id=?",
+              "UPDATE memories SET content=?,hash=?,source=?,status='candidate',version=version+1,updated=?,learning=? WHERE id=?",
             )
             .run(
               source.content,
@@ -400,6 +401,12 @@ export class GitAdapter implements IngestionAdapter {
                 claim: "source evidence only",
               }),
               new Date().toISOString(),
+              JSON.stringify(
+                pendingLearning(
+                  Number(previous.version) + 1,
+                  hash(source.content),
+                ),
+              ),
               String(previous.id),
             );
           service.snapshot(String(previous.id));
@@ -424,9 +431,15 @@ export class GitAdapter implements IngestionAdapter {
         ) {
           service.db
             .prepare(
-              "UPDATE memories SET status='deprecated',version=version+1,updated=? WHERE id=?",
+              "UPDATE memories SET status='deprecated',version=version+1,updated=?,learning=? WHERE id=?",
             )
-            .run(new Date().toISOString(), String(m.id));
+            .run(
+              new Date().toISOString(),
+              JSON.stringify(
+                pendingLearning(Number(m.version) + 1, String(m.hash)),
+              ),
+              String(m.id),
+            );
           service.snapshot(String(m.id));
           deprecated++;
         }

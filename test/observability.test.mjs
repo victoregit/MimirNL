@@ -520,7 +520,10 @@ test("multiprocess sequence, busy sink, crash rollback and incomplete recovery",
     await ok(f.service, "measurement_start", f.start);
     const module = new URL("../dist/observability/index.js", import.meta.url)
       .href;
-    const code = `import {Measurement} from ${JSON.stringify(module)};const m=new Measurement(process.argv[1],process.argv[2]);for(const e of JSON.parse(process.argv[3]))m.record(e);m.close();`;
+    // SQLITE_BUSY is a documented bounded error, not an acknowledgement. This
+    // synthetic caller retries only that error, with the same globally unique
+    // eventId and a finite ceiling; production keeps its250ms timeout unchanged.
+    const code = `import {Measurement} from ${JSON.stringify(module)};const m=new Measurement(process.argv[1],process.argv[2]);try {for(const e of JSON.parse(process.argv[3])){for(let attempt=0;attempt<20;attempt++){try {m.record(e);break;}catch(error){if(error.code!=='ERR_SQLITE_ERROR'||error.errcode!==5||attempt===19)throw error;await new Promise(resolve=>setTimeout(resolve,50));}}}}finally{m.close();}`;
     const children = [1, 2].map(() =>
       spawn(
         process.execPath,
@@ -566,12 +569,23 @@ test("multiprocess sequence, busy sink, crash rollback and incomplete recovery",
     );
     assert.equal(response.ok, true);
     assert.equal(capture.captureStatus, "failed");
+    const pending = quality(f.start);
+    const denied = await f.service.call("measurement_record", pending);
+    assert.equal(denied.ok, false);
+    assert.equal(denied.error.sqliteCode, 5);
+    assert.equal(
+      f.service.measurement.db
+        .prepare("SELECT count(*) AS n FROM events WHERE id=?")
+        .get(pending.eventId).n,
+      0,
+    );
     lock.kill("SIGKILL");
     await once(lock, "exit");
     const r = f.service.measurement.report({ projectId: f.projectId });
     assert.equal(r.runningIncomplete, 1);
     assert.equal(r.status.failed, 0);
-    await ok(f.service, "measurement_record", quality(f.start));
+    await ok(f.service, "measurement_record", pending);
+    await ok(f.service, "measurement_record", pending);
     assert.equal(
       f.service.measurement.db.prepare("SELECT max(seq) AS n FROM events").get()
         .n,

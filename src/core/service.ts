@@ -1,4 +1,5 @@
 import { Measurement, type CaptureStatus } from "../observability/index.js";
+import { parseLearning, pendingLearning } from "../learning/schemas.js";
 import { getPackageVersion } from "../version.js";
 import { randomUUID } from "node:crypto";
 import { execFileSync } from "node:child_process";
@@ -61,8 +62,9 @@ export class Service {
     return m;
   }
   view(m: Row): Row {
+    const { learning: _, ...publicRow } = m;
     return {
-      ...m,
+      ...publicRow,
       ...(m.scope === "global" ? { uses: undefined } : {}),
       source: JSON.parse(String(m.source)),
       trust:
@@ -139,6 +141,9 @@ export class Service {
         now,
         now,
       );
+    this.db
+      .prepare("UPDATE memories SET learning=? WHERE id=?")
+      .run(JSON.stringify(pendingLearning(1, h)), id);
     this.snapshot(id);
     return this.view(this.memory(projectId, id));
   }
@@ -368,40 +373,113 @@ export class Service {
           );
         this.db
           .prepare(
-            "UPDATE memories SET content=?,hash=?,status='candidate',origin='user',source=?,version=version+1,updated=? WHERE id=?",
+            "UPDATE memories SET content=?,hash=?,status='candidate',origin='user',source=?,version=version+1,updated=?,learning=? WHERE id=?",
           )
           .run(
             content,
             contentHash,
             JSON.stringify({ kind: "user", reference: d.source }),
             new Date().toISOString(),
+            JSON.stringify(
+              pendingLearning(Number(current.version) + 1, contentHash),
+            ),
             id,
           );
         this.snapshot(id);
         return this.view(this.memory(p, id));
       });
-    if (op === "experience_observe")
-      return this.storage.transaction(() =>
-        this.store(
-          p,
-          JSON.stringify({
-            task: d.task,
-            attempt: d.attempt,
-            result: d.result,
-          }),
-          "episodic",
-          "execution",
-          {
-            kind: "execution",
-            claim: "observation only, not proof of correctness",
-          },
-        ),
+    if (op === "experience_observe") {
+      const structured = d.experience !== undefined;
+      const content = JSON.stringify(
+        structured
+          ? d.experience
+          : { task: d.task, attempt: d.attempt, result: d.result },
       );
+      if (structured && Buffer.byteLength(content) > 32000)
+        throw new AppError(
+          "EXPERIENCE_LIMIT",
+          "Structured experience exceeds32000 UTF-8 bytes.",
+        );
+      return this.storage.transaction(() =>
+        this.store(p, content, "episodic", "execution", {
+          kind: "execution",
+          claim: "observation only, not proof of correctness",
+          ...(structured ? { format: "experience-v1" } : {}),
+        }),
+      );
+    }
+    if (op === "memory_review")
+      return this.storage.transaction(() => {
+        const m = this.memory(p, id);
+        if (m.version !== d.expectedVersion || m.hash !== d.expectedHash)
+          throw new AppError(
+            "STALE_MEMORY",
+            "Review requires the exact current version and hash.",
+          );
+        const learning = parseLearning(m.learning);
+        const begin = d.action === "begin";
+        if (begin && (d.decision !== undefined || d.explicitHumanConsent))
+          throw new AppError(
+            "INVALID_REQUEST",
+            "Begin cannot decide or approve.",
+          );
+        if (
+          !begin &&
+          (!d.decision ||
+            learning.review?.state !== "in_review" ||
+            learning.review.subjectHash !== m.hash)
+        )
+          throw new AppError(
+            "REVIEW_REQUIRED",
+            "Begin review before deciding the current content.",
+          );
+        if (
+          !begin &&
+          d.decision === "verified" &&
+          (!d.explicitHumanConsent || d.actorKind !== "human")
+        )
+          throw new AppError(
+            "APPROVAL_REQUIRED",
+            "Explicit human consent for this version/hash is required.",
+          );
+        learning.review = {
+          state: begin ? "in_review" : "decided",
+          subjectVersion: Number(m.version),
+          subjectHash: String(m.hash),
+          decision: begin ? null : (d.decision as "verified"),
+          authorization: begin
+            ? "none"
+            : d.decision === "verified"
+              ? "explicit_version_consent"
+              : "status_action",
+          actorKind: d.actorKind as "human",
+          actorRef: String(d.actorRef),
+          evidenceRefs: d.evidenceRefs as string[],
+          at: new Date().toISOString(),
+        };
+        this.db
+          .prepare(
+            "UPDATE memories SET learning=?,status=?,version=version+1,updated=? WHERE id=?",
+          )
+          .run(
+            JSON.stringify(learning),
+            begin ? String(m.status) : String(d.decision),
+            new Date().toISOString(),
+            id,
+          );
+        this.snapshot(id);
+        const updated = this.memory(p, id);
+        return {
+          ...this.view(updated),
+          learning: parseLearning(updated.learning),
+        };
+      });
     if (op === "memory_get") {
       const m = this.memory(p, id, Boolean(d.includeGlobal));
       const global = m.scope === "global";
       return {
         ...this.view(m),
+        ...(global ? {} : { learning: parseLearning(m.learning) }),
         history: global
           ? []
           : this.db
@@ -612,6 +690,42 @@ export class Service {
           );
         const action = String(d.action),
           now = new Date().toISOString();
+        if (
+          (d.expectedVersion !== undefined &&
+            d.expectedVersion !== m.version) ||
+          (d.expectedHash !== undefined && d.expectedHash !== m.hash)
+        )
+          throw new AppError(
+            "STALE_MEMORY",
+            "Feedback requires the current version/hash.",
+          );
+        const learning = parseLearning(m.learning);
+        if (d.assessment) {
+          if (
+            d.action !== "note" ||
+            d.scope === "global" ||
+            d.expectedVersion === undefined ||
+            d.expectedHash === undefined
+          )
+            throw new AppError(
+              "INVALID_REQUEST",
+              "Typed assessment requires local note and exact version/hash.",
+            );
+          if (learning.assessments.length >= 100)
+            throw new AppError(
+              "ASSESSMENT_LIMIT",
+              "Current-content assessment limit reached; history is never silently pruned.",
+            );
+          learning.assessments.push({
+            assessment:
+              d.assessment as (typeof learning.assessments)[number]["assessment"],
+            memoryVersion: Number(m.version),
+            memoryHash: String(m.hash),
+            at: now,
+            provenance: "provided",
+          });
+        }
+
         if (action === "approve" && !d.explicitApproval)
           throw new AppError(
             "APPROVAL_REQUIRED",
@@ -664,11 +778,24 @@ export class Service {
           String(m.status),
           Boolean(d.explicitApproval),
         );
+        if (["approve", "reject", "deprecate", "supersede"].includes(action))
+          learning.review = {
+            state: "decided",
+            subjectVersion: Number(m.version),
+            subjectHash: String(m.hash),
+            decision: status as "verified",
+            authorization:
+              action === "approve" ? "legacy_explicit_flag" : "status_action",
+            actorKind: "unknown",
+            actorRef: null,
+            evidenceRefs: [],
+            at: now,
+          };
         this.db
           .prepare(
-            "UPDATE memories SET status=?,version=version+1,updated=? WHERE id=?",
+            "UPDATE memories SET status=?,version=version+1,updated=?,learning=? WHERE id=?",
           )
-          .run(status, now, id);
+          .run(status, now, JSON.stringify(learning), id);
         this.db
           .prepare("INSERT INTO feedback VALUES(?,?,?,?,?)")
           .run(randomUUID(), id, action, String(d.note), now);

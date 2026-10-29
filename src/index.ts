@@ -14,4 +14,9 @@ export {
   type EmbeddingProvider,
 } from "./retrieval/index.js";
 
-export { backupDatabase, restoreDatabase } from "./storage/backup.js";
+export { migrateDatabase } from "./storage/migrate.js";
+export {
+  backupFile,
+  backupDatabase,
+  restoreDatabase,
+} from "./storage/backup.js";

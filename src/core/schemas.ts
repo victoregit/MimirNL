@@ -1,3 +1,9 @@
+import {
+  experienceSchema,
+  assessmentSchema,
+  reviewRequest,
+  digest,
+} from "../learning/schemas.js";
 import * as z from "zod/v4";
 import { measurementSchemas } from "../observability/schemas.js";
 const id = z.string().uuid();
@@ -5,6 +11,7 @@ const projectId = { projectId: id };
 const text = z.string().min(1).max(32000);
 export const schemas = {
   ...measurementSchemas,
+  memory_review: reviewRequest,
   init: z.object({}).strict(),
   project_register: z
     .object({
@@ -94,14 +101,20 @@ export const schemas = {
       ]),
       note: z.string().max(4000).default(""),
       explicitApproval: z.boolean().default(false),
+      expectedVersion: z.number().int().positive().optional(),
+      expectedHash: digest.optional(),
+      assessment: assessmentSchema.optional(),
       sharingApproval: z.boolean().default(false),
       relatedId: id.optional(),
       scope: z.enum(["project", "global"]).default("project"),
     })
     .strict(),
-  experience_observe: z
-    .object({ ...projectId, task: text, attempt: text, result: text })
-    .strict(),
+  experience_observe: z.union([
+    z
+      .object({ ...projectId, task: text, attempt: text, result: text })
+      .strict(),
+    z.object({ ...projectId, experience: experienceSchema }).strict(),
+  ]),
   memory_stats: z.object({ ...projectId }).strict(),
   memory_delete: z
     .object({

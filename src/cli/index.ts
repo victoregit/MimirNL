@@ -3,7 +3,8 @@ import { Measurement } from "../observability/index.js";
 import { adminSchemas } from "../observability/schemas.js";
 import { lstatSync } from "node:fs";
 import { assertLocalPath } from "../security/index.js";
-import { backupDatabase, restoreDatabase } from "../storage/backup.js";
+import { migrateDatabase } from "../storage/migrate.js";
+import { backupFile, restoreDatabase } from "../storage/backup.js";
 import { AppError } from "../security/index.js";
 import { Service } from "../core/service.js";
 import { Storage } from "../storage/index.js";
@@ -30,7 +31,17 @@ try {
       "MEASUREMENT_PATH",
       "Separate measurement database required.",
     );
-  if (args[0] === "measurement_restore") {
+  if (args[0] === "migrate") {
+    if (!db || args.length !== 3 || args[2] !== "--confirm")
+      throw new AppError(
+        "CONFIRMATION_REQUIRED",
+        "Use --db EXISTING migrate NEW_BACKUP --confirm.",
+      );
+    process.stdout.write(
+      JSON.stringify({ ok: true, data: await migrateDatabase(db, args[1]!) }) +
+        "\n",
+    );
+  } else if (args[0] === "measurement_restore") {
     if (!db || !measurementDb || args.length !== 3 || args[2] !== "--confirm")
       throw new AppError(
         "CONFIRMATION_REQUIRED",
@@ -74,17 +85,9 @@ try {
       );
     if (!lstatSync(assertLocalPath(db)).isFile())
       throw new AppError("INVALID_BACKUP", "Source database must exist.");
-    const storage = new Storage(db);
-    try {
-      process.stdout.write(
-        JSON.stringify({
-          ok: true,
-          data: await backupDatabase(storage, args[1]!),
-        }) + "\n",
-      );
-    } finally {
-      storage.close();
-    }
+    process.stdout.write(
+      JSON.stringify({ ok: true, data: await backupFile(db, args[1]!) }) + "\n",
+    );
   } else {
     const service = new Service(new Storage(db), { measurementDb });
     if (args[0] === "mcp" && args[1] === "stdio") {

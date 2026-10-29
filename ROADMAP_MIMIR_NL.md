@@ -215,4 +215,4 @@ Historical task31 final-gate preparation (review and WSL progress superseded abo
 
 A avaliação limitada104 e a revisão110 estão consolidadas no [fechamento corrente](docs/benchmarks/v03/fechamento-0.3.md). Snapshot histórico preservado antes da portabilidade/formatação; código corrente segue revisão independente111 antes do fechamento definitivo105. Zero chamadas novas, 54 históricas. Qualidade igual nos três cenários, B com +2,93% de tokens de entrada; cache ambiente, histórico C vazio e modelo/custo/TTFT indisponíveis impedem alegar economia ou ganho de qualidade. Sem commit, push ou publicação; histórico anterior preservado.
 
-V04-01 em implementação/revisão150: coletor local lateral opt-in; ver [operação](docs/v04/measurement.md). Demais incrementos0.4 e aceitação de uso real continuam pendentes.
+V04-01 aprovado150; V04-02/03 implementados151 em revisão152: coletor local lateral opt-in e aprendizagem estruturada; ver [operação](docs/v04/measurement.md). Demais incrementos0.4 e aceitação de uso real continuam pendentes.

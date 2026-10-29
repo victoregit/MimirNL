@@ -2,7 +2,7 @@
 
 ## 0.4.0-dev.0 (unreleased)
 
-Opt-in local measurement sidecar, scoped CLI/MCP lifecycle and reports, CLI-only private logical backup/restore and retention. Knowledge schema remains1. Pending independent review and subsequent real-use acceptance.
+Opt-in local measurement sidecar, scoped CLI/MCP lifecycle and reports, CLI-only private logical backup/restore and retention. Real dogfood knowledge remains1 until approval152; new development databases use2. Collector approved150; structured experiences, typed assessment, version/hash review and explicit schema1→2 migration with verified backup await review152. No automatic memory approval or real dogfood migration.
 
 ## 0.3.0 — candidate / unreleased
 

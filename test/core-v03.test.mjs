@@ -39,7 +39,7 @@ test("v03: dedup precedes limit and retains duplicate provenance without crossin
   const b = add("alpha other");
   s.db
     .prepare(
-      "INSERT INTO memories SELECT ?,NULL,'global',type,content,hash,'verified',origin,source,version,created,updated,uses FROM memories WHERE id=?",
+      "INSERT INTO memories(id,project_id,scope,type,content,hash,status,origin,source,version,created,updated,uses) SELECT ?,NULL,'global',type,content,hash,'verified',origin,source,version,created,updated,uses FROM memories WHERE id=?",
     )
     .run(randomUUID(), a.id);
   const result = await search({ includeGlobal: true, limit: 2 });
