@@ -1,0 +1,31 @@
+{
+  "position": 5,
+  "status": "completed",
+  "scenario": "sem_memoria",
+  "retrieved": null,
+  "retrieval_latency_ms": null,
+  "total_latency_ms": 6527.541866,
+  "truncated": false,
+  "response": "O schema define `tokenBudget` como inteiro entre 200 e 100.000, default 4.000 [search-schema/behavior, L59–74]. No serviço, após deduplicar por `hash` e aplicar `view`, `Number(d.tokenBudget)` vira o segundo argumento de `optimize` [search-service/behavior, L356–394].\n\nApesar do nome, a unidade efetiva é **bytes UTF-8 do JSON serializado**, não tokens de modelo [optimizer/behavior, L1–3]. Cada candidato só entra se couber no orçamento considerando o envelope completo `{ok:true,data:next}`, incluindo `memories`, `estimatedTokens` e `estimator`. Durante a verificação e o cálculo final, `estimatedTokens` recebe provisoriamente o próprio orçamento; o valor retornado é a estimativa desse envelope [optimizer/behavior, L4–27].",
+  "usage": {
+    "input_tokens": 15085,
+    "cached_input_tokens": 12032,
+    "output_tokens": 188,
+    "total_tokens": 15273
+  },
+  "cleanup": "completed",
+  "initial_db_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "seed_sha256": "f98365d7da40b120f99e7b88c6eebd240bef509e33b201d56352e3015b0d6fad",
+  "pool_sha256": "c0c54bd8ee80c361b83bec85b956ed9411e0a9440f854c5b8f4c6569db499f31",
+  "context_bytes": 4676,
+  "context_sha256": "ab3d261c55cf517079cfd5934f7d9293c230f92019e43affaf2fd69eaf15e226",
+  "response_bytes": 749,
+  "response_sha256": "b38657e50194f097baa87423cbd29527840e8e76dc573896e0729b27432dee37",
+  "transport_status": "completed",
+  "model_identity": {
+    "status": "unavailable",
+    "reason": "No model identity in allowlisted public start metadata"
+  },
+  "final_db_sha256": "f98365d7da40b120f99e7b88c6eebd240bef509e33b201d56352e3015b0d6fad",
+  "db_file_sha256": "fc744e8a196079aba96cdacf14a22dc7770b70a0ded3e33f623f0b35234f7d73"
+}

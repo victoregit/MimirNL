@@ -1,0 +1,8 @@
+
+> mimir-nl@0.2.0 schemas:check
+> npm run build && node scripts/generate-contract.mjs --check
+
+
+> mimir-nl@0.2.0 build
+> tsc
+

@@ -1,0 +1,80 @@
+
+> mimir-nl@0.1.0 typecheck
+> tsc --noEmit
+
+
+> mimir-nl@0.1.0 lint
+> eslint src
+
+
+> mimir-nl@0.1.0 format:check
+> prettier --check src test scripts docs *.md *.json *.mjs .github/workflows/*.yml
+
+Checking formatting...
+All matched files use Prettier code style!
+
+> mimir-nl@0.1.0 test
+> npm run build && node --test test/*.test.mjs
+
+
+> mimir-nl@0.1.0 build
+> tsc
+
+✔ canonical Git roots preserve identity across native path spellings (2741.2122ms)
+✔ unexpected local errors retain safe machine codes without paths or exception text (3.0095ms)
+✔ Windows short-path aliases cannot bypass backup and restore project boundaries (706.1446ms)
+✔ A: restart persistence, WAL, foreign keys and rollback (822.3625ms)
+✔ A: simultaneous independent processes deduplicate atomic writes (1638.1077ms)
+✔ B: isolation for search, IDs, history, stats, relations; bounded literal context (1225.4003ms)
+✔ D: authorized Git fixture bounds, secrets, ignores, binaries, symlink, incremental versions and deletion (3988.726ms)
+✔ E: explicit verification, relation history, deterministic observation, sharing and confirmed deletion (1263.3474ms)
+✔ security: every request field checked, invalid schemas and unsafe database placement (776.5115ms)
+✔ C: real SDK stdio initialize/list/call, CLI shared DB and concurrent MCP clients (3387.3429ms)
+✔ E: shared lifecycle deletion and global/local retrieval dedup (724.8566ms)
+✔ D: uncommitted repositories, byte bound rollback and changed sensitive sources (2936.647ms)
+✔ B: filters, complete response budget, oversized input and provenance trust (740.3545ms)
+✔ security: external Git config rejected before Git commands; custom excludes and provenance retention (1423.6199ms)
+✔ A: future schema versions are refused without migration writes (655.2316ms)
+✔ A/E: manual edits preserve ID/history, reset verification and prevent duplicates (859.4559ms)
+✔ security: quoted JSON configuration secrets and metadata are rejected before persistence (1417.0044ms)
+✔ C: CLI positional project deletion consumes the UUID and preserves the source (1246.4206ms)
+✔ snapshot includes uncheckpointed WAL, versions, provenance, feedback and independent reopen (844.0721ms)
+✔ snapshot stays consistent with independent CLI writer processes (1317.793ms)
+✔ online snapshot overlaps an active WAL writer and preserves transactional history (3878.751ms)
+✔ restore rejects corruption, incompatible schema, sidecars, project paths, traversal and symlinks (1065.6697ms)
+✔ sensitive fields, Windows paths, bounded includes and injection remain data (805.0697ms)
+✔ external Git config and executable fsmonitor cannot run (1119.7561ms)
+✔ CLI feedback persists approval; includes deprecates and full ingest reactivates (3426.1788ms)
+▶ hard-link failures preserve sources, clean temporary snapshots and never replace targets
+  ✔ EXDEV (139.51ms)
+  ✔ ENOTSUP (176.8335ms)
+  ✔ EPERM (132.2767ms)
+  ✔ EEXIST (155.5017ms)
+✔ hard-link failures preserve sources, clean temporary snapshots and never replace targets (793.6164ms)
+✔ SQLite WAL-reset patch boundaries reject unpatched and unknown versions (8.6862ms)
+✔ actual SQLite runtime is patched and doctor reports it (411.7462ms)
+ℹ tests 32
+ℹ suites 0
+ℹ pass 32
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 23684.5054
+
+> mimir-nl@0.1.0 schemas:check
+> npm run build && node scripts/generate-contract.mjs --check
+
+
+> mimir-nl@0.1.0 build
+> tsc
+
+
+> mimir-nl@0.1.0 package:smoke
+> npm run build && node scripts/package-smoke.mjs
+
+
+> mimir-nl@0.1.0 build
+> tsc
+
+{"installedExecutable":true,"backupRestore":true,"feedbackApproval":true,"isolation":true,"node":"v24.22.1","platform":"win32"}

@@ -1,0 +1,33 @@
+{
+  "schema_version": "ef03-quality-gates-131-v1",
+  "scope": "Exploratory known public DEV1/DEV3 high-overlap sources, one observation per condition; no holdout/generalization claim.",
+  "independent_after_execution": true,
+  "gates": [
+    "At most 120 words, existing citation syntax and all necessary source units cited",
+    "Every factual assertion supported by supplied public excerpts; no fabricated facts",
+    "All requested aspects addressed; no factual loss in exact-v1 relative to preserve; both independently correct against sources"
+  ],
+  "tasks": [
+    {
+      "position": 1,
+      "sources": ["readme-status/behavior", "package-version/behavior"],
+      "required_aspects": [
+        "Distinguish the evidence supplied by each named source",
+        "Address whether the snapshot establishes contradiction, staleness, error or publication, respecting limits of the excerpts"
+      ]
+    },
+    {
+      "position": 3,
+      "sources": [
+        "search-schema/behavior",
+        "search-service/behavior",
+        "optimizer/behavior"
+      ],
+      "required_aspects": [
+        "Trace tokenBudget from schema through service to optimize",
+        "State limits/default, estimator effective unit, and which envelope is counted using the supplied units"
+      ]
+    }
+  ],
+  "decision": "Approve quality only if both independent source assessments pass all gates and paired factual-loss check passes; otherwise fail or inconclusive. Missing/failed/not_run response is inconclusive, never a pass. Tokens, cache and time cannot override quality failure."
+}

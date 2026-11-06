@@ -1,0 +1,103 @@
+npm run typecheck
+
+> mimir-nl@0.1.0 typecheck
+> tsc --noEmit
+
+exit=0
+npm run lint
+
+> mimir-nl@0.1.0 lint
+> eslint src
+
+exit=0
+npm run format:check
+
+> mimir-nl@0.1.0 format:check
+> prettier --check src test scripts docs *.md *.json *.mjs .github/workflows/*.yml
+
+Checking formatting...
+All matched files use Prettier code style!
+exit=0
+npm test
+
+> mimir-nl@0.1.0 test
+> npm run build && node --test test/*.test.mjs
+
+
+> mimir-nl@0.1.0 build
+> tsc
+
+✔ A: restart persistence, WAL, foreign keys and rollback (1898.2561ms)
+✔ A: simultaneous independent processes deduplicate atomic writes (3702.3736ms)
+✔ B: isolation for search, IDs, history, stats, relations; bounded literal context (3102.1702ms)
+✔ D: authorized Git fixture bounds, secrets, ignores, binaries, symlink, incremental versions and deletion (7026.5028ms)
+✔ E: explicit verification, relation history, deterministic observation, sharing and confirmed deletion (2648.3145ms)
+✔ security: every request field checked, invalid schemas and unsafe database placement (1681.7822ms)
+✔ C: real SDK stdio initialize/list/call, CLI shared DB and concurrent MCP clients (6143.6616ms)
+✔ E: shared lifecycle deletion and global/local retrieval dedup (1238.2931ms)
+✔ D: uncommitted repositories, byte bound rollback and changed sensitive sources (3764.2979ms)
+✔ B: filters, complete response budget, oversized input and provenance trust (984.3577ms)
+✔ security: external Git config rejected before Git commands; custom excludes and provenance retention (2334.9011ms)
+✔ A: future schema versions are refused without migration writes (186.1389ms)
+✔ A/E: manual edits preserve ID/history, reset verification and prevent duplicates (1675.1117ms)
+✔ security: quoted JSON configuration secrets and metadata are rejected before persistence (2236.0977ms)
+✔ C: CLI positional project deletion consumes the UUID and preserves the source (1887.201ms)
+✔ snapshot includes uncheckpointed WAL, versions, provenance, feedback and independent reopen (2098.6734ms)
+✔ snapshot stays consistent with independent CLI writer processes (3295.2969ms)
+✔ online snapshot overlaps an active WAL writer and preserves transactional history (7221.1513ms)
+✔ restore rejects corruption, incompatible schema, sidecars, project paths, traversal and symlinks (2578.9485ms)
+✔ sensitive fields, Windows paths, bounded includes and injection remain data (1397.4116ms)
+✔ external Git config and executable fsmonitor cannot run (2030.7769ms)
+✔ CLI feedback persists approval; includes deprecates and full ingest reactivates (7464.8203ms)
+▶ hard-link failures preserve sources, clean temporary snapshots and never replace targets
+  ✔ EXDEV (503.6527ms)
+  ✔ ENOTSUP (314.9692ms)
+  ✔ EPERM (323.2691ms)
+  ✔ EEXIST (646.1599ms)
+✔ hard-link failures preserve sources, clean temporary snapshots and never replace targets (2238.344ms)
+✔ SQLite WAL-reset patch boundaries reject unpatched and unknown versions (97.436ms)
+✔ actual SQLite runtime is patched and doctor reports it (978.6553ms)
+ℹ tests 29
+ℹ suites 0
+ℹ pass 29
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 42164.6088
+exit=0
+npm run schemas:check
+
+> mimir-nl@0.1.0 schemas:check
+> npm run build && node scripts/generate-contract.mjs --check
+
+
+> mimir-nl@0.1.0 build
+> tsc
+
+exit=0
+npm run package:smoke
+
+> mimir-nl@0.1.0 package:smoke
+> npm run build && node scripts/package-smoke.mjs
+
+
+> mimir-nl@0.1.0 build
+> tsc
+
+file:///C:/Users/Public/mimir-hardening-resume/scripts/package-smoke.mjs:24
+        throw Error("Unsupported fixture shell character");
+              ^
+
+Error: Unsupported fixture shell character
+    at quote (file:///C:/Users/Public/mimir-hardening-resume/scripts/package-smoke.mjs:24:15)
+    at Array.map (<anonymous>)
+    at command (file:///C:/Users/Public/mimir-hardening-resume/scripts/package-smoke.mjs:28:17)
+    at cli (file:///C:/Users/Public/mimir-hardening-resume/scripts/package-smoke.mjs:87:26)
+    at file:///C:/Users/Public/mimir-hardening-resume/scripts/package-smoke.mjs:111:20
+    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
+    at async node:internal/modules/esm/loader:647:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.22.1
+exit=1

@@ -1,0 +1,31 @@
+{
+  "position": 22,
+  "status": "completed",
+  "scenario": "historico_completo",
+  "retrieved": null,
+  "retrieval_latency_ms": null,
+  "total_latency_ms": 6191.577684999997,
+  "truncated": false,
+  "response": "Não. `estimateTokens` mede **bytes UTF-8 da serialização JSON**, não tokens reais de um modelo; o código os descreve como limite superior conservador.\n\n`optimize` percorre os itens na ordem recebida. Para cada um, calcula o tamanho do envelope `{ ok: true, data: next }`, incluindo os itens já aceitos e o candidato, com `estimatedTokens` temporariamente igual ao orçamento. Aceita o candidato se o tamanho for ≤ `budget`; caso contrário, omite-o e continua.\n\n**Sim**, um item posterior pode caber após outro ser omitido: cada candidato é avaliado separadamente junto aos já aceitos. A unidade do orçamento e da estimativa é **bytes UTF-8**.\n\nFonte: `code-budget`, unidade `behavior`, `src/optimization/index.ts`, linhas 1–27.",
+  "usage": {
+    "input_tokens": 14159,
+    "cached_input_tokens": 12032,
+    "output_tokens": 180,
+    "total_tokens": 14339
+  },
+  "cleanup": "completed",
+  "initial_db_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "seed_sha256": "ba83bcc4f00f92641bb49da2040a19533bc51422be8d007bd7dbdddbaf8dcfe5",
+  "pool_sha256": "3f38418b57f6f2322c075d0253fe92b9de6646374a1d73a48b3268e4d368225e",
+  "context_bytes": 1508,
+  "context_sha256": "ca239ce4359e99ffd5ee4995926342e78f7eb3efb6afc2f10c80b66cb22184d0",
+  "response_bytes": 743,
+  "response_sha256": "98a91b41ee62a959073eed5f445743fb8e6c9ddd267c5ce2b639b88ef116b8e2",
+  "transport_status": "completed",
+  "model_identity": {
+    "status": "unavailable",
+    "reason": "No model identity in allowlisted public start metadata"
+  },
+  "final_db_sha256": "ba83bcc4f00f92641bb49da2040a19533bc51422be8d007bd7dbdddbaf8dcfe5",
+  "db_file_sha256": "feb76357d663e7400ec947875f06c37cf526793b08d3b3bf890aeb8cca4c8438"
+}

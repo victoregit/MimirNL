@@ -1,0 +1,25 @@
+# Plano de fechamento v0.3 experimental — revisão 0.2
+
+Estado: incompleta. [Emenda0.2](contrato-0.2.md) entregue para [Task100](../../../tasks/100-v03-amendment-review.md); [Task98 APPROVE](../../../tasks/98-v03-closure-plan-review-findings.md) aprova o plano, não esta entrega ou dados. IDs97 eram sugestões;100 agora é revisão da emenda,101–103 agrupam implementações mantendo gates internos independentes.
+
+| Etapa | Dependência e artefatos concretos                                                                                                                                                   | Gate independente e aceite                                                                                                                                                |
+| ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 100   | Task99, contrato0.2, este plano, roadmap e relatório99                                                                                                                              | Parecer100 APPROVE/CHANGES_REQUESTED; nenhum código/live                                                                                                                  |
+| 101   | APPROVE100; corpus12 versionado,9dev+3eval; snapshots/hashes públicos, histórico0bytes, avaliação privada; novo perfil/validador e métricas0.2                                      | Revisão separada do corpus e das métricas antes103; fontes/seed sem contaminação, holdout separado, testes denominadores/ausências/citações/stale/compatibilidade legada  |
+| 102   | APPROVE100 e congelamento dev101; core ranking/recência/dedup/compact/fallback/budget/opt-in                                                                                        | Testes regressão/UTF-8/envelope mínimo/baixa relevância/privacidade; ablação dev; parecer independente e parâmetros congelados antes evaluation                           |
+| 103   | Revisões101 e102; manifesto, exportador público, executorABC com fakes e isolamento                                                                                                 | Revisão independente antes live: fontes básicas iguais, busca real B, C vazio, seed/hash/reset, contadores/timers/bytes/cancelamento/no retry e nenhum gold runtime       |
+| 104   | Todos os gates101–103 e manifesto congelado                                                                                                                                         | Até54 tentativas conforme emenda; logs de tentativas/status/uso/tempos/bytes, nenhuma repetição de falha; contas dev/eval separadas; avaliação independente de respostas  |
+| 105   | Artefatos104 e revisões; pacote docs/benchmarks/v03/evidencias, manifestos/hashes/contextos/respostas permitidas, avaliações separadas, métricas, script replay offline e relatório | Revisão final independente, integridade/sanitização/reprodução, checks Linux/Windows pertinentes no código final; pendências explícitas, pacote revisável para publicação |
+
+## Critérios ainda abertos
+
+- Corpus: congelar/revisar12casos e perfil técnico; representatividade ampla continua não demonstrada.
+- Métricas: implementar/validar precisão, recall, afirmações/fontes, stale/unknown, outcomes e cobertura.
+- Workflows: implementar e medir ABC; C vazio só controle equivalente, histórico longo permanece não testado.
+- Tokens/custos: coletar uso CLI e cache nativos; custo e identidade efetiva podem permanecer unavailable com motivo, sem falsa certificação.
+- Core: implementar e verificar ranking/dedup/recência/compact, fallback/budgets e métricas locais opt-in.
+- Reprodutibilidade: pacote durável, replay e revisão final pendentes. Publicação ainda não autorizada.
+
+`technical_complete` só após todos os artefatos/gates101–105 aprovados, resultados positivos ou negativos relatados, limitações e checks finais disponíveis. Isto fecha apenas o escopo experimental emendado; não satisfaz representatividade ampla, eficácia generalizada, long-history ou multicaso AG. `publish_pending` é estado separado: pacote pronto/revisado não é publicado. O critério original de resultados publicados continua aberto até autorização específica e publicação real. Não marcar v0.3 release/done por entrega99, teste verde ou avaliação técnica do corpus. Não há meta percentual de ganho.
+
+Evidências exploratórias: [Task82](../../../tasks/82-v03-two-host-closeout.md), [Task90](../../../tasks/90-v03-multicase-codex-pilot-review-findings.md), [Task96](../../../tasks/96-v03-layout-live-comparison-review-findings.md). Não reescrever evidências /tmp nem misturar medições antigas com o protocolo novo. Novos artefatos duráveis precisam de hashes, proveniência e conteúdo público sanitizado; nenhum transcript/reasoning ou configuração privada.

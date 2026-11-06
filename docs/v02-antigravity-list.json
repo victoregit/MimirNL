@@ -1,0 +1,9 @@
+{
+  "command": ["agy", "mcp", "list"],
+  "cwd": "/tmp/mimir-v02-xx0ph1vg/project",
+  "exit": 0,
+  "workspace_server_name_visible": false,
+  "stdout_length": 27,
+  "stderr_length": 0,
+  "output_redacted": "Full list withheld because inherited configuration may include sensitive server fields."
+}

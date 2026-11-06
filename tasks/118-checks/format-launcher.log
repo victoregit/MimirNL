@@ -1,0 +1,4 @@
+Checking formatting...
+[warn] scripts/benchmarks/task104-launch.mjs
+[warn] test/task104-launch.test.mjs
+[warn] Code style issues found in 2 files. Run Prettier with --write to fix.

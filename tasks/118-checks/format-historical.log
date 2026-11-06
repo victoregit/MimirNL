@@ -1,0 +1,4 @@
+Checking formatting...
+[warn] docs/benchmarks/v03/contrato-0.2.md
+[warn] docs/benchmarks/v03/fechamento-0.2.md
+[warn] Code style issues found in 2 files. Run Prettier with --write to fix.

@@ -1,0 +1,39 @@
+    if (op === "memory_search") {
+      const start = performance.now();
+      const rows = new FtsRetriever(this.db).search(
+        d as unknown as RetrievalFilter,
+      );
+      const seen = new Set<string>();
+      const result = optimize(
+        rows
+          .filter((m) => {
+            if (seen.has(String(m.hash))) return false;
+            seen.add(String(m.hash));
+            return true;
+          })
+          .map((m) => this.view(m)),
+        Number(d.tokenBudget),
+      );
+      this.storage.transaction(() => {
+        const retrievalId = randomUUID();
+        for (const m of result.memories)
+          this.db
+            .prepare("UPDATE memories SET uses=uses+1 WHERE id=?")
+            .run(String(m.id));
+        this.db
+          .prepare("INSERT INTO retrievals VALUES(?,?,?,?,?,?)")
+          .run(
+            retrievalId,
+            p,
+            performance.now() - start,
+            result.estimatedTokens,
+            result.memories.length,
+            new Date().toISOString(),
+          );
+        for (const m of result.memories)
+          this.db
+            .prepare("INSERT INTO retrieval_items VALUES(?,?)")
+            .run(retrievalId, String(m.id));
+      });
+      return result;
+    }

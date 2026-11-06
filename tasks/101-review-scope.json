@@ -1,0 +1,13 @@
+{
+  "schema_version": "review-scope-0.2",
+  "status": "technical_reviewed",
+  "author_ref": "codex-task101",
+  "reviewer_ref": "gemini-3.8-flash-high-task106-reviewer",
+  "evidence_ref": "tasks/106-v03-corpus-review-findings.md",
+  "receipt_ref": "tasks/106-technical-review-receipt-0.2.json",
+  "public_bundle_sha256": "e75d3066c9151d71b97c440f7a563147cfbc94a52302dcf5965075e2bdcdc7e9",
+  "development_sha256": "176893a787812e4f1add6ba7599795f354922d360e54c9ee5a5a94d020e51f1a",
+  "private_evaluation_path": "/home/usuario/mimir-private/task101-evaluator/evaluation-0.2.json",
+  "private_evaluation_sha256": "7f4bab5f95294850aa3adc5b56f2d0847fb99fe7ddd50791bc2956fbcab4641c",
+  "human_acceptance_ref": null
+}

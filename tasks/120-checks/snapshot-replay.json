@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "/home/usuario/.local/share/mimir-node-runtime/node-v24.22.1-linux-x64/bin/node",
+    "/home/usuario/mimir-task120-snapshot/scripts/benchmarks/abc-cli.mjs",
+    "offline",
+    "/home/usuario/mimir-task120-snapshot/docs/benchmarks/v03/evidencias/task103/public-plan/offline-manifest.json",
+    "/home/usuario/mimir-task120-snapshot-replay"
+  ],
+  "exit": 0,
+  "actual_model_calls": 0,
+  "synthetic_transport_calls": 54,
+  "retrieval_calls": 18,
+  "stopped": false
+}

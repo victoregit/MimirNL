@@ -1,0 +1,9 @@
+# Task55 — Revisão independente do corpus/metodologia v0.3
+
+Usuário autorizou iniciar a revisão e resolver apontamentos. Raiz absoluta /mnt/d/Projects/MimirNL, branch docs/v03-corpus-methodology. Revisar entrega Task54 sem editar artefatos do autor.
+
+Ler /mnt/d/Projects/MimirNL/tasks/54-v03-corpus-methodology.md e /mnt/d/Projects/MimirNL/tasks/54-v03-corpus-methodology-result.md. Alvos: /mnt/d/Projects/MimirNL/docs/benchmarks/v03/casos.md, /mnt/d/Projects/MimirNL/docs/benchmarks/v03/metodologia.md, /mnt/d/Projects/MimirNL/docs/v03-divisao-de-tarefas.md e mudanças v0.3 em /mnt/d/Projects/MimirNL/ROADMAP_MIMIR_NL.md. Comparar com contrato/preflight/métricas existentes sem presumir contrato aprovado.
+
+Conferir independentemente os três casos: SHA completo, caminhos, linhas inclusivas, bytes/hash, resposta esperada, relevância e rubrica contra git show do commit fixado. Revisar comparabilidade dos três cenários, isolamento, gold fora do contexto, denominadores/k, ausência de holdout, limitações e decisões pendentes. Checar JSON com validador existente e confirmar planejamento bloqueado enquanto revisão/aceite/permissões pendentes, sem inventar autorização. Distinguir aprovação da proposta documental de aceite humano e autorização de benchmark real. Não marcar corpus validated/accepted automaticamente.
+
+Registrar achados com severidade, arquivo/linha, evidência e correção acionável, e veredito APPROVE ou CHANGES_REQUESTED em /mnt/d/Projects/MimirNL/tasks/55-v03-corpus-review-findings.md. Verificar formatação focada, links e diff whitespace conforme pertinente. Sem suíte ampla para docs. Preservar alterações existentes, inclusive AGENTS.md. Não alterar código/documentos do autor, commit/push/merge, chamar modelos de benchmark, executar host/bot, ingestão, DB ou fontes externas. Não ler ~/.aws/credentials, ~/.ssh/*, .env ou *.pem; não exfiltrar dados. Retornar resumo e caminho absoluto do relatório ao supervisor.

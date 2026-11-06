@@ -1,0 +1,18 @@
+2026-10-25 task31 local verification; no remote validation claimed.
+Supported Linux Node v24.22.1; native disposable Windows Node v24.22.1/npm 11.19.1/Git 2.56.0.windows.3.
+Linux npm test: 35 total, 34 passed, 1 expected Windows-only skip, 0 failures.
+Native Windows npm test: 35 total, 34 passed, 1 Linux Python-fixture integration skip, 0 failures.
+Final relay-focused Node tests after final source edits: 2 passed, 0 failures.
+Python fixture tests with ResourceWarning errors: 5 passed.
+Python snapshot tests with ResourceWarning errors: 2 passed.
+Fixture ingestion regression: 1 passed.
+Typecheck: passed. Lint: passed. Schemas check: passed. Build included in test/schema/package/benchmark checks: passed.
+Full repository format check: passed.
+Installed package smoke: passed (installed executable, backup/restore, feedback approval, isolation).
+Benchmark: completed; synthetic selective precision/recall 1/1; no model/task-quality claim.
+Native Windows doctor: healthy=true, supported runtime, Git, integrity, WAL and FTS5 passed; ACLs require operator setup.
+Before/after read-only retained fixture snapshots: identical; 2 projects, 3 candidate memories, 2 feedback notes, 0 globals; all protected original hashes unchanged.
+Git diff --check: passed.
+No host/model calls, no registration/config writes, no commit/push/publication.
+Independent review, actual human-sensitive host sessions/restart-read, and native host executable/setup acceptance remain pending.
+Supervisor-reported follow-up: native PowerShell Get-Command codex,agy -ErrorAction SilentlyContinue returned no executables, exit 1. No worker duplicate broad probe/global installation. This confirms current PATH evidence only; native core/SDK validation is separate from unverified native host acceptance. IDE/Desktop is not an additional roadmap gate.

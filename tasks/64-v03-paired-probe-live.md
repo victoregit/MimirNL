@@ -1,0 +1,7 @@
+# Task64 — Execução real autorizada comparação exploratória
+
+Só executar depois de Task63 APPROVE da versão final Task62. Usuário autorizou começar três repetições com e sem memória, depois de coletor Task59/60 e chamada real Task61. Raiz /mnt/d/Projects/MimirNL, preservar dirty inteiro.
+
+Usar runner revisado scripts/benchmarks/paired-probe.mjs via Node24 e comando explícito --run conforme documentação da Task62. No máximo seis processos Codex, sem retry, AB/BA/AB e timeout90s/global10min. Pergunta/fonte/prompt fixados pela Task62. Banco/projeto sintéticos descartáveis por B; baseline mesma fonte. Nenhum banco real, ingestão, contexto desta conversa, gold ou credenciais. Relatório privado em diretório NOVO /tmp/mimir-paired-probe-XXXXXX indicado pelo runner. Não modificar protocolo durante execuções ou repetir chamadas falhas automaticamente.
+
+Conferir saída, status/exit code, seis posições com falhas/not_run preservadas, source/hash e evidências. Solicitar revisão independente de qualidade a partir das respostas privadas e fonte fixada, sem enviar gold a nenhum dos seis processos. Resumo para usuário: n/cobertura, medianas tokens/cache/output/total e tempos, retrieval separado, respostas corretas/incorrectas/não avaliadas e limitações (cache/modelodefault/contexto redundante/amostra3). Não alegar economia geral, ganho causal, custo monetário, TTFT ou piloto completo. Salvar coordenação final tasks/64-v03-paired-probe-live-result.md; sem commit/push/merge.

@@ -1,0 +1,5 @@
+# Task80 — Antigravity com busca real após Codex
+
+Autorização usuário inclui Antigravity após testarCodex. Sóexecutar se componenteAGadapterTask77aprovado eCodexTask78/79concluídos; respeitar qualquerbloqueioexterno real da Task76 (exquota). Uma invocação live-flow-probe.mjs --run --host antigravity --out NOVO/tmp viaNode24. Até6callsAB/BA/AB, gemini-3.8-flash-highsolicitado/efforthigh, JSONprint/sandbox/plan/disabledslash, semskippermissions/retries/fallback.3paresmesmopool/querypergunta/contextoA6fontes/BsóbuscaREAL emServicefixture, requesttimercontínuo.
+
+MétricasnativasAG nãosemisturam comCodex: seusageindisponível/semânticaambígua, declararindisponível e nãofabricarcontagem/economia. Latência/cobertura/respostas ainda registradas quando possível; toolsnãoobserváveismarcadoslimitação.Nenhuma configuração/auth/MCPglobal/bancopessoal éeditada. Reterevidência própriaprivada, limparfixtures/operadorespróprios. Task81revêqualidade/números. Registrar tasks/80-v03-antigravity-live-flow-result.md e resultadoexternobloqueadoseforcaso. Semcommitpushmerge/exfilsecrets.

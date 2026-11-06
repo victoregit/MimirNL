@@ -1,0 +1,34 @@
+✔ ABC strict public schema, deep extras, tamper/code/epoch/legacy and authorization binding (2172.802932ms)
+✔ 54 offline positions, 18 real SQLite searches, fresh DB/reset, preserved overlap and A=C, no LLM scoring (415.589194ms)
+✔ no retry after spawn failure/truncation/invalid tool; all later slots remain not_run (226.717185ms)
+✔ run/search/global remaining includes synchronous work, no spawn after expiry, cleanup errors retained (299.065652ms)
+✔ empty retrieval preserved without fallback; retrieval failure missing rather than zero (370.430271ms)
+✔ help/validate/import side effect free; public process deep I/O canary blocks arbitrary private names (410.79862ms)
+✔ transport kills owned child immediately on tool event, timeout, output cap and synchronous spawn errors (20.45812ms)
+✔ public runtime I/O canary: exact input/code reads and owned fixture files only (1619.557334ms)
+✔ cancellation before transport retains diagnostics and remaining not_run without retry (78.39506ms)
+✔ real fake subprocess timeout terminates the owned POSIX process group (52.931721ms)
+✔ default equals legacy bytes; opt-in applies and preserves order/base/input (9.968932ms)
+✔ same text with distinct identity/origin/range is retained; Unicode and key order (2.327788ms)
+✔ unknown/missing metadata, revision, invalid hash/selections and overbudget fail before dedupe (5.699228ms)
+✔ three public DEV reconstructions: actual API output, runtime suffix accounted separately (19.51791ms)
+✔ 0.2 sources: exact pinned bytes, durable snapshots, zero history, no private fields (2659.268861ms)
+✔ deep projection canary and hash invariance; exact nested/public version rejection (4254.869493ms)
+✔ source/path safety rejects traversal, symlinks, ranges, non-allowlisted paths and overwrite (194.208222ms)
+✔ review stages: pending is structural only; receipt external hash not self approval/live (2.406906ms)
+✔ fixed denominator, unique hits, R=0 versus sem_gold, baselines N_A (6.266512ms)
+✔ failed, missing, truncated and empty retrieval never score as completed success (9.837058ms)
+✔ source accuracy requires evaluated claim/citation/excerpt; zero and absence distinct (2.021063ms)
+✔ synthetic freshness only: explicit references and counts, unknown blocks rate (1.885214ms)
+✔ strict plan/pairs/splits/status/version and native token accounting (5.704663ms)
+✔ rubric outcomes need explicit reviewed items and requirements (3.401749ms)
+✔ public renderer separate process: I/O allowlist, canary gold absent, byte budget (250.829475ms)
+✔ private dev/eval CLI split gates, deterministic replay and no-overwrite with synthetic fixtures (424.23004ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 26
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8938.589456

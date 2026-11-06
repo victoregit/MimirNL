@@ -1,0 +1,51 @@
+{
+  "linux-version": {
+    "argv": [
+      "/home/usuario/.local/share/mimir-node-runtime/node-v24.22.1-linux-x64/bin/node",
+      "-p",
+      "JSON.stringify({node:process.version,platform:process.platform,arch:process.arch,sqlite:process.versions.sqlite})"
+    ],
+    "cwd": "/mnt/d/Projects/MimirNL",
+    "exit": 0
+  },
+  "typecheck": {
+    "argv": [
+      "/home/usuario/.local/share/mimir-node-runtime/node-v24.22.1-linux-x64/bin/node",
+      "/mnt/d/Projects/MimirNL/node_modules/typescript/bin/tsc",
+      "--noEmit"
+    ],
+    "cwd": "/mnt/d/Projects/MimirNL",
+    "exit": 0
+  },
+  "lint": {
+    "argv": [
+      "/home/usuario/.local/share/mimir-node-runtime/node-v24.22.1-linux-x64/bin/node",
+      "/mnt/d/Projects/MimirNL/node_modules/eslint/bin/eslint.js",
+      "/mnt/d/Projects/MimirNL/src"
+    ],
+    "cwd": "/mnt/d/Projects/MimirNL",
+    "exit": 0
+  },
+  "format-launcher": {
+    "argv": [
+      "/home/usuario/.local/share/mimir-node-runtime/node-v24.22.1-linux-x64/bin/node",
+      "/mnt/d/Projects/MimirNL/node_modules/prettier/bin/prettier.cjs",
+      "--check",
+      "/mnt/d/Projects/MimirNL/scripts/benchmarks/task104-launch.mjs",
+      "/mnt/d/Projects/MimirNL/test/task104-launch.test.mjs"
+    ],
+    "cwd": "/mnt/d/Projects/MimirNL",
+    "exit": 1
+  },
+  "format-historical": {
+    "argv": [
+      "/home/usuario/.local/share/mimir-node-runtime/node-v24.22.1-linux-x64/bin/node",
+      "/mnt/d/Projects/MimirNL/node_modules/prettier/bin/prettier.cjs",
+      "--check",
+      "/mnt/d/Projects/MimirNL/docs/benchmarks/v03/contrato-0.2.md",
+      "/mnt/d/Projects/MimirNL/docs/benchmarks/v03/fechamento-0.2.md"
+    ],
+    "cwd": "/mnt/d/Projects/MimirNL",
+    "exit": 1
+  }
+}

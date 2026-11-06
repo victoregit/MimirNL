@@ -1,0 +1,12 @@
+✔ unique names, bounded lifetime and deterministic watchdog (10.5606ms)
+✔ deadline termination sends TERM then bounded KILL exactly once (7.5548ms)
+✔ observer bounds frames, excludes private content and correlates only allowed requests (18.7788ms)
+✔ real SDK through subprocess relay preserves errors, privacy and closes cleanly (3070.435ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3710.0993

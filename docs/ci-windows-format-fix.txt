@@ -1,0 +1,353 @@
+Native Windows clean Git clone, Node 24.22.1; no global configuration changes.
+BASELINE: exit 1
+Cloning into 'C:/Users/Public/mimir-ci-format-40158305967'...
+file:C:/Users/Public/mimir-hardening-runtime/git/etc/gitconfig	true
+i/lf    w/crlf  attr/text=auto        	src/cli/index.ts
+
+added 106 packages, and audited 107 packages in 18s
+
+32 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+> mimir-nl@0.1.0 format:check
+> prettier --check src test scripts docs *.md *.json *.mjs .github/workflows/*.yml
+
+Checking formatting...
+[[33mwarn[39m] src/cli/index.ts
+[[33mwarn[39m] src/core/schemas.ts
+[[33mwarn[39m] src/core/service.ts
+[[33mwarn[39m] src/index.ts
+[[33mwarn[39m] src/ingestion/adapters/git.ts
+[[33mwarn[39m] src/learning/index.ts
+[[33mwarn[39m] src/mcp/index.ts
+[[33mwarn[39m] src/optimization/index.ts
+[[33mwarn[39m] src/retrieval/index.ts
+[[33mwarn[39m] src/security/index.ts
+[[33mwarn[39m] src/storage/backup.ts
+[[33mwarn[39m] src/storage/index.ts
+[[33mwarn[39m] test/benchmark.mjs
+[[33mwarn[39m] test/core.test.mjs
+[[33mwarn[39m] test/git-fixture.mjs
+[[33mwarn[39m] test/hardening.test.mjs
+[[33mwarn[39m] test/review-corrections.test.mjs
+[[33mwarn[39m] test/sqlite-runtime.test.mjs
+[[33mwarn[39m] scripts/generate-contract.mjs
+[[33mwarn[39m] scripts/package-smoke.mjs
+[[33mwarn[39m] docs/architecture.md
+[[33mwarn[39m] docs/backup-restore.md
+[[33mwarn[39m] docs/benchmark-results.json
+[[33mwarn[39m] docs/dependencies.md
+[[33mwarn[39m] docs/host-acceptance.md
+[[33mwarn[39m] docs/host-smoke-results.json
+[[33mwarn[39m] docs/implementation-plan.md
+[[33mwarn[39m] docs/integrations.md
+[[33mwarn[39m] docs/mcp-schemas.json
+[[33mwarn[39m] docs/mcp.md
+[[33mwarn[39m] docs/roadmap-execution.md
+[[33mwarn[39m] docs/runtime-download.json
+[[33mwarn[39m] docs/security.md
+[[33mwarn[39m] docs/validation.md
+[[33mwarn[39m] AGENTS.md
+[[33mwarn[39m] CODE_OF_CONDUCT.md
+[[33mwarn[39m] CONTRIBUTING.md
+[[33mwarn[39m] README.md
+[[33mwarn[39m] RELATORIO_IMPLEMENTACAO_V0.1.md
+[[33mwarn[39m] ROADMAP_MIMIR_NL.md
+[[33mwarn[39m] SECURITY.md
+[[33mwarn[39m] package-lock.json
+[[33mwarn[39m] package.json
+[[33mwarn[39m] tsconfig.json
+[[33mwarn[39m] eslint.config.mjs
+[[33mwarn[39m] .github/workflows/ci.yml
+[[33mwarn[39m] Code style issues found in 46 files. Run Prettier with --write to fix.
+
+FIXED: exit 0
+Tracked files removed and re-created by native Git checkout-index under the edited .gitattributes; no source formatting applied. Initial status entries below were stale stat-cache entries: subsequent git diff --stat reports only .gitattributes.
+ M .gitattributes
+ M .github/workflows/ci.yml
+ M .gitignore
+ M AGENTS.md
+ M CODE_OF_CONDUCT.md
+ M CONTRIBUTING.md
+ M LICENSE
+ M README.md
+ M RELATORIO_IMPLEMENTACAO_V0.1.md
+ M ROADMAP_MIMIR_NL.md
+ M SECURITY.md
+ M docs/architecture.md
+ M docs/backup-restore.md
+ M docs/benchmark-results.json
+ M docs/dependencies.md
+ M docs/hardening-linux.txt
+ M docs/hardening-resume-final.txt
+ M docs/hardening-resume-format.txt
+ M docs/hardening-resume-linux.txt
+ M docs/hardening-resume-runtime-linux.txt
+ M docs/hardening-resume-runtime-windows.txt
+ M docs/hardening-resume-windows-final.txt
+ M docs/hardening-resume-windows.txt
+ M docs/hardening-windows.txt
+ M docs/host-acceptance.md
+ M docs/host-smoke-results.json
+ M docs/implementation-plan.md
+ M docs/integrations.md
+ M docs/mcp-schemas.json
+ M docs/mcp.md
+ M docs/package-smoke.txt
+ M docs/review-corrections-checks.txt
+ M docs/review-corrections-linux-final.txt
+ M docs/review-corrections-linux.txt
+ M docs/review-corrections-windows-final.txt
+ M docs/review-corrections-windows.txt
+ M docs/roadmap-execution.md
+ M docs/runtime-download.json
+ M docs/security.md
+ M docs/sqlite-runtime-rejection.txt
+ M docs/test-results.txt
+ M docs/validation.md
+ M eslint.config.mjs
+ M package-lock.json
+ M package.json
+ M scripts/generate-contract.mjs
+ M scripts/host-smoke.py
+ M scripts/package-smoke.mjs
+ M src/cli/index.ts
+ M src/core/schemas.ts
+ M src/core/service.ts
+ M src/index.ts
+ M src/ingestion/adapters/git.ts
+ M src/learning/index.ts
+ M src/mcp/index.ts
+ M src/optimization/index.ts
+ M src/retrieval/index.ts
+ M src/security/index.ts
+ M src/storage/backup.ts
+ M src/storage/index.ts
+ M tasks/02-separate-web.md
+ M tasks/03-review-separation.md
+ M tasks/04-core-engine-v01.md
+ M tasks/05-core-engine-review.md
+ M tasks/06-supervisor-validation.md
+ M tasks/07-patched-sqlite-runtime.md
+ M tasks/08-roadmap-hardening.md
+ M tasks/09-roadmap-host-acceptance.md
+ M tasks/10-resume-hardening.md
+ M tasks/11-independent-review.md
+ M tasks/12-final-hardening-review.md
+ M tasks/12-review-findings.md
+ M tasks/13-review-corrections.md
+ M tasks/14-corrections-rereview.md
+ M tasks/14-rereview-findings.md
+ M tasks/15-review-closeout.md
+ M test/benchmark.mjs
+ M test/core.test.mjs
+ M test/git-fixture.mjs
+ M test/hardening.test.mjs
+ M test/review-corrections.test.mjs
+ M test/sqlite-runtime.test.mjs
+ M tsconfig.json
+i/lf    w/lf    attr/text=auto eol=lf 	src/cli/index.ts
+
+> mimir-nl@0.1.0 format:check
+> prettier --check src test scripts docs *.md *.json *.mjs .github/workflows/*.yml
+
+Checking formatting...
+All matched files use Prettier code style!
+
+> mimir-nl@0.1.0 typecheck
+> tsc --noEmit
+
+
+> mimir-nl@0.1.0 lint
+> eslint src
+
+
+> mimir-nl@0.1.0 test
+> npm run build && node --test test/*.test.mjs
+
+
+> mimir-nl@0.1.0 build
+> tsc
+
+✔ A: restart persistence, WAL, foreign keys and rollback (934.5869ms)
+✔ A: simultaneous independent processes deduplicate atomic writes (1455.8167ms)
+✔ B: isolation for search, IDs, history, stats, relations; bounded literal context (1307.4897ms)
+✔ D: authorized Git fixture bounds, secrets, ignores, binaries, symlink, incremental versions and deletion (2407.9937ms)
+✔ E: explicit verification, relation history, deterministic observation, sharing and confirmed deletion (984.2988ms)
+✔ security: every request field checked, invalid schemas and unsafe database placement (714.8979ms)
+✔ C: real SDK stdio initialize/list/call, CLI shared DB and concurrent MCP clients (3180.1487ms)
+✔ E: shared lifecycle deletion and global/local retrieval dedup (542.7503ms)
+✔ D: uncommitted repositories, byte bound rollback and changed sensitive sources (1737.6147ms)
+✔ B: filters, complete response budget, oversized input and provenance trust (696.1966ms)
+✔ security: external Git config rejected before Git commands; custom excludes and provenance retention (837.9915ms)
+✔ A: future schema versions are refused without migration writes (135.9762ms)
+✔ A/E: manual edits preserve ID/history, reset verification and prevent duplicates (793.1492ms)
+✔ security: quoted JSON configuration secrets and metadata are rejected before persistence (972.0391ms)
+✔ C: CLI positional project deletion consumes the UUID and preserves the source (1096.958ms)
+✔ snapshot includes uncheckpointed WAL, versions, provenance, feedback and independent reopen (926.8481ms)
+✔ snapshot stays consistent with independent CLI writer processes (1333.615ms)
+✔ online snapshot overlaps an active WAL writer and preserves transactional history (4852.9559ms)
+✔ restore rejects corruption, incompatible schema, sidecars, project paths, traversal and symlinks (870.3393ms)
+✔ sensitive fields, Windows paths, bounded includes and injection remain data (490.6057ms)
+✔ external Git config and executable fsmonitor cannot run (1351.3016ms)
+✔ CLI feedback persists approval; includes deprecates and full ingest reactivates (2505.9111ms)
+▶ hard-link failures preserve sources, clean temporary snapshots and never replace targets
+  ✔ EXDEV (116.5166ms)
+  ✔ ENOTSUP (298.4521ms)
+  ✔ EPERM (158.9423ms)
+  ✔ EEXIST (241.3659ms)
+✔ hard-link failures preserve sources, clean temporary snapshots and never replace targets (1191.6892ms)
+✔ SQLite WAL-reset patch boundaries reject unpatched and unknown versions (4.9109ms)
+✔ actual SQLite runtime is patched and doctor reports it (470.9489ms)
+ℹ tests 29
+ℹ suites 0
+ℹ pass 29
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 18270.7196
+
+> mimir-nl@0.1.0 schemas:check
+> npm run build && node scripts/generate-contract.mjs --check
+
+
+> mimir-nl@0.1.0 build
+> tsc
+
+
+> mimir-nl@0.1.0 package:smoke
+> npm run build && node scripts/package-smoke.mjs
+
+
+> mimir-nl@0.1.0 build
+> tsc
+
+{"installedExecutable":true,"backupRestore":true,"feedbackApproval":true,"isolation":true,"node":"v24.22.1","platform":"win32"}
+
+> mimir-nl@0.1.0 benchmark
+> npm run build && node test/benchmark.mjs
+
+
+> mimir-nl@0.1.0 build
+> tsc
+
+{
+  "fixture": {
+    "corpus": 100,
+    "relevant": 8,
+    "query": "Renderer buffer architecture",
+    "seed": "deterministic indices 0..99"
+  },
+  "withoutMemory": {
+    "returned": 0,
+    "latencyMs": 0,
+    "conservativeTokenUpperBound": 0,
+    "precision": 0,
+    "recall": 0
+  },
+  "fullCorpus": {
+    "returned": 100,
+    "latencyMs": 14.492,
+    "conservativeTokenUpperBound": 52065,
+    "precision": 0.08,
+    "recall": 1
+  },
+  "selective": {
+    "returned": 8,
+    "latencyMs": 11.487,
+    "conservativeTokenUpperBound": 4317,
+    "precision": 1,
+    "recall": 1
+  },
+  "limitations": "Synthetic keyword relevance; one local run, no model/task-quality evaluation. Retrieval latency includes context packing and metric writes; corpus baseline reads and packs all rows without metric writes. Byte upper bounds are not actual model token counts or measured savings."
+}
+ .gitattributes | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+ M .gitattributes
+ M .github/workflows/ci.yml
+ M .gitignore
+ M AGENTS.md
+ M CODE_OF_CONDUCT.md
+ M CONTRIBUTING.md
+ M LICENSE
+ M README.md
+ M RELATORIO_IMPLEMENTACAO_V0.1.md
+ M ROADMAP_MIMIR_NL.md
+ M SECURITY.md
+ M docs/architecture.md
+ M docs/backup-restore.md
+ M docs/benchmark-results.json
+ M docs/dependencies.md
+ M docs/hardening-linux.txt
+ M docs/hardening-resume-final.txt
+ M docs/hardening-resume-format.txt
+ M docs/hardening-resume-linux.txt
+ M docs/hardening-resume-runtime-linux.txt
+ M docs/hardening-resume-runtime-windows.txt
+ M docs/hardening-resume-windows-final.txt
+ M docs/hardening-resume-windows.txt
+ M docs/hardening-windows.txt
+ M docs/host-acceptance.md
+ M docs/host-smoke-results.json
+ M docs/implementation-plan.md
+ M docs/integrations.md
+ M docs/mcp-schemas.json
+ M docs/mcp.md
+ M docs/package-smoke.txt
+ M docs/review-corrections-checks.txt
+ M docs/review-corrections-linux-final.txt
+ M docs/review-corrections-linux.txt
+ M docs/review-corrections-windows-final.txt
+ M docs/review-corrections-windows.txt
+ M docs/roadmap-execution.md
+ M docs/runtime-download.json
+ M docs/security.md
+ M docs/sqlite-runtime-rejection.txt
+ M docs/test-results.txt
+ M docs/validation.md
+ M eslint.config.mjs
+ M package-lock.json
+ M package.json
+ M scripts/generate-contract.mjs
+ M scripts/host-smoke.py
+ M scripts/package-smoke.mjs
+ M src/cli/index.ts
+ M src/core/schemas.ts
+ M src/core/service.ts
+ M src/index.ts
+ M src/ingestion/adapters/git.ts
+ M src/learning/index.ts
+ M src/mcp/index.ts
+ M src/optimization/index.ts
+ M src/retrieval/index.ts
+ M src/security/index.ts
+ M src/storage/backup.ts
+ M src/storage/index.ts
+ M tasks/02-separate-web.md
+ M tasks/03-review-separation.md
+ M tasks/04-core-engine-v01.md
+ M tasks/05-core-engine-review.md
+ M tasks/06-supervisor-validation.md
+ M tasks/07-patched-sqlite-runtime.md
+ M tasks/08-roadmap-hardening.md
+ M tasks/09-roadmap-host-acceptance.md
+ M tasks/10-resume-hardening.md
+ M tasks/11-independent-review.md
+ M tasks/12-final-hardening-review.md
+ M tasks/12-review-findings.md
+ M tasks/13-review-corrections.md
+ M tasks/14-corrections-rereview.md
+ M tasks/14-rereview-findings.md
+ M tasks/15-review-closeout.md
+ M test/benchmark.mjs
+ M test/core.test.mjs
+ M test/git-fixture.mjs
+ M test/hardening.test.mjs
+ M test/review-corrections.test.mjs
+ M test/sqlite-runtime.test.mjs
+ M tsconfig.json
+i/lf    w/lf    attr/text=auto eol=lf 	src/cli/index.ts
+file:C:/Users/Public/mimir-hardening-runtime/git/etc/gitconfig	true

@@ -1,0 +1,22 @@
+{
+  "schema_version": "code-inventory-0.2",
+  "review_status": "pending-107",
+  "files": [
+    {
+      "path": "/mnt/d/Projects/MimirNL/scripts/benchmarks/contract-v02.mjs",
+      "sha256": "ec81fb371e187700196ddb183c34bf4f13fe2f847187fdb42d364df93c8fe6ea"
+    },
+    {
+      "path": "/mnt/d/Projects/MimirNL/scripts/benchmarks/metrics-v02.mjs",
+      "sha256": "dcfa1eeadef744f9789e6ddb14f2b13e73d46d6e7864424501669eeb50344252"
+    },
+    {
+      "path": "/mnt/d/Projects/MimirNL/scripts/benchmarks/v02-cli.mjs",
+      "sha256": "7ffcc74da7746dfeebad775736a4f9c5c6d318f675e29c833b541b01b4c3d0de"
+    },
+    {
+      "path": "/mnt/d/Projects/MimirNL/test/benchmark-v02.test.mjs",
+      "sha256": "494b8a4a29ebfeb6d2ce05b8c83b92c4361fa12ef66825811c683908ce8ca012"
+    }
+  ]
+}

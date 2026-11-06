@@ -1,0 +1,600 @@
+[
+  {
+    "contract_version": "0.1",
+    "case_id": "expanded-budget-envelope",
+    "case_revision": 1,
+    "illustrative_only": false,
+    "split": "development",
+    "source": {
+      "repository": "MimirNL",
+      "commit_sha": "166e3cf047b2078952e43dc8e9171e053e99e2ce"
+    },
+    "sources": [
+      {
+        "source_id": "search-schema",
+        "unit_id": "behavior",
+        "path": "src/core/schemas.ts",
+        "start_line": 59,
+        "end_line": 74,
+        "excerpt": "  memory_search: z\n    .object({\n      ...projectId,\n      query: z.string().max(1000),\n      type: z\n        .enum([\"episodic\", \"semantic\", \"procedural\", \"project\", \"global\"])\n        .optional(),\n      status: z\n        .enum([\"candidate\", \"verified\", \"deprecated\", \"rejected\"])\n        .optional(),\n      scope: z.enum([\"project\", \"global\"]).optional(),\n      includeGlobal: z.boolean().default(false),\n      limit: z.number().int().min(1).max(50).default(10),\n      tokenBudget: z.number().int().min(200).max(100000).default(4000),\n    })\n    .strict(),\n",
+        "sha256": "30f540e8300f3762a86ec5b961a0c8a1501b9c6c1d38b6b2411d2f89b52e6786"
+      },
+      {
+        "source_id": "optimizer",
+        "unit_id": "behavior",
+        "path": "src/optimization/index.ts",
+        "start_line": 1,
+        "end_line": 27,
+        "excerpt": "// UTF-8 bytes are a conservative upper bound, not a model tokenizer or savings metric.\nexport const estimateTokens = (value: unknown): number =>\n  Buffer.byteLength(JSON.stringify(value), \"utf8\");\nexport function optimize<T>(\n  items: T[],\n  budget: number,\n): { memories: T[]; estimatedTokens: number; estimator: string } {\n  const result = {\n    memories: [] as T[],\n    estimatedTokens: 0,\n    estimator: \"conservative UTF-8 byte upper bound; not model tokens\",\n  };\n  for (const item of items) {\n    const next = {\n      ...result,\n      memories: [...result.memories, item],\n      estimatedTokens: budget,\n    };\n    if (estimateTokens({ ok: true, data: next }) <= budget)\n      result.memories.push(item);\n  }\n  result.estimatedTokens = estimateTokens({\n    ok: true,\n    data: { ...result, estimatedTokens: budget },\n  });\n  return result;\n}\n",
+        "sha256": "832cf164215cededa94fff24284dd80d5f3ee1351a9dd2dfee2177658c8b9473"
+      },
+      {
+        "source_id": "search-service",
+        "unit_id": "behavior",
+        "path": "src/core/service.ts",
+        "start_line": 356,
+        "end_line": 394,
+        "excerpt": "    if (op === \"memory_search\") {\n      const start = performance.now();\n      const rows = new FtsRetriever(this.db).search(\n        d as unknown as RetrievalFilter,\n      );\n      const seen = new Set<string>();\n      const result = optimize(\n        rows\n          .filter((m) => {\n            if (seen.has(String(m.hash))) return false;\n            seen.add(String(m.hash));\n            return true;\n          })\n          .map((m) => this.view(m)),\n        Number(d.tokenBudget),\n      );\n      this.storage.transaction(() => {\n        const retrievalId = randomUUID();\n        for (const m of result.memories)\n          this.db\n            .prepare(\"UPDATE memories SET uses=uses+1 WHERE id=?\")\n            .run(String(m.id));\n        this.db\n          .prepare(\"INSERT INTO retrievals VALUES(?,?,?,?,?,?)\")\n          .run(\n            retrievalId,\n            p,\n            performance.now() - start,\n            result.estimatedTokens,\n            result.memories.length,\n            new Date().toISOString(),\n          );\n        for (const m of result.memories)\n          this.db\n            .prepare(\"INSERT INTO retrieval_items VALUES(?,?)\")\n            .run(retrievalId, String(m.id));\n      });\n      return result;\n    }\n",
+        "sha256": "15f107ff1abb5210c6afb210aad659974f95cab7a0fcd1ac3b1783f181be2a49"
+      },
+      {
+        "source_id": "stats-service",
+        "unit_id": "behavior",
+        "path": "src/core/service.ts",
+        "start_line": 395,
+        "end_line": 407,
+        "excerpt": "    if (op === \"memory_stats\")\n      return {\n        memories: this.db\n          .prepare(\n            \"SELECT status,type,count(*) AS count,sum(uses) AS uses FROM memories WHERE project_id=? GROUP BY status,type\",\n          )\n          .all(p),\n        retrievals: this.db\n          .prepare(\n            \"SELECT count(*) AS count,sum(tokens) AS estimatedTokens,avg(elapsed_ms) AS meanMs FROM retrievals WHERE project_id=?\",\n          )\n          .get(p),\n      };\n",
+        "sha256": "45564d69d0b9d177af3539cd34b711f6d6c819fcedb7afa6bcb4ff96211e4afb"
+      }
+    ],
+    "model_context": {
+      "task": "Como o tokenBudget de memory_search passa do schema ao optimize? Explique limites/default, unidade efetiva do estimador e o envelope considerado. Cite as unidades necessárias.",
+      "allowed_source_ids": [
+        "search-schema",
+        "optimizer",
+        "search-service",
+        "stats-service"
+      ]
+    },
+    "evaluation_private": {
+      "gold_status": "pending",
+      "expected_answer": "O schema limita tokenBudget a inteiro entre 200 e 100000, default 4000. O serviço passa Number(d.tokenBudget) ao optimize após deduplicar por hash e aplicar view. estimateTokens conta bytes UTF-8 de JSON.stringify, não tokens de modelo. Cada candidato é testado no envelope {ok:true,data:next}, com estimatedTokens=budget no cálculo; o laço continua após omissões e o retorno estima o envelope com esse placeholder. Não comprova economia nem tokenizer real.",
+      "relevant_unit_ids": [
+        "search-schema/behavior",
+        "optimizer/behavior",
+        "search-service/behavior"
+      ],
+      "success_criteria": [
+        "Informa inteiro, mínimo 200, máximo 100000 e default 4000 corretamente.",
+        "Liga o parâmetro do serviço ao optimize e distingue bytes UTF-8 de tokens reais.",
+        "Explica envelope, placeholder estimatedTokens e continuação após omissão sem afirmar garantia de tokens reais.",
+        "Cita search-schema/behavior, optimizer/behavior e search-service/behavior sustentando as afirmações."
+      ],
+      "rubric": [
+        {
+          "id": "item-1",
+          "criterion": "Informa inteiro, mínimo 200, máximo 100000 e default 4000 corretamente.",
+          "weight": 2
+        },
+        {
+          "id": "item-2",
+          "criterion": "Liga o parâmetro do serviço ao optimize e distingue bytes UTF-8 de tokens reais.",
+          "weight": 1
+        },
+        {
+          "id": "item-3",
+          "criterion": "Explica envelope, placeholder estimatedTokens e continuação após omissão sem afirmar garantia de tokens reais.",
+          "weight": 1
+        },
+        {
+          "id": "item-4",
+          "criterion": "Cita search-schema/behavior, optimizer/behavior e search-service/behavior sustentando as afirmações.",
+          "weight": 1
+        }
+      ]
+    },
+    "review": {
+      "author": "codex-task83",
+      "source_reviewer": null,
+      "codex_review_ref": null,
+      "human_acceptance_ref": null,
+      "decision": "pending",
+      "notes": "Proposta offline; revisão independente Task84 e aceite humano pendentes."
+    },
+    "permissions_ref": null
+  },
+  {
+    "contract_version": "0.1",
+    "case_id": "expanded-sharing-eligibility",
+    "case_revision": 1,
+    "illustrative_only": false,
+    "split": "development",
+    "source": {
+      "repository": "MimirNL",
+      "commit_sha": "166e3cf047b2078952e43dc8e9171e053e99e2ce"
+    },
+    "sources": [
+      {
+        "source_id": "feedback-service",
+        "unit_id": "behavior",
+        "path": "src/core/service.ts",
+        "start_line": 428,
+        "end_line": 505,
+        "excerpt": "    if (op === \"memory_feedback\")\n      return this.storage.transaction(() => {\n        const m = this.managedMemory(p, id, d);\n        if (\n          d.scope === \"global\" &&\n          (m.scope !== \"global\" ||\n            !d.sharingApproval ||\n            ![\"deprecate\", \"reject\", \"note\"].includes(String(d.action)))\n        )\n          throw new AppError(\n            \"SHARING_APPROVAL_REQUIRED\",\n            \"Only explicitly approved global deprecation, rejection or notes allowed.\",\n          );\n        const action = String(d.action),\n          now = new Date().toISOString();\n        if (action === \"approve\" && !d.explicitApproval)\n          throw new AppError(\n            \"APPROVAL_REQUIRED\",\n            \"Verification requires explicit user approval.\",\n          );\n        if (action === \"promote\") {\n          if (m.status !== \"verified\" || !d.sharingApproval)\n            throw new AppError(\n              \"SHARING_APPROVAL_REQUIRED\",\n              \"Verified knowledge and explicit cross-project sharing approval required.\",\n            );\n          // Global knowledge has independent lifecycle and no private source IDs, paths or relations.\n          const old = this.db\n            .prepare(\"SELECT id FROM memories WHERE scope='global' AND hash=?\")\n            .get(String(m.hash));\n          if (!old) {\n            const gid = randomUUID();\n            this.db\n              .prepare(\n                \"INSERT INTO memories(id,project_id,scope,type,content,hash,status,origin,source,version,created,updated) VALUES(?,NULL,'global',?,?,?,'verified','user',?,1,?,?)\",\n              )\n              .run(\n                gid,\n                String(m.type),\n                String(m.content),\n                String(m.hash),\n                JSON.stringify({\n                  kind: \"user approval\",\n                  reference: \"explicit sharing approval; source withheld\",\n                }),\n                now,\n                now,\n              );\n            this.snapshot(gid);\n          }\n        }\n        if (action === \"relate\" || action === \"supersede\") {\n          if (!d.relatedId || d.relatedId === id)\n            throw new AppError(\n              \"INVALID_RELATION\",\n              \"A different related memory is required.\",\n            );\n          this.memory(p, String(d.relatedId));\n          this.db\n            .prepare(\"INSERT OR IGNORE INTO relations VALUES(?,?,?)\")\n            .run(id, String(d.relatedId), action);\n        }\n        const status = nextStatus(\n          action,\n          String(m.status),\n          Boolean(d.explicitApproval),\n        );\n        this.db\n          .prepare(\n            \"UPDATE memories SET status=?,version=version+1,updated=? WHERE id=?\",\n          )\n          .run(status, now, id);\n        this.db\n          .prepare(\"INSERT INTO feedback VALUES(?,?,?,?,?)\")\n          .run(randomUUID(), id, action, String(d.note), now);\n        this.snapshot(id);\n        return this.view(this.managedMemory(p, id, d));\n      });\n",
+        "sha256": "14b95054800d87ff843947a11986a18c33e00cb049a01807aef0f4af8b7ea3e3"
+      },
+      {
+        "source_id": "learning",
+        "unit_id": "behavior",
+        "path": "src/learning/index.ts",
+        "start_line": 1,
+        "end_line": 16,
+        "excerpt": "import { AppError } from \"../security/index.js\";\nexport function nextStatus(\n  action: string,\n  current: string,\n  explicitApproval: boolean,\n): string {\n  if (action === \"approve\" && !explicitApproval)\n    throw new AppError(\n      \"APPROVAL_REQUIRED\",\n      \"Verification requires explicit user approval.\",\n    );\n  if (action === \"approve\") return \"verified\";\n  if (action === \"reject\") return \"rejected\";\n  if (action === \"deprecate\" || action === \"supersede\") return \"deprecated\";\n  return current;\n}\n",
+        "sha256": "8840236feff029bc02280abe8b080d559858d182ca60ae7ccbab6573f138a43b"
+      },
+      {
+        "source_id": "retriever",
+        "unit_id": "behavior",
+        "path": "src/retrieval/index.ts",
+        "start_line": 18,
+        "end_line": 41,
+        "excerpt": "export class FtsRetriever implements Retriever {\n  constructor(private db: DatabaseSync) {}\n  search(filter: RetrievalFilter) {\n    const words = filter.query.match(/[\\p{L}\\p{N}_]+/gu)?.slice(0, 40) ?? [];\n    if (!words.length) return [];\n    const args: SQLInputValue[] = [\n      filter.projectId,\n      Number(filter.includeGlobal),\n    ];\n    let where =\n      \"(m.project_id=? OR (?=1 AND m.scope='global' AND m.status='verified'))\";\n    for (const field of [\"type\", \"status\", \"scope\"] as const)\n      if (filter[field]) {\n        where += ` AND m.${field}=?`;\n        args.push(filter[field]);\n      }\n    if (!filter.status) where += \" AND m.status IN ('candidate','verified')\";\n    return this.db\n      .prepare(\n        `SELECT m.* FROM memory_fts JOIN memories m ON m.id=memory_fts.id WHERE ${where} AND memory_fts MATCH ? ORDER BY bm25(memory_fts),(m.scope='project') DESC,m.id LIMIT ?`,\n      )\n      .all(...args, words.map((w) => '\"' + w + '\"').join(\" OR \"), filter.limit);\n  }\n}\n",
+        "sha256": "6ab7216ddd810c8008447b0df63c8cacc894b6e353e324e1e68925b1c5654e8e"
+      },
+      {
+        "source_id": "search-schema",
+        "unit_id": "behavior",
+        "path": "src/core/schemas.ts",
+        "start_line": 59,
+        "end_line": 74,
+        "excerpt": "  memory_search: z\n    .object({\n      ...projectId,\n      query: z.string().max(1000),\n      type: z\n        .enum([\"episodic\", \"semantic\", \"procedural\", \"project\", \"global\"])\n        .optional(),\n      status: z\n        .enum([\"candidate\", \"verified\", \"deprecated\", \"rejected\"])\n        .optional(),\n      scope: z.enum([\"project\", \"global\"]).optional(),\n      includeGlobal: z.boolean().default(false),\n      limit: z.number().int().min(1).max(50).default(10),\n      tokenBudget: z.number().int().min(200).max(100000).default(4000),\n    })\n    .strict(),\n",
+        "sha256": "30f540e8300f3762a86ec5b961a0c8a1501b9c6c1d38b6b2411d2f89b52e6786"
+      },
+      {
+        "source_id": "failure",
+        "unit_id": "behavior",
+        "path": "src/security/index.ts",
+        "start_line": 68,
+        "end_line": 96,
+        "excerpt": "export function failure(e: unknown) {\n  // Keep local exception text and paths private, but retain bounded machine\n  // codes so CI and callers can distinguish I/O and SQLite failures.\n  const local =\n    e instanceof Error\n      ? (e as NodeJS.ErrnoException & { errcode?: number })\n      : undefined;\n  const causeCode =\n    !(e instanceof AppError) &&\n    typeof local?.code === \"string\" &&\n    /^(?:E[A-Z0-9_]{1,63}|SQLITE_[A-Z_]{1,63})$/.test(local.code)\n      ? local.code\n      : undefined;\n  return {\n    ok: false as const,\n    error: {\n      code: e instanceof AppError ? e.code : \"INVALID_REQUEST\",\n      message:\n        e instanceof AppError\n          ? e.message\n          : \"Invalid request or local operation failed.\",\n      ...(causeCode ? { causeCode } : {}),\n      ...(causeCode === \"ERR_SQLITE_ERROR\" &&\n      Number.isSafeInteger(local?.errcode)\n        ? { sqliteCode: local!.errcode }\n        : {}),\n    },\n  };\n}\n",
+        "sha256": "41f76d3fbcd5661fffb63517a5694d78e3e681e9880e243680c6b8666feae2aa"
+      }
+    ],
+    "model_context": {
+      "task": "Approve e promote têm os mesmos efeitos e autorizações? Explique status e cópia global, efeito padrão de includeGlobal e elegibilidade na busca com e sem status explícito. Cite as unidades necessárias.",
+      "allowed_source_ids": [
+        "feedback-service",
+        "learning",
+        "retriever",
+        "search-schema",
+        "failure"
+      ]
+    },
+    "evaluation_private": {
+      "gold_status": "pending",
+      "expected_answer": "Approve exige explicitApproval e nextStatus retorna verified; promote exige memória verified e sharingApproval, cria cópia global verified se não houver global com o mesmo hash, com ciclo independente e fonte privada omitida. nextStatus para promote mantém o status original. Gerenciar global requer regras adicionais: feedback global só deprecate/reject/note com sharingApproval. includeGlobal default false. Busca restringe ao projeto ou, com includeGlobal, global verified; sem status explícito aceita candidate/verified, e filtros type/status/scope são adicionais. Um filtro status=rejected não torna global rejected elegível pelo ramo global. Elegibilidade não garante match lexical ou retorno.",
+      "relevant_unit_ids": [
+        "feedback-service/behavior",
+        "learning/behavior",
+        "retriever/behavior",
+        "search-schema/behavior"
+      ],
+      "success_criteria": [
+        "Distingue explicitApproval/approve de sharingApproval/promote e cópia global verified sem supor mudança de status da original por promote.",
+        "Explica restrição de feedback global e ciclo independente sem inventar transições.",
+        "Explica default includeGlobal=false, ramo global verified, filtros adicionais e candidate/verified no padrão; não promete retorno.",
+        "Cita feedback-service/behavior, learning/behavior, retriever/behavior e search-schema/behavior."
+      ],
+      "rubric": [
+        {
+          "id": "item-1",
+          "criterion": "Distingue explicitApproval/approve de sharingApproval/promote e cópia global verified sem supor mudança de status da original por promote.",
+          "weight": 2
+        },
+        {
+          "id": "item-2",
+          "criterion": "Explica restrição de feedback global e ciclo independente sem inventar transições.",
+          "weight": 1
+        },
+        {
+          "id": "item-3",
+          "criterion": "Explica default includeGlobal=false, ramo global verified, filtros adicionais e candidate/verified no padrão; não promete retorno.",
+          "weight": 1
+        },
+        {
+          "id": "item-4",
+          "criterion": "Cita feedback-service/behavior, learning/behavior, retriever/behavior e search-schema/behavior.",
+          "weight": 1
+        }
+      ]
+    },
+    "review": {
+      "author": "codex-task83",
+      "source_reviewer": null,
+      "codex_review_ref": null,
+      "human_acceptance_ref": null,
+      "decision": "pending",
+      "notes": "Proposta offline; revisão independente Task84 e aceite humano pendentes."
+    },
+    "permissions_ref": null
+  },
+  {
+    "contract_version": "0.1",
+    "case_id": "expanded-project-path-boundary",
+    "case_revision": 1,
+    "illustrative_only": false,
+    "split": "development",
+    "source": {
+      "repository": "MimirNL",
+      "commit_sha": "166e3cf047b2078952e43dc8e9171e053e99e2ce"
+    },
+    "sources": [
+      {
+        "source_id": "register-service",
+        "unit_id": "behavior",
+        "path": "src/core/service.ts",
+        "start_line": 160,
+        "end_line": 185,
+        "excerpt": "    if (op === \"init\") return { database: this.storage.path, version: \"0.2.0\" };\n    if (op === \"project_register\") {\n      // Native realpath resolves Windows drive and directory casing to filesystem identity.\n      const path = realpathSync.native(String(d.path));\n      assertSafe(path);\n      if (sensitivePath(path))\n        throw new AppError(\"UNSAFE_PATH\", \"Sensitive project path.\");\n      if (!statSync(path).isDirectory() || inside(path, this.storage.path))\n        throw new AppError(\n          \"UNSAFE_DB\",\n          \"Project must be a directory outside the database location.\",\n        );\n      // Register only the actual worktree root; otherwise Git could inspect a parent repository.\n      const adapter = new GitAdapter(path);\n      if (adapter.root() !== path)\n        throw new AppError(\n          \"UNSAFE_PATH\",\n          \"Register the canonical Git worktree root.\",\n        );\n      return this.storage.transaction(() => {\n        this.db\n          .prepare(\"INSERT OR IGNORE INTO projects VALUES(?,?,1,?)\")\n          .run(randomUUID(), path, new Date().toISOString());\n        return this.db.prepare(\"SELECT * FROM projects WHERE path=?\").get(path);\n      });\n    }\n",
+        "sha256": "df41220bd3bd3604272b052f38771731a617d17283bc5e094831dc87f60632fb"
+      },
+      {
+        "source_id": "ingest-path",
+        "unit_id": "behavior",
+        "path": "src/ingestion/adapters/git.ts",
+        "start_line": 216,
+        "end_line": 238,
+        "excerpt": "      const full = join(this.path, file);\n      if (!inside(this.path, full)) {\n        skipped++;\n        continue;\n      }\n      let stat;\n      try {\n        stat = lstatSync(full);\n      } catch {\n        continue;\n      }\n      if (!stat.isFile() || stat.isSymbolicLink()) {\n        skipped++;\n        continue;\n      }\n      const canonical = realpathSync.native(full);\n      if (\n        !inside(this.path, canonical) ||\n        relative(this.path, canonical).replaceAll(\"\\\\\", \"/\") !== file\n      ) {\n        skipped++;\n        continue;\n      }\n",
+        "sha256": "be4fa954be10492613387f7143c17c4338a704dbe5b682ed55576fc2fa39bec7"
+      },
+      {
+        "source_id": "retriever",
+        "unit_id": "behavior",
+        "path": "src/retrieval/index.ts",
+        "start_line": 18,
+        "end_line": 41,
+        "excerpt": "export class FtsRetriever implements Retriever {\n  constructor(private db: DatabaseSync) {}\n  search(filter: RetrievalFilter) {\n    const words = filter.query.match(/[\\p{L}\\p{N}_]+/gu)?.slice(0, 40) ?? [];\n    if (!words.length) return [];\n    const args: SQLInputValue[] = [\n      filter.projectId,\n      Number(filter.includeGlobal),\n    ];\n    let where =\n      \"(m.project_id=? OR (?=1 AND m.scope='global' AND m.status='verified'))\";\n    for (const field of [\"type\", \"status\", \"scope\"] as const)\n      if (filter[field]) {\n        where += ` AND m.${field}=?`;\n        args.push(filter[field]);\n      }\n    if (!filter.status) where += \" AND m.status IN ('candidate','verified')\";\n    return this.db\n      .prepare(\n        `SELECT m.* FROM memory_fts JOIN memories m ON m.id=memory_fts.id WHERE ${where} AND memory_fts MATCH ? ORDER BY bm25(memory_fts),(m.scope='project') DESC,m.id LIMIT ?`,\n      )\n      .all(...args, words.map((w) => '\"' + w + '\"').join(\" OR \"), filter.limit);\n  }\n}\n",
+        "sha256": "6ab7216ddd810c8008447b0df63c8cacc894b6e353e324e1e68925b1c5654e8e"
+      },
+      {
+        "source_id": "embedding-interface",
+        "unit_id": "behavior",
+        "path": "src/retrieval/index.ts",
+        "start_line": 14,
+        "end_line": 17,
+        "excerpt": "// Future embedding adapters must be explicitly configured, local by default, and obey the same project boundary.\nexport interface EmbeddingProvider {\n  embed(text: string): Promise<readonly number[]>;\n}\n",
+        "sha256": "08bd7dc9fdd8bc43c5485260108201a5d9b45916605c0abc410d9cc41bccb3a9"
+      }
+    ],
+    "model_context": {
+      "task": "Como registro da raiz Git e checagens do arquivo ingerido se relacionam com a fronteira por projeto na busca? Descreva caminhos canônicos/symlinks e a exceção global, sem equiparar segurança de path à autorização de leitura. Cite as unidades necessárias.",
+      "allowed_source_ids": [
+        "register-service",
+        "ingest-path",
+        "retriever",
+        "embedding-interface"
+      ]
+    },
+    "evaluation_private": {
+      "gold_status": "pending",
+      "expected_answer": "O registro usa realpath nativo, rejeita caminho sensível e diretório inadequado ou DB dentro dele, exige adapter.root() igual à raiz canônica e grava projeto por path. O adapter verifica inside antes da leitura, exige arquivo regular não symlink e caminho canônico interno cuja referência relativa coincida com file. A busca filtra project_id selecionado, com exceção includeGlobal para scope global verified e filtros adicionais; por padrão candidate/verified. Checagens de path e filtro de projeto têm papéis distintos, sem provar isolamento contra todo ataque nem acesso cruzado irrestrito.",
+      "relevant_unit_ids": [
+        "register-service/behavior",
+        "ingest-path/behavior",
+        "retriever/behavior"
+      ],
+      "success_criteria": [
+        "Explica raiz canônica, validações do registro e igualdade adapter.root(), sem alegar autorização universal.",
+        "Explica arquivo regular, rejeição de symlink e checagens inside/caminho relativo canônico.",
+        "Conecta filtro project_id à exceção global verified/includeGlobal e não confunde fronteiras de path e leitura.",
+        "Cita register-service/behavior, ingest-path/behavior e retriever/behavior."
+      ],
+      "rubric": [
+        {
+          "id": "item-1",
+          "criterion": "Explica raiz canônica, validações do registro e igualdade adapter.root(), sem alegar autorização universal.",
+          "weight": 2
+        },
+        {
+          "id": "item-2",
+          "criterion": "Explica arquivo regular, rejeição de symlink e checagens inside/caminho relativo canônico.",
+          "weight": 1
+        },
+        {
+          "id": "item-3",
+          "criterion": "Conecta filtro project_id à exceção global verified/includeGlobal e não confunde fronteiras de path e leitura.",
+          "weight": 1
+        },
+        {
+          "id": "item-4",
+          "criterion": "Cita register-service/behavior, ingest-path/behavior e retriever/behavior.",
+          "weight": 1
+        }
+      ]
+    },
+    "review": {
+      "author": "codex-task83",
+      "source_reviewer": null,
+      "codex_review_ref": null,
+      "human_acceptance_ref": null,
+      "decision": "pending",
+      "notes": "Proposta offline; revisão independente Task84 e aceite humano pendentes."
+    },
+    "permissions_ref": null
+  },
+  {
+    "contract_version": "0.1",
+    "case_id": "expanded-production-p95-absent",
+    "case_revision": 1,
+    "illustrative_only": false,
+    "split": "development",
+    "source": {
+      "repository": "MimirNL",
+      "commit_sha": "166e3cf047b2078952e43dc8e9171e053e99e2ce"
+    },
+    "sources": [
+      {
+        "source_id": "search-service",
+        "unit_id": "behavior",
+        "path": "src/core/service.ts",
+        "start_line": 356,
+        "end_line": 394,
+        "excerpt": "    if (op === \"memory_search\") {\n      const start = performance.now();\n      const rows = new FtsRetriever(this.db).search(\n        d as unknown as RetrievalFilter,\n      );\n      const seen = new Set<string>();\n      const result = optimize(\n        rows\n          .filter((m) => {\n            if (seen.has(String(m.hash))) return false;\n            seen.add(String(m.hash));\n            return true;\n          })\n          .map((m) => this.view(m)),\n        Number(d.tokenBudget),\n      );\n      this.storage.transaction(() => {\n        const retrievalId = randomUUID();\n        for (const m of result.memories)\n          this.db\n            .prepare(\"UPDATE memories SET uses=uses+1 WHERE id=?\")\n            .run(String(m.id));\n        this.db\n          .prepare(\"INSERT INTO retrievals VALUES(?,?,?,?,?,?)\")\n          .run(\n            retrievalId,\n            p,\n            performance.now() - start,\n            result.estimatedTokens,\n            result.memories.length,\n            new Date().toISOString(),\n          );\n        for (const m of result.memories)\n          this.db\n            .prepare(\"INSERT INTO retrieval_items VALUES(?,?)\")\n            .run(retrievalId, String(m.id));\n      });\n      return result;\n    }\n",
+        "sha256": "15f107ff1abb5210c6afb210aad659974f95cab7a0fcd1ac3b1783f181be2a49"
+      },
+      {
+        "source_id": "stats-service",
+        "unit_id": "behavior",
+        "path": "src/core/service.ts",
+        "start_line": 395,
+        "end_line": 407,
+        "excerpt": "    if (op === \"memory_stats\")\n      return {\n        memories: this.db\n          .prepare(\n            \"SELECT status,type,count(*) AS count,sum(uses) AS uses FROM memories WHERE project_id=? GROUP BY status,type\",\n          )\n          .all(p),\n        retrievals: this.db\n          .prepare(\n            \"SELECT count(*) AS count,sum(tokens) AS estimatedTokens,avg(elapsed_ms) AS meanMs FROM retrievals WHERE project_id=?\",\n          )\n          .get(p),\n      };\n",
+        "sha256": "45564d69d0b9d177af3539cd34b711f6d6c819fcedb7afa6bcb4ff96211e4afb"
+      },
+      {
+        "source_id": "retriever",
+        "unit_id": "behavior",
+        "path": "src/retrieval/index.ts",
+        "start_line": 18,
+        "end_line": 41,
+        "excerpt": "export class FtsRetriever implements Retriever {\n  constructor(private db: DatabaseSync) {}\n  search(filter: RetrievalFilter) {\n    const words = filter.query.match(/[\\p{L}\\p{N}_]+/gu)?.slice(0, 40) ?? [];\n    if (!words.length) return [];\n    const args: SQLInputValue[] = [\n      filter.projectId,\n      Number(filter.includeGlobal),\n    ];\n    let where =\n      \"(m.project_id=? OR (?=1 AND m.scope='global' AND m.status='verified'))\";\n    for (const field of [\"type\", \"status\", \"scope\"] as const)\n      if (filter[field]) {\n        where += ` AND m.${field}=?`;\n        args.push(filter[field]);\n      }\n    if (!filter.status) where += \" AND m.status IN ('candidate','verified')\";\n    return this.db\n      .prepare(\n        `SELECT m.* FROM memory_fts JOIN memories m ON m.id=memory_fts.id WHERE ${where} AND memory_fts MATCH ? ORDER BY bm25(memory_fts),(m.scope='project') DESC,m.id LIMIT ?`,\n      )\n      .all(...args, words.map((w) => '\"' + w + '\"').join(\" OR \"), filter.limit);\n  }\n}\n",
+        "sha256": "6ab7216ddd810c8008447b0df63c8cacc894b6e353e324e1e68925b1c5654e8e"
+      },
+      {
+        "source_id": "optimizer",
+        "unit_id": "behavior",
+        "path": "src/optimization/index.ts",
+        "start_line": 1,
+        "end_line": 27,
+        "excerpt": "// UTF-8 bytes are a conservative upper bound, not a model tokenizer or savings metric.\nexport const estimateTokens = (value: unknown): number =>\n  Buffer.byteLength(JSON.stringify(value), \"utf8\");\nexport function optimize<T>(\n  items: T[],\n  budget: number,\n): { memories: T[]; estimatedTokens: number; estimator: string } {\n  const result = {\n    memories: [] as T[],\n    estimatedTokens: 0,\n    estimator: \"conservative UTF-8 byte upper bound; not model tokens\",\n  };\n  for (const item of items) {\n    const next = {\n      ...result,\n      memories: [...result.memories, item],\n      estimatedTokens: budget,\n    };\n    if (estimateTokens({ ok: true, data: next }) <= budget)\n      result.memories.push(item);\n  }\n  result.estimatedTokens = estimateTokens({\n    ok: true,\n    data: { ...result, estimatedTokens: budget },\n  });\n  return result;\n}\n",
+        "sha256": "832cf164215cededa94fff24284dd80d5f3ee1351a9dd2dfee2177658c8b9473"
+      }
+    ],
+    "model_context": {
+      "task": "Qual foi o p95 medido de latência de memory_search em produção entre 2026-10-01T00:00:00Z e 2026-10-07T23:59:59Z? Use somente o pool fornecido; se insuficiente, explique qual evidência falta.",
+      "allowed_source_ids": [
+        "search-service",
+        "stats-service",
+        "retriever",
+        "optimizer"
+      ]
+    },
+    "evaluation_private": {
+      "gold_status": "pending",
+      "expected_answer": "O pool contém implementação, não observações de produção desse período. Não é possível informar p95; temporização e avg(elapsed_ms) no código não fornecem percentil nem amostra observada. Seriam necessárias observações de latência de produção com janela e método de cálculo definidos. Não consultar DB/logs nem inventar zero, média ou percentil.",
+      "relevant_unit_ids": [],
+      "success_criteria": [
+        "Abstém-se explicitamente de fornecer p95 ou outro número substituto; não infere medida real do código ou de avg.",
+        "Identifica falta de observações do período e de método/amostra apropriados, oferecendo pedido útil de evidência.",
+        "Não fabrica fato, medição ou citação que sustente p95; citações opcionais só podem explicar limites do código, nunca servir como prova do dado ausente."
+      ],
+      "rubric": [
+        {
+          "id": "item-1",
+          "criterion": "Abstém-se explicitamente de fornecer p95 ou outro número substituto; não infere medida real do código ou de avg.",
+          "weight": 2
+        },
+        {
+          "id": "item-2",
+          "criterion": "Identifica falta de observações do período e de método/amostra apropriados, oferecendo pedido útil de evidência.",
+          "weight": 1
+        },
+        {
+          "id": "item-3",
+          "criterion": "Não fabrica fato, medição ou citação que sustente p95; citações opcionais só podem explicar limites do código, nunca servir como prova do dado ausente.",
+          "weight": 1
+        }
+      ]
+    },
+    "review": {
+      "author": "codex-task83",
+      "source_reviewer": null,
+      "codex_review_ref": null,
+      "human_acceptance_ref": null,
+      "decision": "pending",
+      "notes": "Proposta offline; revisão independente Task84 e aceite humano pendentes."
+    },
+    "permissions_ref": null
+  },
+  {
+    "contract_version": "0.1",
+    "case_id": "expanded-runtime-config-absent",
+    "case_revision": 1,
+    "illustrative_only": false,
+    "split": "development",
+    "source": {
+      "repository": "MimirNL",
+      "commit_sha": "166e3cf047b2078952e43dc8e9171e053e99e2ce"
+    },
+    "sources": [
+      {
+        "source_id": "embedding-interface",
+        "unit_id": "behavior",
+        "path": "src/retrieval/index.ts",
+        "start_line": 14,
+        "end_line": 17,
+        "excerpt": "// Future embedding adapters must be explicitly configured, local by default, and obey the same project boundary.\nexport interface EmbeddingProvider {\n  embed(text: string): Promise<readonly number[]>;\n}\n",
+        "sha256": "08bd7dc9fdd8bc43c5485260108201a5d9b45916605c0abc410d9cc41bccb3a9"
+      },
+      {
+        "source_id": "optimizer",
+        "unit_id": "behavior",
+        "path": "src/optimization/index.ts",
+        "start_line": 1,
+        "end_line": 27,
+        "excerpt": "// UTF-8 bytes are a conservative upper bound, not a model tokenizer or savings metric.\nexport const estimateTokens = (value: unknown): number =>\n  Buffer.byteLength(JSON.stringify(value), \"utf8\");\nexport function optimize<T>(\n  items: T[],\n  budget: number,\n): { memories: T[]; estimatedTokens: number; estimator: string } {\n  const result = {\n    memories: [] as T[],\n    estimatedTokens: 0,\n    estimator: \"conservative UTF-8 byte upper bound; not model tokens\",\n  };\n  for (const item of items) {\n    const next = {\n      ...result,\n      memories: [...result.memories, item],\n      estimatedTokens: budget,\n    };\n    if (estimateTokens({ ok: true, data: next }) <= budget)\n      result.memories.push(item);\n  }\n  result.estimatedTokens = estimateTokens({\n    ok: true,\n    data: { ...result, estimatedTokens: budget },\n  });\n  return result;\n}\n",
+        "sha256": "832cf164215cededa94fff24284dd80d5f3ee1351a9dd2dfee2177658c8b9473"
+      },
+      {
+        "source_id": "search-schema",
+        "unit_id": "behavior",
+        "path": "src/core/schemas.ts",
+        "start_line": 59,
+        "end_line": 74,
+        "excerpt": "  memory_search: z\n    .object({\n      ...projectId,\n      query: z.string().max(1000),\n      type: z\n        .enum([\"episodic\", \"semantic\", \"procedural\", \"project\", \"global\"])\n        .optional(),\n      status: z\n        .enum([\"candidate\", \"verified\", \"deprecated\", \"rejected\"])\n        .optional(),\n      scope: z.enum([\"project\", \"global\"]).optional(),\n      includeGlobal: z.boolean().default(false),\n      limit: z.number().int().min(1).max(50).default(10),\n      tokenBudget: z.number().int().min(200).max(100000).default(4000),\n    })\n    .strict(),\n",
+        "sha256": "30f540e8300f3762a86ec5b961a0c8a1501b9c6c1d38b6b2411d2f89b52e6786"
+      },
+      {
+        "source_id": "package-version",
+        "unit_id": "behavior",
+        "path": "package.json",
+        "start_line": 1,
+        "end_line": 9,
+        "excerpt": "{\n  \"name\": \"mimir-nl\",\n  \"version\": \"0.2.0\",\n  \"type\": \"module\",\n  \"description\": \"Local-first project memory engine\",\n  \"license\": \"MIT\",\n  \"engines\": {\n    \"node\": \">=24.22.1 <25\"\n  },\n",
+        "sha256": "73fb2a44c8d46e72da56e67b8cdd29ab209ff1ea2d372116d8a7ebaa6e0edad4"
+      }
+    ],
+    "model_context": {
+      "task": "Na instalação Alfa, não descrita neste pool, qual provedor, modelo, tokenizer e tarifa por milhão de tokens estão efetivamente configurados? Responda só com o pool e não consulte configuração, ambiente, autenticação ou DB pessoal.",
+      "allowed_source_ids": [
+        "embedding-interface",
+        "optimizer",
+        "search-schema",
+        "package-version"
+      ]
+    },
+    "evaluation_private": {
+      "gold_status": "pending",
+      "expected_answer": "Não é possível identificar provedor, modelo, tokenizer ou tarifa efetivos da instalação Alfa: ela não está descrita. Interface de embedding, nome tokenBudget, dependências e estimador de bytes não comprovam configuração ou preço em runtime. Solicitar declaração sanitizada da configuração efetiva e referência de tarifa com versão/data/moeda/unidade, sem acessar arquivos privados.",
+      "relevant_unit_ids": [],
+      "success_criteria": [
+        "Abstém-se de nomear provedor/modelo/tokenizer/tarifa efetivos ou inventar zero/gratuidade a partir do código genérico.",
+        "Explica a ausência de descrição da instalação e pede evidência sanitizada de configuração e preço com data/moeda/unidade.",
+        "Não inventa fato/citação de runtime nem propõe consultar env/auth/DB pessoal; citação opcional só explica limite do código."
+      ],
+      "rubric": [
+        {
+          "id": "item-1",
+          "criterion": "Abstém-se de nomear provedor/modelo/tokenizer/tarifa efetivos ou inventar zero/gratuidade a partir do código genérico.",
+          "weight": 2
+        },
+        {
+          "id": "item-2",
+          "criterion": "Explica a ausência de descrição da instalação e pede evidência sanitizada de configuração e preço com data/moeda/unidade.",
+          "weight": 1
+        },
+        {
+          "id": "item-3",
+          "criterion": "Não inventa fato/citação de runtime nem propõe consultar env/auth/DB pessoal; citação opcional só explica limite do código.",
+          "weight": 1
+        }
+      ]
+    },
+    "review": {
+      "author": "codex-task83",
+      "source_reviewer": null,
+      "codex_review_ref": null,
+      "human_acceptance_ref": null,
+      "decision": "pending",
+      "notes": "Proposta offline; revisão independente Task84 e aceite humano pendentes."
+    },
+    "permissions_ref": null
+  },
+  {
+    "contract_version": "0.1",
+    "case_id": "expanded-apparent-version-scope",
+    "case_revision": 1,
+    "illustrative_only": false,
+    "split": "development",
+    "source": {
+      "repository": "MimirNL",
+      "commit_sha": "166e3cf047b2078952e43dc8e9171e053e99e2ce"
+    },
+    "sources": [
+      {
+        "source_id": "readme-status",
+        "unit_id": "behavior",
+        "path": "README.md",
+        "start_line": 1,
+        "end_line": 7,
+        "excerpt": "# Mimir NL\n\n**Release status:** 0.2.0 candidate, unreleased; v0.2 acceptance remains open. See [release notes and publication gates](docs/release-0.2.0.md).\n\nA second brain for AI. Core v0.1 is a local-first TypeScript memory engine with SQLite persistence, project-isolated text retrieval, authorized read-only Git ingestion, deterministic feedback, and an official MCP v2 stdio server. It runs without an external API or model.\n\nThe website remains in [Mimir-web](../Mimir-web), a separate repository. This repository contains only the brain engine. Codex and Google Antigravity configuration examples are documented; actual Linux/WSL Codex and Antigravity evidence is recorded in the [candidate release notes](docs/release-0.2.0.md), with native Windows model-host acceptance still open. The official SDK client has been tested against real subprocess servers.\n",
+        "sha256": "1c3e5099072ad8e3f5ff83a1869ee56656196428601da65eaa8bfa8ef2f6c6d9"
+      },
+      {
+        "source_id": "package-version",
+        "unit_id": "behavior",
+        "path": "package.json",
+        "start_line": 1,
+        "end_line": 9,
+        "excerpt": "{\n  \"name\": \"mimir-nl\",\n  \"version\": \"0.2.0\",\n  \"type\": \"module\",\n  \"description\": \"Local-first project memory engine\",\n  \"license\": \"MIT\",\n  \"engines\": {\n    \"node\": \">=24.22.1 <25\"\n  },\n",
+        "sha256": "73fb2a44c8d46e72da56e67b8cdd29ab209ff1ea2d372116d8a7ebaa6e0edad4"
+      },
+      {
+        "source_id": "embedding-interface",
+        "unit_id": "behavior",
+        "path": "src/retrieval/index.ts",
+        "start_line": 14,
+        "end_line": 17,
+        "excerpt": "// Future embedding adapters must be explicitly configured, local by default, and obey the same project boundary.\nexport interface EmbeddingProvider {\n  embed(text: string): Promise<readonly number[]>;\n}\n",
+        "sha256": "08bd7dc9fdd8bc43c5485260108201a5d9b45916605c0abc410d9cc41bccb3a9"
+      }
+    ],
+    "model_context": {
+      "task": "No mesmo snapshot, README descreve Core v0.1 e package.json declara versão 0.2.0. O que cada fonte comprova? Isso demonstra contradição, documento stale, erro ou publicação da release? Cite ambas.",
+      "allowed_source_ids": [
+        "readme-status",
+        "package-version",
+        "embedding-interface"
+      ]
+    },
+    "evaluation_private": {
+      "gold_status": "pending",
+      "expected_answer": "O README descreve Core v0.1 e declara status 0.2.0 candidate, unreleased, com aceitação v0.2 aberta. package.json declara versão do pacote 0.2.0. São enunciados de escopos distintos; números diferentes sozinhos não demonstram contradição real, stale, erro ou publicação. Metadata do pacote não prova release publicada. Não há evidência de stale real neste pool.",
+      "relevant_unit_ids": [
+        "readme-status/behavior",
+        "package-version/behavior"
+      ],
+      "success_criteria": [
+        "Distingue descrição Core v0.1 de versão do pacote 0.2.0 e menciona candidate/unreleased/aceitação aberta no README.",
+        "Não infere contradição real, stale, erro ou publicação só pelos números; mantém conclusão limitada ao snapshot.",
+        "Cita readme-status/behavior e package-version/behavior corretamente."
+      ],
+      "rubric": [
+        {
+          "id": "item-1",
+          "criterion": "Distingue descrição Core v0.1 de versão do pacote 0.2.0 e menciona candidate/unreleased/aceitação aberta no README.",
+          "weight": 2
+        },
+        {
+          "id": "item-2",
+          "criterion": "Não infere contradição real, stale, erro ou publicação só pelos números; mantém conclusão limitada ao snapshot.",
+          "weight": 1
+        },
+        {
+          "id": "item-3",
+          "criterion": "Cita readme-status/behavior e package-version/behavior corretamente.",
+          "weight": 1
+        }
+      ]
+    },
+    "review": {
+      "author": "codex-task83",
+      "source_reviewer": null,
+      "codex_review_ref": null,
+      "human_acceptance_ref": null,
+      "decision": "pending",
+      "notes": "Proposta offline; revisão independente Task84 e aceite humano pendentes."
+    },
+    "permissions_ref": null
+  }
+]

@@ -1,0 +1,150 @@
+{
+  "schema_version": "source-provenance-0.2",
+  "repository": "MimirNL",
+  "commit": "166e3cf047b2078952e43dc8e9171e053e99e2ce",
+  "license": "MIT",
+  "license_sha256": "d5d78536aac06a5b7da6b02ebd4203141361323a0464261461ecc0dde97c9430",
+  "permission_basis": "Task100 APPROVE + Task101 explicit public repository source authorization; technical independent review pending",
+  "source_files": [
+    {
+      "path": "src/core/schemas.ts",
+      "start_line": 59,
+      "end_line": 74,
+      "sha256": "30f540e8300f3762a86ec5b961a0c8a1501b9c6c1d38b6b2411d2f89b52e6786",
+      "snapshot": "search-schema--behavior.txt"
+    },
+    {
+      "path": "src/optimization/index.ts",
+      "start_line": 1,
+      "end_line": 27,
+      "sha256": "832cf164215cededa94fff24284dd80d5f3ee1351a9dd2dfee2177658c8b9473",
+      "snapshot": "optimizer--behavior.txt"
+    },
+    {
+      "path": "src/core/service.ts",
+      "start_line": 356,
+      "end_line": 394,
+      "sha256": "15f107ff1abb5210c6afb210aad659974f95cab7a0fcd1ac3b1783f181be2a49",
+      "snapshot": "search-service--behavior.txt"
+    },
+    {
+      "path": "src/core/service.ts",
+      "start_line": 395,
+      "end_line": 407,
+      "sha256": "45564d69d0b9d177af3539cd34b711f6d6c819fcedb7afa6bcb4ff96211e4afb",
+      "snapshot": "stats-service--behavior.txt"
+    },
+    {
+      "path": "src/core/service.ts",
+      "start_line": 428,
+      "end_line": 505,
+      "sha256": "14b95054800d87ff843947a11986a18c33e00cb049a01807aef0f4af8b7ea3e3",
+      "snapshot": "feedback-service--behavior.txt"
+    },
+    {
+      "path": "src/learning/index.ts",
+      "start_line": 1,
+      "end_line": 16,
+      "sha256": "8840236feff029bc02280abe8b080d559858d182ca60ae7ccbab6573f138a43b",
+      "snapshot": "learning--behavior.txt"
+    },
+    {
+      "path": "src/retrieval/index.ts",
+      "start_line": 18,
+      "end_line": 41,
+      "sha256": "6ab7216ddd810c8008447b0df63c8cacc894b6e353e324e1e68925b1c5654e8e",
+      "snapshot": "retriever--behavior.txt"
+    },
+    {
+      "path": "src/security/index.ts",
+      "start_line": 68,
+      "end_line": 96,
+      "sha256": "41f76d3fbcd5661fffb63517a5694d78e3e681e9880e243680c6b8666feae2aa",
+      "snapshot": "failure--behavior.txt"
+    },
+    {
+      "path": "src/core/service.ts",
+      "start_line": 160,
+      "end_line": 185,
+      "sha256": "df41220bd3bd3604272b052f38771731a617d17283bc5e094831dc87f60632fb",
+      "snapshot": "register-service--behavior.txt"
+    },
+    {
+      "path": "src/ingestion/adapters/git.ts",
+      "start_line": 216,
+      "end_line": 238,
+      "sha256": "be4fa954be10492613387f7143c17c4338a704dbe5b682ed55576fc2fa39bec7",
+      "snapshot": "ingest-path--behavior.txt"
+    },
+    {
+      "path": "src/retrieval/index.ts",
+      "start_line": 14,
+      "end_line": 17,
+      "sha256": "08bd7dc9fdd8bc43c5485260108201a5d9b45916605c0abc410d9cc41bccb3a9",
+      "snapshot": "embedding-interface--behavior.txt"
+    },
+    {
+      "path": "package.json",
+      "start_line": 1,
+      "end_line": 9,
+      "sha256": "73fb2a44c8d46e72da56e67b8cdd29ab209ff1ea2d372116d8a7ebaa6e0edad4",
+      "snapshot": "package-version--behavior.txt"
+    },
+    {
+      "path": "README.md",
+      "start_line": 1,
+      "end_line": 7,
+      "sha256": "1c3e5099072ad8e3f5ff83a1869ee56656196428601da65eaa8bfa8ef2f6c6d9",
+      "snapshot": "readme-status--behavior.txt"
+    },
+    {
+      "path": "src/learning/index.ts",
+      "start_line": 1,
+      "end_line": 16,
+      "sha256": "8840236feff029bc02280abe8b080d559858d182ca60ae7ccbab6573f138a43b",
+      "snapshot": "code-approval--behavior.txt"
+    },
+    {
+      "path": "src/optimization/index.ts",
+      "start_line": 1,
+      "end_line": 27,
+      "sha256": "832cf164215cededa94fff24284dd80d5f3ee1351a9dd2dfee2177658c8b9473",
+      "snapshot": "code-budget--behavior.txt"
+    },
+    {
+      "path": "src/security/index.ts",
+      "start_line": 68,
+      "end_line": 96,
+      "sha256": "41f76d3fbcd5661fffb63517a5694d78e3e681e9880e243680c6b8666feae2aa",
+      "snapshot": "code-failure--behavior.txt"
+    },
+    {
+      "path": "src/storage/backup.ts",
+      "start_line": 22,
+      "end_line": 66,
+      "sha256": "5ad4961cba46a477848b77fcf8017dc41b9c311673e266d66d5d77b63e69dd9f",
+      "snapshot": "backup-validation--behavior.txt"
+    },
+    {
+      "path": "src/mcp/index.ts",
+      "start_line": 1,
+      "end_line": 28,
+      "sha256": "ad9fb64c6175fd8a52eec447f51f95632afa685d2fb096b26a8bda5db8ea98cb",
+      "snapshot": "mcp-response--behavior.txt"
+    },
+    {
+      "path": "src/cli/index.ts",
+      "start_line": 10,
+      "end_line": 47,
+      "sha256": "86b5f64f2b2cb3a6ccc963cd2fea84af683ecdf0daa749fc738b749a889b8596",
+      "snapshot": "cli-backup--behavior.txt"
+    }
+  ],
+  "history": {
+    "file": "history-c.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "freshness": "unknown; no evaluated current reference or legitimate stale asserted",
+  "actual_model_calls": 0
+}

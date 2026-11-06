@@ -1,0 +1,10 @@
+{
+  "task103_canonical_equal": 57,
+  "core_frozen": 4,
+  "task104_byteidentical_tar_members": 55,
+  "task104_canonical_equal": 55,
+  "historical_code_inventory_matches": 27,
+  "historical_manifests_checked": 2,
+  "replay_manifest_verified": true,
+  "task104_manifest_verified": true
+}

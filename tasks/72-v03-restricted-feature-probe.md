@@ -1,0 +1,7 @@
+# Task72 — Diagnóstico restrito de recursos opcionais
+
+Task71 primeira posição falhou no coletor (pipelineexit1, sem relatório), posições2/3not_run. Causa exata não determinada; usage/custo desconhecidos, não assumir zero. Não repetir a mesma combinação. Supervisor delimita hipótese menor dentro da continuidade autorizada: remover apenas apps/plugins/multi_agent estáveis, preservando shell_tool/code_mode_host e todos controles de segurança.
+
+Até3 chamadas com mesmo prompt mínimo Task70, gpt-6.1-sol low, mesma configuração read-only/ephemeral/ignore-user-config/skipgit e timeout90s sem retries. Acrescentar somente --disable apps --disable plugins --disable multi_agent por invocação; sem editar config ou executar codex features disable. Outputnovo exclusivo /tmp/mimir-restricted-floor-task72-20261027 modo0700/0600, coletor aprovado, stdinJSONL vivo, pipefail e stderrdescartado. Se falhar novamente, parar sem novos testes reais neste diagnóstico. Nenhum DB/fontes/modeloauxiliar/API direta ou novo código.
+
+Mesmas ressalvas Task70: baseline observada de host com promptmínimo, não decomposição de instruções ou comparação causal com pergunta factual; fluxo inválido não é usozero. Resposta não é salva nem avaliada em conteúdo; somente metadata allowlist. Comparar uso válido/tempo reportado com Task70 de forma exploratória, sem preço/TTFT. Registrar todos resultados/falhas em tasks/70-v03-host-floor-result.md. Segurança/preexistentes/semcommitpushmerge permanecem iguais Task70. Nenhum operador auxiliar foi criado.

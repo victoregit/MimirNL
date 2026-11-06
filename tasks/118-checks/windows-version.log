@@ -1,0 +1,3 @@
+C:\Users\Public\mimir-hardening-runtime\git\cmd\git.exe
+git version 2.56.0.windows.3
+JSON.stringify({node:process.version,platform:process.platform,arch:process.arch,sqlite:process.versions.sqlite})

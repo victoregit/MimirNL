@@ -1,0 +1,74 @@
+{
+  "linux-build": {
+    "argv": [
+      "/home/usuario/.local/share/mimir-node-runtime/node-v24.22.1-linux-x64/bin/node",
+      "/home/usuario/mimir-task118-checks/linux/node_modules/typescript/bin/tsc"
+    ],
+    "cwd": "/home/usuario/mimir-task118-checks/linux",
+    "exit": 0
+  },
+  "linux-suite": {
+    "argv": [
+      "/home/usuario/.local/share/mimir-node-runtime/node-v24.22.1-linux-x64/bin/node",
+      "--test",
+      "/home/usuario/mimir-task118-checks/linux/test/benchmark-abc.test.mjs",
+      "/home/usuario/mimir-task118-checks/linux/test/benchmark-antigravity-usage.test.mjs",
+      "/home/usuario/mimir-task118-checks/linux/test/benchmark-cache-diagnostic.test.mjs",
+      "/home/usuario/mimir-task118-checks/linux/test/benchmark-codex-usage.test.mjs",
+      "/home/usuario/mimir-task118-checks/linux/test/benchmark-context-selection.test.mjs",
+      "/home/usuario/mimir-task118-checks/linux/test/benchmark-live-flow.test.mjs",
+      "/home/usuario/mimir-task118-checks/linux/test/benchmark-metrics.test.mjs",
+      "/home/usuario/mimir-task118-checks/linux/test/benchmark-multicase-codex.test.mjs",
+      "/home/usuario/mimir-task118-checks/linux/test/benchmark-paired-probe.test.mjs",
+      "/home/usuario/mimir-task118-checks/linux/test/benchmark-preflight.test.mjs",
+      "/home/usuario/mimir-task118-checks/linux/test/benchmark-public-multicase.test.mjs",
+      "/home/usuario/mimir-task118-checks/linux/test/benchmark-v02.test.mjs",
+      "/home/usuario/mimir-task118-checks/linux/test/canonical-root.test.mjs",
+      "/home/usuario/mimir-task118-checks/linux/test/ci-paths.test.mjs",
+      "/home/usuario/mimir-task118-checks/linux/test/core-v03.test.mjs",
+      "/home/usuario/mimir-task118-checks/linux/test/core.test.mjs",
+      "/home/usuario/mimir-task118-checks/linux/test/hardening.test.mjs",
+      "/home/usuario/mimir-task118-checks/linux/test/npm-cli.test.mjs",
+      "/home/usuario/mimir-task118-checks/linux/test/review-corrections.test.mjs",
+      "/home/usuario/mimir-task118-checks/linux/test/sqlite-runtime.test.mjs",
+      "/home/usuario/mimir-task118-checks/linux/test/task104-launch.test.mjs",
+      "/home/usuario/mimir-task118-checks/linux/test/v02-audit-relay.test.mjs"
+    ],
+    "cwd": "/home/usuario/mimir-task118-checks/linux",
+    "exit": 0
+  },
+  "linux-schemas": {
+    "argv": [
+      "/home/usuario/.local/share/mimir-node-runtime/node-v24.22.1-linux-x64/bin/node",
+      "/home/usuario/mimir-task118-checks/linux/scripts/generate-contract.mjs",
+      "--check"
+    ],
+    "cwd": "/home/usuario/mimir-task118-checks/linux",
+    "exit": 0
+  },
+  "linux-format-global": {
+    "argv": [
+      "/home/usuario/.local/share/mimir-node-runtime/node-v24.22.1-linux-x64/bin/node",
+      "/home/usuario/mimir-task118-checks/linux/node_modules/prettier/bin/prettier.cjs",
+      "--check",
+      "/home/usuario/mimir-task118-checks/linux/src",
+      "/home/usuario/mimir-task118-checks/linux/test",
+      "/home/usuario/mimir-task118-checks/linux/scripts",
+      "/home/usuario/mimir-task118-checks/linux/docs",
+      "/home/usuario/mimir-task118-checks/linux/AGENTS.md",
+      "/home/usuario/mimir-task118-checks/linux/CODE_OF_CONDUCT.md",
+      "/home/usuario/mimir-task118-checks/linux/CONTRIBUTING.md",
+      "/home/usuario/mimir-task118-checks/linux/README.md",
+      "/home/usuario/mimir-task118-checks/linux/RELATORIO_IMPLEMENTACAO_V0.1.md",
+      "/home/usuario/mimir-task118-checks/linux/ROADMAP_MIMIR_NL.md",
+      "/home/usuario/mimir-task118-checks/linux/SECURITY.md",
+      "/home/usuario/mimir-task118-checks/linux/eslint.config.mjs",
+      "/home/usuario/mimir-task118-checks/linux/package-lock.json",
+      "/home/usuario/mimir-task118-checks/linux/package.json",
+      "/home/usuario/mimir-task118-checks/linux/tsconfig.json",
+      "/home/usuario/mimir-task118-checks/linux/.github/workflows/ci.yml"
+    ],
+    "cwd": "/home/usuario/mimir-task118-checks/linux",
+    "exit": 1
+  }
+}

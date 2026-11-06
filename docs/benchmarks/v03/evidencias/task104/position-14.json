@@ -1,0 +1,31 @@
+{
+  "position": 14,
+  "status": "completed",
+  "scenario": "sem_memoria",
+  "retrieved": null,
+  "retrieval_latency_ms": null,
+  "total_latency_ms": 5898.578808999999,
+  "truncated": false,
+  "response": "Não é possível determinar o provedor, modelo, tokenizer ou tarifa por milhão de tokens efetivamente configurados na instalação Alfa: o pool não descreve essa instalação.\n\nA fonte `embedding-interface`, unidade `behavior` (linhas 14–17), define apenas uma interface e exige configuração explícita para futuros adaptadores. A fonte `optimizer`, unidade `behavior` (linhas 1–27), usa bytes UTF-8 como limite superior conservador, explicitamente **não tokens de modelo**. Já `search-schema`, unidade `behavior` (linhas 59–74), define um orçamento padrão de 4.000, sem identificar tokenizer ou preço.\n\nAssim, abstenho-me de atribuir esses quatro dados à instalação Alfa.",
+  "usage": {
+    "input_tokens": 14790,
+    "cached_input_tokens": 12032,
+    "output_tokens": 155,
+    "total_tokens": 14945
+  },
+  "cleanup": "completed",
+  "initial_db_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "seed_sha256": "d570d92d75528d226916c24f339e69df4e1f1cd9af63c947363169afe29a3f7c",
+  "pool_sha256": "909c92c0076a66349ac48534ebff1517aaf9f2da9491468186874e7488dfea93",
+  "context_bytes": 3399,
+  "context_sha256": "7c9390e7f2b0f7fe88478a62d149320b3b83c393dc16f5278610af678958fa2a",
+  "response_bytes": 691,
+  "response_sha256": "ee42c5e230684545409e249d643c469b8f7ddb2c3516409055c067d3ffe4349e",
+  "transport_status": "completed",
+  "model_identity": {
+    "status": "unavailable",
+    "reason": "No model identity in allowlisted public start metadata"
+  },
+  "final_db_sha256": "d570d92d75528d226916c24f339e69df4e1f1cd9af63c947363169afe29a3f7c",
+  "db_file_sha256": "a75cd4f3f675fc51ce3e4edf8dec0a480ccfb438dc66b4b9d4dd91ce03b5227f"
+}

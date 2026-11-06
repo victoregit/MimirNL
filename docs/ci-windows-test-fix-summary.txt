@@ -1,0 +1,21 @@
+Task18 investigation, 2026-10-25
+Commit: 4386fca747eaa88850ea9d3e3a4e2deb027eef12
+Remote: https://github.com/victoregit/MimirNL/actions/runs/40162319883
+Windows job: https://github.com/victoregit/MimirNL/actions/runs/40162319883/job/121076267883
+
+Public API: Ubuntu all gates passed. Windows types/lint/format passed; npm test failed; later checks skipped.
+Public HTML explicitly requires sign-in for logs. Unauthenticated test log chunk HTTP404. No credentials accessed.
+Fresh native Windows clone: C:/Users/Public/mimir-ci-tests-40162319883
+Node24.22.1/npm11.19.1/Git2.56.0.windows.3, system core.autocrlf=true unchanged.
+Supported-runtime npm ci and npm test: exit0, 29 passed, 0 failed/skipped.
+Second Windows test run: exit0, 29 passed, 0 failed/skipped.
+Third Windows test run, TEMP/TMP directory containing spaces: exit0, 29 passed, 0 failed/skipped.
+Linux Node24.22.1 npm test: exit0, 29 passed, 0 failed/skipped.
+Windows clone git status --short empty; source checkout LF.
+Native file symlink probe denied EPERM; local tests handle it, hosted runner privilege branch unknown.
+Initial setup accidentally selected installed Node24.21.0; its npm install was stopped, and only supported-runtime complete runs above are validation evidence.
+
+No root cause established; no implementation/test/CI changes justified.
+Missing: first failing remote test/assertion/error/stack trace from Run npm test.
+Do not infer remote success from local green. Remote CI/release and independent correction review remain pending.
+No commit/push or global configuration changes.

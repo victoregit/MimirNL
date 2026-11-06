@@ -1,0 +1,14 @@
+✔ v03: dedup precedes limit and retains duplicate provenance without crossing scope (37.406602ms)
+✔ v03: controlled recency only breaks verified ties, invalid/future dates do not dominate (11.02347ms)
+✔ v03: deterministic low evidence, empty and FTS injection handling (10.303448ms)
+✔ v03: whole UTF8 envelopes, minimum rejection and intact large excerpts (3.461587ms)
+✔ v03: compact retains citations and hashes, telemetry opt-in, impossible budget does not mutate (15.291851ms)
+✔ v03: telemetry contains only local counters and never uploads (6.526992ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2605.121897

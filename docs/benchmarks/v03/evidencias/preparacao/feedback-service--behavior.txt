@@ -1,0 +1,78 @@
+    if (op === "memory_feedback")
+      return this.storage.transaction(() => {
+        const m = this.managedMemory(p, id, d);
+        if (
+          d.scope === "global" &&
+          (m.scope !== "global" ||
+            !d.sharingApproval ||
+            !["deprecate", "reject", "note"].includes(String(d.action)))
+        )
+          throw new AppError(
+            "SHARING_APPROVAL_REQUIRED",
+            "Only explicitly approved global deprecation, rejection or notes allowed.",
+          );
+        const action = String(d.action),
+          now = new Date().toISOString();
+        if (action === "approve" && !d.explicitApproval)
+          throw new AppError(
+            "APPROVAL_REQUIRED",
+            "Verification requires explicit user approval.",
+          );
+        if (action === "promote") {
+          if (m.status !== "verified" || !d.sharingApproval)
+            throw new AppError(
+              "SHARING_APPROVAL_REQUIRED",
+              "Verified knowledge and explicit cross-project sharing approval required.",
+            );
+          // Global knowledge has independent lifecycle and no private source IDs, paths or relations.
+          const old = this.db
+            .prepare("SELECT id FROM memories WHERE scope='global' AND hash=?")
+            .get(String(m.hash));
+          if (!old) {
+            const gid = randomUUID();
+            this.db
+              .prepare(
+                "INSERT INTO memories(id,project_id,scope,type,content,hash,status,origin,source,version,created,updated) VALUES(?,NULL,'global',?,?,?,'verified','user',?,1,?,?)",
+              )
+              .run(
+                gid,
+                String(m.type),
+                String(m.content),
+                String(m.hash),
+                JSON.stringify({
+                  kind: "user approval",
+                  reference: "explicit sharing approval; source withheld",
+                }),
+                now,
+                now,
+              );
+            this.snapshot(gid);
+          }
+        }
+        if (action === "relate" || action === "supersede") {
+          if (!d.relatedId || d.relatedId === id)
+            throw new AppError(
+              "INVALID_RELATION",
+              "A different related memory is required.",
+            );
+          this.memory(p, String(d.relatedId));
+          this.db
+            .prepare("INSERT OR IGNORE INTO relations VALUES(?,?,?)")
+            .run(id, String(d.relatedId), action);
+        }
+        const status = nextStatus(
+          action,
+          String(m.status),
+          Boolean(d.explicitApproval),
+        );
+        this.db
+          .prepare(
+            "UPDATE memories SET status=?,version=version+1,updated=? WHERE id=?",
+          )
+          .run(status, now, id);
+        this.db
+          .prepare("INSERT INTO feedback VALUES(?,?,?,?,?)")
+          .run(randomUUID(), id, action, String(d.note), now);
+        this.snapshot(id);
+        return this.view(this.managedMemory(p, id, d));
+      });

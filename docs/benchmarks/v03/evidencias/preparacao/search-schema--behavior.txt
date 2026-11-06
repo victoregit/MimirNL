@@ -1,0 +1,16 @@
+  memory_search: z
+    .object({
+      ...projectId,
+      query: z.string().max(1000),
+      type: z
+        .enum(["episodic", "semantic", "procedural", "project", "global"])
+        .optional(),
+      status: z
+        .enum(["candidate", "verified", "deprecated", "rejected"])
+        .optional(),
+      scope: z.enum(["project", "global"]).optional(),
+      includeGlobal: z.boolean().default(false),
+      limit: z.number().int().min(1).max(50).default(10),
+      tokenBudget: z.number().int().min(200).max(100000).default(4000),
+    })
+    .strict(),

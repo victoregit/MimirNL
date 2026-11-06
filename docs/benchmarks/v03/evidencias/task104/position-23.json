@@ -1,0 +1,31 @@
+{
+  "position": 23,
+  "status": "completed",
+  "scenario": "sem_memoria",
+  "retrieved": null,
+  "retrieval_latency_ms": null,
+  "total_latency_ms": 6538.73976300002,
+  "truncated": false,
+  "response": "Não. `estimateTokens` mede **bytes UTF-8 de `JSON.stringify(value)`**, apresentados como limite superior conservador, não tokens reais do modelo nem métrica de economia.\n\n`optimize` percorre os itens na ordem recebida. Para cada um, estima o envelope `{ ok: true, data: next }`, incluindo os itens já aceitos e o candidato, com `estimatedTokens` temporariamente igual ao orçamento. Aceita o candidato se a estimativa for menor ou igual ao orçamento; caso contrário, omite-o e continua.\n\n**Sim**, um item posterior pode caber após outro ser omitido: ele é testado com os itens aceitos, sem incluir o omitido.\n\nFonte/unidade: **code-budget / behavior**, `src/optimization/index.ts`, linhas 1–27.",
+  "usage": {
+    "input_tokens": 14159,
+    "cached_input_tokens": 12032,
+    "output_tokens": 170,
+    "total_tokens": 14329
+  },
+  "cleanup": "completed",
+  "initial_db_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "seed_sha256": "695d4afc7e4d0ada4b414f4a09be29d380399b09978034d9e598588bb58c91ae",
+  "pool_sha256": "3f38418b57f6f2322c075d0253fe92b9de6646374a1d73a48b3268e4d368225e",
+  "context_bytes": 1508,
+  "context_sha256": "ca239ce4359e99ffd5ee4995926342e78f7eb3efb6afc2f10c80b66cb22184d0",
+  "response_bytes": 704,
+  "response_sha256": "ddf40ecb8d95dfee9eee47399c47879741debfeaa041f8f3fc79c1541b09428c",
+  "transport_status": "completed",
+  "model_identity": {
+    "status": "unavailable",
+    "reason": "No model identity in allowlisted public start metadata"
+  },
+  "final_db_sha256": "695d4afc7e4d0ada4b414f4a09be29d380399b09978034d9e598588bb58c91ae",
+  "db_file_sha256": "17939ad62d89cde4a991716753b02b2edb4a5cc648c35653aed363cacb7a0a52"
+}

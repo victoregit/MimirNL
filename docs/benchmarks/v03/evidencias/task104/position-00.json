@@ -1,0 +1,31 @@
+{
+  "position": 0,
+  "status": "completed",
+  "scenario": "sem_memoria",
+  "retrieved": null,
+  "retrieval_latency_ms": null,
+  "total_latency_ms": 7708.301691000001,
+  "truncated": false,
+  "response": "O README comprova que o projeto **declara** a 0.2.0 como candidata, ainda não lançada, com aceitação aberta; também descreve o “Core v0.1” e suas capacidades ([readme-status/behavior], README.md:1–7).\n\nO package.json comprova que o campo de versão do pacote está definido como **0.2.0** nesse mesmo commit ([package-version/behavior], package.json:1–9).\n\nEsses registros, isoladamente, **não demonstram contradição, documento desatualizado ou erro**: a descrição do Core e a versão declarada do pacote podem ter escopos distintos. Tampouco comprovam publicação da release; o README declara explicitamente “unreleased”. Faltam evidências para concluir desatualização, erro ou publicação.",
+  "usage": {
+    "input_tokens": 14460,
+    "cached_input_tokens": 12032,
+    "output_tokens": 177,
+    "total_tokens": 14637
+  },
+  "cleanup": "completed",
+  "initial_db_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "seed_sha256": "572e335fbf0679606241f4ee980a031e8d51195edb46142f9f24fbd130e04bcd",
+  "pool_sha256": "5c1a3d32219778cde77bdf7d02cebd044d15914ff81d7fa51b1bfb523f602a44",
+  "context_bytes": 2489,
+  "context_sha256": "46e2cb72b7fd794d6d2727e3b843b24369e3d24e03835a51a2470ac5fd243e36",
+  "response_bytes": 718,
+  "response_sha256": "05a7f63d8a703688ae985ab9e730945a4a70b7245059cec1b10ee09ef7b9e02e",
+  "transport_status": "completed",
+  "model_identity": {
+    "status": "unavailable",
+    "reason": "No model identity in allowlisted public start metadata"
+  },
+  "final_db_sha256": "572e335fbf0679606241f4ee980a031e8d51195edb46142f9f24fbd130e04bcd",
+  "db_file_sha256": "22b078fcc3e172e7a563edf06d1178af0718aea8e35436c15d335dd7a083712a"
+}

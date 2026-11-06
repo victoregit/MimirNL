@@ -1,0 +1,31 @@
+{
+  "position": 47,
+  "status": "completed",
+  "scenario": "com_mimir",
+  "retrieved": [],
+  "retrieval_latency_ms": 20.138149999955203,
+  "total_latency_ms": 5192.705126999994,
+  "truncated": false,
+  "response": "Não é possível determinar quantos restores de backup foram concluídos com sucesso na instalação Beta entre 1 e 7 de outubro de 2026.\n\nA fonte fornecida mostra apenas que o CLI executa `restoreDatabase` e emite `ok: true` quando a chamada retorna com sucesso; não contém registros de execução, datas ou identificação da instalação Beta. Portanto, não sustenta uma contagem, nem mesmo zero.\n\nFonte: **cli-backup**, unidade **behavior**, `src/cli/index.ts`, linhas 10–47, commit `166e3cf047b2078952e43dc8e9171e053e99e2ce`.",
+  "usage": {
+    "input_tokens": 14303,
+    "cached_input_tokens": 12032,
+    "output_tokens": 140,
+    "total_tokens": 14443
+  },
+  "cleanup": "completed",
+  "initial_db_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "seed_sha256": "b70b8097b8137185bed4a4f1cd1d7a108a56cb2f2742936ca6cc61cb5fe772cb",
+  "pool_sha256": "d38f058a28d2a264f707ba09df04a5621328722f2c5971d8d910130ef6b2aba8",
+  "context_bytes": 1918,
+  "context_sha256": "45b42b65eefd036c88b8b86f07076036be83759c74579305b110ff2c95cdbc55",
+  "response_bytes": 536,
+  "response_sha256": "78b9fcf8722753dbe7ff8882de4b2aac9974d03d380c710f75beb9c376425904",
+  "transport_status": "completed",
+  "model_identity": {
+    "status": "unavailable",
+    "reason": "No model identity in allowlisted public start metadata"
+  },
+  "final_db_sha256": "b70b8097b8137185bed4a4f1cd1d7a108a56cb2f2742936ca6cc61cb5fe772cb",
+  "db_file_sha256": "4c0a7df607e2ce4fb34d7d9fa7271f962b50e403328745aaec4c45d1711a6c26"
+}

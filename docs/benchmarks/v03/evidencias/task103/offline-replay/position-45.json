@@ -1,0 +1,26 @@
+{
+  "position": 45,
+  "status": "synthetic",
+  "scenario": "historico_completo",
+  "retrieved": null,
+  "retrieval_latency_ms": null,
+  "total_latency_ms": 1.0760839999966265,
+  "truncated": false,
+  "response": null,
+  "usage": null,
+  "cleanup": "completed",
+  "initial_db_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "seed_sha256": "a70198b195f8dce9aa87fd909f58e589a92c37505dfbcf93b173eb936737628a",
+  "pool_sha256": "d38f058a28d2a264f707ba09df04a5621328722f2c5971d8d910130ef6b2aba8",
+  "context_bytes": 1918,
+  "context_sha256": "45b42b65eefd036c88b8b86f07076036be83759c74579305b110ff2c95cdbc55",
+  "response_bytes": null,
+  "response_sha256": null,
+  "transport_status": "synthetic",
+  "model_identity": {
+    "status": "unavailable",
+    "reason": "offline fake; no model invoked"
+  },
+  "final_db_sha256": "a70198b195f8dce9aa87fd909f58e589a92c37505dfbcf93b173eb936737628a",
+  "db_file_sha256": "b8284a83d2fc2d8fbc8693794119ac8a352ee187e315d374e269c3c3dae7fad1"
+}

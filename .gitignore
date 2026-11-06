@@ -1,0 +1,7 @@
+node_modules/
+dist/
+*.sqlite*
+coverage/
+
+# Local candidate packages and verification logs
+.release/

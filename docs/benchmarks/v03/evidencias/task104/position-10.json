@@ -1,0 +1,31 @@
+{
+  "position": 10,
+  "status": "completed",
+  "scenario": "com_mimir",
+  "retrieved": ["register-service/behavior", "retriever/behavior"],
+  "retrieval_latency_ms": 18.082500000004075,
+  "total_latency_ms": 7380.138701999997,
+  "truncated": false,
+  "response": "O registro usa `realpathSync.native` para resolver symlinks e normalizar identidade/capitalização; exige a raiz canônica do worktree Git, evitando alcançar um repositório pai [register-service/behavior, L160–185].\n\nNa ingestão, o arquivo deve estar dentro da raiz, ser regular e não symlink; seu caminho canônico deve continuar interno e corresponder exatamente ao relativo esperado, barrando também desvios por diretórios symlink [ingest-path/behavior, L216–238].\n\nNa busca, a fronteira é `project_id`; com `includeGlobal`, admite também memórias globais verificadas, sujeitas aos demais filtros [retriever/behavior, L18–41]. Futuros embeddings devem respeitar essa fronteira [embedding-interface/behavior, L14–17].\n\nEssas checagens protegem caminhos; as fontes não demonstram autorização de leitura por usuário.",
+  "usage": {
+    "input_tokens": 15838,
+    "cached_input_tokens": 12032,
+    "output_tokens": 192,
+    "total_tokens": 16030
+  },
+  "cleanup": "completed",
+  "initial_db_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "seed_sha256": "da22c07910cfa9f0a955f72c132142bcc744f83400ee0dec77c63061d7c7483b",
+  "pool_sha256": "6b2e6f0b1989cd4582d8a559b61201c2282d1025e836c88c4ec8fe140f37b1ef",
+  "context_bytes": 7367,
+  "context_sha256": "6cdbb7d3eaddc296bc7afaa2f24d7ee0a28905f9d93ff4998ffbfe8a1c16b579",
+  "response_bytes": 838,
+  "response_sha256": "fa4f6d2db407bcbf6716518636adae77509a8db0fb7a59bb8dc84a023403c1cb",
+  "transport_status": "completed",
+  "model_identity": {
+    "status": "unavailable",
+    "reason": "No model identity in allowlisted public start metadata"
+  },
+  "final_db_sha256": "fc4f30c9fdcf31bfcc4dde78e1fc82aad0c307b356254e82369bf76550c4895a",
+  "db_file_sha256": "52926963c26bc77c28b778a23f34d1faa66ba15e2b1a5c9cf7d57c4c5dcc0b2b"
+}

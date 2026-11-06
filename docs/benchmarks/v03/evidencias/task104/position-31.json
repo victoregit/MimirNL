@@ -1,0 +1,31 @@
+{
+  "position": 31,
+  "status": "completed",
+  "scenario": "historico_completo",
+  "retrieved": null,
+  "retrieval_latency_ms": null,
+  "total_latency_ms": 6064.063120000006,
+  "truncated": false,
+  "response": "A função `validate` exige:\n\n- **Estrutura:** igualdade exata entre o esquema do backup e uma referência em memória criada com `SCHEMA_SQL`. Compara `type`, `name`, `tbl_name` e `sql` de `sqlite_master`, com SQL não nulo, ordenados por nome, incluindo tabelas auxiliares e gatilhos FTS. Divergências geram `INVALID_BACKUP`.\n- **Migração:** a consulta ordenada de `migrations` deve retornar exatamente `[{ version: 1 }]`; caso contrário, gera `UNSUPPORTED_SCHEMA`.\n- **Integridade:** `PRAGMA integrity_check` deve retornar exatamente uma linha com `\"ok\"`, e `PRAGMA foreign_key_check` não deve retornar linhas. Falhas geram `INVALID_BACKUP`.\n\nFonte: **backup-validation**, unidade **behavior**, `src/storage/backup.ts`, linhas 22–66.",
+  "usage": {
+    "input_tokens": 14325,
+    "cached_input_tokens": 12032,
+    "output_tokens": 190,
+    "total_tokens": 14515
+  },
+  "cleanup": "completed",
+  "initial_db_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "seed_sha256": "42c314074b03f262cfe6a63c0d0c688b181a91c342d0f8f91fd36d866285132a",
+  "pool_sha256": "e0b1101a0e3fccc6a4e369fa42f5cde3fddd9544499842d3bd11c42606f92b60",
+  "context_bytes": 2186,
+  "context_sha256": "51d1e52c9323134e215ab4566beaf207b04d95dc174be4d5d180fe380d50c667",
+  "response_bytes": 743,
+  "response_sha256": "1358d831c7550f166cd051c62b759f8234848672d754501d699cb70cfbbcda7b",
+  "transport_status": "completed",
+  "model_identity": {
+    "status": "unavailable",
+    "reason": "No model identity in allowlisted public start metadata"
+  },
+  "final_db_sha256": "42c314074b03f262cfe6a63c0d0c688b181a91c342d0f8f91fd36d866285132a",
+  "db_file_sha256": "70d42bc7ecb3a8a808e6fe05c2c30f256c433eb1cba8eee27e9d8421092ff07d"
+}

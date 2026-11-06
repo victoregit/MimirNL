@@ -1,0 +1,13 @@
+    if (op === "memory_stats")
+      return {
+        memories: this.db
+          .prepare(
+            "SELECT status,type,count(*) AS count,sum(uses) AS uses FROM memories WHERE project_id=? GROUP BY status,type",
+          )
+          .all(p),
+        retrievals: this.db
+          .prepare(
+            "SELECT count(*) AS count,sum(tokens) AS estimatedTokens,avg(elapsed_ms) AS meanMs FROM retrievals WHERE project_id=?",
+          )
+          .get(p),
+      };

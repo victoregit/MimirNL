@@ -1,0 +1,35 @@
+{
+  "position": 3,
+  "status": "completed",
+  "scenario": "com_mimir",
+  "retrieved": [
+    "optimizer/behavior",
+    "search-service/behavior",
+    "search-schema/behavior"
+  ],
+  "retrieval_latency_ms": 21.59151700000075,
+  "total_latency_ms": 7689.537278,
+  "truncated": false,
+  "response": "O schema define `tokenBudget` inteiro entre 200 e 100000, padrão 4000; `limit` é independente, de 1 a 50, padrão 10 [search-schema/behavior, L59–74].\n\nO serviço deduplica resultados por `String(m.hash)`, aplica `this.view(m)` e passa `Number(d.tokenBudget)` ao `optimize` [search-service/behavior, L356–394].\n\nA unidade efetiva é **bytes UTF-8 de `JSON.stringify`**, não tokens do modelo nem economia medida. Cada inclusão exige que o envelope `{ok:true,data:next}` caiba no orçamento. Ele inclui memórias, string `estimator` e campo `estimatedTokens` preenchido provisoriamente com `budget`. A estimativa final usa esse mesmo envelope e substituição; portanto, contabiliza também metadados, não apenas memórias [optimizer/behavior, L1–27].",
+  "usage": {
+    "input_tokens": 16128,
+    "cached_input_tokens": 12032,
+    "output_tokens": 197,
+    "total_tokens": 16325
+  },
+  "cleanup": "completed",
+  "initial_db_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "seed_sha256": "02b833eea130e3988aefe0da6e9dd4d1fe82830cf2007dc102962cced28ff1d0",
+  "pool_sha256": "c0c54bd8ee80c361b83bec85b956ed9411e0a9440f854c5b8f4c6569db499f31",
+  "context_bytes": 8193,
+  "context_sha256": "42b25fb993d4cac76759af732d58341f70fd3421228c5655220ecc2e5541c391",
+  "response_bytes": 760,
+  "response_sha256": "765a14f33b6a220949c9b9acddfe502308613d4768e6daeb6b63c486a2c329ca",
+  "transport_status": "completed",
+  "model_identity": {
+    "status": "unavailable",
+    "reason": "No model identity in allowlisted public start metadata"
+  },
+  "final_db_sha256": "21dcfd10cf7c4bf53afebbabc1507ab2e8d546b0111cf5ebe70f5545166112f5",
+  "db_file_sha256": "8ff54211fd3762d6aaf54825d3b49a5af0bc1f9b6da9be82395970644532b7d7"
+}

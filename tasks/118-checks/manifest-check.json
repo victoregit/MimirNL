@@ -1,0 +1,110 @@
+{
+  "package.json": {
+    "expected": "601000afc1dd9916e16728e7322949ec065410c10d3b47a578dac0ce9aec68f0",
+    "observed": "601000afc1dd9916e16728e7322949ec065410c10d3b47a578dac0ce9aec68f0"
+  },
+  "package-lock.json": {
+    "expected": "046525813b80457bf04d2d87cfd035a262570402c3da7a182bb57059d6dd3351",
+    "observed": "046525813b80457bf04d2d87cfd035a262570402c3da7a182bb57059d6dd3351"
+  },
+  "scripts/benchmarks/abc-public.mjs": {
+    "expected": "3ad4be78c9dc88e6596bebcb46b3e4e6556adaa749e9ace0f25342452096a3b3",
+    "observed": "3ad4be78c9dc88e6596bebcb46b3e4e6556adaa749e9ace0f25342452096a3b3"
+  },
+  "scripts/benchmarks/abc-runtime.mjs": {
+    "expected": "2e91a8992ad06084431b8811d9ace721d5904d4a1a72440bcc6704dfd9fc8f57",
+    "observed": "2e91a8992ad06084431b8811d9ace721d5904d4a1a72440bcc6704dfd9fc8f57"
+  },
+  "scripts/benchmarks/abc-transport.mjs": {
+    "expected": "7fb4c1c119523eb7ef6010196d2418fdf68a30f2f8bf0046141da5b5a44fe31b",
+    "observed": "7fb4c1c119523eb7ef6010196d2418fdf68a30f2f8bf0046141da5b5a44fe31b"
+  },
+  "scripts/benchmarks/abc-cli.mjs": {
+    "expected": "f7ac762147cf53fb0979620f9be4cf933c4453efe860761f8955ce8a2268bbf6",
+    "observed": "f7ac762147cf53fb0979620f9be4cf933c4453efe860761f8955ce8a2268bbf6"
+  },
+  "scripts/benchmarks/contract-v02.mjs": {
+    "expected": "ec81fb371e187700196ddb183c34bf4f13fe2f847187fdb42d364df93c8fe6ea",
+    "observed": "ec81fb371e187700196ddb183c34bf4f13fe2f847187fdb42d364df93c8fe6ea"
+  },
+  "scripts/benchmarks/public-bundle.mjs": {
+    "expected": "974d1ce2748c35e2d7d4d3444c33c40fcb0d7a4ddd80eb61225e056312054f7b",
+    "observed": "974d1ce2748c35e2d7d4d3444c33c40fcb0d7a4ddd80eb61225e056312054f7b"
+  },
+  "scripts/benchmarks/offline-files.mjs": {
+    "expected": "0701e5d2c53e3dc644b85d09bda023a1546933fd070203d1c15b6b7d3ab40508",
+    "observed": "0701e5d2c53e3dc644b85d09bda023a1546933fd070203d1c15b6b7d3ab40508"
+  },
+  "scripts/benchmarks/codex-usage-cli.mjs": {
+    "expected": "59c68c5ba1793b02ea8e910736bd66cf6122c8ffd07e95a439dfa704b196db07",
+    "observed": "59c68c5ba1793b02ea8e910736bd66cf6122c8ffd07e95a439dfa704b196db07"
+  },
+  "scripts/benchmarks/codex-usage.mjs": {
+    "expected": "ff5a77cd0ce9654e3e3e65de5073ef8ebeb598bff9dafaaefaec15f4f7c78d70",
+    "observed": "ff5a77cd0ce9654e3e3e65de5073ef8ebeb598bff9dafaaefaec15f4f7c78d70"
+  },
+  "scripts/benchmarks/multicase-codex-transport.mjs": {
+    "expected": "b38c6408b06f16ab3ee4c21db89b6fbcb67fcfa6d4c7d6df9088b9b88a05f1c0",
+    "observed": "b38c6408b06f16ab3ee4c21db89b6fbcb67fcfa6d4c7d6df9088b9b88a05f1c0"
+  },
+  "src/core/service.ts": {
+    "expected": "dd46662d03ef022cea70e35e7276e789a2f4e69c1c11a1af3f3563f9e71e9e94",
+    "observed": "dd46662d03ef022cea70e35e7276e789a2f4e69c1c11a1af3f3563f9e71e9e94"
+  },
+  "src/core/schemas.ts": {
+    "expected": "2b3cf8e9a9a0f54e1547776c20f00e9437089102c318673111c086450da16e9c",
+    "observed": "2b3cf8e9a9a0f54e1547776c20f00e9437089102c318673111c086450da16e9c"
+  },
+  "src/retrieval/index.ts": {
+    "expected": "f0021222bf83fc5d02818a3c73ac03a4cdde1c33eb2cebb5a421ef5dd1f47d30",
+    "observed": "f0021222bf83fc5d02818a3c73ac03a4cdde1c33eb2cebb5a421ef5dd1f47d30"
+  },
+  "src/optimization/index.ts": {
+    "expected": "4dd5c182ae7631169dab169c44b90d177ded821d9250e61975aaed85d65412fc",
+    "observed": "4dd5c182ae7631169dab169c44b90d177ded821d9250e61975aaed85d65412fc"
+  },
+  "src/storage/index.ts": {
+    "expected": "d7c666d28cb8a6167c62d16de0624e6ce66f5eb8abefe0dd60b532ffe3eb1b54",
+    "observed": "d7c666d28cb8a6167c62d16de0624e6ce66f5eb8abefe0dd60b532ffe3eb1b54"
+  },
+  "dist/core/service.js": {
+    "expected": "deddf5e7ed42886d4615189e04395166054a4efc21e58c8c6d761bf2283cff50",
+    "observed": "deddf5e7ed42886d4615189e04395166054a4efc21e58c8c6d761bf2283cff50"
+  },
+  "dist/retrieval/index.js": {
+    "expected": "d448fd1773a31f418bb506f326f8220988b6ede4e2ebd6a371ce1223495449f9",
+    "observed": "d448fd1773a31f418bb506f326f8220988b6ede4e2ebd6a371ce1223495449f9"
+  },
+  "dist/optimization/index.js": {
+    "expected": "3fcc5a9b925f531978ae47520237162b6c43ce46d60e82bdb3dee113c9510992",
+    "observed": "3fcc5a9b925f531978ae47520237162b6c43ce46d60e82bdb3dee113c9510992"
+  },
+  "dist/storage/index.js": {
+    "expected": "54959da7e32a149a91cbd89d066b1873ce3b52038175e2bb736f436afedb92ec",
+    "observed": "54959da7e32a149a91cbd89d066b1873ce3b52038175e2bb736f436afedb92ec"
+  },
+  "dist/index.js": {
+    "expected": "eba238510ddb487008ea2b84105fbfa2ff4e9103990a0df219bb35a3eb10b0f6",
+    "observed": "eba238510ddb487008ea2b84105fbfa2ff4e9103990a0df219bb35a3eb10b0f6"
+  },
+  "dist/core/schemas.js": {
+    "expected": "b9569008ae772b110af38bef96bd24ec9e0f45215988978ebfdd69f64c15388b",
+    "observed": "b9569008ae772b110af38bef96bd24ec9e0f45215988978ebfdd69f64c15388b"
+  },
+  "dist/storage/backup.js": {
+    "expected": "b1c56bec89f869a02c0bf95c6633f9aa1aee0fa0a58b98cf0cf4533e0b0505bd",
+    "observed": "b1c56bec89f869a02c0bf95c6633f9aa1aee0fa0a58b98cf0cf4533e0b0505bd"
+  },
+  "dist/learning/index.js": {
+    "expected": "f0a7c6eab3e0f080583c34eca803141c58890d21361f8dfad140348cbd118d49",
+    "observed": "f0a7c6eab3e0f080583c34eca803141c58890d21361f8dfad140348cbd118d49"
+  },
+  "dist/security/index.js": {
+    "expected": "4a0c7ba9ae85073955cd844a9e788e181dbd4b8f6180931f47d994e0c489870f",
+    "observed": "4a0c7ba9ae85073955cd844a9e788e181dbd4b8f6180931f47d994e0c489870f"
+  },
+  "dist/ingestion/adapters/git.js": {
+    "expected": "969117411f15214945e70e5ef36c66c6ef7c6196a1e1358ea616705f3a0843ab",
+    "observed": "969117411f15214945e70e5ef36c66c6ef7c6196a1e1358ea616705f3a0843ab"
+  }
+}

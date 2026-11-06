@@ -1,0 +1,9 @@
+# Task48 — Separação de responsabilidades da v0.3
+
+Criar /mnt/d/Projects/MimirNL/docs/v03-divisao-de-tarefas.md em português, documento curto e prático, sem implementar código nem iniciar benchmarks. Ler a seção v0.3 do roadmap e preservar todas as alterações existentes. Usuário pede divisão de trabalho com amigo usando Antigravity e quer revisão independente em Codex antes de integrar.
+
+Divisão: amigo prepara proposta de corpus/tarefas/fontes e metodologia; equipe principal/Codex prepara contrato comum, executor, coleta de métricas, comparação dos 3 cenários e alterações no motor após baseline. Contrato de casos/resultados deve ser acordado antes de frentes dependentes; não inventar formato já implementado. Cada caso tem ID, tarefa, versão/commit da fonte, fontes relevantes, critérios de sucesso verificáveis e permissões; respostas esperadas conferidas nas fontes por pessoa diferente do autor. Começar pequeno no próprio MimirNL, sem autorização para outros repositórios/dados/model calls.
+
+Especificar entregas, dependências, áreas de arquivos propostas (não afirmar existência), limites de escopo do amigo (sem core/security/DB/package/CI/config/credenciais/real ingestion), branches/issues/PR pequenos para develop, sem merge direto, critérios de aceite e checklist. Separar autor de revisão; contribuições Antigravity requerem revisão Codex + conferência humana e checks pertinentes, não confiar apenas em IA nem prometer configurações de proteção existentes. V0.2 publicada, v0.3 planejamento, nenhum ganho real alegado. Preservar reserva usuário commit/push; nada de publicação npm ou alteração de roadmap sem pedido. Só novo documento e resultado de coordenação; conferir formatação focada e git diff --check, sem rodar aplicação/testes amplos.
+
+Retornar resultado em /mnt/d/Projects/MimirNL/tasks/48-v03-collaboration-plan-result.md com arquivo criado e validações.

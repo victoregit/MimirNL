@@ -1,0 +1,662 @@
+ABC operation failed
+✔ ABC strict public schema, deep extras, tamper/code/epoch/legacy and authorization binding (18800.5609ms)
+✔ 54 offline positions, 18 real SQLite searches, fresh DB/reset, preserved overlap and A=C, no LLM scoring (18912.2496ms)
+✔ no retry after spawn failure/truncation/invalid tool; all later slots remain not_run (1282.4602ms)
+✔ run/search/global remaining includes synchronous work, no spawn after expiry, cleanup errors retained (1650.098ms)
+✔ empty retrieval preserved without fallback; retrieval failure missing rather than zero (14241.0935ms)
+✖ help/validate/import side effect free; public process deep I/O canary blocks arbitrary private names (213.7627ms)
+file:///C:/Users/Usuario/AppData/Local/Temp/mimir-abc-test-Ri7Sy9/public-process.mjs:1
+import fs from 'node:fs';import fsp from 'node:fs/promises';import {fileURLToPath} from 'node:url';import {dirname,basename,join} from 'node:path';import {syncBuiltinESMExports} from 'node:module';import {executeABC} from "file:///D:/mimir-task118-windows/scripts/benchmarks/abc-runtime.mjs";const allowed=new Set(["C:\\Users\\Usuario\\AppData\\Local\\Temp\\mimir-abc-test-Ri7Sy9\\manifest.json","D:\\mimir-task118-windows\\package.json","D:\\mimir-task118-windows\\package-lock.json","D:\\mimir-task118-windows\\scripts\\benchmarks\\abc-public.mjs","D:\\mimir-task118-windows\\scripts\\benchmarks\\abc-runtime.mjs","D:\\mimir-task118-windows\\scripts\\benchmarks\\abc-transport.mjs","D:\\mimir-task118-windows\\scripts\\benchmarks\\abc-cli.mjs","D:\\mimir-task118-windows\\scripts\\benchmarks\\contract-v02.mjs","D:\\mimir-task118-windows\\scripts\\benchmarks\\public-bundle.mjs","D:\\mimir-task118-windows\\scripts\\benchmarks\\offline-files.mjs","D:\\mimir-task118-windows\\scripts\\benchmarks\\codex-usage-cli.mjs","D:\\mimir-task118-windows\\scripts\\benchmarks\\codex-usage.mjs","D:\\mimir-task118-windows\\scripts\\benchmarks\\multicase-codex-transport.mjs","D:\\mimir-task118-windows\\src\\core\\service.ts","D:\\mimir-task118-windows\\src\\core\\schemas.ts","D:\\mimir-task118-windows\\src\\retrieval\\index.ts","D:\\mimir-task118-windows\\src\\optimization\\index.ts","D:\\mimir-task118-windows\\src\\storage\\index.ts","D:\\mimir-task118-windows\\dist\\core\\service.js","D:\\mimir-task118-windows\\dist\\retrieval\\index.js","D:\\mimir-task118-windows\\dist\\optimization\\index.js","D:\\mimir-task118-windows\\dist\\storage\\index.js","D:\\mimir-task118-windows\\dist\\index.js","D:\\mimir-task118-windows\\dist\\core\\schemas.js","D:\\mimir-task118-windows\\dist\\storage\\backup.js","D:\\mimir-task118-windows\\dist\\learning\\index.js","D:\\mimir-task118-windows\\dist\\security\\index.js","D:\\mimir-task118-windows\\dist\\ingestion\\adapters\\git.js"]);const prefix="fixture-";const outputPrefix="C:\\Users\\Usuario\\AppData\\Local\\Temp\\mimir-abc-test-Ri7Sy9\\out";for(const target of [fs,fsp])for(const name of ['readFileSync','readFile','openSync','open'])if(target[name]){const original=target[name];target[name]=function(p,...args){const path=typeof p==='number'?null:String(p).startsWith('file:')?fileURLToPath(p):String(p);if(path&&!allowed.has(path)&&!(dirname(dirname(path))===outputPrefix&&basename(dirname(path)).startsWith(prefix)&&['history.txt','db.sqlite'].includes(basename(path)))&&!(args[0]==='wx'&&dirname(path)===outputPrefix&&/^(?:position-[0-9]{2}|results)\.json$/.test(basename(path))))throw Error('Forbidden I/O');return original.call(this,p,...args);};}syncBuiltinESMExports();let blocked=false;try{fs.readFileSync("C:\\Users\\Usuario\\AppData\\Local\\Temp\\mimir-abc-test-Ri7Sy9\\arbitrary-name.json");}catch{blocked=true;}if(!blocked)throw Error('Canary not blocked');const m=JSON.parse(fs.readFileSync("C:\\Users\\Usuario\\AppData\\Local\\Temp\\mimir-abc-test-Ri7Sy9\\manifest.json"));const r=await executeABC({manifest:m,out:"C:\\Users\\Usuario\\AppData\\Local\\Temp\\mimir-abc-test-Ri7Sy9\\out"});console.log(JSON.stringify({positions:r.runs.filter(o=>o.status==='synthetic').length,calls:r.actual_model_calls}));
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+
+Error: Forbidden I/O
+    at target.<computed> (file:///C:/Users/Usuario/AppData/Local/Temp/mimir-abc-test-Ri7Sy9/public-process.mjs:1:2635)
+    at file:///D:/mimir-task118-windows/scripts/benchmarks/abc-public.mjs:65:30
+    at Array.map (<anonymous>)
+    at inventory (file:///D:/mimir-task118-windows/scripts/benchmarks/abc-public.mjs:65:10)
+    at validateManifest (file:///D:/mimir-task118-windows/scripts/benchmarks/abc-public.mjs:134:52)
+    at executeABC (file:///D:/mimir-task118-windows/scripts/benchmarks/abc-runtime.mjs:55:3)
+    at file:///C:/Users/Usuario/AppData/Local/Temp/mimir-abc-test-Ri7Sy9/public-process.mjs:1:3047
+
+Node.js v24.22.1
+✔ transport kills owned child immediately on tool event, timeout, output cap and synchronous spawn errors (51.9844ms)
+✖ public runtime I/O canary: exact input/code reads and owned fixture files only (383.7715ms)
+✔ cancellation before transport retains diagnostics and remaining not_run without retry (459.6346ms)
+﹣ real fake subprocess timeout terminates the owned POSIX process group (0.3586ms) # SKIP
+Invalid public cache diagnostic input or output.
+✔ cache subset derivations, zero, missing, inconsistent, failed and synthetic coverage (43.7021ms)
+▶ explicit read, exclusive private output, symlink refusal
+  ﹣ symlink rejection: setup requires Windows symlink privilege (6.7638ms) # Windows returned EPERM while creating the test symlink
+✔ explicit read, exclusive private output, symlink refusal (275.384ms)
+✔ reports usage once, excludes cache from total and strips private canaries (6.1916ms)
+✔ absence, failure and valid zero remain distinct (0.9437ms)
+✔ rejects invalid numbers, structures, duplicate starts and terminals (2.115ms)
+✔ stream handles chunked UTF8, CRLF, final line and injected clock (166.9045ms)
+✔ stream rejects malformed, blank, invalid UTF8, oversize and read errors (249.7997ms)
+▶ CLI runs offline, has fixed diagnostics and exclusively creates private outputs
+  ﹣ symlink rejection: setup requires Windows symlink privilege (1.8888ms) # Windows returned EPERM while creating the test symlink
+✔ CLI runs offline, has fixed diagnostics and exclusively creates private outputs (7705.4105ms)
+✔ import has no side effects and all post-terminal events are rejected (675.2907ms)
+✔ six pinned real units, integrity, real top-k without oracle, no duplicate baseline (3434.4368ms)
+✖ plan precedes six sequential calls; real retrieval, model args, private evidence and cleanup (2014.8971ms)
+✖ transport handles errors, timeout partial usage, tool rejection and limits offline (82.18ms)
+✖ timing, missing metrics, failures and global ceiling retain all positions (1681.1109ms)
+✖ fixture failure closes and blocks B only, import/help are inert (1508.6387ms)
+✖ B timing counts query once and excludes setup/close; no replacement on empty retrieval (1185.6644ms)
+✖ live real Service search is inside each request, no replay; context recorded before transport (2264.961ms)
+✖ AG injection, unknown usage/cache semantics, empty selection, continuous time and no invented totals (1894.3283ms)
+✖ integrity/search failures block B, close errors handled; response never leaks into metadata (1458.8848ms)
+✖ global deadline limits calls, import/help inert, invalid CLI and output rejected (1365.4155ms)
+✔ missing AG adapter fails before corpus, output, fixture or transport (4.0024ms)
+✔ synthetic formulas deduplicate before k; fixed denominator and no private output (20.705ms)
+✔ N_A, unknown, null and measured zero remain distinct (12.642ms)
+✔ pair exclusions, failures, missing observations and positive/zero baselines are visible (5.7781ms)
+✔ reject tampered plans, mixed cases, invalid observations and numeric edge cases privately (33.7375ms)
+▶ actual CLI is read-only by default, private and exclusively creates reports
+  ﹣ symlink rejection: setup requires Windows symlink privilege (3473.9074ms) # Windows returned EPERM while creating the test symlink
+✔ actual CLI is read-only by default, private and exclusively creates reports (9637.6418ms)
+✖ four public positions, AB/BA, usage/cache subset, real fixture search, exclusive evidence and cleanup (18.4516ms)
+✔ schema/hash/extras/revisions/order/call ceiling and missing operational authorization fail before artifacts/spawn (24.4078ms)
+✖ cap infeasible does not truncate or spawn; positions and fixture cleanup conserved (4.6948ms)
+✔ malformed/failed/error/tool/empty/oversized streams and nonzero exits never complete (47.028ms)
+✖ first error halts without retry and preserves remaining positions (7.7306ms)
+✔ timeout kills owned group including pipe-inheriting descendant (210.4995ms)
+✖ remaining budget bounds timeout and prevents further calls (10.9415ms)
+✖ validation subprocess reads only explicit public files, no private data or subprocess (176.9487ms)
+✖ continuous B timer includes search once, excludes setup/close, timeout uses remaining budget (462.9781ms)
+✖ execution subprocess allows only bundle/manifest/owned files and controlled JSONL, real retrieval (1115.7386ms)
+✔ inherited project instructions rejected without artifacts (10.2513ms)
+✔ cancellation kills owned subprocess and removes signal listeners (66.1164ms)
+✖ v2 binds stable prefix to plan and fake transport, v1 remains frozen (4.0197ms)
+✔ source parity, no private IDs or gold, real disposable retrieval (4224.2906ms)
+node:internal/modules/esm/load:193
+    throw new ERR_UNSUPPORTED_ESM_URL_SCHEME(parsed, schemes);
+          ^
+
+Error [ERR_UNSUPPORTED_ESM_URL_SCHEME]: Only URLs with a scheme in: file, data, and node are supported by the default ESM loader. On Windows, absolute paths must be valid file:// URLs. Received protocol 'd:'
+    at throwIfUnsupportedURLScheme (node:internal/modules/esm/load:193:11)
+    at defaultLoadSync (node:internal/modules/esm/load:146:3)
+    at #loadAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:806:12)
+    at #loadSync (node:internal/modules/esm/loader:838:53)
+    at ModuleLoader.load (node:internal/modules/esm/loader:787:26)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:498:31)
+    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:564:36)
+    at afterResolve (node:internal/modules/esm/loader:611:52)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:617:12)
+    at node:internal/modules/esm/loader:636:32 {
+  code: 'ERR_UNSUPPORTED_ESM_URL_SCHEME'
+}
+
+Node.js v24.22.1
+✔ transport preserves approved usage on nonzero/timeout and rejects tools/incomplete (125.0944ms)
+✖ six calls, fixed paired order, inclusive timing, exclusive private artifacts (7.5745ms)
+✖ global ceiling retains not_run and failures with null coverage (4.9031ms)
+✖ import and help do not create fixtures or spawn Codex; CLI requires --run (866.4864ms)
+✔ public model allowlist and stderr bounds do not retain private output (18.3537ms)
+✖ local retrieval failures are reported, cleaned, and never invoke a model for B (3.9924ms)
+✔ contract illustrative JSON validates structure but cannot be planned (100.2684ms)
+✔ synthetic accepted provenance produces deterministic paired balanced public matrix (13.1801ms)
+✔ required fields, types, enums, versions and exact nested allowlists (74.3734ms)
+✔ portable paths, line bounds, SHA format and exact UTF8 excerpt hash (12.4632ms)
+✔ source/unit refs, duplicate batch revisions, rubric uniqueness and finite weights (4.632ms)
+✔ accepted/validated references and independent reviewer are required (5.0151ms)
+✔ repetition limits and total matrix bound (9.8971ms)
+▶ actual CLI reads supplied JSON only, handles errors privately and never overwrites
+  ﹣ symlink rejection: setup requires Windows symlink privilege (3976.8627ms) # Windows returned EPERM while creating the test symlink
+✔ actual CLI reads supplied JSON only, handles errors privately and never overwrites (9262.326ms)
+✔ module imports have no output or filesystem effects (429.6173ms)
+✔ real six plus three export is faithful, blocked and leaves originals untouched (7788.6018ms)
+✔ all private text canaries vanish; gold changes do not change public digest (8530.1056ms)
+✔ public schema refuses private objects, nested extras and tampering (17.5138ms)
+✔ legacy parser rejects ambiguous/malformed blocks without executing markdown (1.2989ms)
+✔ source guards reject traversal, sensitive paths, altered excerpts/ranges and missing blobs (2001.1693ms)
+▶ worktree modification and symlinks refused in an isolated clone
+  ﹣ symlink rejection: setup requires Windows symlink privilege (183.3117ms) # Windows returned EPERM while creating the test symlink
+✔ worktree modification and symlinks refused in an isolated clone (2884.4202ms)
+▶ exclusive private outputs and input symlinks preserve preexisting files
+  ﹣ symlink rejection: setup requires Windows symlink privilege (3.9859ms) # Windows returned EPERM while creating the test symlink
+  ﹣ symlink rejection: setup requires Windows symlink privilege (0.3556ms) # Windows returned EPERM while creating the test symlink
+✔ exclusive private outputs and input symlinks preserve preexisting files (45.5656ms)
+✔ matrix is case-qualified, deterministic AB/BA, bounded and preserves slots (15.7496ms)
+✔ invalid input fails before output, storage or fake invocation (9.9101ms)
+✔ real Mimir all-nine simulation uses exact pools, real selection and neutral fake (5786.0194ms)
+✔ empty selections remain empty; nonmember or corrupted returns rejected (1.3622ms)
+✔ continuous B timer includes one retrieval, serialization and fake, excluding setup (596.4017ms)
+✔ budget exhaustion retains not_run positions; failures never become completed (509.1405ms)
+✔ baseline cap yields infeasible with no truncation or cap increase (1083.6857ms)
+✖ imports/help have no I/O; runtime dependency graph excludes private corpus/host modules (120.4456ms)
+✖ isolated runtime process opens only public bundle, owned fixtures and module code (134.1067ms)
+✔ real fixture seed and stored history contain only public data with candidate/user status (4076.9994ms)
+✔ 0.2 sources: exact pinned bytes, durable snapshots, zero history, no private fields (18395.2462ms)
+✔ deep projection canary and hash invariance; exact nested/public version rejection (16849.8224ms)
+▶ source/path safety rejects traversal, symlinks, ranges, non-allowlisted paths and overwrite
+  ﹣ symlink rejection: setup requires Windows symlink privilege (63.1468ms) # Windows returned EPERM while creating the test symlink
+✔ source/path safety rejects traversal, symlinks, ranges, non-allowlisted paths and overwrite (1024.7186ms)
+✔ review stages: pending is structural only; receipt external hash not self approval/live (30.819ms)
+✔ fixed denominator, unique hits, R=0 versus sem_gold, baselines N_A (80.4631ms)
+✔ failed, missing, truncated and empty retrieval never score as completed success (60.4171ms)
+✔ source accuracy requires evaluated claim/citation/excerpt; zero and absence distinct (19.5153ms)
+✔ synthetic freshness only: explicit references and counts, unknown blocks rate (10.6748ms)
+✔ strict plan/pairs/splits/status/version and native token accounting (37.5468ms)
+✔ rubric outcomes need explicit reviewed items and requirements (14.1993ms)
+✔ public renderer separate process: I/O allowlist, canary gold absent, byte budget (1971.071ms)
+✔ private dev/eval CLI split gates, deterministic replay and no-overwrite with synthetic fixtures (1412.4412ms)
+✔ import and help have no runtime loading or execution (4247.2581ms)
+✔ invalid arguments reject without execution (1893.4918ms)
+✔ strict invalid authorizations fail before runtime and output creation (1300.4285ms)
+ℹ tests 104
+ℹ suites 0
+ℹ pass 70
+ℹ fail 25
+ℹ cancelled 0
+ℹ skipped 9
+ℹ todo 0
+ℹ duration_ms 58397.4103
+
+✖ failing tests:
+
+test at test\benchmark-abc.test.mjs:249:1
+✖ help/validate/import side effect free; public process deep I/O canary blocks arbitrary private names (213.7627ms)
+  Error: Command failed: C:\Users\Public\mimir-hardening-runtime\node\node-v24.22.1-win-x64\node.exe --import file:///C:/Users/Usuario/AppData/Local/Temp/mimir-abc-test-s9q5eH/guard.mjs D:\mimir-task118-windows/scripts/benchmarks/abc-cli.mjs validate C:\Users\Usuario\AppData\Local\Temp\mimir-abc-test-s9q5eH\manifest.json
+  ABC operation failed
+  
+      at genericNodeError (node:internal/errors:986:15)
+      at wrappedFn (node:internal/errors:540:14)
+      at checkExecSyncError (node:child_process:943:11)
+      at execFileSync (node:child_process:979:15)
+      at TestContext.<anonymous> (file:///D:/mimir-task118-windows/test/benchmark-abc.test.mjs:263:20)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12) {
+    status: 1,
+    signal: null,
+    output: [ null, '', 'ABC operation failed\n' ],
+    pid: 19348,
+    stdout: '',
+    stderr: 'ABC operation failed\n'
+  }
+
+test at test\benchmark-abc.test.mjs:327:1
+✖ public runtime I/O canary: exact input/code reads and owned fixture files only (383.7715ms)
+  Error: Command failed: C:\Users\Public\mimir-hardening-runtime\node\node-v24.22.1-win-x64\node.exe C:\Users\Usuario\AppData\Local\Temp\mimir-abc-test-Ri7Sy9\public-process.mjs
+  file:///C:/Users/Usuario/AppData/Local/Temp/mimir-abc-test-Ri7Sy9/public-process.mjs:1
+  import fs from 'node:fs';import fsp from 'node:fs/promises';import {fileURLToPath} from 'node:url';import {dirname,basename,join} from 'node:path';import {syncBuiltinESMExports} from 'node:module';import {executeABC} from "file:///D:/mimir-task118-windows/scripts/benchmarks/abc-runtime.mjs";const allowed=new Set(["C:\\Users\\Usuario\\AppData\\Local\\Temp\\mimir-abc-test-Ri7Sy9\\manifest.json","D:\\mimir-task118-windows\\package.json","D:\\mimir-task118-windows\\package-lock.json","D:\\mimir-task118-windows\\scripts\\benchmarks\\abc-public.mjs","D:\\mimir-task118-windows\\scripts\\benchmarks\\abc-runtime.mjs","D:\\mimir-task118-windows\\scripts\\benchmarks\\abc-transport.mjs","D:\\mimir-task118-windows\\scripts\\benchmarks\\abc-cli.mjs","D:\\mimir-task118-windows\\scripts\\benchmarks\\contract-v02.mjs","D:\\mimir-task118-windows\\scripts\\benchmarks\\public-bundle.mjs","D:\\mimir-task118-windows\\scripts\\benchmarks\\offline-files.mjs","D:\\mimir-task118-windows\\scripts\\benchmarks\\codex-usage-cli.mjs","D:\\mimir-task118-windows\\scripts\\benchmarks\\codex-usage.mjs","D:\\mimir-task118-windows\\scripts\\benchmarks\\multicase-codex-transport.mjs","D:\\mimir-task118-windows\\src\\core\\service.ts","D:\\mimir-task118-windows\\src\\core\\schemas.ts","D:\\mimir-task118-windows\\src\\retrieval\\index.ts","D:\\mimir-task118-windows\\src\\optimization\\index.ts","D:\\mimir-task118-windows\\src\\storage\\index.ts","D:\\mimir-task118-windows\\dist\\core\\service.js","D:\\mimir-task118-windows\\dist\\retrieval\\index.js","D:\\mimir-task118-windows\\dist\\optimization\\index.js","D:\\mimir-task118-windows\\dist\\storage\\index.js","D:\\mimir-task118-windows\\dist\\index.js","D:\\mimir-task118-windows\\dist\\core\\schemas.js","D:\\mimir-task118-windows\\dist\\storage\\backup.js","D:\\mimir-task118-windows\\dist\\learning\\index.js","D:\\mimir-task118-windows\\dist\\security\\index.js","D:\\mimir-task118-windows\\dist\\ingestion\\adapters\\git.js"]);const prefix="fixture-";const outputPrefix="C:\\Users\\Usuario\\AppData\\Local\\Temp\\mimir-abc-test-Ri7Sy9\\out";for(const target of [fs,fsp])for(const name of ['readFileSync','readFile','openSync','open'])if(target[name]){const original=target[name];target[name]=function(p,...args){const path=typeof p==='number'?null:String(p).startsWith('file:')?fileURLToPath(p):String(p);if(path&&!allowed.has(path)&&!(dirname(dirname(path))===outputPrefix&&basename(dirname(path)).startsWith(prefix)&&['history.txt','db.sqlite'].includes(basename(path)))&&!(args[0]==='wx'&&dirname(path)===outputPrefix&&/^(?:position-[0-9]{2}|results)\.json$/.test(basename(path))))throw Error('Forbidden I/O');return original.call(this,p,...args);};}syncBuiltinESMExports();let blocked=false;try{fs.readFileSync("C:\\Users\\Usuario\\AppData\\Local\\Temp\\mimir-abc-test-Ri7Sy9\\arbitrary-name.json");}catch{blocked=true;}if(!blocked)throw Error('Canary not blocked');const m=JSON.parse(fs.readFileSync("C:\\Users\\Usuario\\AppData\\Local\\Temp\\mimir-abc-test-Ri7Sy9\\manifest.json"));const r=await executeABC({manifest:m,out:"C:\\Users\\Usuario\\AppData\\Local\\Temp\\mimir-abc-test-Ri7Sy9\\out"});console.log(JSON.stringify({positions:r.runs.filter(o=>o.status==='synthetic').length,calls:r.actual_model_calls}));
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+  
+  Error: Forbidden I/O
+      at target.<computed> (file:///C:/Users/Usuario/AppData/Local/Temp/mimir-abc-test-Ri7Sy9/public-process.mjs:1:2635)
+      at file:///D:/mimir-task118-windows/scripts/benchmarks/abc-public.mjs:65:30
+      at Array.map (<anonymous>)
+      at inventory (file:///D:/mimir-task118-windows/scripts/benchmarks/abc-public.mjs:65:10)
+      at validateManifest (file:///D:/mimir-task118-windows/scripts/benchmarks/abc-public.mjs:134:52)
+      at executeABC (file:///D:/mimir-task118-windows/scripts/benchmarks/abc-runtime.mjs:55:3)
+      at file:///C:/Users/Usuario/AppData/Local/Temp/mimir-abc-test-Ri7Sy9/public-process.mjs:1:3047
+  
+  Node.js v24.22.1
+  
+      at genericNodeError (node:internal/errors:986:15)
+      at wrappedFn (node:internal/errors:540:14)
+      at checkExecSyncError (node:child_process:943:11)
+      at execFileSync (node:child_process:979:15)
+      at TestContext.<anonymous> (file:///D:/mimir-task118-windows/test/benchmark-abc.test.mjs:341:20)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12) {
+    status: 1,
+    signal: null,
+    output: [ null, '', `file:///C:/Users/Usuario/AppData/Local/Temp/mimir-abc-test-Ri7Sy9/public-process.mjs:1\r\nimport fs from 'node:fs';import fsp from 'node:fs/promises';import {fileURLToPath} from 'node:url';import {dirname,basename,join} from 'node:path';import {syncBuiltinESMExports} from 'node:module';import {executeABC} from "file:///D:/mimir-task118-windows/scripts/benchmarks/abc-runtime.mjs";const allowed=new Set(["C:\\\\Users\\\\Usuario\\\\AppData\\\\Local\\\\Temp\\\\mimir-abc-test-Ri7Sy9\\\\manifest.json","D:\\\\mimir-task118-windows\\\\package.json","D:\\\\mimir-task118-windows\\\\package-lock.json","D:\\\\mimir-task118-windows\\\\scripts\\\\benchmarks\\\\abc-public.mjs","D:\\\\mimir-task118-windows\\\\scripts\\\\benchmarks\\\\abc-runtime.mjs","D:\\\\mimir-task118-windows\\\\scripts\\\\benchmarks\\\\abc-transport.mjs","D:\\\\mimir-task118-windows\\\\scripts\\\\benchmarks\\\\abc-cli.mjs","D:\\\\mimir-task118-windows\\\\scripts\\\\benchmarks\\\\contract-v02.mjs","D:\\\\mimir-task118-windows\\\\scripts\\\\benchmarks\\\\public-bundle.mjs","D:\\\\mimir-task118-windows\\\\scripts\\\\benchmarks\\\\offline-files.mjs","D:\\\\mimir-task118-windows\\\\scripts\\\\benchmarks\\\\codex-usage-cli.mjs","D:\\\\mimir-task118-windows\\\\scripts\\\\benchmarks\\\\codex-usage.mjs","D:\\\\mimir-task118-windows\\\\scripts\\\\benchmarks\\\\multicase-codex-transport.mjs","D:\\\\mimir-task118-windows\\\\src\\\\core\\\\service.ts","D:\\\\mimir-task118-windows\\\\src\\\\core\\\\schemas.ts","D:\\\\mimir-task118-windows\\\\src\\\\retrieval\\\\index.ts","D:\\\\mimir-task118-windows\\\\src\\\\optimization\\\\index.ts","D:\\\\mimir-task118-windows\\\\src\\\\storage\\\\index.ts","D:\\\\mimir-task118-windows\\\\dist\\\\core\\\\service.js","D:\\\\mimir-task118-windows\\\\dist\\\\retrieval\\\\index.js","D:\\\\mimir-task118-windows\\\\dist\\\\optimization\\\\index.js","D:\\\\mimir-task118-windows\\\\dist\\\\storage\\\\index.js","D:\\\\mimir-task118-windows\\\\dist\\\\index.js","D:\\\\mimir-task118-windows\\\\dist\\\\core\\\\schemas.js","D:\\\\mimir-task118-windows\\\\dist\\\\storage\\\\backup.js","D:\\\\mimir-task118-windows\\\\dist\\\\learning\\\\index.js","D:\\\\mimir-task118-windows\\\\dist\\\\security\\\\index.js","D:\\\\mimir-task118-windows\\\\dist\\\\ingestion\\\\adapters\\\\git.js"]);const prefix="fixture-";const outputPrefix="C:\\\\Users\\\\Usuario\\\\AppData\\\\Local\\\\Temp\\\\mimir-abc-test-Ri7Sy9\\\\out";for(const target of [fs,fsp])for(const name of ['readFileSync','readFile','openSync','open'])if(target[name]){const original=target[name];target[name]=function(p,...args){const path=typeof p==='number'?null:String(p).startsWith('file:')?fileURLToPath(p):String(p);if(path&&!allowed.has(path)&&!(dirname(dirname(path))===outputPrefix&&basename(dirname(path)).startsWith(prefix)&&['history.txt','db.sqlite'].includes(basename(path)))&&!(args[0]==='wx'&&dirname(path)===outputPrefix&&/^(?:position-[0-9]{2}|results)\\.json$/.test(basename(path))))throw Error('Forbidden I/O');return original.call(this,p,...args);};}syncBuiltinESMExports();let blocked=false;try{fs.readFileSync("C:\\\\Users\\\\Usuario\\\\AppData\\\\Local\\\\Temp\\\\mimir-abc-test-Ri7Sy9\\\\arbitrary-name.json");}catch{blocked=true;}if(!blocked)throw Error('Canary not blocked');const m=JSON.parse(fs.readFileSync("C:\\\\Users\\\\Usuario\\\\AppData\\\\Local\\\\Temp\\\\mimir-abc-test-Ri7Sy9\\\\manifest.json"));const r=await executeABC({manifest:m,out:"C:\\\\Users\\\\Usuario\\\\AppData\\\\Local\\\\Temp\\\\mimir-abc-test-Ri7Sy9\\\\out"});console.log(JSON.stringify({positions:r.runs.filter(o=>o.status==='synthetic').length,calls:r.actual_model_calls}));\r\n                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            \r\n\r\nError: Forbidden I/O\r\n    at target.<computed> (file:///C:/Users/Usuario/AppData/Local/Temp/mimir-abc-test-Ri7Sy9/public-process.mjs:1:2635)\r\n    at file:///D:/mimir-task118-windows/scripts/benchmarks/abc-public.mjs:65:30\r\n    at Array.map (<anonymous>)\r\n    at inventory (file:///D:/mimir-task118-windows/scripts/benchmarks/abc-public.mjs:65:10)\r\n    at validateManifest (file:///D:/mimir-task118-windows/scripts/benchmarks/abc-public.mjs:134:52)\r\n    at executeABC (file:///D:/mimir-task118-windows/scripts/benchmarks/abc-runtime.mjs:55:3)\r\n    at file:///C:/Users/Usuario/AppData/Local/Temp/mimir-abc-test-Ri7Sy9/public-process.mjs:1:3047\r\n\r\nNode.js v24.22.1\r\n` ],
+    pid: 18540,
+    stdout: '',
+    stderr: `file:///C:/Users/Usuario/AppData/Local/Temp/mimir-abc-test-Ri7Sy9/public-process.mjs:1\r\nimport fs from 'node:fs';import fsp from 'node:fs/promises';import {fileURLToPath} from 'node:url';import {dirname,basename,join} from 'node:path';import {syncBuiltinESMExports} from 'node:module';import {executeABC} from "file:///D:/mimir-task118-windows/scripts/benchmarks/abc-runtime.mjs";const allowed=new Set(["C:\\\\Users\\\\Usuario\\\\AppData\\\\Local\\\\Temp\\\\mimir-abc-test-Ri7Sy9\\\\manifest.json","D:\\\\mimir-task118-windows\\\\package.json","D:\\\\mimir-task118-windows\\\\package-lock.json","D:\\\\mimir-task118-windows\\\\scripts\\\\benchmarks\\\\abc-public.mjs","D:\\\\mimir-task118-windows\\\\scripts\\\\benchmarks\\\\abc-runtime.mjs","D:\\\\mimir-task118-windows\\\\scripts\\\\benchmarks\\\\abc-transport.mjs","D:\\\\mimir-task118-windows\\\\scripts\\\\benchmarks\\\\abc-cli.mjs","D:\\\\mimir-task118-windows\\\\scripts\\\\benchmarks\\\\contract-v02.mjs","D:\\\\mimir-task118-windows\\\\scripts\\\\benchmarks\\\\public-bundle.mjs","D:\\\\mimir-task118-windows\\\\scripts\\\\benchmarks\\\\offline-files.mjs","D:\\\\mimir-task118-windows\\\\scripts\\\\benchmarks\\\\codex-usage-cli.mjs","D:\\\\mimir-task118-windows\\\\scripts\\\\benchmarks\\\\codex-usage.mjs","D:\\\\mimir-task118-windows\\\\scripts\\\\benchmarks\\\\multicase-codex-transport.mjs","D:\\\\mimir-task118-windows\\\\src\\\\core\\\\service.ts","D:\\\\mimir-task118-windows\\\\src\\\\core\\\\schemas.ts","D:\\\\mimir-task118-windows\\\\src\\\\retrieval\\\\index.ts","D:\\\\mimir-task118-windows\\\\src\\\\optimization\\\\index.ts","D:\\\\mimir-task118-windows\\\\src\\\\storage\\\\index.ts","D:\\\\mimir-task118-windows\\\\dist\\\\core\\\\service.js","D:\\\\mimir-task118-windows\\\\dist\\\\retrieval\\\\index.js","D:\\\\mimir-task118-windows\\\\dist\\\\optimization\\\\index.js","D:\\\\mimir-task118-windows\\\\dist\\\\storage\\\\index.js","D:\\\\mimir-task118-windows\\\\dist\\\\index.js","D:\\\\mimir-task118-windows\\\\dist\\\\core\\\\schemas.js","D:\\\\mimir-task118-windows\\\\dist\\\\storage\\\\backup.js","D:\\\\mimir-task118-windows\\\\dist\\\\learning\\\\index.js","D:\\\\mimir-task118-windows\\\\dist\\\\security\\\\index.js","D:\\\\mimir-task118-windows\\\\dist\\\\ingestion\\\\adapters\\\\git.js"]);const prefix="fixture-";const outputPrefix="C:\\\\Users\\\\Usuario\\\\AppData\\\\Local\\\\Temp\\\\mimir-abc-test-Ri7Sy9\\\\out";for(const target of [fs,fsp])for(const name of ['readFileSync','readFile','openSync','open'])if(target[name]){const original=target[name];target[name]=function(p,...args){const path=typeof p==='number'?null:String(p).startsWith('file:')?fileURLToPath(p):String(p);if(path&&!allowed.has(path)&&!(dirname(dirname(path))===outputPrefix&&basename(dirname(path)).startsWith(prefix)&&['history.txt','db.sqlite'].includes(basename(path)))&&!(args[0]==='wx'&&dirname(path)===outputPrefix&&/^(?:position-[0-9]{2}|results)\\.json$/.test(basename(path))))throw Error('Forbidden I/O');return original.call(this,p,...args);};}syncBuiltinESMExports();let blocked=false;try{fs.readFileSync("C:\\\\Users\\\\Usuario\\\\AppData\\\\Local\\\\Temp\\\\mimir-abc-test-Ri7Sy9\\\\arbitrary-name.json");}catch{blocked=true;}if(!blocked)throw Error('Canary not blocked');const m=JSON.parse(fs.readFileSync("C:\\\\Users\\\\Usuario\\\\AppData\\\\Local\\\\Temp\\\\mimir-abc-test-Ri7Sy9\\\\manifest.json"));const r=await executeABC({manifest:m,out:"C:\\\\Users\\\\Usuario\\\\AppData\\\\Local\\\\Temp\\\\mimir-abc-test-Ri7Sy9\\\\out"});console.log(JSON.stringify({positions:r.runs.filter(o=>o.status==='synthetic').length,calls:r.actual_model_calls}));\r\n                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            \r\n\r\nError: Forbidden I/O\r\n    at target.<computed> (file:///C:/Users/Usuario/AppData/Local/Temp/mimir-abc-test-Ri7Sy9/public-process.mjs:1:2635)\r\n    at file:///D:/mimir-task118-windows/scripts/benchmarks/abc-public.mjs:65:30\r\n    at Array.map (<anonymous>)\r\n    at inventory (file:///D:/mimir-task118-windows/scripts/benchmarks/abc-public.mjs:65:10)\r\n    at validateManifest (file:///D:/mimir-task118-windows/scripts/benchmarks/abc-public.mjs:134:52)\r\n    at executeABC (file:///D:/mimir-task118-windows/scripts/benchmarks/abc-runtime.mjs:55:3)\r\n    at file:///C:/Users/Usuario/AppData/Local/Temp/mimir-abc-test-Ri7Sy9/public-process.mjs:1:3047\r\n\r\nNode.js v24.22.1\r\n`
+  }
+
+test at test\benchmark-context-selection.test.mjs:118:1
+✖ plan precedes six sequential calls; real retrieval, model args, private evidence and cleanup (2014.8971ms)
+  Error: Output must be under /tmp
+      at file:///D:/mimir-task118-windows/scripts/benchmarks/context-selection-probe.mjs:257:17
+      at runProbe (file:///D:/mimir-task118-windows/scripts/benchmarks/context-selection-probe.mjs:260:9)
+      at TestContext.<anonymous> (file:///D:/mimir-task118-windows/test/benchmark-context-selection.test.mjs:124:26)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at test\benchmark-context-selection.test.mjs:183:1
+✖ transport handles errors, timeout partial usage, tool rejection and limits offline (82.18ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'timeout'
+  - 'exit_nonzero'
+  
+      at TestContext.<anonymous> (file:///D:/mimir-task118-windows/test/benchmark-context-selection.test.mjs:215:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'timeout',
+    expected: 'exit_nonzero',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at test\benchmark-context-selection.test.mjs:220:1
+✖ timing, missing metrics, failures and global ceiling retain all positions (1681.1109ms)
+  Error: Output must be under /tmp
+      at file:///D:/mimir-task118-windows/scripts/benchmarks/context-selection-probe.mjs:257:17
+      at runProbe (file:///D:/mimir-task118-windows/scripts/benchmarks/context-selection-probe.mjs:260:9)
+      at TestContext.<anonymous> (file:///D:/mimir-task118-windows/test/benchmark-context-selection.test.mjs:225:26)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at test\benchmark-context-selection.test.mjs:284:1
+✖ fixture failure closes and blocks B only, import/help are inert (1508.6387ms)
+  Error: Output must be under /tmp
+      at file:///D:/mimir-task118-windows/scripts/benchmarks/context-selection-probe.mjs:257:17
+      at runProbe (file:///D:/mimir-task118-windows/scripts/benchmarks/context-selection-probe.mjs:260:9)
+      at TestContext.<anonymous> (file:///D:/mimir-task118-windows/test/benchmark-context-selection.test.mjs:289:28)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at test\benchmark-context-selection.test.mjs:326:1
+✖ B timing counts query once and excludes setup/close; no replacement on empty retrieval (1185.6644ms)
+  Error: Output must be under /tmp
+      at file:///D:/mimir-task118-windows/scripts/benchmarks/context-selection-probe.mjs:257:17
+      at runProbe (file:///D:/mimir-task118-windows/scripts/benchmarks/context-selection-probe.mjs:260:9)
+      at TestContext.<anonymous> (file:///D:/mimir-task118-windows/test/benchmark-context-selection.test.mjs:330:28)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at test\benchmark-live-flow.test.mjs:38:1
+✖ live real Service search is inside each request, no replay; context recorded before transport (2264.961ms)
+  Error: Output must be under /tmp
+      at file:///D:/mimir-task118-windows/scripts/benchmarks/live-flow-probe.mjs:166:17
+      at runFlow (file:///D:/mimir-task118-windows/scripts/benchmarks/live-flow-probe.mjs:169:9)
+      at TestContext.<anonymous> (file:///D:/mimir-task118-windows/test/benchmark-live-flow.test.mjs:45:26)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+
+test at test\benchmark-live-flow.test.mjs:149:1
+✖ AG injection, unknown usage/cache semantics, empty selection, continuous time and no invented totals (1894.3283ms)
+  Error: Output must be under /tmp
+      at file:///D:/mimir-task118-windows/scripts/benchmarks/live-flow-probe.mjs:166:17
+      at runFlow (file:///D:/mimir-task118-windows/scripts/benchmarks/live-flow-probe.mjs:169:9)
+      at TestContext.<anonymous> (file:///D:/mimir-task118-windows/test/benchmark-live-flow.test.mjs:154:28)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at test\benchmark-live-flow.test.mjs:207:1
+✖ integrity/search failures block B, close errors handled; response never leaks into metadata (1458.8848ms)
+  Error: Output must be under /tmp
+      at file:///D:/mimir-task118-windows/scripts/benchmarks/live-flow-probe.mjs:166:17
+      at runFlow (file:///D:/mimir-task118-windows/scripts/benchmarks/live-flow-probe.mjs:169:9)
+      at TestContext.<anonymous> (file:///D:/mimir-task118-windows/test/benchmark-live-flow.test.mjs:212:28)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at test\benchmark-live-flow.test.mjs:245:1
+✖ global deadline limits calls, import/help inert, invalid CLI and output rejected (1365.4155ms)
+  Error: Output must be under /tmp
+      at file:///D:/mimir-task118-windows/scripts/benchmarks/live-flow-probe.mjs:166:17
+      at runFlow (file:///D:/mimir-task118-windows/scripts/benchmarks/live-flow-probe.mjs:169:9)
+      at TestContext.<anonymous> (file:///D:/mimir-task118-windows/test/benchmark-live-flow.test.mjs:250:28)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at test\benchmark-multicase-codex.test.mjs:110:1
+✖ four public positions, AB/BA, usage/cache subset, real fixture search, exclusive evidence and cleanup (18.4516ms)
+  Error: Invalid offline input or local operation.
+      at fail (file:///D:/mimir-task118-windows/scripts/benchmarks/public-bundle.mjs:11:9)
+      at validateManifest (file:///D:/mimir-task118-windows/scripts/benchmarks/multicase-codex.mjs:121:5)
+      at runPrepared (file:///D:/mimir-task118-windows/scripts/benchmarks/multicase-codex.mjs:168:13)
+      at file:///D:/mimir-task118-windows/test/benchmark-multicase-codex.test.mjs:115:21
+      at TestContext.<anonymous> (file:///D:/mimir-task118-windows/test/benchmark-multicase-codex.test.mjs:105:11)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+
+test at test\benchmark-multicase-codex.test.mjs:210:1
+✖ cap infeasible does not truncate or spawn; positions and fixture cleanup conserved (4.6948ms)
+  Error: Invalid offline input or local operation.
+      at fail (file:///D:/mimir-task118-windows/scripts/benchmarks/public-bundle.mjs:11:9)
+      at validateManifest (file:///D:/mimir-task118-windows/scripts/benchmarks/multicase-codex.mjs:121:5)
+      at runPrepared (file:///D:/mimir-task118-windows/scripts/benchmarks/multicase-codex.mjs:168:13)
+      at file:///D:/mimir-task118-windows/test/benchmark-multicase-codex.test.mjs:218:21
+      at TestContext.<anonymous> (file:///D:/mimir-task118-windows/test/benchmark-multicase-codex.test.mjs:105:11)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+
+test at test\benchmark-multicase-codex.test.mjs:303:1
+✖ first error halts without retry and preserves remaining positions (7.7306ms)
+  Error: Invalid offline input or local operation.
+      at fail (file:///D:/mimir-task118-windows/scripts/benchmarks/public-bundle.mjs:11:9)
+      at validateManifest (file:///D:/mimir-task118-windows/scripts/benchmarks/multicase-codex.mjs:121:5)
+      at runPrepared (file:///D:/mimir-task118-windows/scripts/benchmarks/multicase-codex.mjs:168:13)
+      at file:///D:/mimir-task118-windows/test/benchmark-multicase-codex.test.mjs:308:21
+      at TestContext.<anonymous> (file:///D:/mimir-task118-windows/test/benchmark-multicase-codex.test.mjs:105:11)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+
+test at test\benchmark-multicase-codex.test.mjs:347:1
+✖ remaining budget bounds timeout and prevents further calls (10.9415ms)
+  Error: Invalid offline input or local operation.
+      at fail (file:///D:/mimir-task118-windows/scripts/benchmarks/public-bundle.mjs:11:9)
+      at validateManifest (file:///D:/mimir-task118-windows/scripts/benchmarks/multicase-codex.mjs:121:5)
+      at runPrepared (file:///D:/mimir-task118-windows/scripts/benchmarks/multicase-codex.mjs:168:13)
+      at file:///D:/mimir-task118-windows/test/benchmark-multicase-codex.test.mjs:354:21
+      at TestContext.<anonymous> (file:///D:/mimir-task118-windows/test/benchmark-multicase-codex.test.mjs:105:11)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+
+test at test\benchmark-multicase-codex.test.mjs:369:1
+✖ validation subprocess reads only explicit public files, no private data or subprocess (176.9487ms)
+  AssertionError [ERR_ASSERTION]: node:internal/modules/esm/load:193
+      throw new ERR_UNSUPPORTED_ESM_URL_SCHEME(parsed, schemes);
+            ^
+  
+  Error [ERR_UNSUPPORTED_ESM_URL_SCHEME]: Only URLs with a scheme in: file, data, and node are supported by the default ESM loader. On Windows, absolute paths must be valid file:// URLs. Received protocol 'd:'
+      at throwIfUnsupportedURLScheme (node:internal/modules/esm/load:193:11)
+      at defaultLoadSync (node:internal/modules/esm/load:146:3)
+      at #loadAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:806:12)
+      at #loadSync (node:internal/modules/esm/loader:838:53)
+      at ModuleLoader.load (node:internal/modules/esm/loader:787:26)
+      at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:498:31)
+      at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:564:36)
+      at afterResolve (node:internal/modules/esm/loader:611:52)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:617:12)
+      at node:internal/modules/esm/loader:636:32 {
+    code: 'ERR_UNSUPPORTED_ESM_URL_SCHEME'
+  }
+  
+  Node.js v24.22.1
+  
+  
+  1 !== 0
+  
+      at file:///D:/mimir-task118-windows/test/benchmark-multicase-codex.test.mjs:387:12
+      at TestContext.<anonymous> (file:///D:/mimir-task118-windows/test/benchmark-multicase-codex.test.mjs:105:11)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at test\benchmark-multicase-codex.test.mjs:392:1
+✖ continuous B timer includes search once, excludes setup/close, timeout uses remaining budget (462.9781ms)
+  Error: Invalid offline input or local operation.
+      at fail (file:///D:/mimir-task118-windows/scripts/benchmarks/public-bundle.mjs:11:9)
+      at validateManifest (file:///D:/mimir-task118-windows/scripts/benchmarks/multicase-codex.mjs:121:5)
+      at runPrepared (file:///D:/mimir-task118-windows/scripts/benchmarks/multicase-codex.mjs:168:13)
+      at file:///D:/mimir-task118-windows/test/benchmark-multicase-codex.test.mjs:420:23
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///D:/mimir-task118-windows/test/benchmark-multicase-codex.test.mjs:105:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at test\benchmark-multicase-codex.test.mjs:443:1
+✖ execution subprocess allows only bundle/manifest/owned files and controlled JSONL, real retrieval (1115.7386ms)
+  AssertionError [ERR_ASSERTION]: node:internal/modules/esm/load:193
+      throw new ERR_UNSUPPORTED_ESM_URL_SCHEME(parsed, schemes);
+            ^
+  
+  Error [ERR_UNSUPPORTED_ESM_URL_SCHEME]: Only URLs with a scheme in: file, data, and node are supported by the default ESM loader. On Windows, absolute paths must be valid file:// URLs. Received protocol 'd:'
+      at throwIfUnsupportedURLScheme (node:internal/modules/esm/load:193:11)
+      at defaultLoadSync (node:internal/modules/esm/load:146:3)
+      at #loadAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:806:12)
+      at #loadSync (node:internal/modules/esm/loader:838:53)
+      at ModuleLoader.load (node:internal/modules/esm/loader:787:26)
+      at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:498:31)
+      at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:564:36)
+      at afterResolve (node:internal/modules/esm/loader:611:52)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:617:12)
+      at node:internal/modules/esm/loader:636:32 {
+    code: 'ERR_UNSUPPORTED_ESM_URL_SCHEME'
+  }
+  
+  Node.js v24.22.1
+  
+  
+  1 !== 0
+  
+      at file:///D:/mimir-task118-windows/test/benchmark-multicase-codex.test.mjs:466:12
+      at TestContext.<anonymous> (file:///D:/mimir-task118-windows/test/benchmark-multicase-codex.test.mjs:105:11)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at test\benchmark-multicase-codex.test.mjs:501:1
+✖ v2 binds stable prefix to plan and fake transport, v1 remains frozen (4.0197ms)
+  Error: Invalid offline input or local operation.
+      at fail (file:///D:/mimir-task118-windows/scripts/benchmarks/public-bundle.mjs:11:9)
+      at validateManifest (file:///D:/mimir-task118-windows/scripts/benchmarks/multicase-codex.mjs:121:5)
+      at file:///D:/mimir-task118-windows/test/benchmark-multicase-codex.test.mjs:518:5
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///D:/mimir-task118-windows/test/benchmark-multicase-codex.test.mjs:105:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at test\benchmark-paired-probe.test.mjs:150:1
+✖ six calls, fixed paired order, inclusive timing, exclusive private artifacts (7.5745ms)
+  Error: Output must be a new private /tmp directory
+      at createOutput (file:///D:/mimir-task118-windows/scripts/benchmarks/paired-probe.mjs:49:11)
+      at runProbe (file:///D:/mimir-task118-windows/scripts/benchmarks/paired-probe.mjs:350:15)
+      at TestContext.<anonymous> (file:///D:/mimir-task118-windows/test/benchmark-paired-probe.test.mjs:157:26)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at runNextTicks (node:internal/process/task_queues:65:5)
+      at process.processImmediate (node:internal/timers:541:9)
+
+test at test\benchmark-paired-probe.test.mjs:216:1
+✖ global ceiling retains not_run and failures with null coverage (4.9031ms)
+  Error: Output must be a new private /tmp directory
+      at createOutput (file:///D:/mimir-task118-windows/scripts/benchmarks/paired-probe.mjs:49:11)
+      at runProbe (file:///D:/mimir-task118-windows/scripts/benchmarks/paired-probe.mjs:350:15)
+      at TestContext.<anonymous> (file:///D:/mimir-task118-windows/test/benchmark-paired-probe.test.mjs:221:28)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at runNextTicks (node:internal/process/task_queues:65:5)
+      at process.processImmediate (node:internal/timers:541:9)
+
+test at test\benchmark-paired-probe.test.mjs:243:1
+✖ import and help do not create fixtures or spawn Codex; CLI requires --run (866.4864ms)
+  Error: Command failed: C:\Users\Public\mimir-hardening-runtime\node\node-v24.22.1-win-x64\node.exe --input-type=module -e await import("D:\\mimir-task118-windows\\scripts\\benchmarks\\paired-probe.mjs")
+  node:internal/modules/esm/load:193
+      throw new ERR_UNSUPPORTED_ESM_URL_SCHEME(parsed, schemes);
+            ^
+  
+  Error [ERR_UNSUPPORTED_ESM_URL_SCHEME]: Only URLs with a scheme in: file, data, and node are supported by the default ESM loader. On Windows, absolute paths must be valid file:// URLs. Received protocol 'd:'
+      at throwIfUnsupportedURLScheme (node:internal/modules/esm/load:193:11)
+      at defaultLoadSync (node:internal/modules/esm/load:146:3)
+      at #loadAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:806:12)
+      at #loadSync (node:internal/modules/esm/loader:838:53)
+      at ModuleLoader.load (node:internal/modules/esm/loader:787:26)
+      at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:498:31)
+      at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:564:36)
+      at afterResolve (node:internal/modules/esm/loader:611:52)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:617:12)
+      at node:internal/modules/esm/loader:636:32 {
+    code: 'ERR_UNSUPPORTED_ESM_URL_SCHEME'
+  }
+  
+  Node.js v24.22.1
+  
+      at genericNodeError (node:internal/errors:986:15)
+      at wrappedFn (node:internal/errors:540:14)
+      at checkExecSyncError (node:child_process:943:11)
+      at execFileSync (node:child_process:979:15)
+      at TestContext.<anonymous> (file:///D:/mimir-task118-windows/test/benchmark-paired-probe.test.mjs:246:5)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12) {
+    status: 1,
+    signal: null,
+    output: [ null, <Buffer >, <Buffer 6e 6f 64 65 3a 69 6e 74 65 72 6e 61 6c 2f 6d 6f 64 75 6c 65 73 2f 65 73 6d 2f 6c 6f 61 64 3a 31 39 33 0d 0a 20 20 20 20 74 68 72 6f 77 20 6e 65 77 20 ... 1050 more bytes> ],
+    pid: 16960,
+    stdout: <Buffer >,
+    stderr: <Buffer 6e 6f 64 65 3a 69 6e 74 65 72 6e 61 6c 2f 6d 6f 64 75 6c 65 73 2f 65 73 6d 2f 6c 6f 61 64 3a 31 39 33 0d 0a 20 20 20 20 74 68 72 6f 77 20 6e 65 77 20 ... 1050 more bytes>
+  }
+
+test at test\benchmark-paired-probe.test.mjs:300:1
+✖ local retrieval failures are reported, cleaned, and never invoke a model for B (3.9924ms)
+  Error: Output must be a new private /tmp directory
+      at createOutput (file:///D:/mimir-task118-windows/scripts/benchmarks/paired-probe.mjs:49:11)
+      at runProbe (file:///D:/mimir-task118-windows/scripts/benchmarks/paired-probe.mjs:350:15)
+      at TestContext.<anonymous> (file:///D:/mimir-task118-windows/test/benchmark-paired-probe.test.mjs:304:28)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at test\benchmark-public-multicase.test.mjs:510:1
+✖ imports/help have no I/O; runtime dependency graph excludes private corpus/host modules (120.4456ms)
+  AssertionError [ERR_ASSERTION]: node:internal/modules/esm/load:193
+      throw new ERR_UNSUPPORTED_ESM_URL_SCHEME(parsed, schemes);
+            ^
+  
+  Error [ERR_UNSUPPORTED_ESM_URL_SCHEME]: Only URLs with a scheme in: file, data, and node are supported by the default ESM loader. On Windows, absolute paths must be valid file:// URLs. Received protocol 'd:'
+      at throwIfUnsupportedURLScheme (node:internal/modules/esm/load:193:11)
+      at defaultLoadSync (node:internal/modules/esm/load:146:3)
+      at #loadAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:806:12)
+      at #loadSync (node:internal/modules/esm/loader:838:53)
+      at ModuleLoader.load (node:internal/modules/esm/loader:787:26)
+      at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:498:31)
+      at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:564:36)
+      at afterResolve (node:internal/modules/esm/loader:611:52)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:617:12)
+      at node:internal/modules/esm/loader:636:32 {
+    code: 'ERR_UNSUPPORTED_ESM_URL_SCHEME'
+  }
+  
+  Node.js v24.22.1
+  
+  
+  1 !== 0
+  
+      at file:///D:/mimir-task118-windows/test/benchmark-public-multicase.test.mjs:530:14
+      at TestContext.<anonymous> (file:///D:/mimir-task118-windows/test/benchmark-public-multicase.test.mjs:68:13)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at test\benchmark-public-multicase.test.mjs:568:1
+✖ isolated runtime process opens only public bundle, owned fixtures and module code (134.1067ms)
+  AssertionError [ERR_ASSERTION]: node:internal/modules/esm/load:193
+      throw new ERR_UNSUPPORTED_ESM_URL_SCHEME(parsed, schemes);
+            ^
+  
+  Error [ERR_UNSUPPORTED_ESM_URL_SCHEME]: Only URLs with a scheme in: file, data, and node are supported by the default ESM loader. On Windows, absolute paths must be valid file:// URLs. Received protocol 'd:'
+      at throwIfUnsupportedURLScheme (node:internal/modules/esm/load:193:11)
+      at defaultLoadSync (node:internal/modules/esm/load:146:3)
+      at #loadAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:806:12)
+      at #loadSync (node:internal/modules/esm/loader:838:53)
+      at ModuleLoader.load (node:internal/modules/esm/loader:787:26)
+      at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:498:31)
+      at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:564:36)
+      at afterResolve (node:internal/modules/esm/loader:611:52)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:617:12)
+      at node:internal/modules/esm/loader:636:32 {
+    code: 'ERR_UNSUPPORTED_ESM_URL_SCHEME'
+  }
+  
+  Node.js v24.22.1
+  
+  
+  1 !== 0
+  
+      at file:///D:/mimir-task118-windows/test/benchmark-public-multicase.test.mjs:602:12
+      at TestContext.<anonymous> (file:///D:/mimir-task118-windows/test/benchmark-public-multicase.test.mjs:68:13)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

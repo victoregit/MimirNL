@@ -1,0 +1,36 @@
+✔ ABC strict public schema, deep extras, tamper/code/epoch/legacy and authorization binding (3262.220369ms)
+✔ 54 offline positions, 18 real SQLite searches, fresh DB/reset, preserved overlap and A=C, no LLM scoring (477.879562ms)
+✔ no retry after spawn failure/truncation/invalid tool; all later slots remain not_run (259.731001ms)
+✔ run/search/global remaining includes synchronous work, no spawn after expiry, cleanup errors retained (322.008203ms)
+✔ empty retrieval preserved without fallback; retrieval failure missing rather than zero (418.069117ms)
+✔ help/validate/import side effect free; public process deep I/O canary blocks arbitrary private names (412.12861ms)
+✔ transport kills owned child immediately on tool event, timeout, output cap and synchronous spawn errors (30.315172ms)
+✔ public runtime I/O canary: exact input/code reads and owned fixture files only (1705.827859ms)
+✔ cancellation before transport retains diagnostics and remaining not_run without retry (87.895276ms)
+✔ real fake subprocess timeout terminates the owned POSIX process group (53.994939ms)
+✔ reports usage once, excludes cache from total and strips private canaries (1.785947ms)
+✔ absence, failure and valid zero remain distinct (0.457961ms)
+✔ rejects invalid numbers, structures, duplicate starts and terminals (0.718361ms)
+✔ stream handles chunked UTF8, CRLF, final line and injected clock (9.545595ms)
+✔ stream rejects malformed, blank, invalid UTF8, oversize and read errors (10.227265ms)
+✔ CLI runs offline, has fixed diagnostics and exclusively creates private outputs (547.313102ms)
+✔ import has no side effects and all post-terminal events are rejected (52.41929ms)
+✔ plan rebuild and exact-only prompt change with original suffix/order/selections (6639.507586ms)
+✔ authorization strict, externally supplied review bound to plan and output (977.839719ms)
+✔ four sequential fake calls only, usage/final allowlist and unknown metadata (195.108693ms)
+✔ failure/timeout/tool/oversize/throw stop immediately, no retry or fallback (584.210267ms)
+✔ global preflight budget and per-call timeout consume attempts as appropriate (505.944844ms)
+✔ launcher import/default/help/invalid args cannot invoke model or create destination (833.958982ms)
+✔ aggregate capture guard terminates owned fake child without retaining streams (24.518741ms)
+✔ default equals legacy bytes; opt-in applies and preserves order/base/input (13.854194ms)
+✔ same text with distinct identity/origin/range is retained; Unicode and key order (2.576478ms)
+✔ unknown/missing metadata, revision, invalid hash/selections and overbudget fail before dedupe (3.809695ms)
+✔ three public DEV reconstructions: actual API output, runtime suffix accounted separately (27.594259ms)
+ℹ tests 28
+ℹ suites 0
+ℹ pass 28
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9956.564728

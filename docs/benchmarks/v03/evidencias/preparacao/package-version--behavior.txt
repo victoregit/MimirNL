@@ -1,0 +1,9 @@
+{
+  "name": "mimir-nl",
+  "version": "0.2.0",
+  "type": "module",
+  "description": "Local-first project memory engine",
+  "license": "MIT",
+  "engines": {
+    "node": ">=24.22.1 <25"
+  },

@@ -1,0 +1,9 @@
+# Task61 — Conferência real mínima do coletor após Task60
+
+Executar apenas se Task60 aprovar versão final do coletor. Autorização: usuário pediu iniciar medição tokens/performance e tempo de resposta; esta conferência é uma invocação exploratória curta, não piloto completo.
+
+Usar Codex CLI já autenticado e instalado, versão 0.164.0, sem ler credenciais/config/logs privados. Uma invocação nova e efêmera em diretório temporário vazio /tmp/mimir-token-probe.XXXXXX, sandbox read-only, ignore-user-config, sem ferramentas solicitadas, sem repo/MCP/ingestão/DB. Modelo default do CLI, sem inventar identidade se não observada. Timeout externo 90 s, sem retry automático. Collector absoluto /mnt/d/Projects/MimirNL/scripts/benchmarks/codex-usage-cli.mjs, Node /tmp/mimir-node-runtime/node-v24.22.1-linux-x64/bin/node. Pipefail obrigatório; preservar exit code do pipeline. Relatório novo exclusivo usage.json no diretório privado /tmp criado. Não salvar transcript bruto nem resposta completa; stderr pode ser descartado para não expor configuração.
+
+Prompt exato: "MimirNL é um segundo cérebro local para agentes, com memória persistente em SQLite e busca textual FTS5/BM25. Em até três frases, explique como essa estrutura pode ajudar a reutilizar soluções e qual evidência falta para afirmar economia de tokens. Responda somente com base neste enunciado, sem usar ferramentas, ler arquivos ou consultar serviços adicionais."
+
+Conferir relatório sanitizado, status do pipeline, contadores e tempos. Sem comparações com/sem Mimir nesta conferência; nenhuma recuperação real foi feita. Não equiparar tokens reportados a cobrança nem tempo observado a TTFT. Se falhar, registrar falha sem inventar valores nem repetir automaticamente; correções de código devem voltar ao developer/reviewer. Registrar resultado final ao usuário e coordenar memória. Este arquivo é plano/coordenação, não evidência de execução concluída.

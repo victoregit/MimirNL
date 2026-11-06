@@ -1,0 +1,31 @@
+{
+  "position": 37,
+  "status": "completed",
+  "scenario": "historico_completo",
+  "retrieved": null,
+  "retrieval_latency_ms": null,
+  "total_latency_ms": 6413.223806999973,
+  "truncated": false,
+  "response": "O adaptador inicia o servidor via `serveStdio`, criando um `McpServer` chamado `mimir-nl`, versão `0.2.0`. Percorre `Object.entries(schemas)` e registra cada ferramenta com `server.registerTool`, usando o nome da entrada, seu schema como `inputSchema` e uma descrição com orientações sobre projeto, dados não confiáveis e autorização.\n\nO callback executa `await service.call(name as Operation, input)`. A resposta inteira é serializada com `JSON.stringify(result)` em um único item de `content`: `{ type: \"text\", text: ... }`. Define `isError` como `!result.ok`: verdadeiro quando `ok` é falso.\n\nFonte: **mcp-response**, unidade **behavior**, `src/mcp/index.ts`, linhas 5–26.",
+  "usage": {
+    "input_tokens": 14197,
+    "cached_input_tokens": 12032,
+    "output_tokens": 174,
+    "total_tokens": 14371
+  },
+  "cleanup": "completed",
+  "initial_db_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "seed_sha256": "3905df4b546c6175ddff4d1360a373d53cef9f5e5e9af780895f074a8661dcca",
+  "pool_sha256": "eadc8450484741afdff94893416a75338141e95c0c3e2b1d4e4d10f5ae5ba434",
+  "context_bytes": 1696,
+  "context_sha256": "17f3eb41757e746737bb2d88711a05cd43dfdd731c0dcfaa7200d3906481ca96",
+  "response_bytes": 689,
+  "response_sha256": "b4b9919a664aee51bd5c316824291c121d53e93a33b9b2b554381a2a8cabb12c",
+  "transport_status": "completed",
+  "model_identity": {
+    "status": "unavailable",
+    "reason": "No model identity in allowlisted public start metadata"
+  },
+  "final_db_sha256": "3905df4b546c6175ddff4d1360a373d53cef9f5e5e9af780895f074a8661dcca",
+  "db_file_sha256": "c7ecf37dd6b9b11ac38914aaf90ca04b7c19ab9c452a1c4f87ae9a0f869aec4e"
+}

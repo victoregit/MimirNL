@@ -1,0 +1,10 @@
+{
+  "argv": [
+    "/mnt/c/Windows/System32/cmd.exe",
+    "/d",
+    "/c",
+    "set PATH=C:\\Users\\Public\\mimir-hardening-runtime\\git\\cmd;C:\\Users\\Public\\mimir-hardening-runtime\\node\\node-v24.22.1-win-x64;C:\\Windows\\System32&&node --test test/benchmark-abc.test.mjs test/benchmark-cache-diagnostic.test.mjs test/benchmark-codex-usage.test.mjs test/benchmark-context-selection.test.mjs test/benchmark-live-flow.test.mjs test/benchmark-metrics.test.mjs test/benchmark-multicase-codex.test.mjs test/benchmark-paired-probe.test.mjs test/benchmark-preflight.test.mjs test/benchmark-public-multicase.test.mjs test/benchmark-v02.test.mjs test/task104-launch.test.mjs"
+  ],
+  "cwd": "/mnt/d/mimir-task118-windows",
+  "exit": 1
+}

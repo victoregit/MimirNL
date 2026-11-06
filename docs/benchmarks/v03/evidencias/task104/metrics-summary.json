@@ -1,0 +1,56 @@
+{
+  "provenance": "tasks/110-v03-answer-quality-review-findings.md",
+  "kind": "public-summary-of-independent-review-not-new-evaluation",
+  "historical_model_calls": 54,
+  "task120_model_calls": 0,
+  "per_scenario": {
+    "A": {
+      "runs": 18,
+      "input_tokens": 261437,
+      "cached_input_tokens": 216576,
+      "output_tokens": 2976,
+      "total_tokens": 264413,
+      "task_success": 1,
+      "source_accuracy": 1
+    },
+    "B": {
+      "runs": 18,
+      "input_tokens": 269101,
+      "cached_input_tokens": 216576,
+      "output_tokens": 3028,
+      "total_tokens": 272129,
+      "task_success": 1,
+      "source_accuracy": 1
+    },
+    "C": {
+      "runs": 18,
+      "input_tokens": 261427,
+      "cached_input_tokens": 216576,
+      "output_tokens": 2969,
+      "total_tokens": 264396,
+      "task_success": 1,
+      "source_accuracy": 1
+    }
+  },
+  "B_minus_A_input_tokens": 7664,
+  "B_minus_A_input_percent_rounded": 2.93,
+  "B_minus_A_quality_delta": 0,
+  "cache": "ambient-uncontrolled-positive-54-of-54-no-cold-subset",
+  "history_bytes": 0,
+  "A_equals_C_envelopes": 18,
+  "retrieval_calls": 18,
+  "retrieval_mean_ms_rounded": 21.58,
+  "effective_model": null,
+  "financial_cost": null,
+  "ttft_ms": null,
+  "model_only_latency_ms": null,
+  "unavailable_reason": "Not exposed or not measured by allowlisted historical metadata",
+  "limitations": [
+    "No demonstrated input-token savings",
+    "No demonstrated quality gain",
+    "No robust total-latency reduction",
+    "Empty C history is not a long-history baseline",
+    "Evaluation repetitions are not independent cases",
+    "Private scoring inputs are not included"
+  ]
+}

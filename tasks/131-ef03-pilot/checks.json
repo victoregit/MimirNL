@@ -1,0 +1,28 @@
+{
+  "actual_model_calls": 0,
+  "tests": {
+    "exit": 0,
+    "passed": 28,
+    "command": "node --test test/benchmark-ef03-pilot.test.mjs test/benchmark-offline-context.test.mjs test/benchmark-abc.test.mjs test/benchmark-codex-usage.test.mjs"
+  },
+  "lint": {
+    "exit": 0,
+    "initial_exit": 1,
+    "correction": "removed unused destructuring binding"
+  },
+  "format": {
+    "exit": 0,
+    "initial_exit": 1,
+    "correction": "formatted owned plan JSON"
+  },
+  "diff_check": {
+    "exit": 0
+  },
+  "preservation": {
+    "exit": 0,
+    "checked": 85,
+    "changed": 0
+  },
+  "review132": "pending",
+  "live_executed": false
+}

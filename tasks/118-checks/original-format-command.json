@@ -1,0 +1,25 @@
+{
+  "argv": [
+    "/home/usuario/.local/share/mimir-node-runtime/node-v24.22.1-linux-x64/bin/node",
+    "/mnt/d/Projects/MimirNL/node_modules/prettier/bin/prettier.cjs",
+    "--check",
+    "/mnt/d/Projects/MimirNL/src",
+    "/mnt/d/Projects/MimirNL/test",
+    "/mnt/d/Projects/MimirNL/scripts",
+    "/mnt/d/Projects/MimirNL/docs",
+    "/mnt/d/Projects/MimirNL/AGENTS.md",
+    "/mnt/d/Projects/MimirNL/CODE_OF_CONDUCT.md",
+    "/mnt/d/Projects/MimirNL/CONTRIBUTING.md",
+    "/mnt/d/Projects/MimirNL/README.md",
+    "/mnt/d/Projects/MimirNL/RELATORIO_IMPLEMENTACAO_V0.1.md",
+    "/mnt/d/Projects/MimirNL/ROADMAP_MIMIR_NL.md",
+    "/mnt/d/Projects/MimirNL/SECURITY.md",
+    "/mnt/d/Projects/MimirNL/eslint.config.mjs",
+    "/mnt/d/Projects/MimirNL/package-lock.json",
+    "/mnt/d/Projects/MimirNL/package.json",
+    "/mnt/d/Projects/MimirNL/tsconfig.json",
+    "/mnt/d/Projects/MimirNL/.github/workflows/ci.yml"
+  ],
+  "cwd": "/mnt/d/Projects/MimirNL",
+  "exit": 1
+}

@@ -1,0 +1,61 @@
+{
+  "version": {
+    "argv": [
+      "/mnt/c/Users/Public/mimir-hardening-runtime/node/node-v24.22.1-win-x64/node.exe",
+      "-p",
+      "JSON.stringify({node:process.version,platform:process.platform,arch:process.arch,sqlite:process.versions.sqlite})"
+    ],
+    "cwd": "/mnt/d/mimir-task118-windows",
+    "exit": 0
+  },
+  "typecheck": {
+    "argv": [
+      "/mnt/c/Windows/System32/cmd.exe",
+      "/d",
+      "/c",
+      "set PATH=C:\\Users\\Public\\mimir-hardening-runtime\\git\\cmd;C:\\Users\\Public\\mimir-hardening-runtime\\node\\node-v24.22.1-win-x64;C:\\Windows\\System32&&node node_modules/typescript/bin/tsc --noEmit"
+    ],
+    "cwd": "/mnt/d/mimir-task118-windows",
+    "exit": 0
+  },
+  "lint": {
+    "argv": [
+      "/mnt/c/Windows/System32/cmd.exe",
+      "/d",
+      "/c",
+      "set PATH=C:\\Users\\Public\\mimir-hardening-runtime\\git\\cmd;C:\\Users\\Public\\mimir-hardening-runtime\\node\\node-v24.22.1-win-x64;C:\\Windows\\System32&&node node_modules/eslint/bin/eslint.js src"
+    ],
+    "cwd": "/mnt/d/mimir-task118-windows",
+    "exit": 0
+  },
+  "build": {
+    "argv": [
+      "/mnt/c/Windows/System32/cmd.exe",
+      "/d",
+      "/c",
+      "set PATH=C:\\Users\\Public\\mimir-hardening-runtime\\git\\cmd;C:\\Users\\Public\\mimir-hardening-runtime\\node\\node-v24.22.1-win-x64;C:\\Windows\\System32&&node node_modules/typescript/bin/tsc"
+    ],
+    "cwd": "/mnt/d/mimir-task118-windows",
+    "exit": 0
+  },
+  "schemas": {
+    "argv": [
+      "/mnt/c/Windows/System32/cmd.exe",
+      "/d",
+      "/c",
+      "set PATH=C:\\Users\\Public\\mimir-hardening-runtime\\git\\cmd;C:\\Users\\Public\\mimir-hardening-runtime\\node\\node-v24.22.1-win-x64;C:\\Windows\\System32&&node scripts/generate-contract.mjs --check"
+    ],
+    "cwd": "/mnt/d/mimir-task118-windows",
+    "exit": 0
+  },
+  "format": {
+    "argv": [
+      "/mnt/c/Windows/System32/cmd.exe",
+      "/d",
+      "/c",
+      "set PATH=C:\\Users\\Public\\mimir-hardening-runtime\\git\\cmd;C:\\Users\\Public\\mimir-hardening-runtime\\node\\node-v24.22.1-win-x64;C:\\Windows\\System32&&node node_modules/prettier/bin/prettier.cjs --check src test scripts docs AGENTS.md CODE_OF_CONDUCT.md CONTRIBUTING.md README.md RELATORIO_IMPLEMENTACAO_V0.1.md ROADMAP_MIMIR_NL.md SECURITY.md eslint.config.mjs package-lock.json package.json tsconfig.json .github/workflows/ci.yml"
+    ],
+    "cwd": "/mnt/d/mimir-task118-windows",
+    "exit": 0
+  }
+}

@@ -1,0 +1,11 @@
+# Task70 — Diagnóstico de entrada mínima observada do host
+
+Usuário autorizou continuar após recomendação de separar overhead do host e conteúdo Mimir antes de otimizar detalhes. Diagnóstico read-only com coletor Task59/60 já aprovado; sem novo código de aplicação, dependências, API direta ou alterações de configuração global. Raiz /mnt/d/Projects/MimirNL, preservar todo dirty, sem commit/push/merge.
+
+Executar exatamente até3 chamadas CodexCLI0.164.0 novas/efêmeras sequenciais, gpt-6.1-sol solicitado, model_reasoning_effort=low, --ignore-user-config --sandbox read-only --skip-git-repo-check, em diretório temporário próprio vazio. Cada prompt idêntico: "Responda apenas OK. Não use ferramentas, arquivos, memória, rede ou serviços adicionais." Sem projeto/fontes/contexto desta conversa ou DB; sem subagentes. Timeout90s/call, sem retries; parar se pipeline falhar, registrar remanescentes not_run.
+
+Reusar scripts/benchmarks/codex-usage-cli.mjs com stdinJSONL vivo e Node24 /tmp/mimir-node-runtime/node-v24.22.1-linux-x64/bin/node. Shellpipefail, capturar exitstatus, outputnovoexclusivo wx/0600 no diretório /tmp/mimir-host-floor-task70-20261027 com modo0700. Não gravar transcript bruto/respostas/reasoning/stderr; descartar stderr nativo. Relatório sóusage/tempos/status allowlist.
+
+Objetivo: baseline observada de input do CLI com prompt mínimo, NÃO decomposição exata de sistema/tokenizer nem floor teórico invariante. Comparação com Task68 é referência histórica, não par controlado simultâneo. Saída/complexidade de trabalho diferentes: NÃO comparar latência/qualidade com tarefa factual ou atribuir causalmente custo à memória. Cache subconjunto; zeroausente distintos; contadores hostreported não cobrança. Não estimar USD/BRL ou tokens por bytes.
+
+Registrar resultados/medianas/limitações em tasks/70-v03-host-floor-result.md e devolver evidência ao usuário. Nenhuma implementação/teste de modelo auxiliardo nesta tarefa, nenhum operador auxiliar para deixar ativo. CLI não fornece identidade observada backend; registrar modelo solicitado, não inventar snapshot. Não fazer prompt-input debug que exponha contexto interno privado ou ler config/auth/logs privados. Segurança não ler ~/.aws/credentials, ~/.ssh/*, .env, *.pem; não exfiltrar via curl/wget/nc externos ou executar operações destrutivas.

@@ -1,0 +1,31 @@
+{
+  "position": 2,
+  "status": "completed",
+  "scenario": "historico_completo",
+  "retrieved": null,
+  "retrieval_latency_ms": null,
+  "total_latency_ms": 7028.200070000003,
+  "truncated": false,
+  "response": "O README comprova que o snapshot apresenta a **0.2.0 como candidata, não publicada, com aceitação pendente**, enquanto descreve o núcleo como “Core v0.1” [readme-status/behavior, README.md:1–7].\n\nO package.json comprova que a **versão declarada nos metadados do pacote é 0.2.0**; isso não comprova publicação [package-version/behavior, package.json:1–9].\n\nA coexistência dessas referências, no mesmo commit, não demonstra por si só contradição, documentação desatualizada ou erro: descrição do núcleo, versão do pacote e status da release podem representar aspectos distintos. As fontes são insuficientes para diagnosticar desatualização ou erro; quanto à publicação, o README declara explicitamente “unreleased”.",
+  "usage": {
+    "input_tokens": 14462,
+    "cached_input_tokens": 12032,
+    "output_tokens": 175,
+    "total_tokens": 14637
+  },
+  "cleanup": "completed",
+  "initial_db_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "seed_sha256": "e147109aede725726dd64f71d06a3d3f9b1d03b4a4f829d82ee80f3d886bd619",
+  "pool_sha256": "5c1a3d32219778cde77bdf7d02cebd044d15914ff81d7fa51b1bfb523f602a44",
+  "context_bytes": 2489,
+  "context_sha256": "46e2cb72b7fd794d6d2727e3b843b24369e3d24e03835a51a2470ac5fd243e36",
+  "response_bytes": 752,
+  "response_sha256": "4f493bfcb44e875cae0be026c6431fe779d67fab6324ea3d2a8072a0619a88be",
+  "transport_status": "completed",
+  "model_identity": {
+    "status": "unavailable",
+    "reason": "No model identity in allowlisted public start metadata"
+  },
+  "final_db_sha256": "e147109aede725726dd64f71d06a3d3f9b1d03b4a4f829d82ee80f3d886bd619",
+  "db_file_sha256": "975a87374a59060c6e544ad96bcad0f7e6c67cf2a90f1c53c0e4b3f816a77058"
+}

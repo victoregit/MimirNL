@@ -1,0 +1,10 @@
+{
+  "argv": [
+    "/mnt/c/Windows/System32/cmd.exe",
+    "/d",
+    "/c",
+    "set PATH=C:\\Users\\Public\\mimir-hardening-runtime\\git\\cmd;C:\\Users\\Public\\mimir-hardening-runtime\\node\\node-v24.22.1-win-x64;C:\\Windows\\System32&&git -C D:/mimir-task118-windows rev-parse HEAD&&node --test D:/mimir-task118-windows/test/core-v03.test.mjs"
+  ],
+  "cwd": "/mnt/d/mimir-task118-windows",
+  "exit": 0
+}

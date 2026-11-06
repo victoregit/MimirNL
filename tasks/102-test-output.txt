@@ -1,0 +1,1290 @@
+
+> mimir-nl@0.2.0 test
+> npm run build && node --test test/*.test.mjs
+
+
+> mimir-nl@0.2.0 build
+> tsc
+
+✔ strict calibration envelope and private response isolation (11.0766ms)
+✔ absent, overflow, negative and ambiguous counters never become zero or sums (0.4983ms)
+✔ unknown lifecycle, malformed schema and response bounds fail closed (14.4826ms)
+✔ chunked UTF8 JSON, fixed command and close chronology (14.928ms)
+✔ nonzero exit, spawn failure, timeout and stream caps (10.6507ms)
+✔ invalid options reject before spawning (2.0271ms)
+✔ cache subset derivations, zero, missing, inconsistent, failed and synthetic coverage (2.7704ms)
+✖ explicit read, exclusive private output, symlink refusal (0.6692ms)
+✔ reports usage once, excludes cache from total and strips private canaries (2.0981ms)
+✔ absence, failure and valid zero remain distinct (0.4685ms)
+✔ rejects invalid numbers, structures, duplicate starts and terminals (2.0317ms)
+✔ stream handles chunked UTF8, CRLF, final line and injected clock (67.3614ms)
+✔ stream rejects malformed, blank, invalid UTF8, oversize and read errors (12.1218ms)
+✖ CLI runs offline, has fixed diagnostics and exclusively creates private outputs (287.0141ms)
+✔ import has no side effects and all post-terminal events are rejected (430.7943ms)
+node:internal/child_process:1160
+    result.error = new ErrnoException(result.error, 'spawnSync ' + options.file);
+                   ^
+
+<ref *1> Error: spawnSync git ENOENT
+    at Object.spawnSync (node:internal/child_process:1160:20)
+    at spawnSync (node:child_process:928:24)
+    at execFileSync (node:child_process:971:15)
+    at file:///D:/Projects/MimirNL/scripts/benchmarks/context-selection-probe.mjs:53:21
+    at Array.map (<anonymous>)
+    at loadCorpus (file:///D:/Projects/MimirNL/scripts/benchmarks/context-selection-probe.mjs:52:16)
+    at file:///D:/Projects/MimirNL/test/benchmark-context-selection.test.mjs:32:16 {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'spawnSync git',
+  path: 'git',
+  spawnargs: [
+    'show',
+    '166e3cf047b2078952e43dc8e9171e053e99e2ce:src/optimization/index.ts'
+  ],
+  error: [Circular *1],
+  status: null,
+  signal: null,
+  output: null,
+  pid: 0,
+  stdout: undefined,
+  stderr: undefined
+}
+
+Node.js v24.21.0
+✖ test\benchmark-context-selection.test.mjs (217.2005ms)
+node:internal/child_process:1160
+    result.error = new ErrnoException(result.error, 'spawnSync ' + options.file);
+                   ^
+
+<ref *1> Error: spawnSync git ENOENT
+    at Object.spawnSync (node:internal/child_process:1160:20)
+    at spawnSync (node:child_process:928:24)
+    at execFileSync (node:child_process:971:15)
+    at file:///D:/Projects/MimirNL/scripts/benchmarks/context-selection-probe.mjs:53:21
+    at Array.map (<anonymous>)
+    at loadCorpus (file:///D:/Projects/MimirNL/scripts/benchmarks/context-selection-probe.mjs:52:16)
+    at file:///D:/Projects/MimirNL/test/benchmark-live-flow.test.mjs:27:16 {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'spawnSync git',
+  path: 'git',
+  spawnargs: [
+    'show',
+    '166e3cf047b2078952e43dc8e9171e053e99e2ce:src/optimization/index.ts'
+  ],
+  error: [Circular *1],
+  status: null,
+  signal: null,
+  output: null,
+  pid: 0,
+  stdout: undefined,
+  stderr: undefined
+}
+
+Node.js v24.21.0
+✖ test\benchmark-live-flow.test.mjs (249.6465ms)
+✔ synthetic formulas deduplicate before k; fixed denominator and no private output (11.8363ms)
+✔ N_A, unknown, null and measured zero remain distinct (4.5127ms)
+✔ pair exclusions, failures, missing observations and positive/zero baselines are visible (2.5418ms)
+✔ reject tampered plans, mixed cases, invalid observations and numeric edge cases privately (27.625ms)
+✖ actual CLI is read-only by default, private and exclusively creates reports (310.339ms)
+file:///D:/Projects/MimirNL/scripts/benchmarks/public-bundle.mjs:11
+  throw Error("Invalid offline input or local operation.");
+        ^
+
+Error: Invalid offline input or local operation.
+    at fail (file:///D:/Projects/MimirNL/scripts/benchmarks/public-bundle.mjs:11:9)
+    at exportCases (file:///D:/Projects/MimirNL/scripts/benchmarks/export-cases.mjs:151:5)
+    at file:///D:/Projects/MimirNL/test/benchmark-multicase-codex.test.mjs:35:16
+
+Node.js v24.21.0
+✖ test\benchmark-multicase-codex.test.mjs (247.8517ms)
+node:internal/child_process:1160
+    result.error = new ErrnoException(result.error, 'spawnSync ' + options.file);
+                   ^
+
+<ref *1> Error: spawnSync git ENOENT
+    at Object.spawnSync (node:internal/child_process:1160:20)
+    at spawnSync (node:child_process:928:24)
+    at execFileSync (node:child_process:971:15)
+    at loadSource (file:///D:/Projects/MimirNL/scripts/benchmarks/paired-probe.mjs:23:18)
+    at file:///D:/Projects/MimirNL/test/benchmark-paired-probe.test.mjs:27:16 {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'spawnSync git',
+  path: 'git',
+  spawnargs: [
+    'show',
+    '166e3cf047b2078952e43dc8e9171e053e99e2ce:src/optimization/index.ts'
+  ],
+  error: [Circular *1],
+  status: null,
+  signal: null,
+  output: null,
+  pid: 0,
+  stdout: undefined,
+  stderr: undefined
+}
+
+Node.js v24.21.0
+✖ test\benchmark-paired-probe.test.mjs (220.5467ms)
+✔ contract illustrative JSON validates structure but cannot be planned (9.4874ms)
+✔ synthetic accepted provenance produces deterministic paired balanced public matrix (2.9255ms)
+✔ required fields, types, enums, versions and exact nested allowlists (5.4892ms)
+✔ portable paths, line bounds, SHA format and exact UTF8 excerpt hash (2.5253ms)
+✔ source/unit refs, duplicate batch revisions, rubric uniqueness and finite weights (2.0201ms)
+✔ accepted/validated references and independent reviewer are required (1.7213ms)
+✔ repetition limits and total matrix bound (1.9594ms)
+✖ actual CLI reads supplied JSON only, handles errors privately and never overwrites (1102.6944ms)
+✔ module imports have no output or filesystem effects (103.9836ms)
+file:///D:/Projects/MimirNL/scripts/benchmarks/public-bundle.mjs:11
+  throw Error("Invalid offline input or local operation.");
+        ^
+
+Error: Invalid offline input or local operation.
+    at fail (file:///D:/Projects/MimirNL/scripts/benchmarks/public-bundle.mjs:11:9)
+    at exportCases (file:///D:/Projects/MimirNL/scripts/benchmarks/export-cases.mjs:151:5)
+    at file:///D:/Projects/MimirNL/test/benchmark-public-multicase.test.mjs:50:16
+
+Node.js v24.21.0
+✖ test\benchmark-public-multicase.test.mjs (279.4381ms)
+node:internal/modules/esm/load:193
+    throw new ERR_UNSUPPORTED_ESM_URL_SCHEME(parsed, schemes);
+          ^
+
+Error [ERR_UNSUPPORTED_ESM_URL_SCHEME]: Only URLs with a scheme in: file, data, and node are supported by the default ESM loader. On Windows, absolute paths must be valid file:// URLs. Received protocol 'c:'
+    at throwIfUnsupportedURLScheme (node:internal/modules/esm/load:193:11)
+    at defaultLoadSync (node:internal/modules/esm/load:146:3)
+    at #loadAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:806:12)
+    at #loadSync (node:internal/modules/esm/loader:838:53)
+    at ModuleLoader.load (node:internal/modules/esm/loader:787:26)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:498:31)
+    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:564:36)
+    at afterResolve (node:internal/modules/esm/loader:611:52)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:617:12)
+    at node:internal/modules/esm/loader:636:32 {
+  code: 'ERR_UNSUPPORTED_ESM_URL_SCHEME'
+}
+
+Node.js v24.21.0
+Invalid offline input or local operation.
+✖ 0.2 sources: exact pinned bytes, durable snapshots, zero history, no private fields (8.2622ms)
+✖ deep projection canary and hash invariance; exact nested/public version rejection (0.5407ms)
+✖ source/path safety rejects traversal, symlinks, ranges, non-allowlisted paths and overwrite (5.9415ms)
+✔ review stages: pending is structural only; receipt external hash not self approval/live (5.1829ms)
+✔ fixed denominator, unique hits, R=0 versus sem_gold, baselines N_A (20.589ms)
+✔ failed, missing, truncated and empty retrieval never score as completed success (19.4395ms)
+✔ source accuracy requires evaluated claim/citation/excerpt; zero and absence distinct (6.7204ms)
+✔ synthetic freshness only: explicit references and counts, unknown blocks rate (11.8149ms)
+✔ strict plan/pairs/splits/status/version and native token accounting (11.3309ms)
+✔ rubric outcomes need explicit reviewed items and requirements (10.6766ms)
+✖ public renderer separate process: I/O allowlist, canary gold absent, byte budget (348.1499ms)
+✖ private dev/eval CLI split gates, deterministic replay and no-overwrite with synthetic fixtures (286.7452ms)
+✖ canonical Git roots preserve identity across native path spellings (10.2925ms)
+✔ unexpected local errors retain safe machine codes without paths or exception text (6.4681ms)
+✖ Windows short-path aliases cannot bypass backup and restore project boundaries (136.4087ms)
+✔ v03: dedup precedes limit and retains duplicate provenance without crossing scope (268.0316ms)
+✔ v03: controlled recency only breaks verified ties, invalid/future dates do not dominate (468.1261ms)
+✔ v03: deterministic low evidence, empty and FTS injection handling (240.2533ms)
+✔ v03: whole UTF8 envelopes, minimum rejection and intact large excerpts (1.4174ms)
+✔ v03: compact retains citations and hashes, telemetry opt-in, impossible budget does not mutate (283.1799ms)
+✖ A: restart persistence, WAL, foreign keys and rollback (171.7625ms)
+✖ A: simultaneous independent processes deduplicate atomic writes (136.9594ms)
+✖ B: isolation for search, IDs, history, stats, relations; bounded literal context (181.0785ms)
+✖ D: authorized Git fixture bounds, secrets, ignores, binaries, symlink, incremental versions and deletion (109.1532ms)
+✖ E: explicit verification, relation history, deterministic observation, sharing and confirmed deletion (122.2237ms)
+✖ security: every request field checked, invalid schemas and unsafe database placement (89.8079ms)
+✖ C: real SDK stdio initialize/list/call, CLI shared DB and concurrent MCP clients (159.6908ms)
+✖ E: shared lifecycle deletion and global/local retrieval dedup (124.5935ms)
+✖ D: uncommitted repositories, byte bound rollback and changed sensitive sources (89.3119ms)
+✖ B: filters, complete response budget, oversized input and provenance trust (72.6709ms)
+✖ security: external Git config rejected before Git commands; custom excludes and provenance retention (71.5243ms)
+✔ A: future schema versions are refused without migration writes (107.2643ms)
+✖ A/E: manual edits preserve ID/history, reset verification and prevent duplicates (116.4648ms)
+✖ security: quoted JSON configuration secrets and metadata are rejected before persistence (70.8585ms)
+✖ C: CLI positional project deletion consumes the UUID and preserves the source (57.8534ms)
+✖ snapshot includes uncheckpointed WAL, versions, provenance, feedback and independent reopen (41.6769ms)
+✖ snapshot stays consistent with independent CLI writer processes (8.4315ms)
+✖ online snapshot overlaps an active WAL writer and preserves transactional history (3.9057ms)
+✖ restore rejects corruption, incompatible schema, sidecars, project paths, traversal and symlinks (8.0748ms)
+✖ sensitive fields, Windows paths, bounded includes and injection remain data (5.3471ms)
+✖ external Git config and executable fsmonitor cannot run (7.108ms)
+✔ npm commands use the invoking CLI despite broken npm shims in cwd and PATH (1528.1246ms)
+✖ CLI feedback persists approval; includes deprecates and full ingest reactivates (205.0755ms)
+▶ hard-link failures preserve sources, clean temporary snapshots and never replace targets
+  ✔ EXDEV (246.4668ms)
+  ✔ ENOTSUP (307.9868ms)
+  ✔ EPERM (239.7257ms)
+  ✔ EEXIST (258.8789ms)
+✔ hard-link failures preserve sources, clean temporary snapshots and never replace targets (1424.666ms)
+✔ SQLite WAL-reset patch boundaries reject unpatched and unknown versions (3.1322ms)
+✔ actual SQLite runtime is patched and doctor reports it (571.1556ms)
+✔ unique names, bounded lifetime and deterministic watchdog (9.3671ms)
+✔ deadline termination sends TERM then bounded KILL exactly once (2.9534ms)
+✔ observer bounds frames, excludes private content and correlates only allowed requests (16.9786ms)
+✔ real SDK through subprocess relay preserves errors, privacy and closes cleanly (4652.1618ms)
+ℹ tests 88
+ℹ suites 0
+ℹ pass 51
+ℹ fail 37
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6260.5728
+
+✖ failing tests:
+
+test at test\benchmark-cache-diagnostic.test.mjs:81:1
+✖ explicit read, exclusive private output, symlink refusal (0.6692ms)
+  Error: ENOENT: no such file or directory, mkdtemp '/tmp/mimir-cache-test-XXXXXX'
+      at mkdtempSync (node:fs:3134:18)
+      at TestContext.<anonymous> (file:///D:/Projects/MimirNL/test/benchmark-cache-diagnostic.test.mjs:82:15)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'mkdtemp',
+    path: '/tmp/mimir-cache-test-XXXXXX'
+  }
+
+test at test\benchmark-codex-usage.test.mjs:140:1
+✖ CLI runs offline, has fixed diagnostics and exclusively creates private outputs (287.0141ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///D:/Projects/MimirNL/test/benchmark-codex-usage.test.mjs:141:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at test\benchmark-context-selection.test.mjs:1:1
+✖ test\benchmark-context-selection.test.mjs (217.2005ms)
+  'test failed'
+
+test at test\benchmark-live-flow.test.mjs:1:1
+✖ test\benchmark-live-flow.test.mjs (249.6465ms)
+  'test failed'
+
+test at test\benchmark-metrics.test.mjs:263:1
+✖ actual CLI is read-only by default, private and exclusively creates reports (310.339ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///D:/Projects/MimirNL/test/benchmark-metrics.test.mjs:276:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at test\benchmark-multicase-codex.test.mjs:1:1
+✖ test\benchmark-multicase-codex.test.mjs (247.8517ms)
+  'test failed'
+
+test at test\benchmark-paired-probe.test.mjs:1:1
+✖ test\benchmark-paired-probe.test.mjs (220.5467ms)
+  'test failed'
+
+test at test\benchmark-preflight.test.mjs:351:1
+✖ actual CLI reads supplied JSON only, handles errors privately and never overwrites (1102.6944ms)
+  Error: EPERM: operation not permitted, symlink 'C:\Users\Usuario\AppData\Local\Temp\mimir-preflight-3D3Etc\plan.json' -> 'C:\Users\Usuario\AppData\Local\Temp\mimir-preflight-3D3Etc\link.json'
+      at symlinkSync (node:fs:1937:11)
+      at TestContext.<anonymous> (file:///D:/Projects/MimirNL/test/benchmark-preflight.test.mjs:374:3)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    errno: -4048,
+    code: 'EPERM',
+    syscall: 'symlink',
+    path: 'C:\\Users\\Usuario\\AppData\\Local\\Temp\\mimir-preflight-3D3Etc\\plan.json',
+    dest: 'C:\\Users\\Usuario\\AppData\\Local\\Temp\\mimir-preflight-3D3Etc\\link.json'
+  }
+
+test at test\benchmark-public-multicase.test.mjs:1:1
+✖ test\benchmark-public-multicase.test.mjs (279.4381ms)
+  'test failed'
+
+test at test\benchmark-v02.test.mjs:112:1
+✖ 0.2 sources: exact pinned bytes, durable snapshots, zero history, no private fields (8.2622ms)
+  Error: Invalid offline input or local operation.
+      at fail (file:///D:/Projects/MimirNL/scripts/benchmarks/public-bundle.mjs:11:9)
+      at portable (file:///D:/Projects/MimirNL/scripts/benchmarks/public-bundle.mjs:57:5)
+      at safePath (file:///D:/Projects/MimirNL/scripts/benchmarks/offline-files.mjs:20:3)
+      at gitExcerpt (file:///D:/Projects/MimirNL/scripts/benchmarks/contract-v02.mjs:42:3)
+      at publicBundle (file:///D:/Projects/MimirNL/scripts/benchmarks/contract-v02.mjs:159:9)
+      at TestContext.<anonymous> (file:///D:/Projects/MimirNL/test/benchmark-v02.test.mjs:114:16)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+
+test at test\benchmark-v02.test.mjs:148:1
+✖ deep projection canary and hash invariance; exact nested/public version rejection (0.5407ms)
+  Error: Invalid offline input or local operation.
+      at fail (file:///D:/Projects/MimirNL/scripts/benchmarks/public-bundle.mjs:11:9)
+      at portable (file:///D:/Projects/MimirNL/scripts/benchmarks/public-bundle.mjs:57:5)
+      at safePath (file:///D:/Projects/MimirNL/scripts/benchmarks/offline-files.mjs:20:3)
+      at gitExcerpt (file:///D:/Projects/MimirNL/scripts/benchmarks/contract-v02.mjs:42:3)
+      at publicBundle (file:///D:/Projects/MimirNL/scripts/benchmarks/contract-v02.mjs:159:9)
+      at TestContext.<anonymous> (file:///D:/Projects/MimirNL/test/benchmark-v02.test.mjs:154:20)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+
+test at test\benchmark-v02.test.mjs:172:1
+✖ source/path safety rejects traversal, symlinks, ranges, non-allowlisted paths and overwrite (5.9415ms)
+  Error: EPERM: operation not permitted, symlink 'C:\Users\Usuario\AppData\Local\Temp\mimir-v02-safe-LOn4yG\real' -> 'C:\Users\Usuario\AppData\Local\Temp\mimir-v02-safe-LOn4yG\link'
+      at symlinkSync (node:fs:1937:11)
+      at TestContext.<anonymous> (file:///D:/Projects/MimirNL/test/benchmark-v02.test.mjs:189:5)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    errno: -4048,
+    code: 'EPERM',
+    syscall: 'symlink',
+    path: 'C:\\Users\\Usuario\\AppData\\Local\\Temp\\mimir-v02-safe-LOn4yG\\real',
+    dest: 'C:\\Users\\Usuario\\AppData\\Local\\Temp\\mimir-v02-safe-LOn4yG\\link'
+  }
+
+test at test\benchmark-v02.test.mjs:412:1
+✖ public renderer separate process: I/O allowlist, canary gold absent, byte budget (348.1499ms)
+  Error: Command failed: C:\Program Files\nodejs\node.exe --import C:\Users\Usuario\AppData\Local\Temp\mimir-v02-public-QnJEED\guard.mjs D:\Projects\MimirNL\scripts\benchmarks\v02-cli.mjs public-render C:\Users\Usuario\AppData\Local\Temp\mimir-v02-public-QnJEED\sources.json C:\Users\Usuario\AppData\Local\Temp\mimir-v02-public-QnJEED\request.json
+  node:internal/modules/esm/load:193
+      throw new ERR_UNSUPPORTED_ESM_URL_SCHEME(parsed, schemes);
+            ^
+  
+  Error [ERR_UNSUPPORTED_ESM_URL_SCHEME]: Only URLs with a scheme in: file, data, and node are supported by the default ESM loader. On Windows, absolute paths must be valid file:// URLs. Received protocol 'c:'
+      at throwIfUnsupportedURLScheme (node:internal/modules/esm/load:193:11)
+      at defaultLoadSync (node:internal/modules/esm/load:146:3)
+      at #loadAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:806:12)
+      at #loadSync (node:internal/modules/esm/loader:838:53)
+      at ModuleLoader.load (node:internal/modules/esm/loader:787:26)
+      at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:498:31)
+      at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:564:36)
+      at afterResolve (node:internal/modules/esm/loader:611:52)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:617:12)
+      at node:internal/modules/esm/loader:636:32 {
+    code: 'ERR_UNSUPPORTED_ESM_URL_SCHEME'
+  }
+  
+  Node.js v24.21.0
+  
+      at genericNodeError (node:internal/errors:986:15)
+      at wrappedFn (node:internal/errors:540:14)
+      at checkExecSyncError (node:child_process:942:11)
+      at execFileSync (node:child_process:978:15)
+      at TestContext.<anonymous> (file:///D:/Projects/MimirNL/test/benchmark-v02.test.mjs:440:17)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12) {
+    status: 1,
+    signal: null,
+    output: [ null, '', "node:internal/modules/esm/load:193\r\n    throw new ERR_UNSUPPORTED_ESM_URL_SCHEME(parsed, schemes);\r\n          ^\r\n\r\nError [ERR_UNSUPPORTED_ESM_URL_SCHEME]: Only URLs with a scheme in: file, data, and node are supported by the default ESM loader. On Windows, absolute paths must be valid file:// URLs. Received protocol 'c:'\r\n    at throwIfUnsupportedURLScheme (node:internal/modules/esm/load:193:11)\r\n    at defaultLoadSync (node:internal/modules/esm/load:146:3)\r\n    at #loadAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:806:12)\r\n    at #loadSync (node:internal/modules/esm/loader:838:53)\r\n    at ModuleLoader.load (node:internal/modules/esm/loader:787:26)\r\n    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:498:31)\r\n    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:564:36)\r\n    at afterResolve (node:internal/modules/esm/loader:611:52)\r\n    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:617:12)\r\n    at node:internal/modules/esm/loader:636:32 {\r\n  code: 'ERR_UNSUPPORTED_ESM_URL_SCHEME'\r\n}\r\n\r\nNode.js v24.21.0\r\n" ],
+    pid: 22572,
+    stdout: '',
+    stderr: "node:internal/modules/esm/load:193\r\n    throw new ERR_UNSUPPORTED_ESM_URL_SCHEME(parsed, schemes);\r\n          ^\r\n\r\nError [ERR_UNSUPPORTED_ESM_URL_SCHEME]: Only URLs with a scheme in: file, data, and node are supported by the default ESM loader. On Windows, absolute paths must be valid file:// URLs. Received protocol 'c:'\r\n    at throwIfUnsupportedURLScheme (node:internal/modules/esm/load:193:11)\r\n    at defaultLoadSync (node:internal/modules/esm/load:146:3)\r\n    at #loadAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:806:12)\r\n    at #loadSync (node:internal/modules/esm/loader:838:53)\r\n    at ModuleLoader.load (node:internal/modules/esm/loader:787:26)\r\n    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:498:31)\r\n    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:564:36)\r\n    at afterResolve (node:internal/modules/esm/loader:611:52)\r\n    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:617:12)\r\n    at node:internal/modules/esm/loader:636:32 {\r\n  code: 'ERR_UNSUPPORTED_ESM_URL_SCHEME'\r\n}\r\n\r\nNode.js v24.21.0\r\n"
+  }
+
+test at test\benchmark-v02.test.mjs:467:1
+✖ private dev/eval CLI split gates, deterministic replay and no-overwrite with synthetic fixtures (286.7452ms)
+  Error: Command failed: C:\Program Files\nodejs\node.exe D:\Projects\MimirNL\scripts\benchmarks\v02-cli.mjs private-dev-metrics C:\Users\Usuario\AppData\Local\Temp\mimir-v02-replay-VXs50i\bundle.json C:\Users\Usuario\AppData\Local\Temp\mimir-v02-replay-VXs50i\cases.json C:\Users\Usuario\AppData\Local\Temp\mimir-v02-replay-VXs50i\input.json C:\Users\Usuario\AppData\Local\Temp\mimir-v02-replay-VXs50i\one
+  Invalid offline input or local operation.
+  
+      at genericNodeError (node:internal/errors:986:15)
+      at wrappedFn (node:internal/errors:540:14)
+      at checkExecSyncError (node:child_process:942:11)
+      at execFileSync (node:child_process:978:15)
+      at TestContext.<anonymous> (file:///D:/Projects/MimirNL/test/benchmark-v02.test.mjs:479:7)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12) {
+    status: 1,
+    signal: null,
+    output: [ null, <Buffer >, <Buffer 49 6e 76 61 6c 69 64 20 6f 66 66 6c 69 6e 65 20 69 6e 70 75 74 20 6f 72 20 6c 6f 63 61 6c 20 6f 70 65 72 61 74 69 6f 6e 2e 0a> ],
+    pid: 3384,
+    stdout: <Buffer >,
+    stderr: <Buffer 49 6e 76 61 6c 69 64 20 6f 66 66 6c 69 6e 65 20 69 6e 70 75 74 20 6f 72 20 6c 6f 63 61 6c 20 6f 70 65 72 61 74 69 6f 6e 2e 0a>
+  }
+
+test at test\canonical-root.test.mjs:16:1
+✖ canonical Git roots preserve identity across native path spellings (10.2925ms)
+  Error: spawnSync git ENOENT
+      at Object.spawnSync (node:internal/child_process:1160:20)
+      at spawnSync (node:child_process:928:24)
+      at execFileSync (node:child_process:971:15)
+      at fixtureGit (file:///D:/Projects/MimirNL/test/git-fixture.mjs:4:10)
+      at TestContext.<anonymous> (file:///D:/Projects/MimirNL/test/canonical-root.test.mjs:20:3)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'spawnSync git',
+    path: 'git',
+    spawnargs: [ '-c', 'core.hooksPath=/dev/null', '-c', 'core.fsmonitor=false', 'init', '-q', 'C:\\Users\\Usuario\\AppData\\Local\\Temp\\mimir-canonical-FaF0Cp\\MixedCaseRepo' ],
+    error: Error: spawnSync git ENOENT
+        at Object.spawnSync (node:internal/child_process:1160:20)
+        at spawnSync (node:child_process:928:24)
+        at execFileSync (node:child_process:971:15)
+        at fixtureGit (file:///D:/Projects/MimirNL/test/git-fixture.mjs:4:10)
+        at TestContext.<anonymous> (file:///D:/Projects/MimirNL/test/canonical-root.test.mjs:20:3)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1402:25)
+        at Test.start (node:internal/test_runner/test:1262:17)
+        at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17),
+    status: null,
+    signal: null,
+    output: null,
+    pid: 0,
+    stdout: undefined,
+    stderr: undefined
+  }
+
+test at test\ci-paths.test.mjs:43:1
+✖ Windows short-path aliases cannot bypass backup and restore project boundaries (136.4087ms)
+  Error: spawnSync git ENOENT
+      at Object.spawnSync (node:internal/child_process:1160:20)
+      at spawnSync (node:child_process:928:24)
+      at execFileSync (node:child_process:971:15)
+      at fixtureGit (file:///D:/Projects/MimirNL/test/git-fixture.mjs:4:10)
+      at TestContext.<anonymous> (file:///D:/Projects/MimirNL/test/ci-paths.test.mjs:65:7)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'spawnSync git',
+    path: 'git',
+    spawnargs: [ '-c', 'core.hooksPath=/dev/null', '-c', 'core.fsmonitor=false', 'init', '-q', 'C:\\Users\\Usuario\\AppData\\Local\\Temp\\mimir-long-path-boundary-ZgFuMc\\repo' ],
+    error: Error: spawnSync git ENOENT
+        at Object.spawnSync (node:internal/child_process:1160:20)
+        at spawnSync (node:child_process:928:24)
+        at execFileSync (node:child_process:971:15)
+        at fixtureGit (file:///D:/Projects/MimirNL/test/git-fixture.mjs:4:10)
+        at TestContext.<anonymous> (file:///D:/Projects/MimirNL/test/ci-paths.test.mjs:65:7)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1402:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+        at Test.postRun (node:internal/test_runner/test:1542:19)
+        at Test.run (node:internal/test_runner/test:1467:12),
+    status: null,
+    signal: null,
+    output: null,
+    pid: 0,
+    stdout: undefined,
+    stderr: undefined
+  }
+
+test at test\core.test.mjs:73:1
+✖ A: restart persistence, WAL, foreign keys and rollback (171.7625ms)
+  Error: spawnSync git ENOENT
+      at Object.spawnSync (node:internal/child_process:1160:20)
+      at spawnSync (node:child_process:928:24)
+      at execFileSync (node:child_process:971:15)
+      at fixtureGit (file:///D:/Projects/MimirNL/test/git-fixture.mjs:4:10)
+      at Object.repo (file:///D:/Projects/MimirNL/test/core.test.mjs:27:5)
+      at register (file:///D:/Projects/MimirNL/test/core.test.mjs:51:13)
+      at TestContext.<anonymous> (file:///D:/Projects/MimirNL/test/core.test.mjs:75:19)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'spawnSync git',
+    path: 'git',
+    spawnargs: [ '-c', 'core.hooksPath=/dev/null', '-c', 'core.fsmonitor=false', 'init', '-q', 'C:\\Users\\Usuario\\AppData\\Local\\Temp\\mimir-test-GiivBf\\repo' ],
+    error: Error: spawnSync git ENOENT
+        at Object.spawnSync (node:internal/child_process:1160:20)
+        at spawnSync (node:child_process:928:24)
+        at execFileSync (node:child_process:971:15)
+        at fixtureGit (file:///D:/Projects/MimirNL/test/git-fixture.mjs:4:10)
+        at Object.repo (file:///D:/Projects/MimirNL/test/core.test.mjs:27:5)
+        at register (file:///D:/Projects/MimirNL/test/core.test.mjs:51:13)
+        at TestContext.<anonymous> (file:///D:/Projects/MimirNL/test/core.test.mjs:75:19)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1402:25)
+        at Test.start (node:internal/test_runner/test:1262:17),
+    status: null,
+    signal: null,
+    output: null,
+    pid: 0,
+    stdout: undefined,
+    stderr: undefined
+  }
+
+test at test\core.test.mjs:99:1
+✖ A: simultaneous independent processes deduplicate atomic writes (136.9594ms)
+  Error: spawnSync git ENOENT
+      at Object.spawnSync (node:internal/child_process:1160:20)
+      at spawnSync (node:child_process:928:24)
+      at execFileSync (node:child_process:971:15)
+      at fixtureGit (file:///D:/Projects/MimirNL/test/git-fixture.mjs:4:10)
+      at Object.repo (file:///D:/Projects/MimirNL/test/core.test.mjs:27:5)
+      at register (file:///D:/Projects/MimirNL/test/core.test.mjs:51:13)
+      at TestContext.<anonymous> (file:///D:/Projects/MimirNL/test/core.test.mjs:101:19)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'spawnSync git',
+    path: 'git',
+    spawnargs: [ '-c', 'core.hooksPath=/dev/null', '-c', 'core.fsmonitor=false', 'init', '-q', 'C:\\Users\\Usuario\\AppData\\Local\\Temp\\mimir-test-qKOBIa\\repo' ],
+    error: Error: spawnSync git ENOENT
+        at Object.spawnSync (node:internal/child_process:1160:20)
+        at spawnSync (node:child_process:928:24)
+        at execFileSync (node:child_process:971:15)
+        at fixtureGit (file:///D:/Projects/MimirNL/test/git-fixture.mjs:4:10)
+        at Object.repo (file:///D:/Projects/MimirNL/test/core.test.mjs:27:5)
+        at register (file:///D:/Projects/MimirNL/test/core.test.mjs:51:13)
+        at TestContext.<anonymous> (file:///D:/Projects/MimirNL/test/core.test.mjs:101:19)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1402:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:974:18),
+    status: null,
+    signal: null,
+    output: null,
+    pid: 0,
+    stdout: undefined,
+    stderr: undefined
+  }
+
+test at test\core.test.mjs:120:1
+✖ B: isolation for search, IDs, history, stats, relations; bounded literal context (181.0785ms)
+  Error: spawnSync git ENOENT
+      at Object.spawnSync (node:internal/child_process:1160:20)
+      at spawnSync (node:child_process:928:24)
+      at execFileSync (node:child_process:971:15)
+      at fixtureGit (file:///D:/Projects/MimirNL/test/git-fixture.mjs:4:10)
+      at Object.repo (file:///D:/Projects/MimirNL/test/core.test.mjs:27:5)
+      at register (file:///D:/Projects/MimirNL/test/core.test.mjs:51:13)
+      at TestContext.<anonymous> (file:///D:/Projects/MimirNL/test/core.test.mjs:122:15)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'spawnSync git',
+    path: 'git',
+    spawnargs: [ '-c', 'core.hooksPath=/dev/null', '-c', 'core.fsmonitor=false', 'init', '-q', 'C:\\Users\\Usuario\\AppData\\Local\\Temp\\mimir-test-YuK7OC\\one' ],
+    error: Error: spawnSync git ENOENT
+        at Object.spawnSync (node:internal/child_process:1160:20)
+        at spawnSync (node:child_process:928:24)
+        at execFileSync (node:child_process:971:15)
+        at fixtureGit (file:///D:/Projects/MimirNL/test/git-fixture.mjs:4:10)
+        at Object.repo (file:///D:/Projects/MimirNL/test/core.test.mjs:27:5)
+        at register (file:///D:/Projects/MimirNL/test/core.test.mjs:51:13)
+        at TestContext.<anonymous> (file:///D:/Projects/MimirNL/test/core.test.mjs:122:15)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1402:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:974:18),
+    status: null,
+    signal: null,
+    output: null,
+    pid: 0,
+    stdout: undefined,
+    stderr: undefined
+  }
+
+test at test\core.test.mjs:182:1
+✖ D: authorized Git fixture bounds, secrets, ignores, binaries, symlink, incremental versions and deletion (109.1532ms)
+  Error: spawnSync git ENOENT
+      at Object.spawnSync (node:internal/child_process:1160:20)
+      at spawnSync (node:child_process:928:24)
+      at execFileSync (node:child_process:971:15)
+      at fixtureGit (file:///D:/Projects/MimirNL/test/git-fixture.mjs:4:10)
+      at Object.repo (file:///D:/Projects/MimirNL/test/core.test.mjs:27:5)
+      at register (file:///D:/Projects/MimirNL/test/core.test.mjs:51:13)
+      at TestContext.<anonymous> (file:///D:/Projects/MimirNL/test/core.test.mjs:184:15)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'spawnSync git',
+    path: 'git',
+    spawnargs: [ '-c', 'core.hooksPath=/dev/null', '-c', 'core.fsmonitor=false', 'init', '-q', 'C:\\Users\\Usuario\\AppData\\Local\\Temp\\mimir-test-3CZ6U0\\repo' ],
+    error: Error: spawnSync git ENOENT
+        at Object.spawnSync (node:internal/child_process:1160:20)
+        at spawnSync (node:child_process:928:24)
+        at execFileSync (node:child_process:971:15)
+        at fixtureGit (file:///D:/Projects/MimirNL/test/git-fixture.mjs:4:10)
+        at Object.repo (file:///D:/Projects/MimirNL/test/core.test.mjs:27:5)
+        at register (file:///D:/Projects/MimirNL/test/core.test.mjs:51:13)
+        at TestContext.<anonymous> (file:///D:/Projects/MimirNL/test/core.test.mjs:184:15)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1402:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:974:18),
+    status: null,
+    signal: null,
+    output: null,
+    pid: 0,
+    stdout: undefined,
+    stderr: undefined
+  }
+
+test at test\core.test.mjs:253:1
+✖ E: explicit verification, relation history, deterministic observation, sharing and confirmed deletion (122.2237ms)
+  Error: spawnSync git ENOENT
+      at Object.spawnSync (node:internal/child_process:1160:20)
+      at spawnSync (node:child_process:928:24)
+      at execFileSync (node:child_process:971:15)
+      at fixtureGit (file:///D:/Projects/MimirNL/test/git-fixture.mjs:4:10)
+      at Object.repo (file:///D:/Projects/MimirNL/test/core.test.mjs:27:5)
+      at register (file:///D:/Projects/MimirNL/test/core.test.mjs:51:13)
+      at TestContext.<anonymous> (file:///D:/Projects/MimirNL/test/core.test.mjs:255:15)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'spawnSync git',
+    path: 'git',
+    spawnargs: [ '-c', 'core.hooksPath=/dev/null', '-c', 'core.fsmonitor=false', 'init', '-q', 'C:\\Users\\Usuario\\AppData\\Local\\Temp\\mimir-test-C39lYr\\repo' ],
+    error: Error: spawnSync git ENOENT
+        at Object.spawnSync (node:internal/child_process:1160:20)
+        at spawnSync (node:child_process:928:24)
+        at execFileSync (node:child_process:971:15)
+        at fixtureGit (file:///D:/Projects/MimirNL/test/git-fixture.mjs:4:10)
+        at Object.repo (file:///D:/Projects/MimirNL/test/core.test.mjs:27:5)
+        at register (file:///D:/Projects/MimirNL/test/core.test.mjs:51:13)
+        at TestContext.<anonymous> (file:///D:/Projects/MimirNL/test/core.test.mjs:255:15)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1402:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:974:18),
+    status: null,
+    signal: null,
+    output: null,
+    pid: 0,
+    stdout: undefined,
+    stderr: undefined
+  }
+
+test at test\core.test.mjs:351:1
+✖ security: every request field checked, invalid schemas and unsafe database placement (89.8079ms)
+  Error: spawnSync git ENOENT
+      at Object.spawnSync (node:internal/child_process:1160:20)
+      at spawnSync (node:child_process:928:24)
+      at execFileSync (node:child_process:971:15)
+      at fixtureGit (file:///D:/Projects/MimirNL/test/git-fixture.mjs:4:10)
+      at Object.repo (file:///D:/Projects/MimirNL/test/core.test.mjs:27:5)
+      at register (file:///D:/Projects/MimirNL/test/core.test.mjs:51:13)
+      at TestContext.<anonymous> (file:///D:/Projects/MimirNL/test/core.test.mjs:353:15)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'spawnSync git',
+    path: 'git',
+    spawnargs: [ '-c', 'core.hooksPath=/dev/null', '-c', 'core.fsmonitor=false', 'init', '-q', 'C:\\Users\\Usuario\\AppData\\Local\\Temp\\mimir-test-8ORLUN\\repo' ],
+    error: Error: spawnSync git ENOENT
+        at Object.spawnSync (node:internal/child_process:1160:20)
+        at spawnSync (node:child_process:928:24)
+        at execFileSync (node:child_process:971:15)
+        at fixtureGit (file:///D:/Projects/MimirNL/test/git-fixture.mjs:4:10)
+        at Object.repo (file:///D:/Projects/MimirNL/test/core.test.mjs:27:5)
+        at register (file:///D:/Projects/MimirNL/test/core.test.mjs:51:13)
+        at TestContext.<anonymous> (file:///D:/Projects/MimirNL/test/core.test.mjs:353:15)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1402:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:974:18),
+    status: null,
+    signal: null,
+    output: null,
+    pid: 0,
+    stdout: undefined,
+    stderr: undefined
+  }
+
+test at test\core.test.mjs:394:1
+✖ C: real SDK stdio initialize/list/call, CLI shared DB and concurrent MCP clients (159.6908ms)
+  Error: spawnSync git ENOENT
+      at Object.spawnSync (node:internal/child_process:1160:20)
+      at spawnSync (node:child_process:928:24)
+      at execFileSync (node:child_process:971:15)
+      at fixtureGit (file:///D:/Projects/MimirNL/test/git-fixture.mjs:4:10)
+      at Object.repo (file:///D:/Projects/MimirNL/test/core.test.mjs:27:5)
+      at register (file:///D:/Projects/MimirNL/test/core.test.mjs:51:13)
+      at TestContext.<anonymous> (file:///D:/Projects/MimirNL/test/core.test.mjs:396:15)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'spawnSync git',
+    path: 'git',
+    spawnargs: [ '-c', 'core.hooksPath=/dev/null', '-c', 'core.fsmonitor=false', 'init', '-q', 'C:\\Users\\Usuario\\AppData\\Local\\Temp\\mimir-test-AXKXVg\\repo' ],
+    error: Error: spawnSync git ENOENT
+        at Object.spawnSync (node:internal/child_process:1160:20)
+        at spawnSync (node:child_process:928:24)
+        at execFileSync (node:child_process:971:15)
+        at fixtureGit (file:///D:/Projects/MimirNL/test/git-fixture.mjs:4:10)
+        at Object.repo (file:///D:/Projects/MimirNL/test/core.test.mjs:27:5)
+        at register (file:///D:/Projects/MimirNL/test/core.test.mjs:51:13)
+        at TestContext.<anonymous> (file:///D:/Projects/MimirNL/test/core.test.mjs:396:15)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1402:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:974:18),
+    status: null,
+    signal: null,
+    output: null,
+    pid: 0,
+    stdout: undefined,
+    stderr: undefined
+  }
+
+test at test\core.test.mjs:526:1
+✖ E: shared lifecycle deletion and global/local retrieval dedup (124.5935ms)
+  Error: spawnSync git ENOENT
+      at Object.spawnSync (node:internal/child_process:1160:20)
+      at spawnSync (node:child_process:928:24)
+      at execFileSync (node:child_process:971:15)
+      at fixtureGit (file:///D:/Projects/MimirNL/test/git-fixture.mjs:4:10)
+      at Object.repo (file:///D:/Projects/MimirNL/test/core.test.mjs:27:5)
+      at register (file:///D:/Projects/MimirNL/test/core.test.mjs:51:13)
+      at TestContext.<anonymous> (file:///D:/Projects/MimirNL/test/core.test.mjs:528:15)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'spawnSync git',
+    path: 'git',
+    spawnargs: [ '-c', 'core.hooksPath=/dev/null', '-c', 'core.fsmonitor=false', 'init', '-q', 'C:\\Users\\Usuario\\AppData\\Local\\Temp\\mimir-test-579IC8\\repo' ],
+    error: Error: spawnSync git ENOENT
+        at Object.spawnSync (node:internal/child_process:1160:20)
+        at spawnSync (node:child_process:928:24)
+        at execFileSync (node:child_process:971:15)
+        at fixtureGit (file:///D:/Projects/MimirNL/test/git-fixture.mjs:4:10)
+        at Object.repo (file:///D:/Projects/MimirNL/test/core.test.mjs:27:5)
+        at register (file:///D:/Projects/MimirNL/test/core.test.mjs:51:13)
+        at TestContext.<anonymous> (file:///D:/Projects/MimirNL/test/core.test.mjs:528:15)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1402:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:974:18),
+    status: null,
+    signal: null,
+    output: null,
+    pid: 0,
+    stdout: undefined,
+    stderr: undefined
+  }
+
+test at test\core.test.mjs:586:1
+✖ D: uncommitted repositories, byte bound rollback and changed sensitive sources (89.3119ms)
+  Error: spawnSync git ENOENT
+      at Object.spawnSync (node:internal/child_process:1160:20)
+      at spawnSync (node:child_process:928:24)
+      at execFileSync (node:child_process:971:15)
+      at fixtureGit (file:///D:/Projects/MimirNL/test/git-fixture.mjs:4:10)
+      at TestContext.<anonymous> (file:///D:/Projects/MimirNL/test/core.test.mjs:590:3)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'spawnSync git',
+    path: 'git',
+    spawnargs: [ '-c', 'core.hooksPath=/dev/null', '-c', 'core.fsmonitor=false', 'init', '-q', 'C:\\Users\\Usuario\\AppData\\Local\\Temp\\mimir-test-ZVWTHD\\uncommitted' ],
+    error: Error: spawnSync git ENOENT
+        at Object.spawnSync (node:internal/child_process:1160:20)
+        at spawnSync (node:child_process:928:24)
+        at execFileSync (node:child_process:971:15)
+        at fixtureGit (file:///D:/Projects/MimirNL/test/git-fixture.mjs:4:10)
+        at TestContext.<anonymous> (file:///D:/Projects/MimirNL/test/core.test.mjs:590:3)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1402:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+        at Test.postRun (node:internal/test_runner/test:1542:19)
+        at Test.run (node:internal/test_runner/test:1467:12),
+    status: null,
+    signal: null,
+    output: null,
+    pid: 0,
+    stdout: undefined,
+    stderr: undefined
+  }
+
+test at test\core.test.mjs:615:1
+✖ B: filters, complete response budget, oversized input and provenance trust (72.6709ms)
+  Error: spawnSync git ENOENT
+      at Object.spawnSync (node:internal/child_process:1160:20)
+      at spawnSync (node:child_process:928:24)
+      at execFileSync (node:child_process:971:15)
+      at fixtureGit (file:///D:/Projects/MimirNL/test/git-fixture.mjs:4:10)
+      at Object.repo (file:///D:/Projects/MimirNL/test/core.test.mjs:27:5)
+      at register (file:///D:/Projects/MimirNL/test/core.test.mjs:51:13)
+      at TestContext.<anonymous> (file:///D:/Projects/MimirNL/test/core.test.mjs:617:15)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'spawnSync git',
+    path: 'git',
+    spawnargs: [ '-c', 'core.hooksPath=/dev/null', '-c', 'core.fsmonitor=false', 'init', '-q', 'C:\\Users\\Usuario\\AppData\\Local\\Temp\\mimir-test-ZIdqhn\\repo' ],
+    error: Error: spawnSync git ENOENT
+        at Object.spawnSync (node:internal/child_process:1160:20)
+        at spawnSync (node:child_process:928:24)
+        at execFileSync (node:child_process:971:15)
+        at fixtureGit (file:///D:/Projects/MimirNL/test/git-fixture.mjs:4:10)
+        at Object.repo (file:///D:/Projects/MimirNL/test/core.test.mjs:27:5)
+        at register (file:///D:/Projects/MimirNL/test/core.test.mjs:51:13)
+        at TestContext.<anonymous> (file:///D:/Projects/MimirNL/test/core.test.mjs:617:15)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1402:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:974:18),
+    status: null,
+    signal: null,
+    output: null,
+    pid: 0,
+    stdout: undefined,
+    stderr: undefined
+  }
+
+test at test\core.test.mjs:657:1
+✖ security: external Git config rejected before Git commands; custom excludes and provenance retention (71.5243ms)
+  Error: spawnSync git ENOENT
+      at Object.spawnSync (node:internal/child_process:1160:20)
+      at spawnSync (node:child_process:928:24)
+      at execFileSync (node:child_process:971:15)
+      at fixtureGit (file:///D:/Projects/MimirNL/test/git-fixture.mjs:4:10)
+      at Object.repo (file:///D:/Projects/MimirNL/test/core.test.mjs:27:5)
+      at register (file:///D:/Projects/MimirNL/test/core.test.mjs:51:13)
+      at TestContext.<anonymous> (file:///D:/Projects/MimirNL/test/core.test.mjs:659:15)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'spawnSync git',
+    path: 'git',
+    spawnargs: [ '-c', 'core.hooksPath=/dev/null', '-c', 'core.fsmonitor=false', 'init', '-q', 'C:\\Users\\Usuario\\AppData\\Local\\Temp\\mimir-test-6QqZ62\\repo' ],
+    error: Error: spawnSync git ENOENT
+        at Object.spawnSync (node:internal/child_process:1160:20)
+        at spawnSync (node:child_process:928:24)
+        at execFileSync (node:child_process:971:15)
+        at fixtureGit (file:///D:/Projects/MimirNL/test/git-fixture.mjs:4:10)
+        at Object.repo (file:///D:/Projects/MimirNL/test/core.test.mjs:27:5)
+        at register (file:///D:/Projects/MimirNL/test/core.test.mjs:51:13)
+        at TestContext.<anonymous> (file:///D:/Projects/MimirNL/test/core.test.mjs:659:15)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1402:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:974:18),
+    status: null,
+    signal: null,
+    output: null,
+    pid: 0,
+    stdout: undefined,
+    stderr: undefined
+  }
+
+test at test\core.test.mjs:712:1
+✖ A/E: manual edits preserve ID/history, reset verification and prevent duplicates (116.4648ms)
+  Error: spawnSync git ENOENT
+      at Object.spawnSync (node:internal/child_process:1160:20)
+      at spawnSync (node:child_process:928:24)
+      at execFileSync (node:child_process:971:15)
+      at fixtureGit (file:///D:/Projects/MimirNL/test/git-fixture.mjs:4:10)
+      at Object.repo (file:///D:/Projects/MimirNL/test/core.test.mjs:27:5)
+      at register (file:///D:/Projects/MimirNL/test/core.test.mjs:51:13)
+      at TestContext.<anonymous> (file:///D:/Projects/MimirNL/test/core.test.mjs:714:15)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'spawnSync git',
+    path: 'git',
+    spawnargs: [ '-c', 'core.hooksPath=/dev/null', '-c', 'core.fsmonitor=false', 'init', '-q', 'C:\\Users\\Usuario\\AppData\\Local\\Temp\\mimir-test-cVK6EN\\repo' ],
+    error: Error: spawnSync git ENOENT
+        at Object.spawnSync (node:internal/child_process:1160:20)
+        at spawnSync (node:child_process:928:24)
+        at execFileSync (node:child_process:971:15)
+        at fixtureGit (file:///D:/Projects/MimirNL/test/git-fixture.mjs:4:10)
+        at Object.repo (file:///D:/Projects/MimirNL/test/core.test.mjs:27:5)
+        at register (file:///D:/Projects/MimirNL/test/core.test.mjs:51:13)
+        at TestContext.<anonymous> (file:///D:/Projects/MimirNL/test/core.test.mjs:714:15)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1402:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:974:18),
+    status: null,
+    signal: null,
+    output: null,
+    pid: 0,
+    stdout: undefined,
+    stderr: undefined
+  }
+
+test at test\core.test.mjs:753:1
+✖ security: quoted JSON configuration secrets and metadata are rejected before persistence (70.8585ms)
+  Error: spawnSync git ENOENT
+      at Object.spawnSync (node:internal/child_process:1160:20)
+      at spawnSync (node:child_process:928:24)
+      at execFileSync (node:child_process:971:15)
+      at fixtureGit (file:///D:/Projects/MimirNL/test/git-fixture.mjs:4:10)
+      at Object.repo (file:///D:/Projects/MimirNL/test/core.test.mjs:27:5)
+      at register (file:///D:/Projects/MimirNL/test/core.test.mjs:51:13)
+      at TestContext.<anonymous> (file:///D:/Projects/MimirNL/test/core.test.mjs:755:15)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'spawnSync git',
+    path: 'git',
+    spawnargs: [ '-c', 'core.hooksPath=/dev/null', '-c', 'core.fsmonitor=false', 'init', '-q', 'C:\\Users\\Usuario\\AppData\\Local\\Temp\\mimir-test-7x7gZY\\repo' ],
+    error: Error: spawnSync git ENOENT
+        at Object.spawnSync (node:internal/child_process:1160:20)
+        at spawnSync (node:child_process:928:24)
+        at execFileSync (node:child_process:971:15)
+        at fixtureGit (file:///D:/Projects/MimirNL/test/git-fixture.mjs:4:10)
+        at Object.repo (file:///D:/Projects/MimirNL/test/core.test.mjs:27:5)
+        at register (file:///D:/Projects/MimirNL/test/core.test.mjs:51:13)
+        at TestContext.<anonymous> (file:///D:/Projects/MimirNL/test/core.test.mjs:755:15)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1402:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:974:18),
+    status: null,
+    signal: null,
+    output: null,
+    pid: 0,
+    stdout: undefined,
+    stderr: undefined
+  }
+
+test at test\core.test.mjs:770:1
+✖ C: CLI positional project deletion consumes the UUID and preserves the source (57.8534ms)
+  Error: spawnSync git ENOENT
+      at Object.spawnSync (node:internal/child_process:1160:20)
+      at spawnSync (node:child_process:928:24)
+      at execFileSync (node:child_process:971:15)
+      at fixtureGit (file:///D:/Projects/MimirNL/test/git-fixture.mjs:4:10)
+      at Object.repo (file:///D:/Projects/MimirNL/test/core.test.mjs:27:5)
+      at register (file:///D:/Projects/MimirNL/test/core.test.mjs:51:13)
+      at TestContext.<anonymous> (file:///D:/Projects/MimirNL/test/core.test.mjs:772:15)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'spawnSync git',
+    path: 'git',
+    spawnargs: [ '-c', 'core.hooksPath=/dev/null', '-c', 'core.fsmonitor=false', 'init', '-q', 'C:\\Users\\Usuario\\AppData\\Local\\Temp\\mimir-test-PXu8z2\\repo' ],
+    error: Error: spawnSync git ENOENT
+        at Object.spawnSync (node:internal/child_process:1160:20)
+        at spawnSync (node:child_process:928:24)
+        at execFileSync (node:child_process:971:15)
+        at fixtureGit (file:///D:/Projects/MimirNL/test/git-fixture.mjs:4:10)
+        at Object.repo (file:///D:/Projects/MimirNL/test/core.test.mjs:27:5)
+        at register (file:///D:/Projects/MimirNL/test/core.test.mjs:51:13)
+        at TestContext.<anonymous> (file:///D:/Projects/MimirNL/test/core.test.mjs:772:15)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1402:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:974:18),
+    status: null,
+    signal: null,
+    output: null,
+    pid: 0,
+    stdout: undefined,
+    stderr: undefined
+  }
+
+test at test\hardening.test.mjs:42:1
+✖ snapshot includes uncheckpointed WAL, versions, provenance, feedback and independent reopen (41.6769ms)
+  Error: spawnSync git ENOENT
+      at Object.spawnSync (node:internal/child_process:1160:20)
+      at spawnSync (node:child_process:928:24)
+      at execFileSync (node:child_process:971:15)
+      at fixtureGit (file:///D:/Projects/MimirNL/test/git-fixture.mjs:4:10)
+      at fixture (file:///D:/Projects/MimirNL/test/hardening.test.mjs:34:3)
+      at TestContext.<anonymous> (file:///D:/Projects/MimirNL/test/hardening.test.mjs:43:32)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'spawnSync git',
+    path: 'git',
+    spawnargs: [ '-c', 'core.hooksPath=/dev/null', '-c', 'core.fsmonitor=false', 'init', '-q', 'C:\\Users\\Usuario\\AppData\\Local\\Temp\\mimir-hardening-ab0aIW\\repo' ],
+    error: Error: spawnSync git ENOENT
+        at Object.spawnSync (node:internal/child_process:1160:20)
+        at spawnSync (node:child_process:928:24)
+        at execFileSync (node:child_process:971:15)
+        at fixtureGit (file:///D:/Projects/MimirNL/test/git-fixture.mjs:4:10)
+        at fixture (file:///D:/Projects/MimirNL/test/hardening.test.mjs:34:3)
+        at TestContext.<anonymous> (file:///D:/Projects/MimirNL/test/hardening.test.mjs:43:32)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1402:25)
+        at Test.start (node:internal/test_runner/test:1262:17)
+        at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17),
+    status: null,
+    signal: null,
+    output: null,
+    pid: 0,
+    stdout: undefined,
+    stderr: undefined
+  }
+
+test at test\hardening.test.mjs:111:1
+✖ snapshot stays consistent with independent CLI writer processes (8.4315ms)
+  Error: spawnSync git ENOENT
+      at Object.spawnSync (node:internal/child_process:1160:20)
+      at spawnSync (node:child_process:928:24)
+      at execFileSync (node:child_process:971:15)
+      at fixtureGit (file:///D:/Projects/MimirNL/test/git-fixture.mjs:4:10)
+      at fixture (file:///D:/Projects/MimirNL/test/hardening.test.mjs:34:3)
+      at TestContext.<anonymous> (file:///D:/Projects/MimirNL/test/hardening.test.mjs:112:32)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'spawnSync git',
+    path: 'git',
+    spawnargs: [ '-c', 'core.hooksPath=/dev/null', '-c', 'core.fsmonitor=false', 'init', '-q', 'C:\\Users\\Usuario\\AppData\\Local\\Temp\\mimir-hardening-kC9Oem\\repo' ],
+    error: Error: spawnSync git ENOENT
+        at Object.spawnSync (node:internal/child_process:1160:20)
+        at spawnSync (node:child_process:928:24)
+        at execFileSync (node:child_process:971:15)
+        at fixtureGit (file:///D:/Projects/MimirNL/test/git-fixture.mjs:4:10)
+        at fixture (file:///D:/Projects/MimirNL/test/hardening.test.mjs:34:3)
+        at TestContext.<anonymous> (file:///D:/Projects/MimirNL/test/hardening.test.mjs:112:32)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1402:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+        at Test.postRun (node:internal/test_runner/test:1542:19),
+    status: null,
+    signal: null,
+    output: null,
+    pid: 0,
+    stdout: undefined,
+    stderr: undefined
+  }
+
+test at test\hardening.test.mjs:158:1
+✖ online snapshot overlaps an active WAL writer and preserves transactional history (3.9057ms)
+  Error: spawnSync git ENOENT
+      at Object.spawnSync (node:internal/child_process:1160:20)
+      at spawnSync (node:child_process:928:24)
+      at execFileSync (node:child_process:971:15)
+      at fixtureGit (file:///D:/Projects/MimirNL/test/git-fixture.mjs:4:10)
+      at fixture (file:///D:/Projects/MimirNL/test/hardening.test.mjs:34:3)
+      at TestContext.<anonymous> (file:///D:/Projects/MimirNL/test/hardening.test.mjs:159:32)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'spawnSync git',
+    path: 'git',
+    spawnargs: [ '-c', 'core.hooksPath=/dev/null', '-c', 'core.fsmonitor=false', 'init', '-q', 'C:\\Users\\Usuario\\AppData\\Local\\Temp\\mimir-hardening-XzLkuK\\repo' ],
+    error: Error: spawnSync git ENOENT
+        at Object.spawnSync (node:internal/child_process:1160:20)
+        at spawnSync (node:child_process:928:24)
+        at execFileSync (node:child_process:971:15)
+        at fixtureGit (file:///D:/Projects/MimirNL/test/git-fixture.mjs:4:10)
+        at fixture (file:///D:/Projects/MimirNL/test/hardening.test.mjs:34:3)
+        at TestContext.<anonymous> (file:///D:/Projects/MimirNL/test/hardening.test.mjs:159:32)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1402:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+        at Test.postRun (node:internal/test_runner/test:1542:19),
+    status: null,
+    signal: null,
+    output: null,
+    pid: 0,
+    stdout: undefined,
+    stderr: undefined
+  }
+
+test at test\hardening.test.mjs:223:1
+✖ restore rejects corruption, incompatible schema, sidecars, project paths, traversal and symlinks (8.0748ms)
+  Error: spawnSync git ENOENT
+      at Object.spawnSync (node:internal/child_process:1160:20)
+      at spawnSync (node:child_process:928:24)
+      at execFileSync (node:child_process:971:15)
+      at fixtureGit (file:///D:/Projects/MimirNL/test/git-fixture.mjs:4:10)
+      at fixture (file:///D:/Projects/MimirNL/test/hardening.test.mjs:34:3)
+      at TestContext.<anonymous> (file:///D:/Projects/MimirNL/test/hardening.test.mjs:224:35)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'spawnSync git',
+    path: 'git',
+    spawnargs: [ '-c', 'core.hooksPath=/dev/null', '-c', 'core.fsmonitor=false', 'init', '-q', 'C:\\Users\\Usuario\\AppData\\Local\\Temp\\mimir-hardening-t2BtOa\\repo' ],
+    error: Error: spawnSync git ENOENT
+        at Object.spawnSync (node:internal/child_process:1160:20)
+        at spawnSync (node:child_process:928:24)
+        at execFileSync (node:child_process:971:15)
+        at fixtureGit (file:///D:/Projects/MimirNL/test/git-fixture.mjs:4:10)
+        at fixture (file:///D:/Projects/MimirNL/test/hardening.test.mjs:34:3)
+        at TestContext.<anonymous> (file:///D:/Projects/MimirNL/test/hardening.test.mjs:224:35)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1402:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+        at Test.postRun (node:internal/test_runner/test:1542:19),
+    status: null,
+    signal: null,
+    output: null,
+    pid: 0,
+    stdout: undefined,
+    stderr: undefined
+  }
+
+test at test\hardening.test.mjs:307:1
+✖ sensitive fields, Windows paths, bounded includes and injection remain data (5.3471ms)
+  Error: spawnSync git ENOENT
+      at Object.spawnSync (node:internal/child_process:1160:20)
+      at spawnSync (node:child_process:928:24)
+      at execFileSync (node:child_process:971:15)
+      at fixtureGit (file:///D:/Projects/MimirNL/test/git-fixture.mjs:4:10)
+      at fixture (file:///D:/Projects/MimirNL/test/hardening.test.mjs:34:3)
+      at TestContext.<anonymous> (file:///D:/Projects/MimirNL/test/hardening.test.mjs:308:38)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'spawnSync git',
+    path: 'git',
+    spawnargs: [ '-c', 'core.hooksPath=/dev/null', '-c', 'core.fsmonitor=false', 'init', '-q', 'C:\\Users\\Usuario\\AppData\\Local\\Temp\\mimir-hardening-qYN5cl\\repo' ],
+    error: Error: spawnSync git ENOENT
+        at Object.spawnSync (node:internal/child_process:1160:20)
+        at spawnSync (node:child_process:928:24)
+        at execFileSync (node:child_process:971:15)
+        at fixtureGit (file:///D:/Projects/MimirNL/test/git-fixture.mjs:4:10)
+        at fixture (file:///D:/Projects/MimirNL/test/hardening.test.mjs:34:3)
+        at TestContext.<anonymous> (file:///D:/Projects/MimirNL/test/hardening.test.mjs:308:38)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1402:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+        at Test.postRun (node:internal/test_runner/test:1542:19),
+    status: null,
+    signal: null,
+    output: null,
+    pid: 0,
+    stdout: undefined,
+    stderr: undefined
+  }
+
+test at test\hardening.test.mjs:400:1
+✖ external Git config and executable fsmonitor cannot run (7.108ms)
+  Error: spawnSync git ENOENT
+      at Object.spawnSync (node:internal/child_process:1160:20)
+      at spawnSync (node:child_process:928:24)
+      at execFileSync (node:child_process:971:15)
+      at fixtureGit (file:///D:/Projects/MimirNL/test/git-fixture.mjs:4:10)
+      at fixture (file:///D:/Projects/MimirNL/test/hardening.test.mjs:34:3)
+      at TestContext.<anonymous> (file:///D:/Projects/MimirNL/test/hardening.test.mjs:401:38)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'spawnSync git',
+    path: 'git',
+    spawnargs: [ '-c', 'core.hooksPath=/dev/null', '-c', 'core.fsmonitor=false', 'init', '-q', 'C:\\Users\\Usuario\\AppData\\Local\\Temp\\mimir-hardening-6RZYAJ\\repo' ],
+    error: Error: spawnSync git ENOENT
+        at Object.spawnSync (node:internal/child_process:1160:20)
+        at spawnSync (node:child_process:928:24)
+        at execFileSync (node:child_process:971:15)
+        at fixtureGit (file:///D:/Projects/MimirNL/test/git-fixture.mjs:4:10)
+        at fixture (file:///D:/Projects/MimirNL/test/hardening.test.mjs:34:3)
+        at TestContext.<anonymous> (file:///D:/Projects/MimirNL/test/hardening.test.mjs:401:38)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1402:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+        at Test.postRun (node:internal/test_runner/test:1542:19),
+    status: null,
+    signal: null,
+    output: null,
+    pid: 0,
+    stdout: undefined,
+    stderr: undefined
+  }
+
+test at test\review-corrections.test.mjs:12:1
+✖ CLI feedback persists approval; includes deprecates and full ingest reactivates (205.0755ms)
+  Error: spawnSync git ENOENT
+      at Object.spawnSync (node:internal/child_process:1160:20)
+      at spawnSync (node:child_process:928:24)
+      at execFileSync (node:child_process:971:15)
+      at fixtureGit (file:///D:/Projects/MimirNL/test/git-fixture.mjs:4:10)
+      at TestContext.<anonymous> (file:///D:/Projects/MimirNL/test/review-corrections.test.mjs:19:5)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'spawnSync git',
+    path: 'git',
+    spawnargs: [ '-c', 'core.hooksPath=/dev/null', '-c', 'core.fsmonitor=false', 'init', '-q', 'C:\\Users\\Usuario\\AppData\\Local\\Temp\\mimir-review-MyadnH\\repo' ],
+    error: Error: spawnSync git ENOENT
+        at Object.spawnSync (node:internal/child_process:1160:20)
+        at spawnSync (node:child_process:928:24)
+        at execFileSync (node:child_process:971:15)
+        at fixtureGit (file:///D:/Projects/MimirNL/test/git-fixture.mjs:4:10)
+        at TestContext.<anonymous> (file:///D:/Projects/MimirNL/test/review-corrections.test.mjs:19:5)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1402:25)
+        at Test.start (node:internal/test_runner/test:1262:17)
+        at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17),
+    status: null,
+    signal: null,
+    output: null,
+    pid: 0,
+    stdout: undefined,
+    stderr: undefined
+  }

@@ -1,0 +1,143 @@
+[
+  {
+    "case_id": "expanded-budget-envelope",
+    "case_revision": 2,
+    "split": "development",
+    "task": "Como o tokenBudget de memory_search passa do schema ao optimize? Explique limites/default, unidade efetiva do estimador e o envelope considerado. Cite as unidades necessárias.",
+    "query": "memory_search tokenBudget schema optimize estimateTokens envelope",
+    "pool": [
+      "search-schema/behavior",
+      "optimizer/behavior",
+      "search-service/behavior",
+      "stats-service/behavior"
+    ],
+    "base": [
+      "search-schema/behavior",
+      "optimizer/behavior",
+      "search-service/behavior",
+      "stats-service/behavior"
+    ]
+  },
+  {
+    "case_id": "expanded-sharing-eligibility",
+    "case_revision": 2,
+    "split": "development",
+    "task": "Approve e promote têm os mesmos efeitos e autorizações? Explique status e cópia global, efeito padrão de includeGlobal e elegibilidade na busca com e sem status explícito. Cite as unidades necessárias.",
+    "query": "approve promote explicitApproval sharingApproval includeGlobal status scope memory_search",
+    "pool": [
+      "feedback-service/behavior",
+      "learning/behavior",
+      "retriever/behavior",
+      "search-schema/behavior",
+      "failure/behavior"
+    ],
+    "base": [
+      "feedback-service/behavior",
+      "learning/behavior",
+      "retriever/behavior",
+      "search-schema/behavior",
+      "failure/behavior"
+    ]
+  },
+  {
+    "case_id": "expanded-project-path-boundary",
+    "case_revision": 2,
+    "split": "development",
+    "task": "Como registro da raiz Git e checagens do arquivo ingerido se relacionam com a fronteira por projeto na busca? Descreva caminhos canônicos/symlinks e a exceção global, sem equiparar segurança de path à autorização de leitura. Cite as unidades necessárias.",
+    "query": "project_register GitAdapter root realpath inside symlink projectId includeGlobal",
+    "pool": [
+      "register-service/behavior",
+      "ingest-path/behavior",
+      "retriever/behavior",
+      "embedding-interface/behavior"
+    ],
+    "base": [
+      "register-service/behavior",
+      "ingest-path/behavior",
+      "retriever/behavior",
+      "embedding-interface/behavior"
+    ]
+  },
+  {
+    "case_id": "expanded-production-p95-absent",
+    "case_revision": 2,
+    "split": "development",
+    "task": "Qual foi o p95 medido de latência de memory_search em produção entre 2026-10-01T00:00:00Z e 2026-10-07T23:59:59Z? Use somente o pool fornecido; se insuficiente, explique qual evidência falta.",
+    "query": "memory_search p95 latency elapsed_ms production 2026 10 01 2026 10 07",
+    "pool": [
+      "search-service/behavior",
+      "stats-service/behavior",
+      "retriever/behavior",
+      "optimizer/behavior"
+    ],
+    "base": [
+      "search-service/behavior",
+      "stats-service/behavior",
+      "retriever/behavior",
+      "optimizer/behavior"
+    ]
+  },
+  {
+    "case_id": "expanded-runtime-config-absent",
+    "case_revision": 2,
+    "split": "development",
+    "task": "Na instalação Alfa, não descrita neste pool, qual provedor, modelo, tokenizer e tarifa por milhão de tokens estão efetivamente configurados? Responda só com o pool e não consulte configuração, ambiente, autenticação ou DB pessoal.",
+    "query": "Alfa provider model tokenizer tariff tokenBudget EmbeddingProvider",
+    "pool": [
+      "embedding-interface/behavior",
+      "optimizer/behavior",
+      "search-schema/behavior",
+      "package-version/behavior"
+    ],
+    "base": [
+      "embedding-interface/behavior",
+      "optimizer/behavior",
+      "search-schema/behavior",
+      "package-version/behavior"
+    ]
+  },
+  {
+    "case_id": "expanded-apparent-version-scope",
+    "case_revision": 2,
+    "split": "development",
+    "task": "No mesmo snapshot, README descreve Core v0.1 e package.json declara versão 0.2.0. O que cada fonte comprova? Isso demonstra contradição, documento stale, erro ou publicação da release? Cite ambas.",
+    "query": "README Core v0.1 package version 0.2.0 release published",
+    "pool": [
+      "readme-status/behavior",
+      "package-version/behavior",
+      "embedding-interface/behavior"
+    ],
+    "base": [
+      "readme-status/behavior",
+      "package-version/behavior",
+      "embedding-interface/behavior"
+    ]
+  },
+  {
+    "case_id": "pilot-approval",
+    "case_revision": 2,
+    "split": "development",
+    "task": "Como nextStatus trata approve sem aprovação explícita, approve autorizado, reject, supersede e uma ação desconhecida? Cite a unidade.",
+    "query": "nextStatus explicitApproval approve reject supersede",
+    "pool": ["code-approval/behavior"],
+    "base": ["code-approval/behavior"]
+  },
+  {
+    "case_id": "pilot-budget",
+    "case_revision": 2,
+    "split": "development",
+    "task": "O estimador mede tokens reais? Como optimize escolhe itens e pode um item posterior caber após outro ser omitido? Cite a unidade.",
+    "query": "estimateTokens optimize budget",
+    "pool": ["code-budget/behavior"],
+    "base": ["code-budget/behavior"]
+  },
+  {
+    "case_id": "pilot-failure",
+    "case_revision": 2,
+    "split": "development",
+    "task": "Como failure trata Error comum, causeCode e sqliteCode sem expor mensagens locais? Cite a unidade.",
+    "query": "failure causeCode sqliteCode AppError",
+    "pool": ["code-failure/behavior"],
+    "base": ["code-failure/behavior"]
+  }
+]

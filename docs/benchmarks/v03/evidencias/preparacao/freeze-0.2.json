@@ -1,0 +1,21 @@
+{
+  "schema_version": "development-freeze-0.2",
+  "bundle_sha256": "e75d3066c9151d71b97c440f7a563147cfbc94a52302dcf5965075e2bdcdc7e9",
+  "development_sha256": "61f367acd9416bae838df01d4e42cef258c9cbe368bde73c99cf52a1088c1b4a",
+  "parameters": {
+    "k": 3,
+    "context_bytes": 32000,
+    "output_words": 120,
+    "tools": [],
+    "dedup": "source-content-sha256-before-k",
+    "base_overlap": "preserve",
+    "history_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "parameters_sha256": "cc227b5dde33ca82a8749c3f362b9a1a09c29da93c19f11f58c0666e5d9ea1f3",
+  "legacy_reviews": [
+    "tasks/55-v03-corpus-review-findings.md",
+    "tasks/84-v03-expanded-corpus-review-findings.md"
+  ],
+  "review_status": "pending",
+  "live_enabled": false
+}

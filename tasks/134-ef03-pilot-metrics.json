@@ -1,0 +1,161 @@
+{
+  "schema_version": "ef03-pilot-metrics-134-v1",
+  "results_sha256": "a5c1ef7fbe059b6f3536a822762116e122ebdbfc494f67b512f88a798cb0ea8f",
+  "plan_sha256": "563e6ce15517574b8ce01eb2dcae1970d218e7cd278115597f05a3ee866a11fb",
+  "actual_model_calls": 4,
+  "requested_model": "gpt-6.1-sol",
+  "observed_model": null,
+  "cost": null,
+  "ttft_ms": null,
+  "cached_savings": null,
+  "retrieval_latency_ms": null,
+  "setup_ms": 935.275033,
+  "elapsed_since_preflight_ms": 33684.500715,
+  "pairs": {
+    "DEV1": {
+      "position": 1,
+      "preserve": {
+        "prompt_bytes": 4065,
+        "input_tokens": 14921,
+        "cached_input_tokens": 12032,
+        "uncached_input_tokens": 2889,
+        "output_tokens": 186,
+        "total_tokens": 15107,
+        "transport_ms": 7434.486284,
+        "context_ready_transport_ms": 7435.479002,
+        "response_bytes": 751,
+        "words_whitespace": 96,
+        "words_unicode": 108
+      },
+      "exact_v1": {
+        "prompt_bytes": 2489,
+        "input_tokens": 14440,
+        "cached_input_tokens": 12032,
+        "uncached_input_tokens": 2408,
+        "output_tokens": 189,
+        "total_tokens": 14629,
+        "transport_ms": 9368.518424,
+        "context_ready_transport_ms": 9368.555163,
+        "response_bytes": 787,
+        "words_whitespace": 101,
+        "words_unicode": 116
+      },
+      "delta_exact_minus_preserve": {
+        "prompt_bytes": -1576,
+        "input_tokens": -481,
+        "cached_input_tokens": 0,
+        "uncached_input_tokens": -481,
+        "output_tokens": 3,
+        "total_tokens": -478,
+        "transport_ms": 1934.03214,
+        "context_ready_transport_ms": 1933.076161,
+        "response_bytes": 36
+      },
+      "reduction_percent": {
+        "prompt_bytes": 38.77,
+        "input_tokens": 3.22,
+        "cached_input_tokens": 0.0,
+        "uncached_input_tokens": 16.65,
+        "output_tokens": -1.61,
+        "total_tokens": 3.16,
+        "transport_ms": -26.01,
+        "context_ready_transport_ms": -26.00
+      }
+    },
+    "DEV3": {
+      "position": 3,
+      "preserve": {
+        "prompt_bytes": 8193,
+        "input_tokens": 16108,
+        "cached_input_tokens": 12032,
+        "uncached_input_tokens": 4076,
+        "output_tokens": 183,
+        "total_tokens": 16291,
+        "transport_ms": 6845.130446,
+        "context_ready_transport_ms": 6845.179359,
+        "response_bytes": 724,
+        "words_whitespace": 85,
+        "words_unicode": 101
+      },
+      "exact_v1": {
+        "prompt_bytes": 4676,
+        "input_tokens": 15065,
+        "cached_input_tokens": 12032,
+        "uncached_input_tokens": 3033,
+        "output_tokens": 196,
+        "total_tokens": 15261,
+        "transport_ms": 9097.997036,
+        "context_ready_transport_ms": 9098.031692,
+        "response_bytes": 775,
+        "words_whitespace": 100,
+        "words_unicode": 112
+      },
+      "delta_exact_minus_preserve": {
+        "prompt_bytes": -3517,
+        "input_tokens": -1043,
+        "cached_input_tokens": 0,
+        "uncached_input_tokens": -1043,
+        "output_tokens": 13,
+        "total_tokens": -1030,
+        "transport_ms": 2252.86659,
+        "context_ready_transport_ms": 2252.852333,
+        "response_bytes": 51
+      },
+      "reduction_percent": {
+        "prompt_bytes": 42.93,
+        "input_tokens": 6.48,
+        "cached_input_tokens": 0.0,
+        "uncached_input_tokens": 25.59,
+        "output_tokens": -7.1,
+        "total_tokens": 6.32,
+        "transport_ms": -32.91,
+        "context_ready_transport_ms": -32.91
+      }
+    }
+  },
+  "aggregate_pairs": {
+    "preserve_sum": {
+      "prompt_bytes": 12258,
+      "input_tokens": 31029,
+      "cached_input_tokens": 24064,
+      "uncached_input_tokens": 6965,
+      "output_tokens": 369,
+      "total_tokens": 31398
+    },
+    "exact_v1_sum": {
+      "prompt_bytes": 7165,
+      "input_tokens": 29505,
+      "cached_input_tokens": 24064,
+      "uncached_input_tokens": 5441,
+      "output_tokens": 385,
+      "total_tokens": 29890
+    },
+    "delta_exact_minus_preserve": {
+      "prompt_bytes": -5093,
+      "input_tokens": -1524,
+      "cached_input_tokens": 0,
+      "uncached_input_tokens": -1524,
+      "output_tokens": 16,
+      "total_tokens": -1508
+    },
+    "reduction_percent": {
+      "prompt_bytes": 41.55,
+      "input_tokens": 4.91,
+      "cached_input_tokens": 0.0,
+      "uncached_input_tokens": 21.88,
+      "output_tokens": -4.34,
+      "total_tokens": 4.8
+    }
+  },
+  "totals_4calls": {
+    "input_tokens": 60534,
+    "cached_input_tokens": 48128,
+    "uncached_input_tokens": 12406,
+    "output_tokens": 754,
+    "total_tokens": 61288
+  },
+  "quality_gates": {
+    "all_passed": true,
+    "factual_loss_detected": false
+  }
+}

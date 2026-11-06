@@ -1,0 +1,28 @@
+✖ canonical Git roots preserve identity across native path spellings (418.5165ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 647.543
+
+✖ failing tests:
+
+test at test\canonical-root.test.mjs:16:1
+✖ canonical Git roots preserve identity across native path spellings (418.5165ms)
+  AssertionError [ERR_ASSERTION]: {"spelling":"c:\\Users\\Usuario\\AppData\\Local\\Temp\\mimir-canonical-Toeoy4\\MixedCaseRepo","result":{"ok":false,"error":{"code":"UNSAFE_PATH","message":"Register the canonical Git worktree root."}}}
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///C:/Users/Public/mimir-ci-tests-40162319883/test/canonical-root.test.mjs:36:14)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

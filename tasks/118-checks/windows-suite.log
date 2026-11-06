@@ -1,0 +1,803 @@
+✖ ABC strict public schema, deep extras, tamper/code/epoch/legacy and authorization binding (7.9852ms)
+✖ 54 offline positions, 18 real SQLite searches, fresh DB/reset, preserved overlap and A=C, no LLM scoring (21.2986ms)
+✖ no retry after spawn failure/truncation/invalid tool; all later slots remain not_run (7.4454ms)
+✖ run/search/global remaining includes synchronous work, no spawn after expiry, cleanup errors retained (7.3904ms)
+✖ empty retrieval preserved without fallback; retrieval failure missing rather than zero (10.8803ms)
+✖ help/validate/import side effect free; public process deep I/O canary blocks arbitrary private names (5.7735ms)
+✔ transport kills owned child immediately on tool event, timeout, output cap and synchronous spawn errors (68.0227ms)
+✖ public runtime I/O canary: exact input/code reads and owned fixture files only (5.2959ms)
+✖ cancellation before transport retains diagnostics and remaining not_run without retry (90.9775ms)
+﹣ real fake subprocess timeout terminates the owned POSIX process group (0.312ms) # SKIP
+✔ strict calibration envelope and private response isolation (97.6717ms)
+✔ absent, overflow, negative and ambiguous counters never become zero or sums (0.4586ms)
+✔ unknown lifecycle, malformed schema and response bounds fail closed (2.8741ms)
+✔ chunked UTF8 JSON, fixed command and close chronology (25.995ms)
+✔ nonzero exit, spawn failure, timeout and stream caps (17.0388ms)
+✔ invalid options reject before spawning (17.2456ms)
+✔ cache subset derivations, zero, missing, inconsistent, failed and synthetic coverage (2.8911ms)
+✖ explicit read, exclusive private output, symlink refusal (79.7157ms)
+✔ reports usage once, excludes cache from total and strips private canaries (3.3311ms)
+✔ absence, failure and valid zero remain distinct (0.3993ms)
+✔ rejects invalid numbers, structures, duplicate starts and terminals (0.9555ms)
+✔ stream handles chunked UTF8, CRLF, final line and injected clock (23.2328ms)
+✔ stream rejects malformed, blank, invalid UTF8, oversize and read errors (88.0377ms)
+✖ CLI runs offline, has fixed diagnostics and exclusively creates private outputs (298.2423ms)
+✔ import has no side effects and all post-terminal events are rejected (286.4123ms)
+✖ six pinned real units, integrity, real top-k without oracle, no duplicate baseline (2.3134ms)
+✖ plan precedes six sequential calls; real retrieval, model args, private evidence and cleanup (0.9902ms)
+✔ transport handles errors, timeout partial usage, tool rejection and limits offline (45.2449ms)
+✖ timing, missing metrics, failures and global ceiling retain all positions (1.0263ms)
+✖ fixture failure closes and blocks B only, import/help are inert (0.7378ms)
+✖ B timing counts query once and excludes setup/close; no replacement on empty retrieval (0.5563ms)
+✖ live real Service search is inside each request, no replay; context recorded before transport (2.1655ms)
+✖ AG injection, unknown usage/cache semantics, empty selection, continuous time and no invented totals (0.636ms)
+✖ integrity/search failures block B, close errors handled; response never leaks into metadata (1.0426ms)
+✖ global deadline limits calls, import/help inert, invalid CLI and output rejected (0.9373ms)
+✖ missing AG adapter fails before corpus, output, fixture or transport (0.4527ms)
+✔ synthetic formulas deduplicate before k; fixed denominator and no private output (15.1758ms)
+✔ N_A, unknown, null and measured zero remain distinct (2.5407ms)
+✔ pair exclusions, failures, missing observations and positive/zero baselines are visible (23.2693ms)
+✔ reject tampered plans, mixed cases, invalid observations and numeric edge cases privately (38.1566ms)
+✖ actual CLI is read-only by default, private and exclusively creates reports (334.0088ms)
+node:internal/test_runner/harness:124
+      throw err;
+      ^
+
+Error: Invalid offline input or local operation.
+    at fail (file:///D:/mimir-task118-windows/scripts/benchmarks/public-bundle.mjs:11:9)
+    at exportCases (file:///D:/mimir-task118-windows/scripts/benchmarks/export-cases.mjs:151:5)
+    at file:///D:/mimir-task118-windows/test/benchmark-multicase-codex.test.mjs:37:16
+
+Node.js v24.22.1
+✖ D:\mimir-task118-windows\test\benchmark-multicase-codex.test.mjs (4307.9088ms)
+✖ source parity, no private IDs or gold, real disposable retrieval (2.0275ms)
+✔ transport preserves approved usage on nonzero/timeout and rejects tools/incomplete (39.6769ms)
+✖ six calls, fixed paired order, inclusive timing, exclusive private artifacts (2.4ms)
+✖ global ceiling retains not_run and failures with null coverage (0.7333ms)
+✖ import and help do not create fixtures or spawn Codex; CLI requires --run (0.6423ms)
+✔ public model allowlist and stderr bounds do not retain private output (37.7953ms)
+✖ local retrieval failures are reported, cleaned, and never invoke a model for B (3.2696ms)
+✔ contract illustrative JSON validates structure but cannot be planned (21.0278ms)
+✔ synthetic accepted provenance produces deterministic paired balanced public matrix (3.9052ms)
+✔ required fields, types, enums, versions and exact nested allowlists (6.8019ms)
+✔ portable paths, line bounds, SHA format and exact UTF8 excerpt hash (4.8054ms)
+✔ source/unit refs, duplicate batch revisions, rubric uniqueness and finite weights (2.9748ms)
+✔ accepted/validated references and independent reviewer are required (5.0563ms)
+✔ repetition limits and total matrix bound (6.832ms)
+✖ actual CLI reads supplied JSON only, handles errors privately and never overwrites (1179.4512ms)
+✔ module imports have no output or filesystem effects (253.4726ms)
+node:internal/test_runner/harness:124
+      throw err;
+      ^
+
+Error: Invalid offline input or local operation.
+    at fail (file:///D:/mimir-task118-windows/scripts/benchmarks/public-bundle.mjs:11:9)
+    at exportCases (file:///D:/mimir-task118-windows/scripts/benchmarks/export-cases.mjs:151:5)
+    at file:///D:/mimir-task118-windows/test/benchmark-public-multicase.test.mjs:52:16
+
+Node.js v24.22.1
+✖ D:\mimir-task118-windows\test\benchmark-public-multicase.test.mjs (4008.5198ms)
+node:internal/modules/esm/load:193
+    throw new ERR_UNSUPPORTED_ESM_URL_SCHEME(parsed, schemes);
+          ^
+
+Error [ERR_UNSUPPORTED_ESM_URL_SCHEME]: Only URLs with a scheme in: file, data, and node are supported by the default ESM loader. On Windows, absolute paths must be valid file:// URLs. Received protocol 'c:'
+    at throwIfUnsupportedURLScheme (node:internal/modules/esm/load:193:11)
+    at defaultLoadSync (node:internal/modules/esm/load:146:3)
+    at #loadAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:806:12)
+    at #loadSync (node:internal/modules/esm/loader:838:53)
+    at ModuleLoader.load (node:internal/modules/esm/loader:787:26)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:498:31)
+    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:564:36)
+    at afterResolve (node:internal/modules/esm/loader:611:52)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:617:12)
+    at node:internal/modules/esm/loader:636:32 {
+  code: 'ERR_UNSUPPORTED_ESM_URL_SCHEME'
+}
+
+Node.js v24.22.1
+Invalid offline input or local operation.
+✖ 0.2 sources: exact pinned bytes, durable snapshots, zero history, no private fields (273.7651ms)
+✖ deep projection canary and hash invariance; exact nested/public version rejection (218.8984ms)
+✖ source/path safety rejects traversal, symlinks, ranges, non-allowlisted paths and overwrite (539.8594ms)
+✔ review stages: pending is structural only; receipt external hash not self approval/live (6.5733ms)
+✔ fixed denominator, unique hits, R=0 versus sem_gold, baselines N_A (14.4653ms)
+✔ failed, missing, truncated and empty retrieval never score as completed success (23.6175ms)
+✔ source accuracy requires evaluated claim/citation/excerpt; zero and absence distinct (6.6308ms)
+✔ synthetic freshness only: explicit references and counts, unknown blocks rate (6.9162ms)
+✔ strict plan/pairs/splits/status/version and native token accounting (13.0487ms)
+✔ rubric outcomes need explicit reviewed items and requirements (23.4305ms)
+✖ public renderer separate process: I/O allowlist, canary gold absent, byte budget (346.4333ms)
+✖ private dev/eval CLI split gates, deterministic replay and no-overwrite with synthetic fixtures (280.0495ms)
+✔ canonical Git roots preserve identity across native path spellings (4303.5334ms)
+✔ unexpected local errors retain safe machine codes without paths or exception text (4.9475ms)
+✔ Windows short-path aliases cannot bypass backup and restore project boundaries (1347.3377ms)
+✔ v03: dedup precedes limit and retains duplicate provenance without crossing scope (525.4039ms)
+✔ v03: controlled recency only breaks verified ties, invalid/future dates do not dominate (238.6561ms)
+✔ v03: deterministic low evidence, empty and FTS injection handling (200.6957ms)
+✔ v03: whole UTF8 envelopes, minimum rejection and intact large excerpts (2.2884ms)
+✔ v03: compact retains citations and hashes, telemetry opt-in, impossible budget does not mutate (241.5891ms)
+✔ v03: telemetry contains only local counters and never uploads (253.2487ms)
+✔ A: restart persistence, WAL, foreign keys and rollback (1688.7241ms)
+✔ A: simultaneous independent processes deduplicate atomic writes (2718.3713ms)
+✔ B: isolation for search, IDs, history, stats, relations; bounded literal context (1834.2295ms)
+✔ D: authorized Git fixture bounds, secrets, ignores, binaries, symlink, incremental versions and deletion (3901.6286ms)
+✔ E: explicit verification, relation history, deterministic observation, sharing and confirmed deletion (2143.415ms)
+✔ security: every request field checked, invalid schemas and unsafe database placement (973.587ms)
+✔ C: real SDK stdio initialize/list/call, CLI shared DB and concurrent MCP clients (4500.0533ms)
+✔ E: shared lifecycle deletion and global/local retrieval dedup (1172.0334ms)
+✔ D: uncommitted repositories, byte bound rollback and changed sensitive sources (1761.1206ms)
+✔ B: filters, complete response budget, oversized input and provenance trust (718.7012ms)
+✔ security: external Git config rejected before Git commands; custom excludes and provenance retention (1136.5957ms)
+✔ A: future schema versions are refused without migration writes (154.9449ms)
+✔ A/E: manual edits preserve ID/history, reset verification and prevent duplicates (746.8155ms)
+✔ security: quoted JSON configuration secrets and metadata are rejected before persistence (1072.0596ms)
+✔ C: CLI positional project deletion consumes the UUID and preserves the source (1309.4806ms)
+✔ snapshot includes uncheckpointed WAL, versions, provenance, feedback and independent reopen (1576.1088ms)
+✔ snapshot stays consistent with independent CLI writer processes (2268.6597ms)
+✔ online snapshot overlaps an active WAL writer and preserves transactional history (6553.6007ms)
+✔ restore rejects corruption, incompatible schema, sidecars, project paths, traversal and symlinks (1869.7374ms)
+✔ sensitive fields, Windows paths, bounded includes and injection remain data (917.4815ms)
+✔ external Git config and executable fsmonitor cannot run (1581.2707ms)
+✔ npm commands use the invoking CLI despite broken npm shims in cwd and PATH (11039.7829ms)
+✔ CLI feedback persists approval; includes deprecates and full ingest reactivates (5097.8431ms)
+▶ hard-link failures preserve sources, clean temporary snapshots and never replace targets
+  ✔ EXDEV (193.7086ms)
+  ✔ ENOTSUP (364.3167ms)
+  ✔ EPERM (272.0947ms)
+  ✔ EEXIST (389.8036ms)
+✔ hard-link failures preserve sources, clean temporary snapshots and never replace targets (1678.8358ms)
+✔ SQLite WAL-reset patch boundaries reject unpatched and unknown versions (12.9303ms)
+✔ actual SQLite runtime is patched and doctor reports it (943.1624ms)
+✖ import and help have no runtime loading or execution (490.091ms)
+✔ invalid arguments reject without execution (535.8796ms)
+✖ strict invalid authorizations fail before runtime and output creation (189.7547ms)
+✔ unique names, bounded lifetime and deterministic watchdog (38.0005ms)
+✔ deadline termination sends TERM then bounded KILL exactly once (7.827ms)
+✔ observer bounds frames, excludes private content and correlates only allowed requests (40.2127ms)
+✔ real SDK through subprocess relay preserves errors, privacy and closes cleanly (6139.856ms)
+ℹ tests 117
+ℹ suites 0
+ℹ pass 80
+ℹ fail 36
+ℹ cancelled 0
+ℹ skipped 1
+ℹ todo 0
+ℹ duration_ms 27982.7181
+
+✖ failing tests:
+
+test at test\benchmark-abc.test.mjs:31:1
+✖ ABC strict public schema, deep extras, tamper/code/epoch/legacy and authorization binding (7.9852ms)
+  Error: Invalid offline input or local operation.
+      at fail (file:///D:/mimir-task118-windows/scripts/benchmarks/public-bundle.mjs:11:9)
+      at portable (file:///D:/mimir-task118-windows/scripts/benchmarks/public-bundle.mjs:57:5)
+      at safePath (file:///D:/mimir-task118-windows/scripts/benchmarks/offline-files.mjs:20:3)
+      at gitExcerpt (file:///D:/mimir-task118-windows/scripts/benchmarks/contract-v02.mjs:42:3)
+      at publicBundle (file:///D:/mimir-task118-windows/scripts/benchmarks/contract-v02.mjs:159:9)
+      at exportABC (file:///D:/mimir-task118-windows/scripts/benchmarks/abc-export.mjs:27:3)
+      at fixture (file:///D:/mimir-task118-windows/test/abc-fixture.mjs:60:8)
+      at TestContext.<anonymous> (file:///D:/mimir-task118-windows/test/benchmark-abc.test.mjs:32:27)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+
+test at test\benchmark-abc.test.mjs:82:1
+✖ 54 offline positions, 18 real SQLite searches, fresh DB/reset, preserved overlap and A=C, no LLM scoring (21.2986ms)
+  Error: Invalid offline input or local operation.
+      at fail (file:///D:/mimir-task118-windows/scripts/benchmarks/public-bundle.mjs:11:9)
+      at portable (file:///D:/mimir-task118-windows/scripts/benchmarks/public-bundle.mjs:57:5)
+      at safePath (file:///D:/mimir-task118-windows/scripts/benchmarks/offline-files.mjs:20:3)
+      at gitExcerpt (file:///D:/mimir-task118-windows/scripts/benchmarks/contract-v02.mjs:42:3)
+      at publicBundle (file:///D:/mimir-task118-windows/scripts/benchmarks/contract-v02.mjs:159:9)
+      at exportABC (file:///D:/mimir-task118-windows/scripts/benchmarks/abc-export.mjs:27:3)
+      at fixture (file:///D:/mimir-task118-windows/test/abc-fixture.mjs:60:8)
+      at TestContext.<anonymous> (file:///D:/mimir-task118-windows/test/benchmark-abc.test.mjs:85:15)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+
+test at test\benchmark-abc.test.mjs:145:1
+✖ no retry after spawn failure/truncation/invalid tool; all later slots remain not_run (7.4454ms)
+  Error: Invalid offline input or local operation.
+      at fail (file:///D:/mimir-task118-windows/scripts/benchmarks/public-bundle.mjs:11:9)
+      at portable (file:///D:/mimir-task118-windows/scripts/benchmarks/public-bundle.mjs:57:5)
+      at safePath (file:///D:/mimir-task118-windows/scripts/benchmarks/offline-files.mjs:20:3)
+      at gitExcerpt (file:///D:/mimir-task118-windows/scripts/benchmarks/contract-v02.mjs:42:3)
+      at publicBundle (file:///D:/mimir-task118-windows/scripts/benchmarks/contract-v02.mjs:159:9)
+      at exportABC (file:///D:/mimir-task118-windows/scripts/benchmarks/abc-export.mjs:27:3)
+      at fixture (file:///D:/mimir-task118-windows/test/abc-fixture.mjs:60:8)
+      at TestContext.<anonymous> (file:///D:/mimir-task118-windows/test/benchmark-abc.test.mjs:160:19)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+
+test at test\benchmark-abc.test.mjs:177:1
+✖ run/search/global remaining includes synchronous work, no spawn after expiry, cleanup errors retained (7.3904ms)
+  Error: Invalid offline input or local operation.
+      at fail (file:///D:/mimir-task118-windows/scripts/benchmarks/public-bundle.mjs:11:9)
+      at portable (file:///D:/mimir-task118-windows/scripts/benchmarks/public-bundle.mjs:57:5)
+      at safePath (file:///D:/mimir-task118-windows/scripts/benchmarks/offline-files.mjs:20:3)
+      at gitExcerpt (file:///D:/mimir-task118-windows/scripts/benchmarks/contract-v02.mjs:42:3)
+      at publicBundle (file:///D:/mimir-task118-windows/scripts/benchmarks/contract-v02.mjs:159:9)
+      at exportABC (file:///D:/mimir-task118-windows/scripts/benchmarks/abc-export.mjs:27:3)
+      at fixture (file:///D:/mimir-task118-windows/test/abc-fixture.mjs:60:8)
+      at TestContext.<anonymous> (file:///D:/mimir-task118-windows/test/benchmark-abc.test.mjs:183:17)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+
+test at test\benchmark-abc.test.mjs:229:1
+✖ empty retrieval preserved without fallback; retrieval failure missing rather than zero (10.8803ms)
+  Error: Invalid offline input or local operation.
+      at fail (file:///D:/mimir-task118-windows/scripts/benchmarks/public-bundle.mjs:11:9)
+      at portable (file:///D:/mimir-task118-windows/scripts/benchmarks/public-bundle.mjs:57:5)
+      at safePath (file:///D:/mimir-task118-windows/scripts/benchmarks/offline-files.mjs:20:3)
+      at gitExcerpt (file:///D:/mimir-task118-windows/scripts/benchmarks/contract-v02.mjs:42:3)
+      at publicBundle (file:///D:/mimir-task118-windows/scripts/benchmarks/contract-v02.mjs:159:9)
+      at exportABC (file:///D:/mimir-task118-windows/scripts/benchmarks/abc-export.mjs:27:3)
+      at fixture (file:///D:/mimir-task118-windows/test/abc-fixture.mjs:60:8)
+      at TestContext.<anonymous> (file:///D:/mimir-task118-windows/test/benchmark-abc.test.mjs:234:19)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+
+test at test\benchmark-abc.test.mjs:247:1
+✖ help/validate/import side effect free; public process deep I/O canary blocks arbitrary private names (5.7735ms)
+  Error: Invalid offline input or local operation.
+      at fail (file:///D:/mimir-task118-windows/scripts/benchmarks/public-bundle.mjs:11:9)
+      at portable (file:///D:/mimir-task118-windows/scripts/benchmarks/public-bundle.mjs:57:5)
+      at safePath (file:///D:/mimir-task118-windows/scripts/benchmarks/offline-files.mjs:20:3)
+      at gitExcerpt (file:///D:/mimir-task118-windows/scripts/benchmarks/contract-v02.mjs:42:3)
+      at publicBundle (file:///D:/mimir-task118-windows/scripts/benchmarks/contract-v02.mjs:159:9)
+      at exportABC (file:///D:/mimir-task118-windows/scripts/benchmarks/abc-export.mjs:27:3)
+      at fixture (file:///D:/mimir-task118-windows/test/abc-fixture.mjs:60:8)
+      at TestContext.<anonymous> (file:///D:/mimir-task118-windows/test/benchmark-abc.test.mjs:250:15)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+
+test at test\benchmark-abc.test.mjs:325:1
+✖ public runtime I/O canary: exact input/code reads and owned fixture files only (5.2959ms)
+  Error: Invalid offline input or local operation.
+      at fail (file:///D:/mimir-task118-windows/scripts/benchmarks/public-bundle.mjs:11:9)
+      at portable (file:///D:/mimir-task118-windows/scripts/benchmarks/public-bundle.mjs:57:5)
+      at safePath (file:///D:/mimir-task118-windows/scripts/benchmarks/offline-files.mjs:20:3)
+      at gitExcerpt (file:///D:/mimir-task118-windows/scripts/benchmarks/contract-v02.mjs:42:3)
+      at publicBundle (file:///D:/mimir-task118-windows/scripts/benchmarks/contract-v02.mjs:159:9)
+      at exportABC (file:///D:/mimir-task118-windows/scripts/benchmarks/abc-export.mjs:27:3)
+      at fixture (file:///D:/mimir-task118-windows/test/abc-fixture.mjs:60:8)
+      at TestContext.<anonymous> (file:///D:/mimir-task118-windows/test/benchmark-abc.test.mjs:328:15)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+
+test at test\benchmark-abc.test.mjs:348:1
+✖ cancellation before transport retains diagnostics and remaining not_run without retry (90.9775ms)
+  Error: Invalid offline input or local operation.
+      at fail (file:///D:/mimir-task118-windows/scripts/benchmarks/public-bundle.mjs:11:9)
+      at portable (file:///D:/mimir-task118-windows/scripts/benchmarks/public-bundle.mjs:57:5)
+      at safePath (file:///D:/mimir-task118-windows/scripts/benchmarks/offline-files.mjs:20:3)
+      at gitExcerpt (file:///D:/mimir-task118-windows/scripts/benchmarks/contract-v02.mjs:42:3)
+      at publicBundle (file:///D:/mimir-task118-windows/scripts/benchmarks/contract-v02.mjs:159:9)
+      at exportABC (file:///D:/mimir-task118-windows/scripts/benchmarks/abc-export.mjs:27:3)
+      at fixture (file:///D:/mimir-task118-windows/test/abc-fixture.mjs:60:8)
+      at TestContext.<anonymous> (file:///D:/mimir-task118-windows/test/benchmark-abc.test.mjs:353:17)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+
+test at test\benchmark-cache-diagnostic.test.mjs:81:1
+✖ explicit read, exclusive private output, symlink refusal (79.7157ms)
+  Error: ENOENT: no such file or directory, mkdtemp '/tmp/mimir-cache-test-XXXXXX'
+      at mkdtempSync (node:fs:3144:18)
+      at TestContext.<anonymous> (file:///D:/mimir-task118-windows/test/benchmark-cache-diagnostic.test.mjs:82:15)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'mkdtemp',
+    path: '/tmp/mimir-cache-test-XXXXXX'
+  }
+
+test at test\benchmark-codex-usage.test.mjs:140:1
+✖ CLI runs offline, has fixed diagnostics and exclusively creates private outputs (298.2423ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///D:/mimir-task118-windows/test/benchmark-codex-usage.test.mjs:141:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at test\benchmark-context-selection.test.mjs:76:1
+✖ six pinned real units, integrity, real top-k without oracle, no duplicate baseline (2.3134ms)
+  Error: ENOENT: no such file or directory, mkdtemp '/tmp/mimir-selection-test-XXXXXX'
+      at mkdtempSync (node:fs:3144:18)
+      at temporary (file:///D:/mimir-task118-windows/test/benchmark-context-selection.test.mjs:33:25)
+      at TestContext.<anonymous> (file:///D:/mimir-task118-windows/test/benchmark-context-selection.test.mjs:77:15)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'mkdtemp',
+    path: '/tmp/mimir-selection-test-XXXXXX'
+  }
+
+test at test\benchmark-context-selection.test.mjs:116:1
+✖ plan precedes six sequential calls; real retrieval, model args, private evidence and cleanup (0.9902ms)
+  Error: ENOENT: no such file or directory, mkdtemp '/tmp/mimir-selection-test-XXXXXX'
+      at mkdtempSync (node:fs:3144:18)
+      at temporary (file:///D:/mimir-task118-windows/test/benchmark-context-selection.test.mjs:33:25)
+      at TestContext.<anonymous> (file:///D:/mimir-task118-windows/test/benchmark-context-selection.test.mjs:117:15)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'mkdtemp',
+    path: '/tmp/mimir-selection-test-XXXXXX'
+  }
+
+test at test\benchmark-context-selection.test.mjs:218:1
+✖ timing, missing metrics, failures and global ceiling retain all positions (1.0263ms)
+  Error: ENOENT: no such file or directory, mkdtemp '/tmp/mimir-selection-test-XXXXXX'
+      at mkdtempSync (node:fs:3144:18)
+      at temporary (file:///D:/mimir-task118-windows/test/benchmark-context-selection.test.mjs:33:25)
+      at TestContext.<anonymous> (file:///D:/mimir-task118-windows/test/benchmark-context-selection.test.mjs:219:15)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at runNextTicks (node:internal/process/task_queues:65:5)
+      at process.processImmediate (node:internal/timers:541:9) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'mkdtemp',
+    path: '/tmp/mimir-selection-test-XXXXXX'
+  }
+
+test at test\benchmark-context-selection.test.mjs:282:1
+✖ fixture failure closes and blocks B only, import/help are inert (0.7378ms)
+  Error: ENOENT: no such file or directory, mkdtemp '/tmp/mimir-selection-test-XXXXXX'
+      at mkdtempSync (node:fs:3144:18)
+      at temporary (file:///D:/mimir-task118-windows/test/benchmark-context-selection.test.mjs:33:25)
+      at TestContext.<anonymous> (file:///D:/mimir-task118-windows/test/benchmark-context-selection.test.mjs:283:15)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at runNextTicks (node:internal/process/task_queues:65:5)
+      at process.processImmediate (node:internal/timers:541:9) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'mkdtemp',
+    path: '/tmp/mimir-selection-test-XXXXXX'
+  }
+
+test at test\benchmark-context-selection.test.mjs:324:1
+✖ B timing counts query once and excludes setup/close; no replacement on empty retrieval (0.5563ms)
+  Error: ENOENT: no such file or directory, mkdtemp '/tmp/mimir-selection-test-XXXXXX'
+      at mkdtempSync (node:fs:3144:18)
+      at temporary (file:///D:/mimir-task118-windows/test/benchmark-context-selection.test.mjs:33:25)
+      at TestContext.<anonymous> (file:///D:/mimir-task118-windows/test/benchmark-context-selection.test.mjs:325:15)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at runNextTicks (node:internal/process/task_queues:65:5)
+      at process.processImmediate (node:internal/timers:541:9) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'mkdtemp',
+    path: '/tmp/mimir-selection-test-XXXXXX'
+  }
+
+test at test\benchmark-live-flow.test.mjs:36:1
+✖ live real Service search is inside each request, no replay; context recorded before transport (2.1655ms)
+  Error: ENOENT: no such file or directory, mkdtemp '/tmp/mimir-flow-test-XXXXXX'
+      at mkdtempSync (node:fs:3144:18)
+      at temp (file:///D:/mimir-task118-windows/test/benchmark-live-flow.test.mjs:28:20)
+      at TestContext.<anonymous> (file:///D:/mimir-task118-windows/test/benchmark-live-flow.test.mjs:37:15)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'mkdtemp',
+    path: '/tmp/mimir-flow-test-XXXXXX'
+  }
+
+test at test\benchmark-live-flow.test.mjs:147:1
+✖ AG injection, unknown usage/cache semantics, empty selection, continuous time and no invented totals (0.636ms)
+  Error: ENOENT: no such file or directory, mkdtemp '/tmp/mimir-flow-test-XXXXXX'
+      at mkdtempSync (node:fs:3144:18)
+      at temp (file:///D:/mimir-task118-windows/test/benchmark-live-flow.test.mjs:28:20)
+      at TestContext.<anonymous> (file:///D:/mimir-task118-windows/test/benchmark-live-flow.test.mjs:148:15)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'mkdtemp',
+    path: '/tmp/mimir-flow-test-XXXXXX'
+  }
+
+test at test\benchmark-live-flow.test.mjs:205:1
+✖ integrity/search failures block B, close errors handled; response never leaks into metadata (1.0426ms)
+  Error: ENOENT: no such file or directory, mkdtemp '/tmp/mimir-flow-test-XXXXXX'
+      at mkdtempSync (node:fs:3144:18)
+      at temp (file:///D:/mimir-task118-windows/test/benchmark-live-flow.test.mjs:28:20)
+      at TestContext.<anonymous> (file:///D:/mimir-task118-windows/test/benchmark-live-flow.test.mjs:206:15)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'mkdtemp',
+    path: '/tmp/mimir-flow-test-XXXXXX'
+  }
+
+test at test\benchmark-live-flow.test.mjs:243:1
+✖ global deadline limits calls, import/help inert, invalid CLI and output rejected (0.9373ms)
+  Error: ENOENT: no such file or directory, mkdtemp '/tmp/mimir-flow-test-XXXXXX'
+      at mkdtempSync (node:fs:3144:18)
+      at temp (file:///D:/mimir-task118-windows/test/benchmark-live-flow.test.mjs:28:20)
+      at TestContext.<anonymous> (file:///D:/mimir-task118-windows/test/benchmark-live-flow.test.mjs:244:15)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'mkdtemp',
+    path: '/tmp/mimir-flow-test-XXXXXX'
+  }
+
+test at test\benchmark-live-flow.test.mjs:281:1
+✖ missing AG adapter fails before corpus, output, fixture or transport (0.4527ms)
+  Error: ENOENT: no such file or directory, mkdtemp '/tmp/mimir-flow-test-XXXXXX'
+      at mkdtempSync (node:fs:3144:18)
+      at temp (file:///D:/mimir-task118-windows/test/benchmark-live-flow.test.mjs:28:20)
+      at TestContext.<anonymous> (file:///D:/mimir-task118-windows/test/benchmark-live-flow.test.mjs:282:15)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'mkdtemp',
+    path: '/tmp/mimir-flow-test-XXXXXX'
+  }
+
+test at test\benchmark-metrics.test.mjs:263:1
+✖ actual CLI is read-only by default, private and exclusively creates reports (334.0088ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///D:/mimir-task118-windows/test/benchmark-metrics.test.mjs:276:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at test\benchmark-multicase-codex.test.mjs:1:1
+✖ D:\mimir-task118-windows\test\benchmark-multicase-codex.test.mjs (4307.9088ms)
+  'test failed'
+
+test at test\benchmark-paired-probe.test.mjs:66:1
+✖ source parity, no private IDs or gold, real disposable retrieval (2.0275ms)
+  Error: ENOENT: no such file or directory, mkdtemp '/tmp/mimir-paired-test-XXXXXX'
+      at mkdtempSync (node:fs:3144:18)
+      at parent (file:///D:/mimir-task118-windows/test/benchmark-paired-probe.test.mjs:29:10)
+      at TestContext.<anonymous> (file:///D:/mimir-task118-windows/test/benchmark-paired-probe.test.mjs:67:15)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'mkdtemp',
+    path: '/tmp/mimir-paired-test-XXXXXX'
+  }
+
+test at test\benchmark-paired-probe.test.mjs:148:1
+✖ six calls, fixed paired order, inclusive timing, exclusive private artifacts (2.4ms)
+  Error: ENOENT: no such file or directory, mkdtemp '/tmp/mimir-paired-test-XXXXXX'
+      at mkdtempSync (node:fs:3144:18)
+      at parent (file:///D:/mimir-task118-windows/test/benchmark-paired-probe.test.mjs:29:10)
+      at TestContext.<anonymous> (file:///D:/mimir-task118-windows/test/benchmark-paired-probe.test.mjs:149:15)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at runNextTicks (node:internal/process/task_queues:65:5)
+      at process.processImmediate (node:internal/timers:541:9) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'mkdtemp',
+    path: '/tmp/mimir-paired-test-XXXXXX'
+  }
+
+test at test\benchmark-paired-probe.test.mjs:214:1
+✖ global ceiling retains not_run and failures with null coverage (0.7333ms)
+  Error: ENOENT: no such file or directory, mkdtemp '/tmp/mimir-paired-test-XXXXXX'
+      at mkdtempSync (node:fs:3144:18)
+      at parent (file:///D:/mimir-task118-windows/test/benchmark-paired-probe.test.mjs:29:10)
+      at TestContext.<anonymous> (file:///D:/mimir-task118-windows/test/benchmark-paired-probe.test.mjs:215:15)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at runNextTicks (node:internal/process/task_queues:65:5)
+      at process.processImmediate (node:internal/timers:541:9) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'mkdtemp',
+    path: '/tmp/mimir-paired-test-XXXXXX'
+  }
+
+test at test\benchmark-paired-probe.test.mjs:241:1
+✖ import and help do not create fixtures or spawn Codex; CLI requires --run (0.6423ms)
+  Error: ENOENT: no such file or directory, mkdtemp '/tmp/mimir-paired-test-XXXXXX'
+      at mkdtempSync (node:fs:3144:18)
+      at parent (file:///D:/mimir-task118-windows/test/benchmark-paired-probe.test.mjs:29:10)
+      at TestContext.<anonymous> (file:///D:/mimir-task118-windows/test/benchmark-paired-probe.test.mjs:242:15)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at runNextTicks (node:internal/process/task_queues:65:5)
+      at process.processImmediate (node:internal/timers:541:9) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'mkdtemp',
+    path: '/tmp/mimir-paired-test-XXXXXX'
+  }
+
+test at test\benchmark-paired-probe.test.mjs:298:1
+✖ local retrieval failures are reported, cleaned, and never invoke a model for B (3.2696ms)
+  Error: ENOENT: no such file or directory, mkdtemp '/tmp/mimir-paired-test-XXXXXX'
+      at mkdtempSync (node:fs:3144:18)
+      at parent (file:///D:/mimir-task118-windows/test/benchmark-paired-probe.test.mjs:29:10)
+      at TestContext.<anonymous> (file:///D:/mimir-task118-windows/test/benchmark-paired-probe.test.mjs:299:15)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'mkdtemp',
+    path: '/tmp/mimir-paired-test-XXXXXX'
+  }
+
+test at test\benchmark-preflight.test.mjs:351:1
+✖ actual CLI reads supplied JSON only, handles errors privately and never overwrites (1179.4512ms)
+  Error: EPERM: operation not permitted, symlink 'C:\Users\Usuario\AppData\Local\Temp\mimir-preflight-AT16SY\plan.json' -> 'C:\Users\Usuario\AppData\Local\Temp\mimir-preflight-AT16SY\link.json'
+      at symlinkSync (node:fs:1937:11)
+      at TestContext.<anonymous> (file:///D:/mimir-task118-windows/test/benchmark-preflight.test.mjs:374:3)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    errno: -4048,
+    code: 'EPERM',
+    syscall: 'symlink',
+    path: 'C:\\Users\\Usuario\\AppData\\Local\\Temp\\mimir-preflight-AT16SY\\plan.json',
+    dest: 'C:\\Users\\Usuario\\AppData\\Local\\Temp\\mimir-preflight-AT16SY\\link.json'
+  }
+
+test at test\benchmark-public-multicase.test.mjs:1:1
+✖ D:\mimir-task118-windows\test\benchmark-public-multicase.test.mjs (4008.5198ms)
+  'test failed'
+
+test at test\benchmark-v02.test.mjs:112:1
+✖ 0.2 sources: exact pinned bytes, durable snapshots, zero history, no private fields (273.7651ms)
+  Error: Invalid offline input or local operation.
+      at fail (file:///D:/mimir-task118-windows/scripts/benchmarks/public-bundle.mjs:11:9)
+      at gitExcerpt (file:///D:/mimir-task118-windows/scripts/benchmarks/contract-v02.mjs:78:73)
+      at publicBundle (file:///D:/mimir-task118-windows/scripts/benchmarks/contract-v02.mjs:159:9)
+      at TestContext.<anonymous> (file:///D:/mimir-task118-windows/test/benchmark-v02.test.mjs:114:16)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+
+test at test\benchmark-v02.test.mjs:148:1
+✖ deep projection canary and hash invariance; exact nested/public version rejection (218.8984ms)
+  Error: Invalid offline input or local operation.
+      at fail (file:///D:/mimir-task118-windows/scripts/benchmarks/public-bundle.mjs:11:9)
+      at gitExcerpt (file:///D:/mimir-task118-windows/scripts/benchmarks/contract-v02.mjs:78:73)
+      at publicBundle (file:///D:/mimir-task118-windows/scripts/benchmarks/contract-v02.mjs:159:9)
+      at TestContext.<anonymous> (file:///D:/mimir-task118-windows/test/benchmark-v02.test.mjs:154:20)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at test\benchmark-v02.test.mjs:172:1
+✖ source/path safety rejects traversal, symlinks, ranges, non-allowlisted paths and overwrite (539.8594ms)
+  Error: EPERM: operation not permitted, symlink 'C:\Users\Usuario\AppData\Local\Temp\mimir-v02-safe-DLmIXE\real' -> 'C:\Users\Usuario\AppData\Local\Temp\mimir-v02-safe-DLmIXE\link'
+      at symlinkSync (node:fs:1937:11)
+      at TestContext.<anonymous> (file:///D:/mimir-task118-windows/test/benchmark-v02.test.mjs:189:5)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    errno: -4048,
+    code: 'EPERM',
+    syscall: 'symlink',
+    path: 'C:\\Users\\Usuario\\AppData\\Local\\Temp\\mimir-v02-safe-DLmIXE\\real',
+    dest: 'C:\\Users\\Usuario\\AppData\\Local\\Temp\\mimir-v02-safe-DLmIXE\\link'
+  }
+
+test at test\benchmark-v02.test.mjs:412:1
+✖ public renderer separate process: I/O allowlist, canary gold absent, byte budget (346.4333ms)
+  Error: Command failed: C:\Users\Public\mimir-hardening-runtime\node\node-v24.22.1-win-x64\node.exe --import C:\Users\Usuario\AppData\Local\Temp\mimir-v02-public-u3whBG\guard.mjs D:\mimir-task118-windows\scripts\benchmarks\v02-cli.mjs public-render C:\Users\Usuario\AppData\Local\Temp\mimir-v02-public-u3whBG\sources.json C:\Users\Usuario\AppData\Local\Temp\mimir-v02-public-u3whBG\request.json
+  node:internal/modules/esm/load:193
+      throw new ERR_UNSUPPORTED_ESM_URL_SCHEME(parsed, schemes);
+            ^
+  
+  Error [ERR_UNSUPPORTED_ESM_URL_SCHEME]: Only URLs with a scheme in: file, data, and node are supported by the default ESM loader. On Windows, absolute paths must be valid file:// URLs. Received protocol 'c:'
+      at throwIfUnsupportedURLScheme (node:internal/modules/esm/load:193:11)
+      at defaultLoadSync (node:internal/modules/esm/load:146:3)
+      at #loadAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:806:12)
+      at #loadSync (node:internal/modules/esm/loader:838:53)
+      at ModuleLoader.load (node:internal/modules/esm/loader:787:26)
+      at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:498:31)
+      at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:564:36)
+      at afterResolve (node:internal/modules/esm/loader:611:52)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:617:12)
+      at node:internal/modules/esm/loader:636:32 {
+    code: 'ERR_UNSUPPORTED_ESM_URL_SCHEME'
+  }
+  
+  Node.js v24.22.1
+  
+      at genericNodeError (node:internal/errors:986:15)
+      at wrappedFn (node:internal/errors:540:14)
+      at checkExecSyncError (node:child_process:943:11)
+      at execFileSync (node:child_process:979:15)
+      at TestContext.<anonymous> (file:///D:/mimir-task118-windows/test/benchmark-v02.test.mjs:440:17)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12) {
+    status: 1,
+    signal: null,
+    output: [ null, '', "node:internal/modules/esm/load:193\r\n    throw new ERR_UNSUPPORTED_ESM_URL_SCHEME(parsed, schemes);\r\n          ^\r\n\r\nError [ERR_UNSUPPORTED_ESM_URL_SCHEME]: Only URLs with a scheme in: file, data, and node are supported by the default ESM loader. On Windows, absolute paths must be valid file:// URLs. Received protocol 'c:'\r\n    at throwIfUnsupportedURLScheme (node:internal/modules/esm/load:193:11)\r\n    at defaultLoadSync (node:internal/modules/esm/load:146:3)\r\n    at #loadAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:806:12)\r\n    at #loadSync (node:internal/modules/esm/loader:838:53)\r\n    at ModuleLoader.load (node:internal/modules/esm/loader:787:26)\r\n    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:498:31)\r\n    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:564:36)\r\n    at afterResolve (node:internal/modules/esm/loader:611:52)\r\n    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:617:12)\r\n    at node:internal/modules/esm/loader:636:32 {\r\n  code: 'ERR_UNSUPPORTED_ESM_URL_SCHEME'\r\n}\r\n\r\nNode.js v24.22.1\r\n" ],
+    pid: 3152,
+    stdout: '',
+    stderr: "node:internal/modules/esm/load:193\r\n    throw new ERR_UNSUPPORTED_ESM_URL_SCHEME(parsed, schemes);\r\n          ^\r\n\r\nError [ERR_UNSUPPORTED_ESM_URL_SCHEME]: Only URLs with a scheme in: file, data, and node are supported by the default ESM loader. On Windows, absolute paths must be valid file:// URLs. Received protocol 'c:'\r\n    at throwIfUnsupportedURLScheme (node:internal/modules/esm/load:193:11)\r\n    at defaultLoadSync (node:internal/modules/esm/load:146:3)\r\n    at #loadAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:806:12)\r\n    at #loadSync (node:internal/modules/esm/loader:838:53)\r\n    at ModuleLoader.load (node:internal/modules/esm/loader:787:26)\r\n    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:498:31)\r\n    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:564:36)\r\n    at afterResolve (node:internal/modules/esm/loader:611:52)\r\n    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:617:12)\r\n    at node:internal/modules/esm/loader:636:32 {\r\n  code: 'ERR_UNSUPPORTED_ESM_URL_SCHEME'\r\n}\r\n\r\nNode.js v24.22.1\r\n"
+  }
+
+test at test\benchmark-v02.test.mjs:467:1
+✖ private dev/eval CLI split gates, deterministic replay and no-overwrite with synthetic fixtures (280.0495ms)
+  Error: Command failed: C:\Users\Public\mimir-hardening-runtime\node\node-v24.22.1-win-x64\node.exe D:\mimir-task118-windows\scripts\benchmarks\v02-cli.mjs private-dev-metrics C:\Users\Usuario\AppData\Local\Temp\mimir-v02-replay-Fa9zLm\bundle.json C:\Users\Usuario\AppData\Local\Temp\mimir-v02-replay-Fa9zLm\cases.json C:\Users\Usuario\AppData\Local\Temp\mimir-v02-replay-Fa9zLm\input.json C:\Users\Usuario\AppData\Local\Temp\mimir-v02-replay-Fa9zLm\one
+  Invalid offline input or local operation.
+  
+      at genericNodeError (node:internal/errors:986:15)
+      at wrappedFn (node:internal/errors:540:14)
+      at checkExecSyncError (node:child_process:943:11)
+      at execFileSync (node:child_process:979:15)
+      at TestContext.<anonymous> (file:///D:/mimir-task118-windows/test/benchmark-v02.test.mjs:479:7)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12) {
+    status: 1,
+    signal: null,
+    output: [ null, <Buffer >, <Buffer 49 6e 76 61 6c 69 64 20 6f 66 66 6c 69 6e 65 20 69 6e 70 75 74 20 6f 72 20 6c 6f 63 61 6c 20 6f 70 65 72 61 74 69 6f 6e 2e 0a> ],
+    pid: 1620,
+    stdout: <Buffer >,
+    stderr: <Buffer 49 6e 76 61 6c 69 64 20 6f 66 66 6c 69 6e 65 20 69 6e 70 75 74 20 6f 72 20 6c 6f 63 61 6c 20 6f 70 65 72 61 74 69 6f 6e 2e 0a>
+  }
+
+test at test\task104-launch.test.mjs:10:1
+✖ import and help have no runtime loading or execution (490.091ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///D:/mimir-task118-windows/test/task104-launch.test.mjs:17:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at test\task104-launch.test.mjs:26:1
+✖ strict invalid authorizations fail before runtime and output creation (189.7547ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'node:internal/modules/cjs/loader:1568\r\n' +
+  +   '  throw err;\r\n' +
+  +   '  ^\r\n' +
+  +   '\r\n' +
+  +   "Error: Cannot find module 'D:\\D:\\mimir-task118-windows\\scripts\\benchmarks\\task104-launch.mjs'\r\n" +
+  +   '    at Module._resolveFilename (node:internal/modules/cjs/loader:1564:15)\r\n' +
+  +   '    at wrapResolveFilename (node:internal/modules/cjs/loader:1118:27)\r\n' +
+  +   '    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1142:10)\r\n' +
+  +   '    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1169:12)\r\n' +
+  +   '    at Module._load (node:internal/modules/cjs/loader:1341:5)\r\n' +
+  +   '    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)\r\n' +
+  +   '    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\r\n' +
+  +   '    at node:internal/main/run_main_module:33:47 {\r\n' +
+  +   "  code: 'MODULE_NOT_FOUND',\r\n" +
+  +   '  requireStack: []\r\n' +
+  +   '}\r\n' +
+  +   '\r\n' +
+  +   'Node.js v24.22.1\r\n'
+  - 'Task104 launch failed\n'
+  
+      at TestContext.<anonymous> (file:///D:/mimir-task118-windows/test/task104-launch.test.mjs:40:14)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: "node:internal/modules/cjs/loader:1568\r\n  throw err;\r\n  ^\r\n\r\nError: Cannot find module 'D:\\D:\\mimir-task118-windows\\scripts\\benchmarks\\task104-launch.mjs'\r\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1564:15)\r\n    at wrapResolveFilename (node:internal/modules/cjs/loader:1118:27)\r\n    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1142:10)\r\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1169:12)\r\n    at Module._load (node:internal/modules/cjs/loader:1341:5)\r\n    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)\r\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\r\n    at node:internal/main/run_main_module:33:47 {\r\n  code: 'MODULE_NOT_FOUND',\r\n  requireStack: []\r\n}\r\n\r\nNode.js v24.22.1\r\n",
+    expected: 'Task104 launch failed\n',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

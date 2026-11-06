@@ -1,0 +1,16 @@
+Node v24.22.1; SQLite 3.53.4
+Packed mimir-nl-0.1.0.tgz; 37 entries; isolated install: PASS
+Installed executable init: PASS
+Installed executable doctor: PASS
+Installed executable project_register: PASS
+Installed executable project_ingest: PASS
+Installed executable project_ingest: PASS
+Installed executable memory_store: PASS
+Installed executable memory_update: PASS
+Installed executable memory_get: PASS
+Installed executable memory_search: PASS
+Installed executable memory_feedback: PASS
+Installed executable memory_stats: PASS
+Installed executable memory_delete: PASS
+Installed executable project_delete: PASS
+Source fixture preserved; executable bit valid: PASS
